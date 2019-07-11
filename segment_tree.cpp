@@ -27,7 +27,8 @@ struct SegmentTree {
         tree.assign(2 * size - 1, e);
     }
 
-    void update(int k, Monoid dat) {
+    void update(int k, Monoid dat)
+    {
         k += size - 1;
         tree[k] = dat;
         
@@ -38,7 +39,8 @@ struct SegmentTree {
     }
 
     // [l, r)
-    Monoid query(int l, int r) {
+    Monoid query(int l, int r)
+    {
         l += size - 1;
         r += size - 1;
 
