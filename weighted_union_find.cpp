@@ -1,9 +1,14 @@
 #include <iostream>
+#include <cstdio>
 #include <vector>
 #include <functional>
+#include <string>
+#include <map>
 using namespace std;
 
 //===
+//#include <vector>
+//#include <functional>
 template<typename Abel>
 struct WeightedUnionFind {
     using OP = function<Abel(Abel, Abel)>;
@@ -144,8 +149,54 @@ int AOJ_DSL1B(void)
     return 0;
 }
 
+// verify UTPC2010 D
+// https://onlinejudge.u-aizu.ac.jp/solutions/problem/2207/review/3750413/ei1710/C++14
+int UTPC2010D(void)
+{
+    int n;
+    while (cin >> n, n != 0) {
+        map<string, int> mp;
+        string s, t;
+        int id = 1;
+        ll cost;
+        WeightedUnionFind<ll> uf(n * 2 + 5);
+        bool f = true;
+
+        for (int i = 0; i < n; i++) {
+            scanf("%*d"); // '1'
+            cin >> s; //
+            scanf(" %*c "); // '='
+            scanf("10^ %lld", &cost);
+            cin >> t;
+
+            if (mp.count(s) == 0) {
+                mp[s] = id++;
+            }
+            if (mp.count(t) == 0) {
+                mp[t] = id++;
+            }
+
+            uf.unite(mp[s], mp[t], cost);
+
+            if (uf.diff(mp[s], mp[t]) != cost) {
+                f = false;
+            }
+        }
+
+        if (f) {
+            cout << "Yes" << endl;
+        }
+        else {
+            cout << "No" << endl;
+        }
+    }
+
+    return 0;
+}
+
 int main()
 {
     //return abc087D();
-    return AOJ_DSL1B();
+    //return AOJ_DSL1B();
+    return UTPC2010D();
 }
