@@ -112,7 +112,40 @@ int abc087D(void)
     return 0;
 }
 
+// verify AOJ_DSL_1_B
+// https://onlinejudge.u-aizu.ac.jp/solutions/problem/DSL_1_B/review/3750268/ei1710/C++14
+int AOJ_DSL1B(void)
+{
+    int n, q;
+    ll com, x, y, w;
+
+    cin >> n >> q;
+    
+    WeightedUnionFind<ll> uf(n);
+
+    while (q--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> x >> y >> w;
+            uf.unite(x, y, w);
+        }
+        else {
+            cin >> x >> y;
+            if (uf.same(x, y)) {
+                cout << uf.diff(x, y) << endl;
+            }
+            else {
+                cout << '?' << endl;
+            }
+        }
+    }
+
+    return 0;
+}
+
 int main()
 {
-    return abc087D();
+    //return abc087D();
+    return AOJ_DSL1B();
 }
