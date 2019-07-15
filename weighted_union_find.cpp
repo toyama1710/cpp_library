@@ -4,7 +4,7 @@
 using namespace std;
 
 //===
-template<typename Abel = long long>
+template<typename Abel>
 struct WeightedUnionFind {
     using OP = function<Abel(Abel, Abel)>;
 
@@ -28,14 +28,6 @@ struct WeightedUnionFind {
         diff_weight.assign(nmemb, e);
     }
 
-    void init(int nmemb)
-    {
-        parent.clear();
-        diff_weight.clear();
-        
-        parent.assign(nmemb, -1);
-    }
-
     int root(int x)
     {
         if (parent[x] < 0) {
@@ -43,7 +35,7 @@ struct WeightedUnionFind {
         }
         
         int p = root(parent[x]);
-        diff_weight[x] = add(diff_weight[x], diff_weight[p]);
+        diff_weight[x] = add(diff_weight[x], diff_weight[parent[x]]);
         parent[x] = p;
 
         return p;
@@ -52,16 +44,6 @@ struct WeightedUnionFind {
     bool same(int x, int y)
     {
         return root(x) == root(y);
-    }
-
-    
-    Abel weight(int x) {
-        root(x);
-        return diff_weight[x];
-    }
-
-    Abel diff(int x, int y) {
-        return sub(weight(x), weight(y));
     }
     
     bool unite(int x, int y, Abel w)
@@ -74,7 +56,7 @@ struct WeightedUnionFind {
 
         if (x == y) return false;
 
-        w = sub(add(w + wx) - wy);
+        w = sub(add(w, wx), wy);
 
         parent[x] += parent[y];
         parent[y] = x;
@@ -82,11 +64,55 @@ struct WeightedUnionFind {
         
         return true;
     }
+    
+    Abel weight(int x)
+    {
+        root(x);
+        return diff_weight[x];
+    }
+
+    Abel diff(int x, int y)
+    {
+        return sub(weight(y), weight(x));
+    }
+
+    int size(int x)
+    {
+        x = root(x);
+        return -parent[x];
+    }
 };
 //===
 
-int main()
+typedef long long ll;
+
+// verify AtCoder Beginner Contest 087 D
+// https://atcoder.jp/contests/abc087/submissions/6393566
+int abc087D(void)
 {
+    WeightedUnionFind<ll> uf(1000005);
+    ll n, m;
+    ll l, r, d;
+
+    cin >> n >> m;
+
+    for (int i = 0; i < m; i++) {
+        cin >> l >> r >> d;
+
+        uf.unite(l, r, d);
+
+        if (uf.diff(l, r) != d) {
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+
+    cout << "Yes" << endl;
 
     return 0;
+}
+
+int main()
+{
+    return abc087D();
 }
