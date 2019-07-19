@@ -73,7 +73,7 @@ vector<token> trans_polish(const string &expr) {
             else if (x.op == '(') {
                 op.push(x);
             }
-            else {
+            else if (x.op != ' ') {
                 while(!op.empty()) {
                     if (op.top().pre >= x.pre) {
                         ret.push_back(op.top());
@@ -163,7 +163,7 @@ int PCK_pre2012_9(void)
 
         vector<token> polish = trans_polish(expr);
 
-        //        print_polish(polish);
+        //print_polish(polish);
 
         valid = true;
         ll ans = eval(polish);
