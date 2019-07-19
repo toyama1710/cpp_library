@@ -75,7 +75,7 @@ vector<token> trans_polish(const string &expr) {
             }
             else {
                 while(!op.empty()) {
-                    if (op.top().pre > x.pre) {
+                    if (op.top().pre >= x.pre) {
                         ret.push_back(op.top());
                         op.pop();
                         
@@ -132,7 +132,9 @@ ll eval(const vector<token> &expr) {
     return st.top();
 }
 
-int main()
+// verify
+// https://onlinejudge.u-aizu.ac.jp/solutions/problem/0264/review/3763192/ei1710/C++14
+int PCK_pre2012_9(void)
 {
     auto print_polish = [](vector<token> expr) {
         cout << "polish: ";
@@ -161,7 +163,7 @@ int main()
 
         vector<token> polish = trans_polish(expr);
 
-        print_polish(polish);
+        //        print_polish(polish);
 
         valid = true;
         ll ans = eval(polish);
@@ -177,4 +179,9 @@ int main()
     }
 
     return 0;
+}
+
+int main()
+{
+    return PCK_pre2012_9();
 }
