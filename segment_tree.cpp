@@ -61,9 +61,15 @@ struct SegmentTree {
 
         return d;
     }
+
+    Monoid operator[] (const int k)
+    {
+        return query(k, k + 1);
+    }
 };
 //===
 
+/*
 //verify AOJ DSL_2_B
 int main()
 {
@@ -91,6 +97,7 @@ int main()
         }
     }
 }
+*/
 
 /*
   //verify AOJ DSL_2_A
@@ -121,3 +128,66 @@ int main()
     return 0;
 }
 */
+
+//---verify PCK2013 pre 7
+using ll = long long;
+ll n, r, l;
+ll d[1'000'005];
+ll t[1'000'005];
+ll x[1'000'005];
+ll tv[1'000'005];
+
+struct Team{ ll id, point; };
+
+int main()
+{
+    cin >> n >> r >> l;
+    for (int i = 1; i <= r; i++) {
+        cin >> d[i] >> t[i] >> x[i];
+    }
+
+    SegmentTree<Team> seg(n + 1,
+                          (Team){0, -1 * (1ll << 60ll)},
+                          [](const Team x, const Team y){
+                              if (x.point > y.point) {
+                                  return x;
+                              }
+                              else if (x.point == y.point) {
+                                  if (x.id < y.id) {
+                                      return x;
+                                  }
+                                  else {
+                                      return y;
+                                  }
+                              }
+                              else {
+                                  return y;
+                              }
+                          });
+    //init
+    for (int i = 1; i <= n; i++) {
+        seg.update(i, (Team){i, 0});
+    }
+
+    //setinel
+    d[0] = 0, t[0] = 0, x[0] = 0;
+    d[r + 1] = 0, t[r + 1] = l, x[r + 1] = 0;
+        
+    for (int i = 1; i <= r + 1; i++) {
+        Team a = seg.query(1, n + 1);
+        tv[a.id] += t[i] - t[i - 1];
+
+        a = seg[d[i]];
+        a.point += x[i];
+        seg.update(d[i], a);
+    }
+
+    int mpos = 0;
+    for (int i = 1; i <= n; i++) {
+        if (tv[mpos] < tv[i]) mpos = i;
+    }
+
+    cout << mpos << endl;
+
+    return 0;
+}
