@@ -90,7 +90,7 @@ struct LazySegmentTree {
 
         if (ql <= nl && nr <= qr) return seg[k];
         else return mergeMonoid(query(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
-                                query(2 * K + 1, (nl + nr) / f2, ql, qr));
+                                query(2 * k + 1, (nl + nr) / 2, ql, qr));
     }
 
     // [l, r)
