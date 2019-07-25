@@ -20,7 +20,6 @@ struct LazySegmentTree {
     vector<bool> isUpdated;
     
     int size;
-    int height;
                                            
     LazySegmentTree(int nmemb, const Monoid &e,
                     function<Monoid(Monoid, Monoid)> f,
@@ -28,11 +27,9 @@ struct LazySegmentTree {
                     function<Laz(Laz, Laz)> h):
         e(e), mergeMonoid(f), applyLaz(g), mergeLaz(h)
     {
-        height = 0;
         size = 1;
         while (size < nmemb) {
             size *= 2;
-            height++;
         }
 
         seg.assign(2 * size - 1, e);
@@ -45,13 +42,13 @@ struct LazySegmentTree {
         if (!isUpdated[k]) {
             seg[k] = applyLaz(seg[k], lazy[k], len);
             if (len > 1) {
-                if (!isUpdated[2 * k + 1])
-                    lazy[2 * k + 1] = lazy[k];
+                if (isUpdated[2 * k + 1])
+                    lazy[2 * k + 1] = lazy[k], isUpdated[2 * k + 1] = false;
                 else
                     lazy[2 * k + 1] = mergeLaz(lazy[2 * k + 1], lazy[k]);
                 
                 if (isUpdated[2 * k + 2])
-                    lazy[2 * k + 2] = lazy[k];
+                    lazy[2 * k + 2] = lazy[k], isUpdated[2 * k + 2] = false;
                 else 
                     lazy[2 * k + 2] = mergeLaz(lazy[2 * k + 2], lazy[k]);
             }
@@ -59,20 +56,22 @@ struct LazySegmentTree {
         }
     }
 
-    void update(int k, int nl, int nr, int ql, int qr, Laz dat)
+    Monoid update(int k, int nl, int nr, int ql, int qr, Laz dat)
     {
-        if (qr <= nl || nr <= ql) return;
-
         lazyPropagation(k, nr - nl);
+
+        if (nr <= ql || qr <= nl) return seg[k];
 
         if (ql <= nl && nr <= qr) {
             lazy[k] = dat;
-            lazy(k, nr - nl);
+            isUpdated[k] = false;
+            lazyPropagation(k, nr - nl);
+            return seg[k];
         }
         else {
-            update(2 * k + 1, nl, (nl + nr) / 2, ql, qr, dat);
-            update(2 * k + 2, (nl + nr) / 2, nr, ql, qr, dat);
-            seg[k] = mergeMonoid(seg[2 * k + 1], seg[2 * k + 2]);
+            seg[k] = mergeMonoid(update(2 * k + 1, nl, (nl + nr) / 2, ql, qr, dat),
+                                 update(2 * k + 2, (nl + nr) / 2, nr, ql, qr, dat));
+            return seg[k];
         }
     }
 
@@ -80,17 +79,19 @@ struct LazySegmentTree {
     void update(int l, int r, Laz dat)
     {
         update(0, 0, size, l, r, dat);
+        return;
     }
 
     Monoid query(int k, int nl, int nr, int ql, int qr)
     {
-        if (nr <= ql || qr <= nl) return e;
 
         lazyPropagation(k, nr - nl);
+        
+        if (nr <= ql || qr <= nl) return e;
 
         if (ql <= nl && nr <= qr) return seg[k];
         else return mergeMonoid(query(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
-                                query(2 * k + 1, (nl + nr) / 2, ql, qr));
+                                query(2 * k + 2, (nl + nr) / 2, nr, ql, qr));
     }
 
     // [l, r)
@@ -98,10 +99,53 @@ struct LazySegmentTree {
     {
         return query(0, 0, size, l, r);
     }
+
+    Monoid operator [](const int &k)
+    {
+        return query(k, k + 1);
+    }
 };
 //===
 
+//verify 2019/07/25 17:12
+int DSL_2_D(void)
+{
+    int n, q;
+    int com, s, t, x;
+
+    cin >> n >> q;
+
+    LazySegmentTree<int, int> seg(n, -1,
+                                  /*f=*/[](int l, int r){
+                                      return max(l, r);
+                                  },
+                                  /*g=*/[](int m, int laz, int len){
+                                      return laz;
+                                  },
+                                  /*h=*/[](int l, int r) {
+                                      return r;
+                                  });
+
+    while (q--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> s >> t >> x;
+            seg.update(s, t + 1, x);
+        }
+        else if (com == 1) {
+            cin >> s;
+            int a = seg[s];
+
+            if (a == -1) cout << (1ll << 31ll) - 1 << endl;
+            else cout << a << endl;
+        }
+    }
+
+    return 0;
+}
+
 int main()
 {
-    return 0;
+    return DSL_2_D();
 }
