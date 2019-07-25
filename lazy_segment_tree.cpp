@@ -45,7 +45,7 @@ struct LazySegmentTree {
         if (!isUpdated[k]) {
             seg[k] = applyLaz(seg[k], lazy[k], len);
             if (len > 1) {
-                is (isUpdated[k])
+                if (!isUpdated[2 * k + 1])
                     lazy[2 * k + 1] = lazy[k];
                 else
                     lazy[2 * k + 1] = mergeLaz(lazy[2 * k + 1], lazy[k]);
@@ -59,34 +59,38 @@ struct LazySegmentTree {
         }
     }
 
-    void update(int l, int r, int node, int nl, int nr)
+    void update(int k, int nl, int nr, int ql, int qr, Laz dat)
     {
-        if (r <= nl || nr <= l) return;
+        if (qr <= nl || nr <= ql) return;
 
-        lazyPropagation(node, nr - nl);
+        lazyPropagation(k, nr - nl);
 
-        if (l <= nl && r <= nr) {
+        if (ql <= nl && nr <= qr) {
+            lazy[k] = dat;
+            lazy(k, nr - nl);
         }
         else {
+            update(2 * k + 1, nl, (nl + nr) / 2, ql, qr, dat);
+            update(2 * k + 2, (nl + nr) / 2, nr, ql, qr, dat);
+            seg[k] = mergeMonoid(seg[2 * k + 1], seg[2 * k + 2]);
         }
     }
 
     // [l, r) <= dat
     void update(int l, int r, Laz dat)
     {
+        update(0, 0, size, l, r, dat);
     }
 
-    Monoid query(int node, int nl, int nr, int ql, int qr)
+    Monoid query(int k, int nl, int nr, int ql, int qr)
     {
         if (nr <= ql || qr <= nl) return e;
 
-        if (ql <= nl && nr <= qr) {
-            if (isUpdated(node)) return seg[node];
-            else return applyLaz(seg[node], lazy[node], nr - nl);
-        }
-        else {
-            lazyPropagation(node);
-        }
+        lazyPropagation(k, nr - nl);
+
+        if (ql <= nl && nr <= qr) return seg[k];
+        else return mergeMonoid(query(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
+                                query(2 * K + 1, (nl + nr) / f2, ql, qr));
     }
 
     // [l, r)
