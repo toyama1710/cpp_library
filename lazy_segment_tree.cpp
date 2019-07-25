@@ -145,7 +145,46 @@ int DSL_2_D(void)
     return 0;
 }
 
+//verify 2019/07/25 17:21
+int DSL_2_E()
+{
+    int n, q;
+    int com, s, t, x;
+
+    cin >> n >> q;
+
+    LazySegmentTree<int, int> seg(n, 0,
+                                  [](int l, int r){
+                                      return l + r;
+                                  },
+                                  [](int l, int r, int len){
+                                      return l + (r * len);
+                                  },
+                                  [](int l, int r){
+                                      return l + r;
+                                  });
+                                  
+
+    while (q--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> s >> t >> x;
+            s--;
+
+            seg.update(s, t, x);
+        }
+        else if (com == 1) {
+            cin >> s;
+            s--;
+
+            cout << seg[s] << endl;
+        }
+    }
+}
+
 int main()
 {
-    return DSL_2_D();
+    //    return DSL_2_D();
+    return DSL_2_E();
 }
