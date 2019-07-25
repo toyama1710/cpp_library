@@ -37,7 +37,7 @@ struct LazySegmentTree {
         lazy.resize(2 * size - 1); 
     }
 
-    inline void lazyPropagation(int k, int len)
+    inline void propagation(int k, int len)
     {
         if (!isUpdated[k]) {
             seg[k] = applyLaz(seg[k], lazy[k], len);
@@ -58,14 +58,14 @@ struct LazySegmentTree {
 
     Monoid update(int k, int nl, int nr, int ql, int qr, Laz dat)
     {
-        lazyPropagation(k, nr - nl);
+        propagation(k, nr - nl);
 
         if (nr <= ql || qr <= nl) return seg[k];
 
         if (ql <= nl && nr <= qr) {
             lazy[k] = dat;
             isUpdated[k] = false;
-            lazyPropagation(k, nr - nl);
+            propagation(k, nr - nl);
             return seg[k];
         }
         else {
@@ -85,7 +85,7 @@ struct LazySegmentTree {
     Monoid query(int k, int nl, int nr, int ql, int qr)
     {
 
-        lazyPropagation(k, nr - nl);
+        propagation(k, nr - nl);
         
         if (nr <= ql || qr <= nl) return e;
 
@@ -181,6 +181,8 @@ int DSL_2_E()
             cout << seg[s] << endl;
         }
     }
+
+	return 0;
 }
 
 //verify 2019/07/25 17:27
