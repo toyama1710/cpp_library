@@ -40,12 +40,23 @@ struct LazySegmentTree {
         lazy.resize(2 * size - 1); 
     }
 
-    inline void lazyPropagation(int node, int len)
+    inline void lazyPropagation(int k, int len)
     {
-        if (len > 1) {
+        if (!isUpdated[k]) {
+            seg[k] = applyLaz(seg[k], lazy[k], len);
+            if (len > 1) {
+                is (isUpdated[k])
+                    lazy[2 * k + 1] = lazy[k];
+                else
+                    lazy[2 * k + 1] = mergeLaz(lazy[2 * k + 1], lazy[k]);
+                
+                if (isUpdated[2 * k + 2])
+                    lazy[2 * k + 2] = lazy[k];
+                else 
+                    lazy[2 * k + 2] = mergeLaz(lazy[2 * k + 2], lazy[k]);
+            }
+            isUpdated[k] = true;
         }
-
-        
     }
 
     void update(int l, int r, int node, int nl, int nr)
@@ -55,8 +66,6 @@ struct LazySegmentTree {
         lazyPropagation(node, nr - nl);
 
         if (l <= nl && r <= nr) {
-            if (!isUpdated[node]) {
-                lazy[node] = lazyPropagation(lazy[node], 
         }
         else {
         }
