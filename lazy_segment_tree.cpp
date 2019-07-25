@@ -183,8 +183,104 @@ int DSL_2_E()
     }
 }
 
+//verify 2019/07/25 17:27
+int DSL_2_F(void)
+{
+    using ll = long long;
+        
+    ll n, q;
+    ll com, s, t, x;
+
+    cin >> n >> q;
+
+    LazySegmentTree<ll, ll> seg(n, (1ll << 31ll) - 1,
+                                [](ll l, ll r){ return min(l, r); },
+                                [](ll m, ll laz, int len){ return laz; },
+                                [](ll l, ll r){ return r; });
+
+    while (q--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> s >> t >> x;
+
+            seg.update(s, t + 1, x);
+        }
+        else if (com == 1) {
+            cin >> s >> t;
+            cout << seg.query(s, t + 1) << endl;
+        }
+    }
+
+    return 0;
+}
+
+int DSL_2_H(void)
+{
+    using ll = long long;
+
+    ll n, q;
+    ll com, s, t, x;
+
+    cin >> n >> q;
+    LazySegmentTree<ll, ll> seg(n, 1ll << 60ll,
+                                [](ll l, ll r){ return min(l, r); },
+                                [](ll m, ll l, int len){ return m + l; },
+                                [](ll l, ll r){ return l + r; });
+    seg.update(0, n, -1 * (1ll << 60ll));
+
+    while (q--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> s >> t >> x;
+            seg.update(s, t + 1, x);
+        }
+        else if (com == 1) {
+            cin >> s >> t;
+            cout << seg.query(s, t + 1) << endl;
+        }
+        
+    }
+
+    return 0;
+}
+
+int DSL_2_I(void)
+{
+    using ll = long long;
+
+    ll n, q;
+    ll com, s, t, x;
+
+    cin >> n >> q;
+
+    LazySegmentTree<ll, ll> seg(n, 0,
+                                [](ll l, ll r){ return l + r; },
+                                [](ll m, ll l, ll len){ return l * len; },
+                                [](ll l, ll r){ return r; });
+
+    while (q--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> s >> t >> x;
+            seg.update(s, t + 1, x);
+        }
+        else if (com == 1) {
+            cin >> s >> t;
+            cout << seg.query(s, t + 1) << endl;
+        }
+    }
+
+    return 0;
+}
+
 int main()
 {
-    //    return DSL_2_D();
-    return DSL_2_E();
+    //return DSL_2_D();
+    //return DSL_2_E();
+    //return DSL_2_F();
+    //return DSL_2_H();
+    return DSL_2_I();
 }
