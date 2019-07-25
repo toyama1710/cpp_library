@@ -79,7 +79,6 @@ struct LazySegmentTree {
     void update(int l, int r, Laz dat)
     {
         update(0, 0, size, l, r, dat);
-        return;
     }
 
     Monoid query(int k, int nl, int nr, int ql, int qr)
