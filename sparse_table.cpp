@@ -1,6 +1,7 @@
 #include <iostream>
 #include <functional>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 //===
@@ -16,9 +17,10 @@ struct SparseTable {
 
     SparseTable():n(0){}
     SparseTable(int n, T v = T(), const Compare &f = Compare()):
-        n(n), log2(n + 1), elements(n, v), cmp(f)
+        n(n), log2(n + 1), elements(n), cmp(f)
     {
         for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
+        elements.assign(n, v);
         table.assign(log2[n] + 1, vector<int>(n));
     }
 
@@ -105,7 +107,58 @@ int RMQ(void)
     return 0;
 }
 
+int PCK2014_pre_8(void)
+{
+    using ll = long long;
+    struct Star{ ll x, y, b; };
+    auto scmp = [](const Star &x, const Star &y) {
+                    if (x.b < y.b) return true;
+                    else return false;
+                };
+
+    ll ans = 0;
+    ll n, d;
+    vector<Star> s;
+    
+    cin >> n >> d;
+    s = vector<Star>(n);
+    for (int i = 0; i < n; i++) {
+        cin >> s[i].x >> s[i].y >> s[i].b;
+    }
+
+    sort(s.begin(), s.end(), scmp);
+    
+    SparseTable<ll> minX(n, 0);
+    SparseTable<ll, greater<>> maxX(n, 0);
+    SparseTable<ll> minY(n, 0);
+    SparseTable<ll, greater<>> maxY(n, 0);
+
+    for (int i = 0; i < n; i++) {
+        minX.set(i, s[i].x);
+        maxX.set(i, s[i].x);
+
+        minY.set(i, s[i].y);
+        maxY.set(i, s[i].y);
+    }
+
+    for (int i = 0; i < n; i++) {
+        ll l = i;
+        ll r = upper_bound(s.begin(), s.end(), (Star){0, 0, s[i].b + d}, scmp)
+        - s.begin();
+
+        ll x = maxX.query(l, r) - minX.query(l, r);
+        ll y = maxY.query(l, r) - minY.query(l, r);
+
+        ans = max(ans, x * y);
+    }
+
+    cout << ans << endl;
+
+    return 0;
+}
+
 int main()
 {
     //return RMQ();
+    return PCK2014_pre_8();
 }
