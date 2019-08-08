@@ -35,8 +35,7 @@ struct SparseTable {
         //table = vector<vector<T>>(logn, vector<T>(first, last));
     }
 
-    void build(void)
-    {
+    void build(void) {
         for (int i = 0; i < n; i++) table[0][i] = i;
         
         for (int i = 0; i < log2[n]; i++) {
@@ -53,16 +52,14 @@ struct SparseTable {
         builded = true;
     }
 
-    void set(int k, T dat)
-    {
+    void set(int k, T dat) {
         elements[k] = dat;
         builded = false;
         return;
     }
 
     //[l, r)
-    T query(int l, int r)
-    {
+    T query(int l, int r) {
         if (!builded) build();
 
         int k = log2[r - l];
@@ -75,10 +72,7 @@ struct SparseTable {
 
     int size() { return n; }
 
-    T operator[] (const int k)
-    {
-        return elements[k];
-    }
+    T operator[] (const int k) { return elements[k]; }
 };
 //===
 

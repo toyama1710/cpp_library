@@ -37,8 +37,7 @@ struct LazySegmentTree {
         lazy.resize(2 * size - 1); 
     }
 
-    inline void propagation(int k, int len)
-    {
+    inline void propagation(int k, int len) {
         if (!isUpdated[k]) {
             seg[k] = applyLaz(seg[k], lazy[k], len);
             if (len > 1) {
@@ -56,8 +55,7 @@ struct LazySegmentTree {
         }
     }
 
-    Monoid update(int k, int nl, int nr, int ql, int qr, Laz dat)
-    {
+    Monoid update(int k, int nl, int nr, int ql, int qr, Laz dat) {
         propagation(k, nr - nl);
 
         if (nr <= ql || qr <= nl) return seg[k];
@@ -76,13 +74,11 @@ struct LazySegmentTree {
     }
 
     // [l, r) <= dat
-    void update(int l, int r, Laz dat)
-    {
+    void update(int l, int r, Laz dat) {
         update(0, 0, size, l, r, dat);
     }
 
-    Monoid query(int k, int nl, int nr, int ql, int qr)
-    {
+    Monoid query(int k, int nl, int nr, int ql, int qr) {
 
         propagation(k, nr - nl);
         
@@ -94,15 +90,9 @@ struct LazySegmentTree {
     }
 
     // [l, r)
-    Monoid query(int l, int r)
-    {
-        return query(0, 0, size, l, r);
-    }
+    Monoid query(int l, int r) { return query(0, 0, size, l, r); }
 
-    Monoid operator [](const int &k)
-    {
-        return query(k, k + 1);
-    }
+    Monoid operator [](const int &k) { return query(k, k + 1); }
 };
 //===
 

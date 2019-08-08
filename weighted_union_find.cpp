@@ -33,8 +33,7 @@ struct WeightedUnionFind {
         diff_weight.assign(nmemb, e);
     }
 
-    int root(int x)
-    {
+    int root(int x) {
         if (parent[x] < 0) {
             return x;
         }
@@ -46,13 +45,9 @@ struct WeightedUnionFind {
         return p;
     }
 
-    bool same(int x, int y)
-    {
-        return root(x) == root(y);
-    }
+    bool same(int x, int y) { return root(x) == root(y); }
     
-    bool unite(int x, int y, Abel w)
-    {
+    bool unite(int x, int y, Abel w) {
         Abel wx = weight(x);
         Abel wy = weight(y);
 
@@ -70,22 +65,14 @@ struct WeightedUnionFind {
         return true;
     }
     
-    Abel weight(int x)
-    {
+    Abel weight(int x) {
         root(x);
         return diff_weight[x];
     }
 
-    Abel diff(int x, int y)
-    {
-        return sub(weight(y), weight(x));
-    }
+    Abel diff(int x, int y) { return sub(weight(y), weight(x)); }
 
-    int size(int x)
-    {
-        x = root(x);
-        return -parent[x];
-    }
+    int size(int x) { return -parent[root(x)]; }
 };
 //===
 
@@ -196,7 +183,7 @@ int UTPC2010D(void)
 
 int main()
 {
-    //return abc087D();
+    return abc087D();
     //return AOJ_DSL1B();
-    return UTPC2010D();
+    //return UTPC2010D();
 }

@@ -17,8 +17,7 @@ long long fact[10000007];
 long long fact_inv[10000007];
 
 void init_comb(long long modulus) {_modulus = modulus; }
-void init_comb(void)
-{
+void init_comb(void) {
     fact[0] = fact[1] = 1;
     fact_inv[0] = fact_inv[1] = 1;
     for (int i = 2; i <= 10000000; i++) {
@@ -27,8 +26,7 @@ void init_comb(void)
     }
 }
 
-long long combination(long long n, long long k)
-{
+long long combination(long long n, long long k) {
     static long long f;
 
     if (f != _modulus) f = _modulus, init_comb();
@@ -39,8 +37,7 @@ long long combination(long long n, long long k)
     return fact[n] * (fact_inv[k] * fact_inv[n - k] % _modulus) % _modulus;
 }
 
-long long pow_mod(long long n, long long m)
-{
+long long pow_mod(long long n, long long m) {
     //n ** m;
     long long ret = 1;
 
@@ -57,8 +54,7 @@ long long pow_mod(long long n, long long m)
 }
 //===
 
-int main()
-{
+int main() {
     long long mod;
     long long n, r;
 
