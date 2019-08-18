@@ -37,6 +37,17 @@ struct Treap {
 
         Node(T dat, uint64 p):
             dat(dat), p(p), parent(nullptr), l(nullptr), r(nullptr) {}
+
+        bool add_child(Node *w) {
+            int c = cmp(this->dat, w->dat);
+
+            if (c < 0) this->right = w;
+            else if (c > 0) this->left = w;
+            else return false;
+            
+            w->parent = this;
+            return true;
+        }
     };
     
     Node *root = nullptr;
@@ -46,18 +57,65 @@ struct Treap {
     Treap(Compare &cmp = Compare()):
         cmp(cmp), rnd(mt19937(random_device()())) {}
 
-    bool insert(T x) {
-        Node *u = new Node(x, (uint64)rnd());
+    bool has_element(T x) {
+        Node *w = root;
 
-        //add(u);
-        babble_up(u);
-
-        return true;
+        while (w != nullptr) {
+            int c = cmp(w->dat, x);
+            if (c < 0) w = w->right;
+            else if (c > 0) w = w->left;
+            else return true;
+        }
+        return false;
     }
 
+    Node *find_last_node(T x) {
+        Node *w = root;
+        Node *prev = nullptr;
+
+        while (w != nullptr) {
+            prev = w;
+            int c = cmp(w->dat, x);
+            if (c < 0) w = w->right;
+            else if (c > 0) w = w->left;
+            else return w;
+        }
+        return prev;
+    }
+
+    // suc:true, faile:false
+    bool insert(T x) {
+        Node *u = new Node(x, (uint64)rnd());
+        Node *w = find_last_node(x);
+
+        if (w == nullptr) {
+            root = u;
+        }
+        else if(w->add_child(u)) {
+            babble_up(u);
+            return true;
+        }
+
+        delete u;
+        return false;
+    }
     bool erase(T x) {
-        Node *u;
+        Node *u = find_last_node(x);
+        Node *p = u->parent;
+
+        if (u == nullptr || cmp(u->dat, x) != 0) return false;
+
+        trickle_down(u);
+        if (p == nullptr) {
+            root = nullptr;
+        }
+        else {
+            if (p->left == u) p->left = nullptr;
+            else p->right = nullptr;
+        }
+        delete u;
         
+        return true;
     }
     
     void babble_up(Node *u) {
