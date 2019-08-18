@@ -92,6 +92,21 @@ struct Treap {
     T find_Kth_element(uint k) {
         uint index = 0;
         Node *w = root;
+
+        while (w != nullptr && index < k) {
+            if (index + size(w->left) == k) {
+                index += size(w->left);
+            }
+            else if (index + size(w->left) > k) {
+                w = w->left;
+            }
+            else {
+                index += size(w->left) + 1;
+                w = w->right;
+            }
+        }
+
+        return w->dat;
     }
     
     // suc:true, faile:false
