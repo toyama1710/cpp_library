@@ -38,16 +38,6 @@ struct Treap {
         Node(T dat, uint64 p):
             dat(dat), p(p), parent(nullptr), l(nullptr), r(nullptr) {}
 
-        bool add_child(Node *w) {
-            int c = cmp(this->dat, w->dat);
-
-            if (c < 0) this->right = w;
-            else if (c > 0) this->left = w;
-            else return false;
-            
-            w->parent = this;
-            return true;
-        }
     };
     
     Node *root = nullptr;
@@ -91,7 +81,7 @@ struct Treap {
         if (w == nullptr) {
             root = u;
         }
-        else if(w->add_child(u)) {
+        else if(add_child(w, u)) {
             babble_up(u);
             return true;
         }
@@ -117,7 +107,18 @@ struct Treap {
         
         return true;
     }
-    
+
+    bool add_child(Node *p, Node *u) {
+        int c = cmp(p->dat, u->dat);
+
+        if (c < 0) this->right = u;
+        else if (c > 0) this->left = u;
+        else return false;
+            
+        u->parent = this;
+        return true;
+    }
+
     void babble_up(Node *u) {
         while (u->parent != nullptr && u->parent->p > u->p) {
             if (u->parent->right == u) rotate_left(u->parent);
