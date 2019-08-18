@@ -48,7 +48,6 @@ struct Treap {
 
     bool insert(T x) {
         Node *u = new Node(x, (uint64)rnd());
-        rnd();
 
         //add(u);
         babble_up(u);
