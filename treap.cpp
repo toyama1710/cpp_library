@@ -32,12 +32,12 @@ struct Treap {
         T dat;
         uint64 p;
 
+        uint sz = 1;
         Node *parent;
         Node *l, *r;
 
         Node(T dat, uint64 p):
             dat(dat), p(p), parent(nullptr), l(nullptr), r(nullptr) {}
-
     };
     
     Node *root = nullptr;
@@ -58,21 +58,42 @@ struct Treap {
         }
         return false;
     }
-
-    Node *find_last_node(T x) {
-        Node *w = root;
-        Node *prev = nullptr;
-
-        while (w != nullptr) {
-            prev = w;
-            int c = cmp(w->dat, x);
-            if (c < 0) w = w->right;
-            else if (c > 0) w = w->left;
-            else return w;
-        }
-        return prev;
+    
+    uint size(Node *r) {
+        return r == nullptr ? 0 : r->sz;
+    }
+    uint calc_size(Node *r) {
+        r->sz = size(r->left) + size(r->right) + 1;
+        return r->sz;
     }
 
+    uint order_of(T x) {
+        uint index = 0;
+        Node *w = root;
+
+        while (w != nullptr) {
+            int c = cmp(w->dat, x);
+
+            if (c < 0) {
+                index += size(w->left) + 1;
+                w = w->right;
+            }
+            else if (c > 0) {
+                w = w->left;
+            }
+            else {
+                index += size(w->left);
+                return index;
+            }
+        }
+
+        return -1;
+    }
+    T find_Kth_element(uint k) {
+        uint index = 0;
+        Node *w = root;
+    }
+    
     // suc:true, faile:false
     bool insert(T x) {
         Node *u = new Node(x, (uint64)rnd());
@@ -107,15 +128,29 @@ struct Treap {
         
         return true;
     }
+    
+    Node *find_last_node(T x) {
+        Node *w = root;
+        Node *prev = nullptr;
 
+        while (w != nullptr) {
+            prev = w;
+            int c = cmp(w->dat, x);
+            if (c < 0) w = w->right;
+            else if (c > 0) w = w->left;
+            else return w;
+        }
+        return prev;
+    }
+    
     bool add_child(Node *p, Node *u) {
         int c = cmp(p->dat, u->dat);
 
-        if (c < 0) this->right = u;
-        else if (c > 0) this->left = u;
+        if (c < 0) p->right = u;
+        else if (c > 0) p->left = u;
         else return false;
             
-        u->parent = this;
+        u->parent = p;
         return true;
     }
 
@@ -154,6 +189,9 @@ struct Treap {
         else {
             root = w;
         }
+
+        calc_size(u);
+        calc_size(w);
     }
 
     void rotate_right(Node *u) {
@@ -172,6 +210,9 @@ struct Treap {
         else {
             root = w;
         }
+
+        calc_size(u);
+        calc_size(w);
     }
 };
 //===
