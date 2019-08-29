@@ -330,6 +330,29 @@ int pck2019_pre09() {
     return 0;
 }
 
+int ARC033C() {
+    Treap<int> st;
+    int q;
+    int t, x;
+
+    cin >> q;
+
+    while (q--) {
+        cin >> t >> x;
+
+        if (t == 1) {
+            st.insert(x);
+        }
+        else if (t == 2) {
+            cout << st.find_Kth_element(x - 1) << endl;
+            st.erase(st.find_Kth_element(x - 1));
+        }
+    }
+
+    return 0;
+}
+
 int main() {
-    return pck2019_pre09();
+    return ARC033C();
+    //return pck2019_pre09();
 }
