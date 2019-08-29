@@ -22,7 +22,7 @@ struct Treap {
         Node *right;
 
         Node(T dat, uint64 p):
-            parent(nullptr), left(nullptr), right(nullptr), dat(dat), p(p) {}
+            dat(dat), p(p), parent(nullptr), left(nullptr), right(nullptr) {}
     };
     
     Node *root;
