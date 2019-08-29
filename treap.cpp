@@ -2,28 +2,12 @@
 #include <cstdint>
 #include <random>
 #include <functional>
+#include <cassert>
 using namespace std;
-
-//===comparator
-template<typename T,
-         typename Equal = equal_to<T>,
-         typename Less = less<T>,
-         typename Greater = greater<T>>
-struct Comparator {
-    const Equal eq();
-    const Less le();
-    const Greater gr();
-
-    int operator ()(const T &l, const T &r) {
-        if (le(l, r)) return -1;
-        if (eq(l, r)) return 0;
-        if (gr(l, r)) return 1;
-    }
-};
-//===
+using ll = long long;
 
 //===
-template <typename T, typename Compare = Comparator<T>>
+template <typename T, typename Compare = less<T>>
 struct Treap {
     using uint = uint_fast32_t;
     using uint64 = uint_fast64_t;
@@ -34,26 +18,29 @@ struct Treap {
 
         uint sz = 1;
         Node *parent;
-        Node *l, *r;
+        Node *left;
+        Node *right;
 
         Node(T dat, uint64 p):
-            dat(dat), p(p), parent(nullptr), l(nullptr), r(nullptr) {}
+            parent(nullptr), left(nullptr), right(nullptr), dat(dat), p(p) {}
     };
     
-    Node *root = nullptr;
+    Node *root;
     const Compare cmp;
     mt19937 rnd;
-
-    Treap(Compare &cmp = Compare()):
-        cmp(cmp), rnd(mt19937(random_device()())) {}
-
+    
+    Treap(const Compare &cmp = Compare()):
+        root(nullptr), cmp(cmp), rnd(mt19937(random_device()())) {}
+    
     bool has_element(T x) {
         Node *w = root;
 
         while (w != nullptr) {
-            int c = cmp(w->dat, x);
-            if (c < 0) w = w->right;
-            else if (c > 0) w = w->left;
+            bool c1 = cmp(w->dat, x);
+            bool c2 = cmp(x, w->dat);
+            
+            if (c1) w = w->right;
+            else if (c2) w = w->left;
             else return true;
         }
         return false;
@@ -62,9 +49,18 @@ struct Treap {
     uint size(Node *r) {
         return r == nullptr ? 0 : r->sz;
     }
+    uint size() {
+        return size(root);
+    }
     uint calc_size(Node *r) {
         r->sz = size(r->left) + size(r->right) + 1;
         return r->sz;
+    }
+    void upward_calc_size(Node *r) {
+        while (r != nullptr) {
+            calc_size(r);
+            r = r->parent;
+        }
     }
 
     uint order_of(T x) {
@@ -72,13 +68,14 @@ struct Treap {
         Node *w = root;
 
         while (w != nullptr) {
-            int c = cmp(w->dat, x);
+            bool c1 = cmp(w->dat, x);
+            bool c2 = cmp(x, w->dat);
 
-            if (c < 0) {
+            if (c1) {
                 index += size(w->left) + 1;
                 w = w->right;
             }
-            else if (c > 0) {
+            else if (c2) {
                 w = w->left;
             }
             else {
@@ -90,19 +87,19 @@ struct Treap {
         return -1;
     }
     T find_Kth_element(uint k) {
-        uint index = 0;
         Node *w = root;
+        uint index = size(w->left);
 
-        while (w != nullptr && index < k) {
-            if (index + size(w->left) == k) {
-                index += size(w->left);
-            }
-            else if (index + size(w->left) > k) {
+        assert(k < size(root));
+
+        while (w != nullptr && index != k) {
+            if (index > k) {
                 w = w->left;
+                index -= size(w->right) + 1;
             }
-            else {
-                index += size(w->left) + 1;
+            else if (index < k) {
                 w = w->right;
+                index += size(w->left) + 1;
             }
         }
 
@@ -116,8 +113,11 @@ struct Treap {
 
         if (w == nullptr) {
             root = u;
+            return true;
         }
         else if(add_child(w, u)) {
+            upward_calc_size(u);
+            
             babble_up(u);
             return true;
         }
@@ -129,62 +129,74 @@ struct Treap {
         Node *u = find_last_node(x);
         Node *p = u->parent;
 
-        if (u == nullptr || cmp(u->dat, x) != 0) return false;
+        if (u == nullptr || cmp(u->dat, x) || cmp(x, u->dat)) return false;
+
+        if (size(root) == 1) {
+            root = nullptr;
+            delete u;
+            return true;
+        }
 
         trickle_down(u);
-        if (p == nullptr) {
-            root = nullptr;
-        }
-        else {
-            if (p->left == u) p->left = nullptr;
-            else p->right = nullptr;
-        }
+        p = u->parent;
+        if (p->left == u) p->left = nullptr;
+        else p->right = nullptr;
+
+        upward_calc_size(u);
+
         delete u;
         
         return true;
     }
-    
+
     Node *find_last_node(T x) {
         Node *w = root;
         Node *prev = nullptr;
 
         while (w != nullptr) {
             prev = w;
-            int c = cmp(w->dat, x);
-            if (c < 0) w = w->right;
-            else if (c > 0) w = w->left;
+            bool c1 = cmp(w->dat, x);
+            bool c2 = cmp(x, w->dat);
+
+            if (c1) w = w->right;
+            else if (c2) w = w->left;
             else return w;
         }
+        
         return prev;
     }
     
     bool add_child(Node *p, Node *u) {
-        int c = cmp(p->dat, u->dat);
+        bool c1 = cmp(p->dat, u->dat);
+        bool c2 = cmp(u->dat, p->dat);
 
-        if (c < 0) p->right = u;
-        else if (c > 0) p->left = u;
-        else return false;
-            
+        if (p == u) return false;
+        if (!c1 && !c2) return false;
+        else if (c1) p->right = u;
+        else p->left = u;
+        
         u->parent = p;
+        
+        calc_size(u);
+        calc_size(p);
+        
         return true;
     }
 
     void babble_up(Node *u) {
         while (u->parent != nullptr && u->parent->p > u->p) {
             if (u->parent->right == u) rotate_left(u->parent);
-            if (u->parent->left == u) rotate_right(u->parent);
+            else rotate_right(u->parent);
         }
         
         if (u->parent == nullptr) root = u;
     }
     void trickle_down(Node *u) {
         while (u->left != nullptr || u->right != nullptr) {
-            if (u->left != nullptr) rotate_right(u);
-            else if (u->right != nullptr) rotate_left(u);
+            if (u->left == nullptr) rotate_left(u);
+            else if (u->right == nullptr) rotate_right(u);
             else if (u->left->p < u->right->p) rotate_right(u);
             else rotate_left(u);
-
-            if (root == u) root = u->parent;
         }
     }
     
@@ -195,7 +207,8 @@ struct Treap {
         
         u->right = w->left;
         if (u->right != nullptr) u->right->parent = u;
-        w->left = u;   
+        
+        w->left = u;
         
         if (w->parent != nullptr) {
             if (w->parent->left == u) w->parent->left = w;
@@ -208,7 +221,6 @@ struct Treap {
         calc_size(u);
         calc_size(w);
     }
-
     void rotate_right(Node *u) {
         Node *w = u->left;
         w->parent = u->parent;
@@ -216,6 +228,7 @@ struct Treap {
 
         u->left = w->right;
         if (u->left != nullptr) u->left->parent = u;
+        
         w->right = u;
 
         if (w->parent != nullptr) {
@@ -229,10 +242,94 @@ struct Treap {
         calc_size(u);
         calc_size(w);
     }
+
+#ifndef NODEBUG
+    void dump(void) {
+        cout << "Treap state." << endl;
+        cout << "size: " << size(root) << endl;
+
+        dump(root, 0);
+    }
+    void dump(Node *u, int h) {
+        if (u == nullptr) return;
+
+        dump(u->right, h + 1);
+
+        for (int i = 0; i < 4 * h; i++) putchar(' ');
+        cout << u->dat.idx << ',' << u->dat.point << endl;
+
+        dump(u->left, h + 1);
+    }
+#else
+    void dump(void) {}
+    void dump(Node *u, int h) {}
+#endif
 };
 //===
 
-int main() {
+int pck2019_pre09() {
+    
+    struct Team {
+        ll idx, point;
 
+        Team(ll idx, ll point): idx(idx), point(point) {}
+
+        bool operator < (const Team &r)const {
+            if (this->point > r.point) {
+                return true;
+            }
+            else if (this->point == r.point) {
+                if (this->idx < r.idx) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+    };
+
+    ll n, c;
+    static ll p[100005];
+    ll com, t, m;
+    Treap<Team> st;
+
+    cin >> n >> c;
+
+    for (int i = 1; i <= n; i++) {
+        //st.dump();
+        st.insert(Team(i, 0));
+    }
+
+    //st.dump();
+
+    while(c--) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> t >> m;
+            Team d = Team(t, p[t]);
+            st.erase(d);
+
+            p[t] += m;
+            d.point += m;
+            st.insert(d);
+        }
+        else if (com == 1) {
+            cin >> m;
+            Team d = st.find_Kth_element(m - 1);
+            cout << d.idx << ' ' << d.point << endl;
+        }
+
+        //st.dump();
+    }
+    
     return 0;
+}
+
+int main() {
+    return pck2019_pre09();
 }
