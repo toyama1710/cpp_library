@@ -4,10 +4,10 @@ using namespace std;
 
 //===
 struct UnionFind {
+    int n;
     vector<int> parent;
 
-    UnionFind(){}
-    
+    UnionFind() {}
     UnionFind(int nmemb) { init(nmemb); }
 
     void init(int nmemb) {
@@ -23,6 +23,7 @@ struct UnionFind {
     }
 
     bool same(int x, int y) { return root(x) == root(y); }
+    int size(int x) { return -(parent[root(x)]); }
 
     void unite(int x, int y) {
         x = root(x);
