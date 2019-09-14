@@ -42,22 +42,23 @@ struct SegmentTree {
         l += size - 1;
         r += size - 1;
 
-        Monoid d = e;
+        Monoid vl = e;
+        Monoid vr = e;
         while (l < r) {
             if (l % 2 == 0) {
-                d = f(d, tree[l]);
+                vl = f(vl, tree[l]);
                 l++;
             }
             if (r % 2 == 0) {
                 r--;
-                d = f(d, tree[r]);
+                vr = f(tree[r], vr);
             }
 
             l = (l - 1) / 2;
             r = (r - 1) / 2;
         }
 
-        return d;
+        return f(vl, vr);
     }
 
     Monoid operator[] (const int k) { return query(k, k + 1); }
