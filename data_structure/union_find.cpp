@@ -42,7 +42,6 @@ struct UnionFind {
 //===
 
 // verify AOJ DSL_1_A
-// https://onlinejudge.u-aizu.ac.jp/status/users/ei1710/submissions/1/DSL_1_A/judge/3737576/C++
 int main()
 {
     UnionFind uf;
