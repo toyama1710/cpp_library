@@ -31,6 +31,8 @@ struct UnionFind {
 
         if (x == y) return;
 
+        if (parent[y] < parent[x]) swap(x, y);
+
         parent[x] += parent[y];
         parent[y] = x;
         
