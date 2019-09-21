@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstdint>
+#include <cassert>
 #include <cmath>
 #include <functional>
 #include <algorithm>
@@ -49,6 +50,7 @@ struct SkewHeap {
     T top() { return root->dat; };
     
     T pop() {
+        assert(!empty());
         T ret = top();
         Node *rm = root;
         root = meld(root->l, root->r);
