@@ -16,7 +16,6 @@ using namespace std;
 using llong = long long;
 
 //===
-
 //=== xorshift
 uint32_t xorshift32() {
     static uint32_t s = 1710;
@@ -26,6 +25,8 @@ uint32_t xorshift32() {
     return s;
 }
 //===
+
+// not stable
 template<typename T, typename Compare = less<T> >
 struct MeldableHeap {
     struct Node {
