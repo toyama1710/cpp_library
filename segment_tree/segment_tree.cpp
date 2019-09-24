@@ -16,46 +16,42 @@ struct SegmentTree {
     const Monoid e; // neutral element
                                            
     SegmentTree(int nmemb, const Monoid &e, const OP &f):
+        size(nmemb),
         f(f),
         e(e)
     {
-        size = 1;
-        while (size < nmemb) {
-            size *= 2;
-        }
-
-        tree.assign(2 * size - 1, e);
+        tree.assign(2 * size, e);
     }
 
     void update(int k, Monoid dat) {
-        k += size - 1;
+        k += size;
         tree[k] = dat;
         
-        while(k > 0) {
-            k = (k - 1) / 2;
-            tree[k] = f(tree[2 * k + 1], tree[2 * k + 2]);
+        while(k > 1) {
+            k /= 2;
+            tree[k] = f(tree[2 * k], tree[2 * k + 1]);
         }
     }
 
     // [l, r)
     Monoid query(int l, int r) {
-        l += size - 1;
-        r += size - 1;
+        l += size; //points leaf
+        r += size;
 
         Monoid vl = e;
         Monoid vr = e;
         while (l < r) {
-            if (l % 2 == 0) {
+            if (l & 1) {
                 vl = f(vl, tree[l]);
                 l++;
             }
-            if (r % 2 == 0) {
+            if (r & 1) {
                 r--;
                 vr = f(tree[r], vr);
             }
 
-            l = (l - 1) / 2;
-            r = (r - 1) / 2;
+            l /= 2;
+            r /= 2;
         }
 
         return f(vl, vr);
@@ -65,9 +61,8 @@ struct SegmentTree {
 };
 //===
 
-/*
 //verify AOJ DSL_2_B
-int main()
+int AOJ_DSL2B()
 {
     typedef long long ll;
     
@@ -93,11 +88,9 @@ int main()
         }
     }
 }
-*/
 
-/*
-  //verify AOJ DSL_2_A
-int main()
+//verify AOJ DSL_2_A
+int AOJ_DSL2A()
 {
     int n, q;
     int com, x, y;
@@ -123,67 +116,8 @@ int main()
 
     return 0;
 }
-*/
 
-//---verify PCK2013 pre 7
-using ll = long long;
-ll n, r, l;
-ll d[1'000'005];
-ll t[1'000'005];
-ll x[1'000'005];
-ll tv[1'000'005];
-
-struct Team{ ll id, point; };
-
-int main()
-{
-    cin >> n >> r >> l;
-    for (int i = 1; i <= r; i++) {
-        cin >> d[i] >> t[i] >> x[i];
-    }
-
-    SegmentTree<Team> seg(n + 1,
-                          (Team){0, -1 * (1ll << 60ll)},
-                          [](const Team x, const Team y){
-                              if (x.point > y.point) {
-                                  return x;
-                              }
-                              else if (x.point == y.point) {
-                                  if (x.id < y.id) {
-                                      return x;
-                                  }
-                                  else {
-                                      return y;
-                                  }
-                              }
-                              else {
-                                  return y;
-                              }
-                          });
-    //init
-    for (int i = 1; i <= n; i++) {
-        seg.update(i, (Team){i, 0});
-    }
-
-    //setinel
-    d[0] = 0, t[0] = 0, x[0] = 0;
-    d[r + 1] = 0, t[r + 1] = l, x[r + 1] = 0;
-        
-    for (int i = 1; i <= r + 1; i++) {
-        Team a = seg.query(1, n + 1);
-        tv[a.id] += t[i] - t[i - 1];
-
-        a = seg[d[i]];
-        a.point += x[i];
-        seg.update(d[i], a);
-    }
-
-    int mpos = 0;
-    for (int i = 1; i <= n; i++) {
-        if (tv[mpos] < tv[i]) mpos = i;
-    }
-
-    cout << mpos << endl;
-
-    return 0;
+int main() {
+    //return AOJ_DSL2B();
+    return AOJ_DSL2A();
 }
