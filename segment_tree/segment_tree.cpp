@@ -6,9 +6,9 @@
 using namespace std;
 
 //===
-template<typename Monoid>
+template<typename Monoid, typename OP = function<Monoid(Monoid, Monoid)> >
 struct SegmentTree {
-    using OP = function<Monoid(Monoid, Monoid)>;
+    //    using OP = function<Monoid(Monoid, Monoid)>;
     
     vector<Monoid> tree;
     int size;
@@ -62,8 +62,7 @@ struct SegmentTree {
 //===
 
 //verify AOJ DSL_2_B
-int AOJ_DSL2B()
-{
+int AOJ_DSL2B() {
     typedef long long ll;
     
     ll n, q;
@@ -71,9 +70,8 @@ int AOJ_DSL2B()
 
     cin >> n >> q;
 
-    SegmentTree<ll> RSQ(n,
-                        0,
-                        [](ll l, ll r){return l + r;});
+    auto f = [](ll l, ll r){ return l + r; };
+    SegmentTree<ll, decltype(f)> RSQ(n, 0, f);
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
@@ -87,11 +85,12 @@ int AOJ_DSL2B()
             cout << RSQ.query(x, y) << endl;
         }
     }
+
+    return 0;
 }
 
 //verify AOJ DSL_2_A
-int AOJ_DSL2A()
-{
+int AOJ_DSL2A() {
     int n, q;
     int com, x, y;
 
