@@ -40,9 +40,9 @@ struct RollingHash {
 
     // s[l, r)
     T get_hash(int l, int r) {
-        T res = hashed[r] + mod - (hashed[l] * power[r - l]) % mod;
+        T res = hashed[r] + mod - hashed[l] * power[r - l] % mod;
         if (res >= mod) res -= mod;
-        return mod;
+        return res;
     };
 };
 
@@ -62,13 +62,13 @@ struct RollingHash<uint64_t, (1ull << 61ull) - 1ull> {
 
         for (int i = 0; i < len; i++) {
             hashed[i + 1] = calc_mod(mul(hashed[i], base) + s[i]);
-            power[i + 1] = mul(power[i], base);
+            power[i + 1] = calc_mod(mul(power[i], base));
         }
     };
 
     // s[l, r)
     uint64_t get_hash(int l, int r) {
-        uint64_t res = hashed[r] + mod - mul(hashed[l], power[r - l]);
+        uint64_t res = hashed[r] + mod - calc_mod(mul(hashed[l], power[r - l]));
         if (res >= mod) res -= mod;
         return res;
     };
@@ -79,10 +79,10 @@ struct RollingHash<uint64_t, (1ull << 61ull) - 1ull> {
         uint64_t ru = r >> 31;
         uint64_t rd = r & mask31;
         uint64_t mid = ld * ru + lu * rd;
-        uint64_t midu = mid >> 30;
-        uint64_t midd = mid & mask30;
 
-        return calc_mod(lu * ru * 2 + midu + (midd << 31) + ld * rd);
+        return ((lu * ru) << 1) +
+            (mid >> 30) + ((mid & mask30) << 31)
+            + ld * rd;
     };
 
     inline uint64_t calc_mod(uint64_t v) {
@@ -92,7 +92,7 @@ struct RollingHash<uint64_t, (1ull << 61ull) - 1ull> {
     };
 };
 
-using FastRollingHash = RollingHash<uint64_t, (1ull << 61ull) - 1ull>;
+using MRollingHash = RollingHash<uint64_t, (1ull << 61ull) - 1ull>;
 //===
 
 int ABC141D() {
@@ -101,7 +101,10 @@ int ABC141D() {
 
     cin >> n;
     cin >> s;
-    FastRollingHash rh(s, (random_device())());
+    //MRollingHash rh(s, (random_device())());
+    //RollingHash<uint64_t, (uint64_t)(1e9) + 9> rh(s, (random_device())());
+    RollingHash<uint64_t, (uint64_t)(1e9) + 7> rh1(s, (random_device())());
+    RollingHash<uint64_t, (uint64_t)(1e9) + 9> rh2(s, (random_device())());
 
     llong valid = 0;
     llong invalid = n;
@@ -111,15 +114,22 @@ int ABC141D() {
         llong m = 0;
 
         for (int i = 0; i + len <= n; i++) {
-            uint64_t h = rh.get_hash(i, i + len);
+            uint64_t h1 = rh1.get_hash(i, i + len);
+            uint64_t h2 = rh2.get_hash(i, i + len);
 
             cnt = 0;
             for (int j = i; j + len <= n; j++) {
-                if (rh.get_hash(j, j + len) == h) {
+                if (rh1.get_hash(j, j + len) == h1 &&
+                    rh2.get_hash(j, j + len) == h2) {
+                    //cout << rh.get_hash(j, j + len) << endl;
+                    //cout << j << ' ' << j + len << endl;
+                    //cout << s.substr(j, len) << endl;
+                    
                     cnt++;
                     j += len - 1;
                 }
             }
+            //cout << "=====" << endl;
             m = max(cnt, m);
         }
 
