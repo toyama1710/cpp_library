@@ -18,7 +18,16 @@ using MinHeap = priority_queue<T, vector<T>, Compare>;
 using llong = long long;
 
 //===
+template<typename T, typename Compare = less<T> >
+struct AVLTree {
+    struct Node {
+        T data;
+        int height;
+        Node *l, *r;
+    };
 
+    
+};
 //===
 
 int main() {
