@@ -1,3 +1,4 @@
+//#pragma GCC optimize("Ofast")
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -12,77 +13,72 @@ struct SegmentTree {
     
     vector<Monoid> tree;
     int size;
-    const OP f; // bin' operation
+    const OP merge_monoid; // bin' operation
     const Monoid e; // neutral element
                                            
     SegmentTree(int nmemb, const Monoid &e, const OP &f):
-        size(nmemb),
-        f(f),
-        e(e)
+        size(nmemb), merge_monoid(f), e(e)
     {
-        tree.assign(2 * size, e);
+        tree.assign(size << 1, e);
     }
 
-    void update(int k, Monoid dat) {
+    inline void update(int k, Monoid dat) {
         k += size;
         tree[k] = dat;
         
         while(k > 1) {
-            k /= 2;
-            tree[k] = f(tree[2 * k], tree[2 * k + 1]);
+            k >>= 1;
+            tree[k] = merge_monoid(tree[(k << 1)], tree[(k << 1) | 1]);
         }
     }
 
     // [l, r)
-    Monoid query(int l, int r) {
+    inline Monoid fold(int l, int r) {
         l += size; //points leaf
         r += size;
 
-        Monoid vl = e;
-        Monoid vr = e;
+        Monoid lv = e;
+        Monoid rv = e;
         while (l < r) {
-            if (l & 1) {
-                vl = f(vl, tree[l]);
-                l++;
-            }
-            if (r & 1) {
-                r--;
-                vr = f(tree[r], vr);
-            }
+            if (l & 1) lv = merge_monoid(lv, tree[l++]);
+            if (r & 1) rv = merge_monoid(tree[--r], rv);
 
-            l /= 2;
-            r /= 2;
+            l >>= 1;
+            r >>= 1;
         }
 
-        return f(vl, vr);
-    }
+        return merge_monoid(lv, rv);
+    };
 
-    Monoid operator[] (const int k) { return query(k, k + 1); }
+    inline Monoid operator[] (const int k) const {
+        return tree[k + size];
+    };
 };
 //===
 
 //verify AOJ DSL_2_B
 int AOJ_DSL2B() {
-    typedef long long ll;
-    
-    ll n, q;
-    ll com, x, y;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    cin >> n >> q;
+    int n, q;
+    int com, x, y;
 
-    auto f = [](ll l, ll r){ return l + r; };
-    SegmentTree<ll, decltype(f)> RSQ(n, 0, f);
+    scanf("%d %d", &n, &q);
 
-    for (int i = 0; i < q; i++) {
-        cin >> com >> x >> y;
+    auto f = [](int l, int r){ return l + r; };
+    SegmentTree<int, decltype(f)> RSQ(n, 0, f);
+
+    while (q--) {
+        scanf("%d %d %d", &com, &x, &y);
         x--;
 
         if (com == 0) {
-            y += RSQ.query(x, x + 1);
+            y += RSQ.fold(x, x + 1);
             RSQ.update(x, y);
         }
         else {
-            cout << RSQ.query(x, y) << endl;
+            printf("%d\n", RSQ.fold(x, y));
         }
     }
 
@@ -109,7 +105,7 @@ int AOJ_DSL2A() {
             RMQ.update(x, y);
         }
         else {
-            cout << RMQ.query(x, y + 1) << endl;
+            cout << RMQ.fold(x, y + 1) << endl;
         }
     }
 
@@ -117,6 +113,6 @@ int AOJ_DSL2A() {
 }
 
 int main() {
-    //return AOJ_DSL2B();
-    return AOJ_DSL2A();
+    return AOJ_DSL2B();
+    //return AOJ_DSL2A();
 }
