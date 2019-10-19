@@ -1,3 +1,6 @@
+#pragma GCC optimize("Ofast")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -88,11 +91,10 @@ struct DynamicSegmentTree {
         return fold(root, L, R, l, r);
     };
     Monoid fold(Node *node, llong nl, llong nr, llong ql, llong qr) {
-        //if (nr <= ql || qr <= nl) return e;
         if (ql <= nl && nr <= qr) return node->v;
 
-        llong mid = (nl + nr) / 2;
         Monoid lv = e, rv = e;
+        llong mid = (nl + nr) / 2;
         if (node->left && ql < mid && nl < qr) {
             lv = fold(node->left, nl, mid, ql, qr);
         }
@@ -111,6 +113,8 @@ struct DynamicSegmentTree {
 
 //verify AOJ DSL2A
 int DSL_2_A(void) {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n, q;
     int com, x, y;
 
@@ -160,6 +164,8 @@ int DSL_2_B(void) {
 
 int ARC008_D(void) {
     using ll = long long;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     
     struct func{ double a, b; };
     auto merge = [](func l, func r) {
@@ -172,12 +178,12 @@ int ARC008_D(void) {
     double minv, maxv;
     minv = maxv = 1;
 
-    cin >> n >> m;
+    scanf("%lld %lld", &n, &m);
 
     DynamicSegmentTree<func, decltype(merge)> seg((func){1, 0}, merge);
 
     for (int i = 0; i < m; i++) {
-        cin >> p >> a >> b;
+        scanf("%lld %lf %lf", &p, &a, &b);
         --p;
 
         seg.update(p, (func){a, b});
@@ -195,7 +201,7 @@ int ARC008_D(void) {
 
 int main()
 {
-    //return DSL_2_A();
-    return DSL_2_B();
+    return DSL_2_A();
+    //return DSL_2_B();
     //return ARC008_D();
 }
