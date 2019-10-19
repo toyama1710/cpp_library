@@ -78,21 +78,21 @@ struct LazySegmentTree {
         update(0, 0, size, l, r, dat);
     }
 
-    Monoid query(int k, int nl, int nr, int ql, int qr) {
+    Monoid fold(int k, int nl, int nr, int ql, int qr) {
 
         propagation(k, nr - nl);
         
         if (nr <= ql || qr <= nl) return e;
 
         if (ql <= nl && nr <= qr) return seg[k];
-        else return mergeMonoid(query(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
-                                query(2 * k + 2, (nl + nr) / 2, nr, ql, qr));
+        else return mergeMonoid(fold(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
+                                fold(2 * k + 2, (nl + nr) / 2, nr, ql, qr));
     }
 
     // [l, r)
-    Monoid query(int l, int r) { return query(0, 0, size, l, r); }
+    Monoid fold(int l, int r) { return fold(0, 0, size, l, r); }
 
-    Monoid operator [](const int &k) { return query(k, k + 1); }
+    Monoid operator [](const int &k) { return fold(k, k + 1); }
 };
 //===
 
@@ -199,7 +199,7 @@ int DSL_2_F(void)
         }
         else if (com == 1) {
             cin >> s >> t;
-            cout << seg.query(s, t + 1) << endl;
+            cout << seg.fold(s, t + 1) << endl;
         }
     }
 
@@ -229,7 +229,7 @@ int DSL_2_H(void)
         }
         else if (com == 1) {
             cin >> s >> t;
-            cout << seg.query(s, t + 1) << endl;
+            cout << seg.fold(s, t + 1) << endl;
         }
         
     }
@@ -260,7 +260,7 @@ int DSL_2_I(void)
         }
         else if (com == 1) {
             cin >> s >> t;
-            cout << seg.query(s, t + 1) << endl;
+            cout << seg.fold(s, t + 1) << endl;
         }
     }
 
