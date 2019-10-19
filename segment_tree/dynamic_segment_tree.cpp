@@ -32,7 +32,7 @@ struct DynamicSegmentTree {
         u.v = merge_monoid(lv, rv);
     };
 
-    void expand(llong i) {
+    inline void expand(llong i) {
         if (L == R) {
             R++;
             while (i >= R) R += R - L;
@@ -56,7 +56,7 @@ struct DynamicSegmentTree {
         }
     };
 
-    void update(llong i, Monoid v) {
+    inline void update(llong i, Monoid v) {
         if (i < L || R <= i) expand(i);
         update(root, L, R, i, v);
     };
@@ -82,16 +82,20 @@ struct DynamicSegmentTree {
     }
 
     // [l, r)
-    Monoid fold(llong l, llong r) {
+    inline Monoid fold(llong l, llong r) {
         return fold(root, L, R, l, r);
     };
     Monoid fold(Node *node, llong nl, llong nr, llong ql, llong qr) {
-        if (nr <= ql || qr <= nl) return e;
         if (ql <= nl && nr <= qr) return node->v;
 
+        llong mid = (nl + nr) / 2;
         Monoid lv = e, rv = e;
-        if (node->left) lv = fold(node->left, nl, (nl + nr) / 2, ql, qr);
-        if (node->right) rv = fold(node->right, (nl + nr) / 2, nr, ql, qr);
+        if (node->left && ql < mid && nl < qr) {
+            lv = fold(node->left, nl, mid, ql, qr);
+        }
+        if (node->right && ql < nr && mid < qr) {
+            rv = fold(node->right, mid, nr, ql, qr);
+        }
 
         return merge_monoid(lv, rv);
     };
