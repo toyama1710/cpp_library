@@ -66,7 +66,7 @@ struct DynamicSegmentTree {
             node->v = v;
             return;
         }
-        
+
         llong mid = (nl + nr) / 2;
         if (k < mid) {
             if (!node->left) node->left = new Node(e);
@@ -83,9 +83,12 @@ struct DynamicSegmentTree {
 
     // [l, r)
     inline Monoid fold(llong l, llong r) {
+        if (l < L) expand(l);
+        if (r > R) expand(r);
         return fold(root, L, R, l, r);
     };
     Monoid fold(Node *node, llong nl, llong nr, llong ql, llong qr) {
+        //if (nr <= ql || qr <= nl) return e;
         if (ql <= nl && nr <= qr) return node->v;
 
         llong mid = (nl + nr) / 2;
@@ -140,7 +143,7 @@ int DSL_2_B(void) {
 
     cin >> n >> q;
 
-    DynamicSegmentTree<ll> RSQ(0, [](ll l, ll r){ return l + r; });
+    DynamicSegmentTree<ll> RSQ(0, [](ll l, ll r){return l + r;});
 
     while (q--) {
         cin >> com >> x >> y;
@@ -193,6 +196,6 @@ int ARC008_D(void) {
 int main()
 {
     //return DSL_2_A();
-    //return DSL_2_B();
-    return ARC008_D();
+    return DSL_2_B();
+    //return ARC008_D();
 }
