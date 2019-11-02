@@ -6,7 +6,7 @@
 using namespace std;
 
 //===
-template<typename Monoid, typename Laz>
+template<class Monoid, class Laz>
 struct LazySegmentTree {
 
     const function<Monoid(Monoid, Monoid)> mergeMonoid;
@@ -35,7 +35,7 @@ struct LazySegmentTree {
         seg.assign(2 * size - 1, e);
         isUpdated.assign(2 * size - 1, true);
         lazy.resize(2 * size - 1); 
-    }
+    };
 
     inline void propagation(int k, int len) {
         if (!isUpdated[k]) {
@@ -53,8 +53,12 @@ struct LazySegmentTree {
             }
             isUpdated[k] = true;
         }
-    }
+    };
 
+    // [l, r) <= dat
+    void update(int l, int r, Laz dat) {
+        update(0, 0, size, l, r, dat);
+    };
     Monoid update(int k, int nl, int nr, int ql, int qr, Laz dat) {
         propagation(k, nr - nl);
 
@@ -71,13 +75,12 @@ struct LazySegmentTree {
                                  update(2 * k + 2, (nl + nr) / 2, nr, ql, qr, dat));
             return seg[k];
         }
-    }
+    };
 
-    // [l, r) <= dat
-    void update(int l, int r, Laz dat) {
-        update(0, 0, size, l, r, dat);
-    }
-
+    // [l, r)
+    Monoid fold(int l, int r) {
+        return fold(0, 0, size, l, r);
+    };
     Monoid fold(int k, int nl, int nr, int ql, int qr) {
 
         propagation(k, nr - nl);
@@ -87,12 +90,11 @@ struct LazySegmentTree {
         if (ql <= nl && nr <= qr) return seg[k];
         else return mergeMonoid(fold(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
                                 fold(2 * k + 2, (nl + nr) / 2, nr, ql, qr));
-    }
+    };
 
-    // [l, r)
-    Monoid fold(int l, int r) { return fold(0, 0, size, l, r); }
-
-    Monoid operator [](const int &k) { return fold(k, k + 1); }
+    Monoid operator [](const int &k) {
+        return fold(k, k + 1);
+    };
 };
 //===
 
