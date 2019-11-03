@@ -77,14 +77,15 @@ struct DynamicStarrySky {
 
         if (ql <= nl && nr <= qr) {
             node->lazy = merge_lazy(node->lazy, x);
+            return;
         }
-        else {
-            if (!node->left) node->left = new Node(ti, ei);
-            update(node->left, nl, (nl + nr) / 2, ql, qr, x);
 
-            if (!node->right) node->right = new Node(ti, ei);
-            update(node->right, (nl + nr) / 2, nr, ql, qr, x);
-        }
+        if (!node->left) node->left = new Node(ti, ei);
+        if (!node->right) node->right = new Node(ti, ei);
+        
+        update(node->left, nl, (nl + nr) / 2, ql, qr, x);
+        update(node->right, (nl + nr) / 2, nr, ql, qr, x);
+        
         eval(*node, nl, nr);
         return;
     };
@@ -96,21 +97,18 @@ struct DynamicStarrySky {
         return fold(root, L, R, l, r);
     };
     T fold(Node *node, llong nl, llong nr, llong ql, llong qr) {
+        if (nr <= ql || qr <= nl) return ti;
         if (ql <= nl && nr <= qr) return apply_lazy(node->v, node->lazy, nr - nl);
 
         T lv = ti, rv = ti;
         llong mid = (nl + nr) / 2;
-        if (node->left && ql < mid && nl < qr) {
-            lv = fold(node->left, nl, mid, ql, qr);
-        }
-        if (node->right && ql < nr && mid < qr) {
-            rv = fold(node->right, mid, nr, ql, qr);
-        }
+        if (node->left) lv = fold(node->left, nl, mid, ql, qr);
+        if (node->right) rv = fold(node->right, mid, nr, ql, qr);
 
         T v;
         v = merge_monoid(lv, rv);
         v = apply_lazy(v, node->lazy, min(nr, qr) - max(nl, ql));
-            
+
         return v;
     };
     
@@ -120,16 +118,16 @@ struct DynamicStarrySky {
 };
 //===
 
-using llong = long long;
-llong n, q;
-llong com;
-llong s, t, x;
-DynamicStarrySky<llong, llong> RSQ(0, 0,
-                                   [](auto l, auto r) { return l + r; },
-                                   [](auto l, auto r, llong L) { return l + r * L; },
-                                   [](auto l, auto r) { return l + r; });
+int AOJ_DSL_2G() {
+    using llong = long long;
+    llong n, q;
+    llong com;
+    llong s, t, x;
+    DynamicStarrySky<llong, llong> RSQ(0, 0,
+                                       [](auto l, auto r) { return l + r; },
+                                       [](auto l, auto r, llong L) { return l + r * L; },
+                                       [](auto l, auto r) { return l + r; });
 
-int main() {
     cin >> n >> q;
 
     while (q--) {
@@ -147,5 +145,42 @@ int main() {
             
             cout << RSQ.fold(s, t) << '\n';
         }
+
     }
-};
+
+    return 0;
+}
+
+int AOJ_DSL_2H() {
+    using llong = long long;
+    const llong INF = 1ll << 40ll;
+    llong n, q;
+    llong com;
+    llong s, t, x;
+    DynamicStarrySky<llong, llong> RMQ(INF, 0,
+                                       [](auto l, auto r){ return min(l, r); },
+                                       [](auto l, auto r, llong len){ return l + r; },
+                                       [](auto l, auto r){ return l + r; }
+                                       );
+    cin >> n >> q;
+    for (int i = 0; i < n; i++) RMQ.update(i, i + 1, -INF);
+    for (int i = 0; i < q; i++) {
+        cin >> com;
+
+        if (com == 0) {
+            cin >> s >> t >> x;
+            RMQ.update(s, t + 1, x);
+        }
+        else {
+            cin >> s >> t;
+            cout << RMQ.fold(s, t + 1) << '\n';
+        }
+    }
+
+    return 0;
+}
+
+int main() {
+    return AOJ_DSL_2H();
+    //return AOJ_DSL_2G();
+}
