@@ -30,9 +30,13 @@ struct FindKth {
         minh([&cmp](auto l, auto r){ return cmp(r, l); })
     {};
     
-    size_t size() { return maxh.size() + minh.size(); };
-    bool empty() { return size() > 0 ? false : true; };
-    
+    size_t size() {
+        return maxh.size() + minh.size();
+    };
+    bool empty() {
+        return size() > 0 ? false : true;
+    };
+
     void push(T &d){
         maxh.push(d);
         if (maxh.size() > K) {
