@@ -5,79 +5,73 @@
 using namespace std;
 
 //===
-template<class T, class Compare = less<T>>
+template<class SemiLattice,
+         class Merge = function<SemiLattice(SemiLattice, SemiLattice)> >
 struct SparseTable {
 
     bool builded = false;
     const int n;
-    const Compare cmp;
-    vector<T> elements;
-    vector<vector<int>> table;
+    const Merge merge;
+    vector<vector<SemiLattice>> table;
     vector<size_t> log2;
 
     SparseTable():n(0){}
-    SparseTable(int n, T v = T(), const Compare &f = Compare()):
-        n(n), log2(n + 1), elements(n), cmp(f)
+    SparseTable(int n, SemiLattice v, const Merge &f):
+        n(n), merge(f)
     {
+        log2.assign(n + 1, 0);
         for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
-        elements.assign(n, v);
-        table.assign(log2[n] + 1, vector<int>(n));
-    }
+        
+        table.assign(log2[n] + 1, vector<SemiLattice>(n, v));
+    };
 
     template<class InputIterator>
-    SparseTable(InputIterator first, InputIterator last,
-                const Compare &f = Compare()):
-        n(distance(first, last)), log2(n + 1), elements(first, last), cmp(f)
+    SparseTable(InputIterator first, InputIterator last, const Merge &f):
+        n(distance(first, last)), merge(f)
     {
+        log2.assign(n + 1, 0);
         for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
-        table.assign(log2[n] + 1, vector<int>(n));
+        
+        table.assign(log2[n] + 1, vector<SemiLattice>(first, last));
         build();
-        //table = vector<vector<T>>(logn, vector<T>(first, last));
-    }
+    };
 
     void build(void) {
-        for (int i = 0; i < n; i++) table[0][i] = i;
-        
         for (int i = 0; i < log2[n]; i++) {
             int w = 1 << i;
             for (int j = 0; j + (w * 2) <= n; j++) {
-                int l = table[i][j];
-                int r = table[i][j + w];
-
-                if (cmp(elements[l], elements[r])) table[i + 1][j] = l;
-                else table[i + 1][j] = r;
+                table[i + 1][j] = merge(table[i][j], table[i][j + w]);
             }
         }
 
         builded = true;
-    }
+    };
 
-    void set(int k, T dat) {
-        elements[k] = dat;
+    void set(int k, SemiLattice dat) {
+        table[0][k] = dat;
         builded = false;
-        return;
-    }
+    };
 
     //[l, r)
-    T query(int l, int r) {
+    SemiLattice fold(int l, int r) {
         if (!builded) build();
 
         int k = log2[r - l];
-        l = table[k][l];
-        r = table[k][r - (1 << k)];
 
-        if (cmp(elements[l], elements[r])) return elements[l];
-        else return elements[r];
-    }
+        return merge(table[k][l], table[k][r - (1 << k)]);
+    };
 
-    int size() { return n; }
+    int size() {
+        return n;
+    };
 
-    T operator[] (const int k) { return elements[k]; }
+    SemiLattice operator[] (const int k) {
+        return table[0][k];
+    };
 };
 //===
 
-int RMQ(void)
-{
+int RMQ(void) {
     using ll = long long;
 
     ll n, q;
@@ -91,18 +85,17 @@ int RMQ(void)
     }
 
     cout << "building..." << endl;
-    SparseTable<ll, greater<>> st(arr.begin(), arr.end());
+    SparseTable<ll> st(arr.begin(), arr.end(), [](ll l, ll r){return max(l, r);});
     cout << "done." << endl;
     while (q--) {
         cin >> x >> y;
-        cout << st.query(x, y) << endl;
+        cout << st.fold(x, y) << endl;
     }
 
     return 0;
 }
 
-int PCK2014_pre_8(void)
-{
+int PCK2014_pre_8(void) {
     using ll = long long;
     struct Star{ ll x, y, b; };
     auto scmp = [](const Star &x, const Star &y) {
@@ -122,10 +115,10 @@ int PCK2014_pre_8(void)
 
     sort(s.begin(), s.end(), scmp);
     
-    SparseTable<ll> minX(n, 0);
-    SparseTable<ll, greater<>> maxX(n, 0);
-    SparseTable<ll> minY(n, 0);
-    SparseTable<ll, greater<>> maxY(n, 0);
+    SparseTable<ll> minX(n, 0, [](ll l, ll r){return min(l, r);});
+    SparseTable<ll> maxX(n, 0, [](ll l, ll r){return max(l, r);});
+    SparseTable<ll> minY(n, 0, [](ll l, ll r){return min(l, r);});
+    SparseTable<ll> maxY(n, 0, [](ll l, ll r){return max(l, r);});
 
     for (int i = 0; i < n; i++) {
         minX.set(i, s[i].x);
@@ -138,10 +131,10 @@ int PCK2014_pre_8(void)
     for (int i = 0; i < n; i++) {
         ll l = i;
         ll r = upper_bound(s.begin(), s.end(), (Star){0, 0, s[i].b + d}, scmp)
-        - s.begin();
+            - s.begin();
 
-        ll x = maxX.query(l, r) - minX.query(l, r);
-        ll y = maxY.query(l, r) - minY.query(l, r);
+        ll x = maxX.fold(l, r) - minX.fold(l, r);
+        ll y = maxY.fold(l, r) - minY.fold(l, r);
 
         ans = max(ans, x * y);
     }
@@ -151,8 +144,7 @@ int PCK2014_pre_8(void)
     return 0;
 }
 
-int main()
-{
-    //return RMQ();
-    return PCK2014_pre_8();
+int main() {
+    return RMQ();
+    //return PCK2014_pre_8();
 }
