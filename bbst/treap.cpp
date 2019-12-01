@@ -3,11 +3,13 @@
 #include <random>
 #include <functional>
 #include <cassert>
+#include <memory>
 using namespace std;
 using ll = long long;
 
 //===
-template <typename T, typename Compare = less<T>>
+template <class T, class Compare = less<T>,
+          template<class> class Alloc = allocator>
 struct Treap {
     using uint = uint_fast32_t;
     using uint64 = uint_fast64_t;
@@ -28,6 +30,9 @@ struct Treap {
     Node *root;
     const Compare cmp;
     mt19937 rnd;
+    
+    Alloc<Node> alc;
+    using Traits = allocator_traits<Alloc<Node> >;
     
     Treap(const Compare &cmp = Compare()):
         root(nullptr), cmp(cmp), rnd(mt19937(random_device()())) {}
@@ -108,7 +113,8 @@ struct Treap {
     
     // suc:true, faile:false
     bool insert(T x) {
-        Node *u = new Node(x, (uint64)rnd());
+        Node *u = Traits::allocate(alc, 1);
+        Traits::construct(alc, u, x, (uint64)rnd());
         Node *w = find_last_node(x);
 
         if (w == nullptr) {
@@ -122,7 +128,7 @@ struct Treap {
             return true;
         }
 
-        delete u;
+        Traits::deallocate(alc, u, 1);
         return false;
     }
     bool erase(T x) {
@@ -133,7 +139,7 @@ struct Treap {
 
         if (size(root) == 1) {
             root = nullptr;
-            delete u;
+            Traits::deallocate(alc, u, 1);
             return true;
         }
 
@@ -144,7 +150,7 @@ struct Treap {
 
         upward_calc_size(u);
 
-        delete u;
+        Traits::deallocate(alc, u, 1);
         
         return true;
     }
@@ -267,7 +273,7 @@ struct Treap {
 };
 //===
 
-int pck2019_pre09() {
+int pck2016_pre09() {
     
     struct Team {
         ll idx, point;
@@ -353,6 +359,6 @@ int ARC033C() {
 }
 
 int main() {
-    return ARC033C();
-    //return pck2019_pre09();
+    //return ARC033C();
+    return pck2016_pre09();
 }
