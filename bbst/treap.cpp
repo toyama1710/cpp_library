@@ -35,7 +35,17 @@ struct Treap {
     using Traits = allocator_traits<Alloc<Node> >;
     
     Treap(const Compare &cmp = Compare()):
-        root(nullptr), cmp(cmp), rnd(mt19937(random_device()())) {}
+        root(nullptr), cmp(cmp), rnd(mt19937(random_device()())) {};
+    
+    void clear(Node *u) {
+        if (u == nullptr) return;
+        clear(u->left);
+        clear(u->right);
+        delete u;
+    };
+    ~Treap() {
+        clear(root);
+    };
     
     bool has_element(T x) {
         Node *w = root;
@@ -49,24 +59,24 @@ struct Treap {
             else return true;
         }
         return false;
-    }
+    };
     
     uint size(Node *r) {
         return r == nullptr ? 0 : r->sz;
-    }
+    };
     uint size() {
         return size(root);
-    }
+    };
     uint calc_size(Node *r) {
         r->sz = size(r->left) + size(r->right) + 1;
         return r->sz;
-    }
+    };
     void upward_calc_size(Node *r) {
         while (r != nullptr) {
             calc_size(r);
             r = r->parent;
         }
-    }
+    };
 
     uint order_of(T x) {
         uint index = 0;
@@ -90,7 +100,7 @@ struct Treap {
         }
 
         return -1;
-    }
+    };
     T find_Kth_element(uint k) {
         Node *w = root;
         uint index = size(w->left);
@@ -109,7 +119,7 @@ struct Treap {
         }
 
         return w->dat;
-    }
+    };
     
     // suc:true, faile:false
     bool insert(T x) {
@@ -130,7 +140,7 @@ struct Treap {
 
         Traits::deallocate(alc, u, 1);
         return false;
-    }
+    };
     bool erase(T x) {
         Node *u = find_last_node(x);
         Node *p = u->parent;
@@ -153,7 +163,7 @@ struct Treap {
         Traits::deallocate(alc, u, 1);
         
         return true;
-    }
+    };
 
     Node *find_last_node(T x) {
         Node *w = root;
@@ -170,7 +180,7 @@ struct Treap {
         }
         
         return prev;
-    }
+    };
     
     bool add_child(Node *p, Node *u) {
         bool c1 = cmp(p->dat, u->dat);
@@ -187,7 +197,7 @@ struct Treap {
         calc_size(p);
         
         return true;
-    }
+    };
 
     void babble_up(Node *u) {
         while (u->parent != nullptr && u->parent->p > u->p) {
@@ -196,7 +206,7 @@ struct Treap {
         }
         
         if (u->parent == nullptr) root = u;
-    }
+    };
     void trickle_down(Node *u) {
         while (u->left != nullptr || u->right != nullptr) {
             if (u->left == nullptr) rotate_left(u);
@@ -204,7 +214,7 @@ struct Treap {
             else if (u->left->p < u->right->p) rotate_right(u);
             else rotate_left(u);
         }
-    }
+    };
     
     void rotate_left(Node *u) {
         Node *w = u->right;
@@ -226,7 +236,7 @@ struct Treap {
 
         calc_size(u);
         calc_size(w);
-    }
+    };
     void rotate_right(Node *u) {
         Node *w = u->left;
         w->parent = u->parent;
@@ -247,7 +257,7 @@ struct Treap {
 
         calc_size(u);
         calc_size(w);
-    }
+    };
 
 #ifndef NODEBUG
     void dump(void) {
@@ -255,7 +265,7 @@ struct Treap {
         cout << "size: " << size(root) << endl;
 
         dump(root, 0);
-    }
+    };
     void dump(Node *u, int h) {
         if (u == nullptr) return;
 
@@ -265,10 +275,10 @@ struct Treap {
         cout << u->dat.idx << ',' << u->dat.point << endl;
 
         dump(u->left, h + 1);
-    }
+    };
 #else
-    void dump(void) {}
-    void dump(Node *u, int h) {}
+    void dump(void) {};
+    void dump(Node *u, int h) {};
 #endif
 };
 //===
