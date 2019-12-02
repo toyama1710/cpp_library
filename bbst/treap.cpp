@@ -41,7 +41,7 @@ struct Treap {
         if (u == nullptr) return;
         clear(u->left);
         clear(u->right);
-        delete u;
+        Traits::deallocate(alc, u, 1);
     };
     ~Treap() {
         clear(root);
@@ -369,6 +369,6 @@ int ARC033C() {
 }
 
 int main() {
-    //return ARC033C();
-    return pck2016_pre09();
+    return ARC033C();
+    //return pck2016_pre09();
 }
