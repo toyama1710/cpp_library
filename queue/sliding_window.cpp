@@ -24,15 +24,9 @@ struct SlidingWindow {
     SemiGroup fold() {
         assert(sz > 0);
         
-        if (front_sum.empty()) {
-            return back_sum.top();
-        }
-        else if (back_sum.empty()) {
-            return front_sum.top();
-        }
-        else {
-            return merge(front_sum.top(), back_sum.top());
-        }
+        if (front_sum.empty()) return back_sum.top();
+        else if (back_sum.empty()) return front_sum.top();
+        else return merge(front_sum.top(), back_sum.top());
     };
 
     void push(SemiGroup d) {
@@ -62,6 +56,14 @@ struct SlidingWindow {
         
         front_st.pop();
         front_sum.pop();
+    };
+
+    bool empty() {
+        return sz == 0;
+    };
+
+    size_t size() {
+        return sz;
     };
 };
 //===
