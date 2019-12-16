@@ -37,7 +37,7 @@ struct FindKth {
         return size() <= 0;
     };
 
-    void push(T &d){
+    void push(T d){
         maxh.push(d);
         if (maxh.size() > K) {
             minh.push(maxh.top());
@@ -64,13 +64,18 @@ struct FindKth {
         }
     };
     
-    void merge_with(FindKth &r) {
-        FindKth &l = *this;
-        if (l.size() < r.size()) swap(l, r);
-
-        while (!r.empty()){
-            l.push(r.find_lower());
-            r.pop();
+    void merge_with(FindKth<T, Compare, Heap> &x) {
+        if (size() < x.size()) {
+            while (!empty()) {
+                x.push(find_lower());
+                pop();
+            }
+        }
+        else {
+            while (!x.empty()) {
+                push(x.find_lower());
+                x.pop();
+            }
         }
     };
 };
