@@ -1,3 +1,4 @@
+#define NODEBUG
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -16,10 +17,9 @@ using llong = long long;
 
 //===
 //#include <cassert>
-template<typename T, typename Compare = function<bool(T, T)> >
+template<class T, class Compare = function<bool(T, T)>,
+         class Heap = priority_queue<T, vector<T>, Compare> >
 struct FindKth {
-    using Heap = priority_queue<T, vector<T>, Compare>;
-    
     const int K;
     Heap maxh;
     Heap minh;
@@ -27,14 +27,14 @@ struct FindKth {
     FindKth (const int K, const Compare &cmp = less<T>()):
         K(K),
         maxh(cmp),
-        minh([&cmp](auto l, auto r){ return cmp(r, l); })
+        minh([cmp](auto l, auto r){ return cmp(r, l); })
     {};
     
     size_t size() {
         return maxh.size() + minh.size();
     };
     bool empty() {
-        return size() > 0 ? false : true;
+        return size() <= 0;
     };
 
     void push(T &d){
@@ -82,7 +82,7 @@ int yc649() {
     llong com, v;
 
     cin >> q >> k;
-    FindKth<llong> st;
+    FindKth<llong> st(k);
 
     while (q--) {
         cin >> com;
