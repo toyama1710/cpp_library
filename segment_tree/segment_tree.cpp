@@ -22,6 +22,24 @@ struct SegmentTree {
         tree.assign(size << 1, e);
     }
 
+    template<class InputIterator>
+    SegmentTree(InputIterator first, InputIterator last,
+                const Monoid &e, const OP &f):
+        size(distance(first, last)), merge_monoid(f), e(e)
+    {
+        tree.resize(size << 1);
+        int i;
+
+        i = size;
+        for (InputIterator itr = first; itr != last; itr++) {
+            tree[i++] = *itr;
+        }
+
+        for (i = size - 1; i > 0; i--) {
+            tree[i] = merge_monoid(tree[(i << 1)], tree[(i << 1) | 1]);
+        }
+    }
+
     inline void update(int k, Monoid dat) {
         k += size;
         tree[k] = dat;
