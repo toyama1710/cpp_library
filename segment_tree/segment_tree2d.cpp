@@ -1,6 +1,3 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC target("avx")
-
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -32,7 +29,6 @@ struct SegmentTree2D {
         sx += W;
         
         int ty, tx;
-
         tree[sy][sx] = dat;
         tx = sx;
         while (tx > 1) {
@@ -84,11 +80,9 @@ struct SegmentTree2D {
         return ret;
     };
 
-    /*
-    const vector<T>& operator [] (int idx_y) const {
-        return tree[idx_y + H];
+    T at(int sy, int sx) const {
+        return tree[sy + H][sx + W];
     };
-    */
 };
 //===
 
@@ -104,8 +98,8 @@ int AOJ1068() {
 
     cin >> r >> c >> q;
     while (r != 0 && c != 0 && q != 0) {
-        auto f = [](llong l, llong r){return min(l, r);};
-        SegmentTree2D<llong, decltype(f)> seg(r, c, 1ll << 60ll, f);
+        SegmentTree2D<llong> seg(r, c, 1ll << 60ll,
+                                 [](auto l, auto r){return min(l, r);});
         
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
@@ -119,6 +113,15 @@ int AOJ1068() {
 
             cout << seg.fold(sy, sx, ty + 1,  tx + 1) << '\n';
         }
+
+        /*
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cout << seg.at(i, j) << ' ';
+            }
+            cout << endl;
+        }
+        */
         
         cin >> r >> c >> q;
     }
