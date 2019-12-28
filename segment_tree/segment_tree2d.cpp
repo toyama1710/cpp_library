@@ -6,6 +6,7 @@
 #include <functional>
 #include <algorithm>
 #include <vector>
+#include <queue>
 using namespace std;
 
 //===
@@ -129,6 +130,54 @@ int AOJ1068() {
     return 0;
 }
 
+int AOJ2842() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    llong H, W, T, Q;
+    llong t, c, sy, sx, ty, tx;
+
+    cin >> H >> W >> T >> Q;
+    SegmentTree2D<llong> valid(H + 1, W + 1, 0,
+                               [](auto l, auto r){return l + r;});
+    SegmentTree2D<llong> invalid(H + 1, W + 1, 0,
+                                 [](auto l, auto r){return l + r;});
+    queue<tuple<llong, llong, llong> > que;
+
+    for (int i = 0; i < Q; i++) {
+        cin >> t >> c >> sy >> sx;
+
+        while (!que.empty() && get<0>(que.front()) + T <= t) {
+            auto a = que.front();
+            valid.update(get<1>(a), get<2>(a), 1);
+            invalid.update(get<1>(a), get<2>(a), 0);
+            que.pop();
+        }
+
+        switch(c) {
+        case 0:
+            invalid.update(sy, sx, 1);
+            que.push(make_tuple(t, sy, sx));
+            break;
+        case 1:
+            if (valid.at(sy, sx) == 1) {
+                valid.update(sy, sx, 0);
+            }
+            break;
+        case 2:
+            cin >> ty >> tx;
+            ty++, tx++;
+
+            cout << valid.fold(sy, sx, ty, tx) << ' ';
+            cout << invalid.fold(sy, sx, ty, tx) << '\n';
+            break;
+        }
+    }
+
+    return 0;
+}
+
 int main() {
-    return AOJ1068();
+    return AOJ2842();
+    //return AOJ1068();
 }
