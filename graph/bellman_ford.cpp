@@ -32,10 +32,10 @@ using UnWeightedGraph = vector<vector<int> >;
 
 // when g has negative cycle, it returns empty vector<>
 // time: O(|E||V|)
-template<class T, class Compare = less<T> >
+template<class T>
 vector<T> bellman_ford(WeightedGraph<T> &g, int from,
-                       const T INF = numeric_limits<T>::max(),
-                       const Compare &cmp = Compare() ) {
+                       const function<bool(T, T)> &cmp = less<T>(),
+                       const T INF = numeric_limits<T>::max()) {
 
     const int V = g.size();
     vector<T> min_cost(g.size(), INF);
@@ -58,10 +58,10 @@ vector<T> bellman_ford(WeightedGraph<T> &g, int from,
 };
 
 // when some negative cycles is into from->to path has, it returns empty vector<T>
-template<class T, class Compare = less<T> >
+template<class T>
 vector<T> bellman_ford(WeightedGraph<T> &g, int from, int to,
-                       const T INF = numeric_limits<T>::max(),
-                       const Compare &cmp = Compare() ) {
+                       const function<bool(T, T)> &cmp = less<T>(),
+                       const T INF = numeric_limits<T>::max()) {
     
     const int V = g.size();
     vector<T> min_cost(g.size(), INF);
@@ -136,12 +136,15 @@ int ABC137_E() {
     cin >> n >> m >> p;
     for (int i = 0; i < m; i++) {
         cin >> a >> b >> c;
+        //G[a].emplace_back(b, p - c);
         G[a].emplace_back(b, c - p);
     }
 
-    auto dist = bellman_ford(G, 1, n, numeric_limits<llong>::min(), greater<llong>());
+    //auto dist = bellman_ford(G, 1, n);
+    auto dist = bellman_ford(G, 1, n, (function<bool(llong, llong)>)greater<llong>(), numeric_limits<llong>::min());
 
     if (dist.empty()) cout << -1 << endl;
+    //else cout << max(0ll, -dist[n]) << endl;
     else cout << max(0ll, dist[n]) << endl;
 
     return 0;
