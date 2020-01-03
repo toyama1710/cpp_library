@@ -37,6 +37,7 @@ using UnWeightedGraph = vector<vector<int> >;
 // #include <limits>
 // #include <queue>
 // When s->u is unreachable, ret_val[u] == numeric_limits<T>::max()
+// time:O(E log V)
 template<class T>
 vector<T> dijkstra(WeightedGraph<T> &g, int s) {
     const T INF = numeric_limits<T>::max();
