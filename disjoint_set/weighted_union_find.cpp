@@ -14,24 +14,20 @@ struct WeightedUnionFind {
     using OP = function<Abel(Abel, Abel)>;
 
     vector<int> parent;
-    vector<Abel> diff_weight; //êeÇ©ÇÁÇÃãóó£
+    vector<Abel> diff_weight; // distance from root
     const OP add;
     const OP sub;
     const Abel e;
     
-    WeightedUnionFind(){};
-
     WeightedUnionFind(int nmemb,
                       const Abel &e = 0,
                       const OP &add = [](Abel x, Abel y){return x+y;},
                       const OP &sub = [](Abel x, Abel y){return x-y;}):
-        add(add),
-        sub(sub),
-        e(e)
+        e(e), add(add), sub(sub)
     {
         parent.assign(nmemb, -1);
         diff_weight.assign(nmemb, e);
-    }
+    };
 
     int root(int x) {
         if (parent[x] < 0) {
@@ -43,43 +39,47 @@ struct WeightedUnionFind {
         parent[x] = p;
 
         return p;
-    }
+    };
 
-    bool same(int x, int y) { return root(x) == root(y); }
-    
     bool unite(int x, int y, Abel w) {
         Abel wx = weight(x);
         Abel wy = weight(y);
-
         x = root(x);
         y = root(y);
 
         if (x == y) return false;
-
         w = sub(add(w, wx), wy);
+        if (size(x) < size(y)) swap(x, y), w = -w;
 
         parent[x] += parent[y];
         parent[y] = x;
         diff_weight[y] = w;
         
         return true;
-    }
+    };
+    
+    bool same(int x, int y) {
+        return root(x) == root(y);
+    };
     
     Abel weight(int x) {
         root(x);
         return diff_weight[x];
-    }
+    };
 
-    Abel diff(int x, int y) { return sub(weight(y), weight(x)); }
+    Abel diff(int x, int y) {
+        return sub(weight(y), weight(x));
+    };
 
-    int size(int x) { return -parent[root(x)]; }
+    int size(int x) {
+        return -parent[root(x)];
+    };
 };
 //===
 
 typedef long long ll;
 
 // verify AtCoder Beginner Contest 087 D
-// https://atcoder.jp/contests/abc087/submissions/6393566
 int abc087D(void)
 {
     WeightedUnionFind<ll> uf(1000005);
@@ -105,7 +105,6 @@ int abc087D(void)
 }
 
 // verify AOJ_DSL_1_B
-// https://onlinejudge.u-aizu.ac.jp/solutions/problem/DSL_1_B/review/3750268/ei1710/C++14
 int AOJ_DSL1B(void)
 {
     int n, q;
@@ -137,7 +136,6 @@ int AOJ_DSL1B(void)
 }
 
 // verify UTPC2010 D
-// https://onlinejudge.u-aizu.ac.jp/solutions/problem/2207/review/3750413/ei1710/C++14
 int UTPC2010D(void)
 {
     int n;
@@ -183,7 +181,7 @@ int UTPC2010D(void)
 
 int main()
 {
-    return abc087D();
-    //return AOJ_DSL1B();
+    //return abc087D();
+    return AOJ_DSL1B();
     //return UTPC2010D();
 }
