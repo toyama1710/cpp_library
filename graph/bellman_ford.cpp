@@ -33,10 +33,9 @@ using UnWeightedGraph = vector<vector<int> >;
 // when g has negative cycle, it returns empty vector<>
 // time: O(|E||V|)
 template<class T>
-vector<T> bellman_ford(WeightedGraph<T> &g, int from,
-                       const function<bool(T, T)> &cmp = less<T>(),
-                       const T INF = numeric_limits<T>::max()) {
+vector<T> bellman_ford(WeightedGraph<T> &g, int from) {
 
+    const T INF = numeric_limits<T>::max();
     const int V = g.size();
     vector<T> min_cost(g.size(), INF);
 
@@ -45,7 +44,7 @@ vector<T> bellman_ford(WeightedGraph<T> &g, int from,
         for (int i = 0; i < V; i++) {
             for (auto &e:g[i]) {
                 if (min_cost[i] == INF) break;
-                if (cmp(min_cost[i] + e.cost, min_cost[e.to])) {
+                if (min_cost[i] + e.cost < min_cost[e.to]) {
                     
                     min_cost[e.to] = min_cost[i] + e.cost;
                     if (k == V - 1) return vector<T>();
@@ -59,39 +58,30 @@ vector<T> bellman_ford(WeightedGraph<T> &g, int from,
 
 // when some negative cycles is into from->to path has, it returns empty vector<T>
 template<class T>
-vector<T> bellman_ford(WeightedGraph<T> &g, int from, int to,
-                       const function<bool(T, T)> &cmp = less<T>(),
-                       const T INF = numeric_limits<T>::max()) {
+vector<T> bellman_ford(WeightedGraph<T> &g, int from, int to) {
     
+    const T INF = numeric_limits<T>::max();
     const int V = g.size();
     vector<T> min_cost(g.size(), INF);
     vector<bool> used(g.size(), 0);
     vector<bool> reach(g.size(), 0);
 
-    /*
-    auto dfs = [&rec = [&](auto f, int u) -> bool {
-                          if (used[u]) return reach[u];
-                          used[u] = true;
-                          for (int v:g[u]) reach[u] = reach[u] | f(f, v);
-                          return reach[u];
-                      }] (int u) -> bool {return rec(rec, u);};
-    */
-    function<bool(int)> dfs = [&dfs, &g, &min_cost, &used, &reach](int u) -> bool {
-                                  if (used[u]) return reach[u];
-                                  used[u] = true;
-                                  for (int v:g[u]) reach[u] = reach[u] | dfs(v);
-                                  return reach[u];
-                              };
+    auto dfs = [&](auto &&f, int u) -> bool {
+                   if (used[u]) return reach[u];
+                   used[u] = true;
+                   for (int v:g[u]) reach[u] = reach[u] | f(f, v);
+                   return reach[u];
+               };
 
     reach[to] = true;
-    for (int i = 0; i < V; i++) dfs(i);
-
+    for (int i = 0; i < V; i++) dfs(dfs, i);
+    
     min_cost[from] = 0;
     for (int k = 0; k < V; k++) {
         for (int i = 0; i < V; i++) {
             for (auto &e:g[i]) {
                 if (min_cost[i] == INF) break;
-                if (cmp(min_cost[i] + e.cost, min_cost[e.to])) {
+                if (min_cost[i] + e.cost < min_cost[e.to]) {
                     
                     min_cost[e.to] = min_cost[i] + e.cost;
                     if (k == V - 1 && reach[i]) return vector<T>();
@@ -136,16 +126,13 @@ int ABC137_E() {
     cin >> n >> m >> p;
     for (int i = 0; i < m; i++) {
         cin >> a >> b >> c;
-        //G[a].emplace_back(b, p - c);
-        G[a].emplace_back(b, c - p);
+        G[a].emplace_back(b, p - c);
     }
 
-    //auto dist = bellman_ford(G, 1, n);
-    auto dist = bellman_ford(G, 1, n, (function<bool(llong, llong)>)greater<llong>(), numeric_limits<llong>::min());
+    auto dist = bellman_ford(G, 1, n);
 
     if (dist.empty()) cout << -1 << endl;
-    //else cout << max(0ll, -dist[n]) << endl;
-    else cout << max(0ll, dist[n]) << endl;
+    else cout << max(0ll, -dist[n]) << endl;
 
     return 0;
 };
