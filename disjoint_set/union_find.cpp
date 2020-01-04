@@ -8,22 +8,21 @@ struct UnionFind {
     vector<int> parent;
 
     UnionFind() {}
-    UnionFind(int nmemb) { init(nmemb); }
+    UnionFind(int nmemb) {
+        init(nmemb);
+    };
 
     void init(int nmemb) {
         parent.clear();
         parent.assign(nmemb, -1);
-    }
+    };
 
     int root(int x) {
         if (parent[x] < 0) {
             return x;
         }
         return parent[x] = root(parent[x]);
-    }
-
-    bool same(int x, int y) { return root(x) == root(y); }
-    int size(int x) { return -(parent[root(x)]); }
+    };
 
     void unite(int x, int y) {
         x = root(x);
@@ -37,7 +36,14 @@ struct UnionFind {
         parent[y] = x;
         
         return;
-    }
+    };
+    
+    bool same(int x, int y) {
+        return root(x) == root(y);
+    };
+    int size(int x) {
+        return -(parent[root(x)]);
+    };
 };
 //===
 
