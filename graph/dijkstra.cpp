@@ -36,8 +36,8 @@ using UnWeightedGraph = vector<vector<int> >;
 // require graph/basic.cpp
 // #include <limits>
 // #include <queue>
-// When s->u is unreachable, ret_val[u] == numeric_limits<T>::max()
-// time:O(E log V)
+// if s->u path is nothing, min_cost[u] = numeric_limits<T>::max()
+// time:O((V+E) log V)
 template<class T>
 vector<T> dijkstra(WeightedGraph<T> &g, int s) {
     const T INF = numeric_limits<T>::max();
@@ -46,21 +46,19 @@ vector<T> dijkstra(WeightedGraph<T> &g, int s) {
     vector<T> min_cost(g.size(), INF);
     //vector<T> restore(g.size(), -1);
     priority_queue<P, vector<P>, greater<P> > que;
-    min_cost[s] = 0;
-    que.emplace(min_cost[s], s);
+    que.emplace(0, s);
 
     while (!que.empty()) {
         T cost = que.top().first;
         int pos = que.top().second;
         que.pop();
-        
+
+        if (min_cost[pos] != INF) continue;
+        min_cost[pos] = cost;
         for (Edge<T> e:g[pos]) {
-            T next_cost = cost + e.cost;
-
-            if (min_cost[e.to] <= next_cost) continue;
-
-            min_cost[e.to] = next_cost;
-            que.emplace(next_cost, e.to);
+            if (min_cost[e.to] <= cost + e.cost) continue;
+            que.emplace(cost + e.cost, e.to);
+            //restore[npos] = pos;
         }
     }
 
