@@ -12,7 +12,7 @@ using llong = long long;
 template<class OperatorMonoid,
          class Merge = function<OperatorMonoid(OperatorMonoid, OperatorMonoid)> >
 struct DualSegmentTree {
-    int sz;
+    int sz, height;
     const OperatorMonoid e;
     const Merge merge_operator;
     vector<OperatorMonoid> lazy;
@@ -22,18 +22,21 @@ struct DualSegmentTree {
     void init(int nmemb) {
         sz = nmemb;
         lazy.assign(sz << 1, e);
+
+        height = -1;
+        while (nmemb) nmemb >>= 1, height++;
     };
  
-    void propagate(int k) {
-        if (k >= sz) return;
+    inline void propagate(int k) {
+        if (k >= sz || lazy[k] == e) return;
         lazy[(k << 1) | 0] = merge_operator(lazy[(k << 1) | 0], lazy[k]);
         lazy[(k << 1) | 1] = merge_operator(lazy[(k << 1) | 1], lazy[k]);
         lazy[k] = e;
     };
     void push_down(int k) {
-        if (k <= 0) return;
-        push_down(k >> 1);
-        propagate(k);
+        for (int i = height; i > 0; i--) {
+            propagate(k >> i);
+        }
     };
  
     // [l, r)
