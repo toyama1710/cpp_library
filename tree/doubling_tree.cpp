@@ -42,7 +42,7 @@ struct DoublingTree {
     void build(int root = 0) {
         calc_depth(root, 0, -1);
         for (int k = 1; k < logn; k++) {
-            for (int u = 0; u < G.size(); u++) {
+            for (int u = 0; u < size(); u++) {
                 if (parent[k - 1][u] == -1) continue;
                 parent[k][u] = parent[k - 1][parent[k - 1][u]];
             }
@@ -53,7 +53,6 @@ struct DoublingTree {
         G[u].push_back(v);
         G[v].push_back(u);
     };
-
     int climb(int u, int d) {
         int cnt = 0;
         while (d) {
@@ -77,8 +76,11 @@ struct DoublingTree {
         }
         return parent[0][u];
     };
-    int distance(int u, int v) {
+    inline int distance(int u, int v) {
         return depth[u] + depth[v] - depth[lca(u, v)] * 2;
+    };
+    inline int size() {
+        return G.size();
     };
 };
 //===
