@@ -16,11 +16,12 @@ struct SegmentTree {
     const OP merge_monoid; // bin' operation
     const Monoid e; // neutral element
                                            
-    SegmentTree(int nmemb, const Monoid &e, const OP &f):
-        size(nmemb), merge_monoid(f), e(e)
-    {
+    SegmentTree(const Monoid &e, const OP &f):
+        merge_monoid(f), e(e) {};
+    void init(int nmemb) {
+        size = nmemb;
         tree.assign(size << 1, e);
-    }
+    };
 
     template<class InputIterator>
     SegmentTree(InputIterator first, InputIterator last,
@@ -38,7 +39,7 @@ struct SegmentTree {
         for (i = size - 1; i > 0; i--) {
             tree[i] = merge_monoid(tree[(i << 1)], tree[(i << 1) | 1]);
         }
-    }
+    };
 
     inline void update(int k, Monoid dat) {
         k += size;
@@ -48,7 +49,7 @@ struct SegmentTree {
             k >>= 1;
             tree[k] = merge_monoid(tree[(k << 1)], tree[(k << 1) | 1]);
         }
-    }
+    };
 
     // [l, r)
     inline Monoid fold(int l, int r) {
@@ -81,11 +82,10 @@ int AOJ_DSL2B() {
 
     int n, q;
     int com, x, y;
+    SegmentTree<int> RSQ(0, [](int l, int r){return l + r;});
 
     scanf("%d %d", &n, &q);
-
-    auto f = [](int l, int r){ return l + r; };
-    SegmentTree<int, decltype(f)> RSQ(n, 0, f);
+    RSQ.init(n);
 
     while (q--) {
         scanf("%d %d %d", &com, &x, &y);
@@ -107,14 +107,11 @@ int AOJ_DSL2B() {
 int AOJ_DSL2A() {
     int n, q;
     int com, x, y;
+    SegmentTree<int> RMQ((1u << 31u) - 1,
+                         [](int l, int r){return min(l, r);});
 
     cin >> n >> q;
-
-    SegmentTree<int> RMQ(n,
-                    (1u << 31u) - 1,
-                    [](int l, int r){
-                        return min(l, r);
-                    });
+    RMQ.init(n);
     
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
