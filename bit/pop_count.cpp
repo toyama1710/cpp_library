@@ -5,14 +5,13 @@ using namespace std;
 
 //===
 // #include<cstdint>
-
-#ifdef USE_ASM
+/*
 int popcnt32(uint32_t bits) {
     int ret;
     __asm__ ("popcntl %[input], %[output]" : [output] "=r"(ret) : [input] "r"(bits));
     return ret;
 }
-#else
+*/
 int popcnt32(uint32_t bits) {
     bits = (bits & 0x55555555) + (bits >> 1 & 0x55555555);
     bits = (bits & 0x33333333) + (bits >> 2 & 0x33333333);
@@ -21,7 +20,6 @@ int popcnt32(uint32_t bits) {
     bits = (bits & 0x0000ffff) + (bits >>16 & 0x0000ffff);
     return bits;
 }
-#endif
 //===
 
 int main() {
