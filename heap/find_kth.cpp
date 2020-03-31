@@ -63,21 +63,6 @@ struct FindKth {
             minh.pop();
         }
     };
-    
-    void merge_with(FindKth<T, Compare, Heap> &x) {
-        if (size() < x.size()) {
-            while (!empty()) {
-                x.push(find_lower());
-                pop();
-            }
-        }
-        else {
-            while (!x.empty()) {
-                push(x.find_lower());
-                x.pop();
-            }
-        }
-    };
 };
 //===
 
