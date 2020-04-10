@@ -2,115 +2,127 @@
 #include <functional>
 #include <vector>
 #include <memory>
+#include <cstring>
 using namespace std;
 using llong = long long;
 
 //===
-template<class T>
-struct PersitentArray {
+// K-ary tree
+template<class T, int K = 2, template<class> class Alloc = allocator>
+struct PersistentArray {
+    struct Node;
+    using Leaf = T;
     struct Node {
-        using Leaf = T;
-        using NodePointer = union {
-            Node *u;
-            Leaf *dat;
+        T dat;
+        Node* ch[K] = {};
+
+        Node() = default;
+        Node(Node *np) {
+            dat = np->dat;
+            memcpy(ch, np->ch, sizeof(Node *) * K);
         };
-        NodePointer ch[2] = {}; // 0:left, 1:right
+    };
 
-        Node (): ch{nullptr, nullptr} {};
-    };
-    using np = typename Node::NodePointer;
-    using Leaf = typename Node::Leaf;
-    
-    inline int inv(int p) { // p = 0 or 1
-        return p ^ 1;
-    };
-    
     Node *root;
-    int arr_sz;
-    
+    int arr_size;
+
+    PersistentArray (Node *root, int arr_size):root(root), arr_size(arr_size) {};
     template<class InputIterator>
-    PersitentArray(InputIterator first, InputIterator last) {
-        arr_sz = distance(first, last);
-
+    PersistentArray(InputIterator first, InputIterator last) {
+        size_t s = distance(first, last);
         root = new Node();
-        auto itr = first;
-        for (int i = 0; i < arr_sz; i++, itr++) {
-            int range[] = {arr_sz, 0}; //[0] = right, [1] = left
-            int mid;
-            int direction;
-            np u_parent = root;
-            np u = root;
-
-            while (range[0] - range[1] > 1) {
-                mid = (range[0] + range[1]) / 2;
-                direction = i < mid ? 0 : 1;
-
-                range[direction] = mid;
-                if (u->ch[direction] == nullptr && range[0] - range[1] > 1) {
-                    u->ch[direction] = new Node();
-                }
-                u_parent = u;
-                u = u->ch[direction];
-            }
-
-            if (i & 1) u_parent->ch[1] = new Leaf(*itr);
-            else u_parent->ch[0] = new Leaf(*itr);
+        arr_size = s;
+        init(root, s, *first);
+        for (int i = 0; i < s; i++, first++) {
+            destructive_set(i, *first, root);
         }
     };
-    PersitentArray(int size, T d = T()) {
-        vector<T> v(size, d);
-        PersitentArray(v.begin(), v.end());
+    PersistentArray(int size, T d = T()):arr_size(size) {
+        root = new Node();
+        init(root, size, d);
+    };
+    Node *init(Node *np, int size, T d) {
+        np->dat = d;
+                             
+        if (size == 1) return np;
+        for (int i = 0; i < min(K, size); i++) {
+            np->ch[i] = init(new Node(), (size + K - 1) / K, d);
+        }
+        return np;
     };
 
-    T get(int idx){
-        int range[] = {arr_sz, 0};
-        int mid;
-        int direction;
-        np u = root;
-
-        while (range[0] - range[1] > 1) {
-            mid = (range[0] + range[1]) >> 1;
-            direction = idx < mid ? 0 : 1;
-
-            range[direction] = mid;
-            u = u->ch[direction];
-        }
-
-        return *(u.dat);
+    T get(int idx) {
+        return get(idx, root);
     };
-    void set(int idx, T val) {
-        int range[] = {arr_sz, 0};
-        int mid;
-        int direction;
-        np next_root = new Node();
-        np u = root;
-        np w = next_root;
-
-        mid = (range[0] + range[1]) / 2;
-        direction = idx < mid ? 0 : 1;
-
-        range[direction] = mid;
-        w->ch[inv(direction)] = u->ch[inv(direction)];
-        while (range[0] - range[1] > 1) {
-            if (range[0] - range[1] > 1) {
-                w->ch[direction] = new Node();
-                w = w->ch[direction];
-                u = u->ch[direction];
-            }
-        }
-
-        if (idx & 1) w->ch[1] = new Leaf(val);
-        else w->ch[0] = new Leaf(val);
-        root = next_root;
+    T get(int idx, Node *np) {
+        if (idx == 0) return np->dat;
+        return get((idx - 1) / K, np->ch[idx % K]);
     };
     
-    PersitentArray get_array() {
+    PersistentArray set(int idx, T &val) {
+        return {set(idx, val, root), arr_size};
+    };
+    Node *set(int idx, T &val, Node *np) {
+        if (idx == 0) {
+            Node *node = new Node(np);
+            node->dat = val;
+            return node;
+        }
+        else {
+            Node *node = new Node(np);
+            return node->ch[idx % K] = set((idx - 1) / K, val, np->ch[idx % K]);
+        }
+    };
+
+    void destructive_set(int idx, T &val, Node *np) {
+        if (idx == 0) np->dat = val;
+        else destructive_set((idx - 1) / K, val, np->ch[idx % K]);
+    };
+
+    int size() {
+        return arr_size;
+    };
+    PersistentArray get_array() {
         return *this;
     };
 };
 //===
 
+llong n, q;
+vector<llong> v;
+
 int main() {
+    cin >> n >> q;
+    for (int i = 0; i < n; i++) {
+        llong a;
+        cin >> a;
+        v.push_back(a);
+    }
+
+    vector<PersistentArray<llong>> r;
+    PersistentArray<llong> arr(v.begin(), v.end());
+    r.push_back(arr);
+
+    for (int i = 0; i < q; i++) {
+        llong com;
+        llong idx, dat;
+
+        cin >> com;
+        if (com == 0) {
+            cin >> idx >> dat;
+            r.push_back(r.back().set(idx, dat));
+        }
+        else {
+            cout << "=====" << endl;
+            for (int i = 0; i < r.size(); i++) {
+                for (int j = 0; j < r[i].size(); j++) {
+                    cout << r[i].get(j) << ' ';
+                }
+                cout << endl;
+            }
+            cout << "=====" << endl;
+        }
+    }
 
     return 0;
 }
