@@ -70,7 +70,8 @@ struct PersistentArray {
         }
         else {
             Node *node = new Node(np);
-            return node->ch[idx % K] = set((idx - 1) / K, val, np->ch[idx % K]);
+            node->ch[idx % K] = set((idx - 1) / K, val, np->ch[idx % K]);
+            return node;
         }
     };
 
