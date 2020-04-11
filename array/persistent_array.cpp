@@ -27,17 +27,7 @@ struct PersistentArray {
     int arr_size;
 
     PersistentArray (Node *root, int arr_size):root(root), arr_size(arr_size) {};
-    template<class InputIterator>
-    PersistentArray(InputIterator first, InputIterator last) {
-        size_t s = distance(first, last);
-        root = new Node();
-        arr_size = s;
-        init(root, s, *first);
-        for (int i = 0; i < s; i++, first++) {
-            destructive_set(i, *first, root);
-        }
-    };
-    PersistentArray(int size, T d = T()):arr_size(size) {
+    PersistentArray(int size, const T &d = T()):arr_size(size) {
         root = new Node();
         init(root, size, d);
     };
@@ -59,10 +49,10 @@ struct PersistentArray {
         return get((idx - 1) / K, np->ch[idx % K]);
     };
     
-    PersistentArray set(int idx, T &val) {
+    PersistentArray set(int idx, const T &val) {
         return {set(idx, val, root), arr_size};
     };
-    Node *set(int idx, T &val, Node *np) {
+    Node *set(int idx, const T &val, Node *np) {
         if (idx == 0) {
             Node *node = new Node(np);
             node->dat = val;
@@ -75,7 +65,10 @@ struct PersistentArray {
         }
     };
 
-    void destructive_set(int idx, T &val, Node *np) {
+    void destructive_set(int idx, const T &val) {
+        destructive_set(idx, val, root);
+    };
+    void destructive_set(int idx, const T &val, Node *np) {
         if (idx == 0) np->dat = val;
         else destructive_set((idx - 1) / K, val, np->ch[idx % K]);
     };
@@ -89,6 +82,7 @@ struct PersistentArray {
 };
 //===
 
+
 llong n, q;
 vector<llong> v;
 
@@ -101,7 +95,10 @@ int main() {
     }
 
     vector<PersistentArray<llong>> r;
-    PersistentArray<llong> arr(v.begin(), v.end());
+    PersistentArray<llong> arr(v.size());
+    for (int i = 0; i < arr.size(); i++) {
+        arr.destructive_set(i, v[i]);
+    }
     r.push_back(arr);
 
     for (int i = 0; i < q; i++) {
