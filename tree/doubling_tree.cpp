@@ -4,9 +4,10 @@ using namespace std;
 using llong = long long;
 
 //===
-// definitely call build() before lca() and distance()
+// call build() before other query (except add_edge)
 // 0-indexed
 // climb(u, d): climb d steps towards root
+// fold(u, v):
 struct DoublingTree {
     vector<vector<int> > G;
     vector<vector<int> > parent;
@@ -21,7 +22,9 @@ struct DoublingTree {
         parent.assign(logn, vector<int>(n, -1));
         depth.assign(n, -1);
     };
-    DoublingTree(vector<vector<int> > &g) {
+
+    template<class Graph>
+    DoublingTree(Graph &g) {
         DoublingTree(g.size());
         for (int i = 0; i < g.size(); i++) {
             G[i].resize(g[i].size());
@@ -39,8 +42,11 @@ struct DoublingTree {
             calc_depth(v, d, u);
         }
     };
-    void build(int root = 0) {
-        calc_depth(root, 0, -1);
+    
+    void build(vector<int> root = {0}) {
+        for (int i = 0; i < root.size(); i++) {
+            calc_depth(root[i], 0, -1);
+        }
         for (int k = 1; k < logn; k++) {
             for (int u = 0; u < size(); u++) {
                 if (parent[k - 1][u] == -1) continue;
