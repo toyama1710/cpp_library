@@ -16,6 +16,7 @@
 using namespace std;
 using llong = long long;
 
+//===
 // library section
 // <iterator>
 struct CoordinateCompression {
@@ -28,7 +29,6 @@ struct CoordinateCompression {
         for (auto itr = first; itr != last; itr++) {
             p.push_back(*itr);
         }
-
         build();
     };
 
@@ -52,7 +52,7 @@ struct CoordinateCompression {
         return p.size();
     };
 };
-// ===
+//===
 
 int main() {
     return 0;
