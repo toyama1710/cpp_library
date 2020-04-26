@@ -1,3 +1,4 @@
+// filetype:cpp
 #include <iostream>
 #include <cstdio>
 #include <cassert>
@@ -5,6 +6,7 @@
 #include <stack>
 using namespace std;
 using llong = long long;
+
 
 //===
 // #include <stack>
