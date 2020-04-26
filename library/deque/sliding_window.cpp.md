@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#eb30267afe2f60536940ebb01df616b5">deque</a>
 * <a href="{{ site.github.repository_url }}/blob/master/deque/sliding_window.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-10 23:00:11+09:00
+    - Last commit date: 2020-04-26 05:37:45+00:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+// filetype:cpp
 #include <iostream>
 #include <cstdio>
 #include <cassert>
@@ -48,6 +49,7 @@ layout: default
 #include <stack>
 using namespace std;
 using llong = long long;
+
 
 //===
 // #include <stack>
@@ -172,6 +174,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "deque/sliding_window.cpp"
+// filetype:cpp
 #include <iostream>
 #include <cstdio>
 #include <cassert>
@@ -179,6 +182,7 @@ int main() {
 #include <stack>
 using namespace std;
 using llong = long long;
+
 
 //===
 // #include <stack>
