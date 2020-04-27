@@ -25,9 +25,10 @@ struct PersistentArray {
         };
     };
 
-    Node *root;
-    int arr_size;
+    Node *root = nullptr;
+    int arr_size = 0;
 
+    PersistentArray() = default;
     PersistentArray (Node *root, int arr_size):root(root), arr_size(arr_size) {};
     PersistentArray(int size, const T &d = T()):arr_size(size) {
         root = new Node();
