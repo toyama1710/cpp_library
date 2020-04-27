@@ -4,6 +4,8 @@
 #include "../array/persistent_array.hpp"
 
 //===
+// LIBRARY SECTION
+
 // 0-indexed
 template<int K = 2>
 struct PersistentUnionFind {

@@ -5,6 +5,8 @@
 #include <stack>
 
 //===
+// LIBRARY SECTION
+
 // #include <stack>
 // #include <cassert>
 template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >
