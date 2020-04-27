@@ -44,10 +44,10 @@ struct PersistentArray {
         return np;
     };
 
-    T get(int idx) {
+    const T get(int idx) const {
         return get(idx, root);
     };
-    T get(int idx, Node *np) {
+    const T get(int idx, Node *np) const {
         if (idx == 0) return np->dat;
         return get((idx - 1) / K, np->ch[idx % K]);
     };
