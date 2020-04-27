@@ -20,9 +20,11 @@ struct PersistentUnionFind {
         if (x == y) return *this;
 
         if (size(x) > size(y)) {
+            par.set(x, par[x] + par[y]);
             return par.set(y, x);
         }
         else {
+            par.set(y, par[y] + par[x]);
             return par.set(x, y);
         }
     };
@@ -39,8 +41,7 @@ struct PersistentUnionFind {
 
     // return size of set
     int size(int x) {
-        x = root(x);
-        return -par[x];
+        return -par[root(x)];
     };
 };
 //===
