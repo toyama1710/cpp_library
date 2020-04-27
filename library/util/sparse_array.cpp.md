@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/sparse_array.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-01 18:59:16+09:00
+    - Last commit date: 2020-04-27 13:32:31+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define IGNORE
 #include <iostream>
 #include <cstdio>
 #include <vector>
@@ -99,6 +100,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "util/sparse_array.cpp"
+#define IGNORE
 #include <iostream>
 #include <cstdio>
 #include <vector>
