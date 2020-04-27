@@ -82,7 +82,7 @@ struct PersistentArray {
         return *this;
     };
     
-    const T operator [] (int idx) {
+    const T operator [] (int idx) const {
         return get(idx, root);
     };
 };
