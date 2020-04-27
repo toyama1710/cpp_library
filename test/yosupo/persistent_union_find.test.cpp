@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
+
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -16,12 +18,15 @@
 
 using namespace std;
 using llong = long long;
-using UF = PersistentUnionFind<2>;
+using UF = PersistentUnionFind<32>;
 
 llong n, q;
 llong t, k, u, v;
 
 int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    
     cin >> n >> q;
 
     vector<UF> uf(q);
