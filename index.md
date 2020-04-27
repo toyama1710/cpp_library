@@ -172,7 +172,6 @@ layout: default
 
 ## Verify Files
 
-* :heavy_check_mark: <a href="verify/example.test.cpp.html">example.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 
