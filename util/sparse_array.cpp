@@ -1,3 +1,4 @@
+#define IGNORE
 #include <iostream>
 #include <cstdio>
 #include <vector>
