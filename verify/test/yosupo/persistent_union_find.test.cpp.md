@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/persistent_union_find.test.cpp
+# :heavy_check_mark: test/yosupo/persistent_union_find.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:20:25+09:00
+    - Last commit date: 2020-04-27 16:23:31+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/persistent_unionfind">https://judge.yosupo.jp/problem/persistent_unionfind</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/array/persistent_array.hpp.html">array/persistent_array.hpp</a>
-* :x: <a href="../../../library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
+* :heavy_check_mark: <a href="../../../library/array/persistent_array.hpp.html">array/persistent_array.hpp</a>
+* :heavy_check_mark: <a href="../../../library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
 
 
 ## Code
@@ -174,10 +174,10 @@ struct PersistentArray {
         return np;
     };
 
-    T get(int idx) {
+    const T get(int idx) const {
         return get(idx, root);
     };
-    T get(int idx, Node *np) {
+    const T get(int idx, Node *np) const {
         if (idx == 0) return np->dat;
         return get((idx - 1) / K, np->ch[idx % K]);
     };

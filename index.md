@@ -39,8 +39,7 @@ layout: default
 ### array
 
 * :warning: <a href="library/array/partially_persistent_array.cpp.html">array/partially_persistent_array.cpp</a>
-* :warning: <a href="library/array/persistent_array.cpp.html">array/persistent_array.cpp</a>
-* :x: <a href="library/array/persistent_array.hpp.html">array/persistent_array.hpp</a>
+* :heavy_check_mark: <a href="library/array/persistent_array.hpp.html">array/persistent_array.hpp</a>
 
 
 <div id="d342894e126a2cdd0812cd3a6c903bbd"></div>
@@ -71,7 +70,7 @@ layout: default
 ### disjoint_set
 
 * :warning: <a href="library/disjoint_set/partially_persitent_union_find.cpp.html">disjoint_set/partially_persitent_union_find.cpp</a>
-* :x: <a href="library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
+* :heavy_check_mark: <a href="library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
 * :warning: <a href="library/disjoint_set/union_find.cpp.html">disjoint_set/union_find.cpp</a>
 * :warning: <a href="library/disjoint_set/weighted_union_find.cpp.html">disjoint_set/weighted_union_find.cpp</a>
 
@@ -174,7 +173,7 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 

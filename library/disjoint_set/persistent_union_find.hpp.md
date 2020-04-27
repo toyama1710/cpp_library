@@ -25,25 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: disjoint_set/persistent_union_find.hpp
+# :heavy_check_mark: disjoint_set/persistent_union_find.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#334b410b60c6352c539a44a5cc4509bc">disjoint_set</a>
 * <a href="{{ site.github.repository_url }}/blob/master/disjoint_set/persistent_union_find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:19:53+09:00
+    - Last commit date: 2020-04-27 16:23:31+09:00
 
 
 
 
 ## Depends on
 
-* :x: <a href="../array/persistent_array.hpp.html">array/persistent_array.hpp</a>
+* :heavy_check_mark: <a href="../array/persistent_array.hpp.html">array/persistent_array.hpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 
 
 ## Code
@@ -158,10 +158,10 @@ struct PersistentArray {
         return np;
     };
 
-    T get(int idx) {
+    const T get(int idx) const {
         return get(idx, root);
     };
-    T get(int idx, Node *np) {
+    const T get(int idx, Node *np) const {
         if (idx == 0) return np->dat;
         return get((idx - 1) / K, np->ch[idx % K]);
     };

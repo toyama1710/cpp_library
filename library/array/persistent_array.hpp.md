@@ -25,25 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: array/persistent_array.hpp
+# :heavy_check_mark: array/persistent_array.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f1f713c9e000f5d3f280adbd124df4f5">array</a>
 * <a href="{{ site.github.repository_url }}/blob/master/array/persistent_array.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 15:25:45+09:00
+    - Last commit date: 2020-04-27 16:23:31+09:00
 
 
 
 
 ## Required by
 
-* :x: <a href="../disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
+* :heavy_check_mark: <a href="../disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 
 
 ## Code
@@ -97,10 +97,10 @@ struct PersistentArray {
         return np;
     };
 
-    T get(int idx) {
+    const T get(int idx) const {
         return get(idx, root);
     };
-    T get(int idx, Node *np) {
+    const T get(int idx, Node *np) const {
         if (idx == 0) return np->dat;
         return get((idx - 1) / K, np->ch[idx % K]);
     };
@@ -197,10 +197,10 @@ struct PersistentArray {
         return np;
     };
 
-    T get(int idx) {
+    const T get(int idx) const {
         return get(idx, root);
     };
-    T get(int idx, Node *np) {
+    const T get(int idx, Node *np) const {
         if (idx == 0) return np->dat;
         return get((idx - 1) / K, np->ch[idx % K]);
     };
