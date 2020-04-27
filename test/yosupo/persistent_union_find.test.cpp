@@ -13,7 +13,6 @@
 #include <map>
 #include <queue>
 #include <stack>
-#include "../../array/persistent_array.hpp"
 #include "../../disjoint_set/persistent_union_find.hpp"
 
 using namespace std;
