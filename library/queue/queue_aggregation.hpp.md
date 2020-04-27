@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: queue/queue_aggregation.hpp
+# :heavy_check_mark: queue/queue_aggregation.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#a9d1cbf71942327e98b40cf5ef38a960">queue</a>
 * <a href="{{ site.github.repository_url }}/blob/master/queue/queue_aggregation.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 03:08:13+00:00
+    - Last commit date: 2020-04-27 03:43:15+00:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 
 
 ## Code
@@ -84,7 +84,7 @@ struct QueueAggregation {
             back_st.pop();
             
             while (!back_st.empty()) {
-                front_st.emplace(back_st.top().first, merge(front_st.top().second, back_st.top().first));
+                front_st.emplace(back_st.top().first, merge(back_st.top().first, front_st.top().second));
                 back_st.pop();
             }
         }
@@ -147,7 +147,7 @@ struct QueueAggregation {
             back_st.pop();
             
             while (!back_st.empty()) {
-                front_st.emplace(back_st.top().first, merge(front_st.top().second, back_st.top().first));
+                front_st.emplace(back_st.top().first, merge(back_st.top().first, front_st.top().second));
                 back_st.pop();
             }
         }

@@ -104,7 +104,7 @@ layout: default
 
 ### queue
 
-* :x: <a href="library/queue/queue_aggregation.hpp.html">queue/queue_aggregation.hpp</a>
+* :heavy_check_mark: <a href="library/queue/queue_aggregation.hpp.html">queue/queue_aggregation.hpp</a>
 
 
 <div id="ca810e3a5259e4bd613e780cf209098c"></div>
@@ -169,7 +169,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/example.test.cpp.html">example.test.cpp</a>
-* :x: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 
 
