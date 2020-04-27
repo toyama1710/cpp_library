@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#334b410b60c6352c539a44a5cc4509bc">disjoint_set</a>
 * <a href="{{ site.github.repository_url }}/blob/master/disjoint_set/persistent_union_find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:07:37+09:00
+    - Last commit date: 2020-04-27 16:19:53+09:00
 
 
 
@@ -73,12 +73,12 @@ struct PersistentUnionFind {
         if (x == y) return *this;
 
         if (size(x) > size(y)) {
-            par.set(x, par[x] + par[y]);
-            return par.set(y, x);
+            auto tmp = par.set(x, par[x] + par[y]);
+            return tmp.set(y, x);
         }
         else {
-            par.set(y, par[y] + par[x]);
-            return par.set(x, y);
+            auto tmp = par.set(y, par[y] + par[x]);
+            return tmp.set(x, y);
         }
     };
 
@@ -223,12 +223,12 @@ struct PersistentUnionFind {
         if (x == y) return *this;
 
         if (size(x) > size(y)) {
-            par.set(x, par[x] + par[y]);
-            return par.set(y, x);
+            auto tmp = par.set(x, par[x] + par[y]);
+            return tmp.set(y, x);
         }
         else {
-            par.set(y, par[y] + par[x]);
-            return par.set(x, y);
+            auto tmp = par.set(y, par[y] + par[x]);
+            return tmp.set(x, y);
         }
     };
 

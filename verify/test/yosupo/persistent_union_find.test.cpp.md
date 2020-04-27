@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:12:27+09:00
+    - Last commit date: 2020-04-27 16:20:25+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/persistent_unionfind">https://judge.yosupo.jp/problem/persistent_unionfind</a>
@@ -63,7 +63,6 @@ layout: default
 #include <map>
 #include <queue>
 #include <stack>
-#include "../../array/persistent_array.hpp"
 #include "../../disjoint_set/persistent_union_find.hpp"
 
 using namespace std;
@@ -124,6 +123,10 @@ int main() {
 #include <map>
 #include <queue>
 #include <stack>
+#line 1 "disjoint_set/persistent_union_find.hpp"
+
+
+
 #line 1 "array/persistent_array.hpp"
 
 
@@ -217,10 +220,6 @@ struct PersistentArray {
 //===
 
 
-#line 1 "disjoint_set/persistent_union_find.hpp"
-
-
-
 #line 5 "disjoint_set/persistent_union_find.hpp"
 
 //===
@@ -240,12 +239,12 @@ struct PersistentUnionFind {
         if (x == y) return *this;
 
         if (size(x) > size(y)) {
-            par.set(x, par[x] + par[y]);
-            return par.set(y, x);
+            auto tmp = par.set(x, par[x] + par[y]);
+            return tmp.set(y, x);
         }
         else {
-            par.set(y, par[y] + par[x]);
-            return par.set(x, y);
+            auto tmp = par.set(y, par[y] + par[x]);
+            return tmp.set(x, y);
         }
     };
 
@@ -267,7 +266,7 @@ struct PersistentUnionFind {
 //===
 
 
-#line 18 "test/yosupo/persistent_union_find.test.cpp"
+#line 17 "test/yosupo/persistent_union_find.test.cpp"
 
 using namespace std;
 using llong = long long;
