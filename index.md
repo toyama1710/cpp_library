@@ -63,6 +63,7 @@ layout: default
 ### deque
 
 * :warning: <a href="library/deque/sliding_window.cpp.html">deque/sliding_window.cpp</a>
+* :heavy_check_mark: <a href="library/deque/sliding_window.hpp.html">deque/sliding_window.hpp</a>
 
 
 <div id="334b410b60c6352c539a44a5cc4509bc"></div>
@@ -168,5 +169,6 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/example.test.cpp.html">example.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 
 
