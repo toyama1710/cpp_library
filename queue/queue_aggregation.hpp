@@ -36,7 +36,7 @@ struct QueueAggregation {
             back_st.pop();
             
             while (!back_st.empty()) {
-                front_st.emplace(back_st.top().first, merge(front_st.top().second, back_st.top().first));
+                front_st.emplace(back_st.top().first, merge(back_st.top().first, front_st.top().second));
                 back_st.pop();
             }
         }
