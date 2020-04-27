@@ -31,9 +31,10 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:08:57+09:00
+    - Last commit date: 2020-04-27 16:12:27+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/persistent_unionfind">https://judge.yosupo.jp/problem/persistent_unionfind</a>
 
 
 ## Depends on
@@ -47,6 +48,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
+
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -65,12 +68,15 @@ layout: default
 
 using namespace std;
 using llong = long long;
-using UF = PersistentUnionFind<2>;
+using UF = PersistentUnionFind<32>;
 
 llong n, q;
 llong t, k, u, v;
 
 int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    
     cin >> n >> q;
 
     vector<UF> uf(q);
@@ -103,6 +109,8 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/yosupo/persistent_union_find.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
+
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -259,16 +267,19 @@ struct PersistentUnionFind {
 //===
 
 
-#line 16 "test/yosupo/persistent_union_find.test.cpp"
+#line 18 "test/yosupo/persistent_union_find.test.cpp"
 
 using namespace std;
 using llong = long long;
-using UF = PersistentUnionFind<2>;
+using UF = PersistentUnionFind<32>;
 
 llong n, q;
 llong t, k, u, v;
 
 int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    
     cin >> n >> q;
 
     vector<UF> uf(q);
