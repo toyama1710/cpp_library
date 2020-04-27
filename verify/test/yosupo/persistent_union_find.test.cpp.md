@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:23:31+09:00
+    - Last commit date: 2020-04-27 16:50:39+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/persistent_unionfind">https://judge.yosupo.jp/problem/persistent_unionfind</a>
@@ -136,6 +136,8 @@ int main() {
 #line 7 "array/persistent_array.hpp"
 
 //===
+// LIBRARY SECTION
+
 // #include <memory>
 // #include <cstring>
 // #include <algorithm>
@@ -223,6 +225,8 @@ struct PersistentArray {
 #line 5 "disjoint_set/persistent_union_find.hpp"
 
 //===
+// LIBRARY SECTION
+
 // 0-indexed
 template<int K = 2>
 struct PersistentUnionFind {

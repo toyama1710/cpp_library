@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#a9d1cbf71942327e98b40cf5ef38a960">queue</a>
 * <a href="{{ site.github.repository_url }}/blob/master/queue/queue_aggregation.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 03:43:15+00:00
+    - Last commit date: 2020-04-27 16:50:39+09:00
 
 
 
@@ -53,6 +53,8 @@ layout: default
 #include <stack>
 
 //===
+// LIBRARY SECTION
+
 // #include <stack>
 // #include <cassert>
 template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >
@@ -116,6 +118,8 @@ struct QueueAggregation {
 #include <stack>
 
 //===
+// LIBRARY SECTION
+
 // #include <stack>
 // #include <cassert>
 template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >

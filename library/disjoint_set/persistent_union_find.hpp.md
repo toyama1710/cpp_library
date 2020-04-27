@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#334b410b60c6352c539a44a5cc4509bc">disjoint_set</a>
 * <a href="{{ site.github.repository_url }}/blob/master/disjoint_set/persistent_union_find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:23:31+09:00
+    - Last commit date: 2020-04-27 16:50:39+09:00
 
 
 
@@ -57,6 +57,8 @@ layout: default
 #include "../array/persistent_array.hpp"
 
 //===
+// LIBRARY SECTION
+
 // 0-indexed
 template<int K = 2>
 struct PersistentUnionFind {
@@ -120,6 +122,8 @@ struct PersistentUnionFind {
 #include <algorithm>
 
 //===
+// LIBRARY SECTION
+
 // #include <memory>
 // #include <cstring>
 // #include <algorithm>
@@ -207,6 +211,8 @@ struct PersistentArray {
 #line 5 "disjoint_set/persistent_union_find.hpp"
 
 //===
+// LIBRARY SECTION
+
 // 0-indexed
 template<int K = 2>
 struct PersistentUnionFind {

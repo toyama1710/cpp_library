@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/queue_aggregation.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 03:43:15+00:00
+    - Last commit date: 2020-04-27 16:50:39+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/queue_operate_all_composite">https://judge.yosupo.jp/problem/queue_operate_all_composite</a>
@@ -137,6 +137,8 @@ int main() {
 #line 6 "queue/queue_aggregation.hpp"
 
 //===
+// LIBRARY SECTION
+
 // #include <stack>
 // #include <cassert>
 template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >

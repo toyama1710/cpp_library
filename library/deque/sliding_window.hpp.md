@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#eb30267afe2f60536940ebb01df616b5">deque</a>
 * <a href="{{ site.github.repository_url }}/blob/master/deque/sliding_window.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 02:36:21+00:00
+    - Last commit date: 2020-04-27 16:50:39+09:00
 
 
 
@@ -53,6 +53,8 @@ layout: default
 #include <stack>
 
 //===
+// LIBRARY SECTION
+
 // #include <stack>
 // #include <cassert>
 template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >
@@ -147,6 +149,8 @@ struct SlidingWindow {
 #include <stack>
 
 //===
+// LIBRARY SECTION
+
 // #include <stack>
 // #include <cassert>
 template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >
