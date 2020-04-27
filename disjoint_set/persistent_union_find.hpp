@@ -9,7 +9,7 @@ template<int K = 2>
 struct PersistentUnionFind {
     PersistentArray<int, K> par;
 
-    
+    PersistentUnionFind() = default;
     PersistentUnionFind(int n): par(n, -1) {};
     PersistentUnionFind(PersistentArray<int, K> arr):par(arr) {};
 
