@@ -125,6 +125,7 @@ layout: default
 
 ### sparse_table
 
+* :warning: <a href="library/sparse_table/disjoint_sparse_table.cpp.html">sparse_table/disjoint_sparse_table.cpp</a>
 * :warning: <a href="library/sparse_table/sparse_table.cpp.html">sparse_table/sparse_table.cpp</a>
 
 
@@ -154,6 +155,9 @@ layout: default
 ### tree
 
 * :warning: <a href="library/tree/doubling_tree.cpp.html">tree/doubling_tree.cpp</a>
+* :warning: <a href="library/tree/euler_tour_vertex.cpp.html">tree/euler_tour_vertex.cpp</a>
+* :warning: <a href="library/tree/hl_decomposition.cpp.html">tree/hl_decomposition.cpp</a>
+* :warning: <a href="library/tree/niu_decomposition.cpp.html">tree/niu_decomposition.cpp</a>
 
 
 <div id="05c7e24700502a079cdd88012b5a76d3"></div>
