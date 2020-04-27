@@ -81,6 +81,10 @@ struct PersistentArray {
     PersistentArray get_array() {
         return *this;
     };
+    
+    const T operator [] (int idx) {
+        return get(idx, root);
+    };
 };
 //===
 
