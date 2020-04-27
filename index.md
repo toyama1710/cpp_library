@@ -62,7 +62,6 @@ layout: default
 
 ### deque
 
-* :warning: <a href="library/deque/sliding_window.cpp.html">deque/sliding_window.cpp</a>
 * :heavy_check_mark: <a href="library/deque/sliding_window.hpp.html">deque/sliding_window.hpp</a>
 
 
@@ -105,7 +104,6 @@ layout: default
 
 ### queue
 
-* :warning: <a href="library/queue/queue_aggregation.cpp.html">queue/queue_aggregation.cpp</a>
 * :x: <a href="library/queue/queue_aggregation.hpp.html">queue/queue_aggregation.hpp</a>
 
 
@@ -118,6 +116,7 @@ layout: default
 * :warning: <a href="library/segment_tree/dynamic_starry_sky.cpp.html">segment_tree/dynamic_starry_sky.cpp</a>
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
 * :warning: <a href="library/segment_tree/lazy_segment_tree.cpp.html">segment_tree/lazy_segment_tree.cpp</a>
+* :warning: <a href="library/segment_tree/persistent_segment_tree.cpp.html">segment_tree/persistent_segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/segment_tree.cpp.html">segment_tree/segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
 
