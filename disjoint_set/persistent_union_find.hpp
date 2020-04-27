@@ -20,12 +20,12 @@ struct PersistentUnionFind {
         if (x == y) return *this;
 
         if (size(x) > size(y)) {
-            par.set(x, par[x] + par[y]);
-            return par.set(y, x);
+            auto tmp = par.set(x, par[x] + par[y]);
+            return tmp.set(y, x);
         }
         else {
-            par.set(y, par[y] + par[x]);
-            return par.set(x, y);
+            auto tmp = par.set(y, par[y] + par[x]);
+            return tmp.set(x, y);
         }
     };
 
