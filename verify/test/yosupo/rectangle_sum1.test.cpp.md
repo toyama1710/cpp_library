@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/rectangle_sum1.test.cpp
+# :heavy_check_mark: test/yosupo/rectangle_sum1.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/rectangle_sum1.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-30 19:26:20+00:00
+    - Last commit date: 2020-04-30 19:51:10+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/rectangle_sum">https://judge.yosupo.jp/problem/rectangle_sum</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
-* :x: <a href="../../../library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
+* :heavy_check_mark: <a href="../../../library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
 
 
 ## Code
@@ -179,10 +179,10 @@ struct PersistentSegmentTree {
         Node (Monoid dat):dat(dat) {};
     };
     
-    const Monoid e;
-    const F f;
-    const Node *root;
-    const uint n;
+    Monoid e;
+    F f;
+    Node *root;
+    uint n;
 
     Node *merge_node(Node *lch, Node *rch) {
         Monoid l = (lch ? lch->dat : e);
@@ -194,33 +194,37 @@ struct PersistentSegmentTree {
         return ret;
     };
 
+    PersistentSegmentTree(const PersistentSegmentTree &) = default;
     PersistentSegmentTree(Monoid e, F f, uint n, Node *r)
         :e(e), f(f), n(n), root(r) {};
     PersistentSegmentTree(Monoid e, F f, uint n)
         :e(e), f(f), n(n), root(alloc(0, n, std::vector<Monoid>(n, e))) {};
     template<class InputItr>
-    PersistentSegmentTree(Monoid e, F f, InputItr first, InputItr last)
+    PersistentSegmentTree(Monoid e, F f, const InputItr first, const InputItr last)
         :e(e), f(f), n(std::distance(first, last)), root(alloc(0, n, std::vector<Monoid>(first, last))) {};
 
     Node *alloc(uint nl, uint nr, const std::vector<Monoid> &v) {
         if (nr - nl <= 1) return new Node(v[nl]);
         else return merge_node(alloc(nl, (nl + nr) / 2, v),
-                            alloc((nl + nr) / 2, nr, v));
+                alloc((nl + nr) / 2, nr, v));
     };
 
     const Monoid fold(uint l, uint r) const {
         return fold(l, r, 0, n, root);
     };
-    const Monoid fold(uint ql, uint qr, uint nl, uint nr, Node *np) const {
+    const Monoid fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const {
         if (np == nullptr || qr <= nl || nr <= ql) return e;
         else if (ql <= nl && nr <= qr) return np->dat;
         else return f(fold(ql, qr, nl, (nl + nr) / 2, np->l), fold(ql, qr, (nl + nr) / 2, nr, np->r));
     };
 
+    PersistentSegmentTree update(uint idx, Monoid d) {
+        return set(idx, d);
+    };
     PersistentSegmentTree set(uint idx, Monoid d) {
         return PersistentSegmentTree(e, f, n, update(0, n, idx, d, root));
     };
-    Node *update(uint nl, uint nr, uint idx, Monoid d, const Node *np) {
+    Node *update(uint nl, uint nr, uint idx, Monoid d, Node *np) {
         if (idx < nl || nr <= idx) return np;
         else if (nr - nl == 1) return new Node(d);
         else return merge_node(update(nl, (nl + nr) / 2, idx, d, np->l), update((nl + nr) / 2, nr, idx, d, np->r));
@@ -230,16 +234,20 @@ struct PersistentSegmentTree {
         return *this;
     };
 
-    const Monoid operator [] (uint idx) const {
+    Monoid operator [] (uint idx) {
         return fold(idx, idx + 1, 0, n, root);
     };
+
+    PersistentSegmentTree &operator = (const PersistentSegmentTree &) = default;
 };
 //===
 
 
 #line 1 "util/coordinate_compression.hpp"
+
+
 // header file section
-#line 5 "util/coordinate_compression.hpp"
+#line 7 "util/coordinate_compression.hpp"
 #include <cassert>
 
 //===
@@ -249,7 +257,7 @@ struct CoordinateCompression {
     using llong = long long;
     std::vector<llong> p;
 
-#ifndef NODEBUG
+#ifndef NDEBUG
     bool builded = false;
 #endif
 
@@ -266,14 +274,14 @@ struct CoordinateCompression {
     void build() {
         std::sort(p.begin(), p.end());
         p.erase(unique(p.begin(), p.end()), p.end());
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = true;
 #endif
     };
 
     void add(llong a) {
         p.push_back(a);
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = false;
 #endif
     };
@@ -282,13 +290,13 @@ struct CoordinateCompression {
     }
 
     llong zip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return std::lower_bound(p.begin(), p.end(), x) - p.begin();
     };
     llong unzip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return p[x];
@@ -299,6 +307,7 @@ struct CoordinateCompression {
     };
 };
 //===
+
 #line 18 "test/yosupo/rectangle_sum1.test.cpp"
 
 using namespace std;

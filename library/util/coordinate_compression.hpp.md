@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: util/coordinate_compression.hpp
+# :heavy_check_mark: util/coordinate_compression.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/coordinate_compression.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-30 19:16:59+00:00
+    - Last commit date: 2020-04-30 19:50:45+00:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
 
 
 ## Code
@@ -46,6 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef COORDINATE_COMPRESSION_HPP
+#define COORDINATE_COMPRESSION_HPP
 // header file section
 #include <vector>
 #include <iterator>
@@ -59,7 +61,7 @@ struct CoordinateCompression {
     using llong = long long;
     std::vector<llong> p;
 
-#ifndef NODEBUG
+#ifndef NDEBUG
     bool builded = false;
 #endif
 
@@ -76,14 +78,14 @@ struct CoordinateCompression {
     void build() {
         std::sort(p.begin(), p.end());
         p.erase(unique(p.begin(), p.end()), p.end());
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = true;
 #endif
     };
 
     void add(llong a) {
         p.push_back(a);
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = false;
 #endif
     };
@@ -92,13 +94,13 @@ struct CoordinateCompression {
     }
 
     llong zip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return std::lower_bound(p.begin(), p.end(), x) - p.begin();
     };
     llong unzip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return p[x];
@@ -109,6 +111,7 @@ struct CoordinateCompression {
     };
 };
 //===
+#endif
 
 ```
 {% endraw %}
@@ -117,6 +120,8 @@ struct CoordinateCompression {
 {% raw %}
 ```cpp
 #line 1 "util/coordinate_compression.hpp"
+
+
 // header file section
 #include <vector>
 #include <iterator>
@@ -130,7 +135,7 @@ struct CoordinateCompression {
     using llong = long long;
     std::vector<llong> p;
 
-#ifndef NODEBUG
+#ifndef NDEBUG
     bool builded = false;
 #endif
 
@@ -147,14 +152,14 @@ struct CoordinateCompression {
     void build() {
         std::sort(p.begin(), p.end());
         p.erase(unique(p.begin(), p.end()), p.end());
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = true;
 #endif
     };
 
     void add(llong a) {
         p.push_back(a);
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = false;
 #endif
     };
@@ -163,13 +168,13 @@ struct CoordinateCompression {
     }
 
     llong zip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return std::lower_bound(p.begin(), p.end(), x) - p.begin();
     };
     llong unzip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return p[x];
@@ -180,6 +185,7 @@ struct CoordinateCompression {
     };
 };
 //===
+
 
 ```
 {% endraw %}
