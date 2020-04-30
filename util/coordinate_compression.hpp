@@ -1,3 +1,5 @@
+#ifndef COORDINATE_COMPRESSION_HPP
+#defin COORDINATE_COMPRESSION_HPP
 // header file section
 #include <vector>
 #include <iterator>
@@ -61,3 +63,4 @@ struct CoordinateCompression {
     };
 };
 //===
+#endif
