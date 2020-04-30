@@ -26,6 +26,8 @@ CoordinateCompression x_axis;
 CoordinateCompression y_axis;
 
 int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
     cin >> n >> q;
 
     for (int i = 0; i < n; i++) {
