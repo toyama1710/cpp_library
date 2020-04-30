@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/rectangle_sum1.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-30 19:17:30+00:00
+    - Last commit date: 2020-04-30 19:26:20+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/rectangle_sum">https://judge.yosupo.jp/problem/rectangle_sum</a>
@@ -76,6 +76,8 @@ CoordinateCompression x_axis;
 CoordinateCompression y_axis;
 
 int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
     cin >> n >> q;
 
     for (int i = 0; i < n; i++) {
@@ -309,6 +311,8 @@ CoordinateCompression x_axis;
 CoordinateCompression y_axis;
 
 int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
     cin >> n >> q;
 
     for (int i = 0; i < n; i++) {
