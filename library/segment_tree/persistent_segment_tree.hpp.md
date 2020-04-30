@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: segment_tree/persistent_segment_tree.hpp
+# :x: segment_tree/persistent_segment_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-04-30 01:47:16+00:00
 
 
+
+
+## Verified with
+
+* :x: <a href="../../verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
 
 
 ## Code

@@ -118,7 +118,7 @@ layout: default
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
 * :warning: <a href="library/segment_tree/lazy_segment_tree.cpp.html">segment_tree/lazy_segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/persistent_segment_tree.cpp.html">segment_tree/persistent_segment_tree.cpp</a>
-* :warning: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
+* :x: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/segment_tree.cpp.html">segment_tree/segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
 
@@ -167,6 +167,7 @@ layout: default
 ### util
 
 * :warning: <a href="library/util/coordinate_compression.cpp.html">util/coordinate_compression.cpp</a>
+* :x: <a href="library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
 * :warning: <a href="library/util/memory_pool_allocator.cpp.html">util/memory_pool_allocator.cpp</a>
 * :warning: <a href="library/util/sparse_array.cpp.html">util/sparse_array.cpp</a>
 * :warning: <a href="library/util/xorshift.cpp.html">util/xorshift.cpp</a>
@@ -176,6 +177,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
+* :x: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 
 
