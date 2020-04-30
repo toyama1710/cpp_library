@@ -39,6 +39,9 @@ struct CoordinateCompression {
         builded = false;
 #endif
     };
+    void push(llong a) {
+        add(a);
+    }
 
     llong zip(llong x) {
 #ifndef NODEBUG
