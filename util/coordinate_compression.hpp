@@ -23,14 +23,14 @@ struct CoordinateCompression {
             p.push_back(*itr);
         }
         build();
-#ifndef NODEBUG
-        builded = true;
-#endif
     };
 
     void build() {
         std::sort(p.begin(), p.end());
         p.erase(unique(p.begin(), p.end()), p.end());
+#ifndef NODEBUG
+        builded = true;
+#endif
     };
 
     void add(llong a) {
