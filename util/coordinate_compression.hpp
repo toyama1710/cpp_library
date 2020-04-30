@@ -1,5 +1,5 @@
 #ifndef COORDINATE_COMPRESSION_HPP
-#defin COORDINATE_COMPRESSION_HPP
+#define COORDINATE_COMPRESSION_HPP
 // header file section
 #include <vector>
 #include <iterator>
