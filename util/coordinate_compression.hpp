@@ -11,7 +11,7 @@ struct CoordinateCompression {
     using llong = long long;
     std::vector<llong> p;
 
-#ifndef NODEBUG
+#ifndef NDEBUG
     bool builded = false;
 #endif
 
@@ -28,14 +28,14 @@ struct CoordinateCompression {
     void build() {
         std::sort(p.begin(), p.end());
         p.erase(unique(p.begin(), p.end()), p.end());
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = true;
 #endif
     };
 
     void add(llong a) {
         p.push_back(a);
-#ifndef NODEBUG
+#ifndef NDEBUG
         builded = false;
 #endif
     };
@@ -44,13 +44,13 @@ struct CoordinateCompression {
     }
 
     llong zip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return std::lower_bound(p.begin(), p.end(), x) - p.begin();
     };
     llong unzip(llong x) {
-#ifndef NODEBUG
+#ifndef NDEBUG
         assert(builded);
 #endif
         return p[x];
