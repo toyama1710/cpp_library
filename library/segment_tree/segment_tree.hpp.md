@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: segment_tree/segment_tree.hpp
+# :heavy_check_mark: segment_tree/segment_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-04 15:40:53+00:00
+    - Last commit date: 2020-05-04 22:51:06+00:00
 
 
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A.test.cpp.html">test/aoj/DSL2A.test.cpp</a>
-* :x: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
 
 
 ## Code
@@ -55,7 +55,7 @@ layout: default
 #include <iterator>
 
 //===
-template<typename Monoid, typename OP = std::function<Monoid(Monoid, Monoid)> >
+template<class Monoid, class OP = std::function<Monoid(Monoid, Monoid)>>
 struct SegmentTree {
     //    using OP = function<Monoid(Monoid, Monoid)>;
     
@@ -138,7 +138,7 @@ struct SegmentTree {
 #include <iterator>
 
 //===
-template<typename Monoid, typename OP = std::function<Monoid(Monoid, Monoid)> >
+template<class Monoid, class OP = std::function<Monoid(Monoid, Monoid)>>
 struct SegmentTree {
     //    using OP = function<Monoid(Monoid, Monoid)>;
     

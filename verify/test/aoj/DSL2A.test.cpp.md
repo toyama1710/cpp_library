@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-04 22:19:26+00:00
+    - Last commit date: 2020-05-04 22:51:06+00:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -120,7 +120,7 @@ int main() {
 #include <iterator>
 
 //===
-template<typename Monoid, typename OP = std::function<Monoid(Monoid, Monoid)> >
+template<class Monoid, class OP = std::function<Monoid(Monoid, Monoid)>>
 struct SegmentTree {
     //    using OP = function<Monoid(Monoid, Monoid)>;
     
