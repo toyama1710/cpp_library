@@ -6,7 +6,7 @@
 #include <iterator>
 
 //===
-template<typename Monoid, typename OP = std::function<Monoid(Monoid, Monoid)> >
+template<class Monoid, class OP = std::function<Monoid(Monoid, Monoid)>>
 struct SegmentTree {
     //    using OP = function<Monoid(Monoid, Monoid)>;
     

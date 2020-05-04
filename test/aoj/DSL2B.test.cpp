@@ -26,7 +26,7 @@ int main() {
         cin >> com >> x >> y;
 
         if (com == 0) {
-            seg.update(x - 1, y);
+            seg.update(x - 1, seg[x - 1] + y);
         }
         else {
             cout << seg.fold(x - 1, y) << '\n';
