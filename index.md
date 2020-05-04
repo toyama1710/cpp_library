@@ -118,7 +118,6 @@ layout: default
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
 * :warning: <a href="library/segment_tree/lazy_segment_tree.cpp.html">segment_tree/lazy_segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
-* :warning: <a href="library/segment_tree/segment_tree.cpp.html">segment_tree/segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
 
