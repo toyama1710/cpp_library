@@ -1,5 +1,6 @@
 // header file section
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
+#define IGNORE
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B"
 
 #include <iostream>
 #include <cstdio>
@@ -21,19 +22,30 @@ using llong = long long;
 llong n, q;
 llong com, x, y;
 
+struct SumMonoid {
+    using value_type = llong;
+    inline static llong identity() {
+        return 0ll;
+    };
+
+    inline static llong operation(llong a, llong b) {
+        return a + b;
+    };
+};
+
 int main() {
     cin >> n >> q;
-
-    SegmentTree<llong> seg((1ll << 31) - 1, [](auto l, auto r){return min(l, r);}, n);
+    SegmentTree<SumMonoid> seg(n);
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
+        --x;
 
         if (com == 0) {
-            seg.update(x, y);
+            seg.update(x, seg[x] + y);
         }
         else {
-            cout << seg.fold(x, y + 1) << '\n';
+            cout << seg.fold(x, y) << '\n';
         }
     }
 
