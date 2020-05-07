@@ -165,7 +165,7 @@ layout: default
 
 * :warning: <a href="library/tree/doubling_tree.cpp.html">tree/doubling_tree.cpp</a>
 * :warning: <a href="library/tree/euler_tour_vertex.cpp.html">tree/euler_tour_vertex.cpp</a>
-* :warning: <a href="library/tree/hl_decomposition.hpp.html">tree/hl_decomposition.hpp</a>
+* :warning: <a href="library/tree/heavy_light_decomposition.hpp.html">tree/heavy_light_decomposition.hpp</a>
 * :warning: <a href="library/tree/niu_decomposition.cpp.html">tree/niu_decomposition.cpp</a>
 
 
@@ -175,6 +175,7 @@ layout: default
 
 * :heavy_check_mark: <a href="library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
 * :warning: <a href="library/util/memory_pool_allocator.cpp.html">util/memory_pool_allocator.cpp</a>
+* :warning: <a href="library/util/sparse_array.hpp.html">util/sparse_array.hpp</a>
 * :warning: <a href="library/util/xorshift.cpp.html">util/xorshift.cpp</a>
 
 

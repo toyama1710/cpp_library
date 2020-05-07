@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: tree/hl_decomposition.hpp
+# :warning: tree/heavy_light_decomposition.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#c0af77cf8294ff93a5cdb2963ca9f038">tree</a>
-* <a href="{{ site.github.repository_url }}/blob/master/tree/hl_decomposition.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-06 04:16:54+00:00
+* <a href="{{ site.github.repository_url }}/blob/master/tree/heavy_light_decomposition.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-05-07 13:13:51+09:00
 
 
 
@@ -118,7 +118,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "tree/hl_decomposition.hpp"
+#line 1 "tree/heavy_light_decomposition.hpp"
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
