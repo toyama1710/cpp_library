@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data_type/min_monoid.hpp
+# :heavy_check_mark: data_type/max_monoid.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#17f71d965fe9589ddbd11caf7182243e">data_type</a>
-* <a href="{{ site.github.repository_url }}/blob/master/data_type/min_monoid.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:11:31+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/data_type/max_monoid.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-05-07 14:44:00+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
 
 
 ## Code
@@ -46,8 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef MIN_MONOID_HPP
-#define MIN_MONOID_HPP
+#ifndef MAX_MONOID_HPP
+#define MAX_MONOID_HPP
 
 #include <numeric>
 #include <algorithm>
@@ -56,10 +56,10 @@ template<class T>
 struct MinMonoid {
     using value_type = T;
     inline static T identity() {
-        return std::numeric_limits<T>::max();
+        return std::numeric_limits<T>::min();
     };
     inline static T operation(const T a, const T b) {
-        return std::min(a, b);
+        return std::max(a, b);
     };
 };
 
@@ -71,7 +71,7 @@ struct MinMonoid {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data_type/min_monoid.hpp"
+#line 1 "data_type/max_monoid.hpp"
 
 
 
@@ -82,10 +82,10 @@ template<class T>
 struct MinMonoid {
     using value_type = T;
     inline static T identity() {
-        return std::numeric_limits<T>::max();
+        return std::numeric_limits<T>::min();
     };
     inline static T operation(const T a, const T b) {
-        return std::min(a, b);
+        return std::max(a, b);
     };
 };
 

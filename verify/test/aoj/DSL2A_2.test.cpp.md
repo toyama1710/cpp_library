@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL2A.test.cpp
+# :heavy_check_mark: test/aoj/DSL2A_2.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:34:27+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A_2.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-05-07 14:44:00+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :heavy_check_mark: <a href="../../../library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
 * :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
@@ -64,7 +64,7 @@ layout: default
 #include <numeric>
 #include <algorithm>
 #include "../../segment_tree/segment_tree.hpp"
-#include "../../data_type/min_monoid.hpp"
+#include "../../data_type/max_monoid.hpp"
 
 using namespace std;
 using llong = long long;
@@ -75,17 +75,17 @@ llong com, x, y;
 int main() {
     cin >> n >> q;
 
-    vector<llong> v(n, (1ll << 31) - 1);
+    vector<llong> v(n, -1 * ((1ll << 31) - 1));
     SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
 
         if (com == 0) {
-            seg.update(x, y);
+            seg.update(x, -y);
         }
         else {
-            cout << seg.fold(x, y + 1) << '\n';
+            cout << -seg.fold(x, y + 1) << '\n';
         }
     }
 
@@ -99,7 +99,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/aoj/DSL2A.test.cpp"
+#line 1 "test/aoj/DSL2A_2.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
 
 // header file section
@@ -186,25 +186,25 @@ struct SegmentTree {
 //===
 
 
-#line 1 "data_type/min_monoid.hpp"
+#line 1 "data_type/max_monoid.hpp"
 
 
 
-#line 6 "data_type/min_monoid.hpp"
+#line 6 "data_type/max_monoid.hpp"
 
 template<class T>
 struct MinMonoid {
     using value_type = T;
     inline static T identity() {
-        return std::numeric_limits<T>::max();
+        return std::numeric_limits<T>::min();
     };
     inline static T operation(const T a, const T b) {
-        return std::min(a, b);
+        return std::max(a, b);
     };
 };
 
 
-#line 18 "test/aoj/DSL2A.test.cpp"
+#line 18 "test/aoj/DSL2A_2.test.cpp"
 
 using namespace std;
 using llong = long long;
@@ -215,17 +215,17 @@ llong com, x, y;
 int main() {
     cin >> n >> q;
 
-    vector<llong> v(n, (1ll << 31) - 1);
+    vector<llong> v(n, -1 * ((1ll << 31) - 1));
     SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
 
         if (com == 0) {
-            seg.update(x, y);
+            seg.update(x, -y);
         }
         else {
-            cout << seg.fold(x, y + 1) << '\n';
+            cout << -seg.fold(x, y + 1) << '\n';
         }
     }
 
