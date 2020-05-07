@@ -58,6 +58,14 @@ layout: default
 * :warning: <a href="library/bit/pop_count.cpp.html">bit/pop_count.cpp</a>
 
 
+<div id="17f71d965fe9589ddbd11caf7182243e"></div>
+
+### data_type
+
+* :x: <a href="library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :x: <a href="library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
+
+
 <div id="eb30267afe2f60536940ebb01df616b5"></div>
 
 ### deque
@@ -112,13 +120,13 @@ layout: default
 
 ### segment_tree
 
-* :warning: <a href="library/segment_tree/dual_segment_tree.cpp.html">segment_tree/dual_segment_tree.cpp</a>
+* :warning: <a href="library/segment_tree/dual_segment_tree.hpp.html">segment_tree/dual_segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/dynamic_segment_tree.cpp.html">segment_tree/dynamic_segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/dynamic_starry_sky.cpp.html">segment_tree/dynamic_starry_sky.cpp</a>
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
 * :warning: <a href="library/segment_tree/lazy_segment_tree.cpp.html">segment_tree/lazy_segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :x: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
 
 
@@ -157,7 +165,7 @@ layout: default
 
 * :warning: <a href="library/tree/doubling_tree.cpp.html">tree/doubling_tree.cpp</a>
 * :warning: <a href="library/tree/euler_tour_vertex.cpp.html">tree/euler_tour_vertex.cpp</a>
-* :warning: <a href="library/tree/hl_decomposition.cpp.html">tree/hl_decomposition.cpp</a>
+* :warning: <a href="library/tree/hl_decomposition.hpp.html">tree/hl_decomposition.hpp</a>
 * :warning: <a href="library/tree/niu_decomposition.cpp.html">tree/niu_decomposition.cpp</a>
 
 
@@ -172,8 +180,8 @@ layout: default
 
 ## Verify Files
 
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2A.test.cpp.html">test/aoj/DSL2A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :x: <a href="verify/test/aoj/DSL2A.test.cpp.html">test/aoj/DSL2A.test.cpp</a>
+* :x: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>

@@ -25,21 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL2A.test.cpp
+# :x: test/aoj/DSL2A.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-04 22:51:06+00:00
+    - Last commit date: 2020-05-07 13:11:31+09:00
 
 
-* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :x: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :x: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -47,9 +48,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-// header file section
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B"
 
+// header file section
 #include <iostream>
 #include <cstdio>
 #include <cfloat>
@@ -63,6 +64,7 @@ layout: default
 #include <numeric>
 #include <algorithm>
 #include "../../segment_tree/segment_tree.hpp"
+#include "../../data_type/min_monoid.hpp"
 
 using namespace std;
 using llong = long long;
@@ -72,8 +74,9 @@ llong com, x, y;
 
 int main() {
     cin >> n >> q;
+    SegmentTree<MinMonoid<llong>> seg(n);
 
-    SegmentTree<llong> seg((1ll << 31) - 1, [](auto l, auto r){return min(l, r);}, n);
+    for (int i = 0; i < n; i++) seg.update(i, (1ll << 31) - 1);
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
@@ -97,9 +100,9 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/aoj/DSL2A.test.cpp"
-// header file section
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B"
 
+// header file section
 #include <iostream>
 #include <cstdio>
 #include <cfloat>
@@ -120,74 +123,88 @@ int main() {
 #include <iterator>
 
 //===
-template<class Monoid, class OP = std::function<Monoid(Monoid, Monoid)>>
+template<class Monoid>
 struct SegmentTree {
-    //    using OP = function<Monoid(Monoid, Monoid)>;
-    
-    std::vector<Monoid> tree;
-    const int size;
-    const Monoid e; // neutral element
-    const OP merge_monoid; // bin' operation
+    using T = typename Monoid::value_type;
 
-    SegmentTree (const Monoid &e, const OP &f, int nmemb):
-        e(e), merge_monoid(f), size(nmemb)
-    {
-        tree.assign(size << 1, e);
-    };
+    std::vector<T> tree;
+
+    SegmentTree() = default;
+    explicit SegmentTree(int n)
+        :tree(n << 1, Monoid::identity()) {};
 
     template<class InputIterator>
-    SegmentTree(const Monoid &e, const OP &f,
-                InputIterator first, InputIterator last):
-        e(e), merge_monoid(f), size(std::distance(first, last))
-    {
-        tree.assign(size << 1, e);
-        int i;
+    SegmentTree(InputIterator first, InputIterator last) {
+        tree.assign(distance(first, last) << 1, Monoid::identity());
 
+        int i;
         i = size;
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
 
         for (i = size - 1; i > 0; i--) {
-            tree[i] = merge_monoid(tree[(i << 1)], tree[(i << 1) | 1]);
+            tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
     };
 
-    void update(int k, Monoid dat) {
-        k += size;
+    inline int size() {
+        return tree.size() >> 1;
+    };
+
+    inline T operator[] (int k) {
+        return tree[k + size()];
+    };
+
+    void update(int k, const T dat) {
+        k += size();
         tree[k] = dat;
         
         while(k > 1) {
             k >>= 1;
-            tree[k] = merge_monoid(tree[(k << 1)], tree[(k << 1) | 1]);
+            tree[k] = Monoid::operation(tree[(k << 1)], tree[(k << 1) | 1]);
         }
     };
 
     // [l, r)
-    Monoid fold(int l, int r) {
-        l += size; //points leaf
-        r += size;
+    T fold(int l, int r) {
+        l += size(); //points leaf
+        r += size();
 
-        Monoid lv = e;
-        Monoid rv = e;
+        T lv = Monoid::identity();
+        T rv = Monoid::identity();
         while (l < r) {
-            if (l & 1) lv = merge_monoid(lv, tree[l++]);
-            if (r & 1) rv = merge_monoid(tree[--r], rv);
+            if (l & 1) lv = Monoid::operation(lv, tree[l++]);
+            if (r & 1) rv = Monoid::operation(tree[--r], rv);
             l >>= 1;
             r >>= 1;
         }
 
-        return merge_monoid(lv, rv);
-    };
-
-    inline Monoid operator[] (const int k) const {
-        return tree[k + size];
+        return Monoid::operation(lv, rv);
     };
 };
 //===
 
 
-#line 17 "test/aoj/DSL2A.test.cpp"
+#line 1 "data_type/min_monoid.hpp"
+
+
+
+#line 6 "data_type/min_monoid.hpp"
+
+template<class T>
+struct MinMonoid {
+    using value_type = T;
+    inline static T identity() {
+        return std::numeric_limits<T>::max();
+    };
+    inline static T operation(const T a, const T b) {
+        return std::min(a, b);
+    };
+};
+
+
+#line 18 "test/aoj/DSL2A.test.cpp"
 
 using namespace std;
 using llong = long long;
@@ -197,8 +214,9 @@ llong com, x, y;
 
 int main() {
     cin >> n >> q;
+    SegmentTree<MinMonoid<llong>> seg(n);
 
-    SegmentTree<llong> seg((1ll << 31) - 1, [](auto l, auto r){return min(l, r);}, n);
+    for (int i = 0; i < n; i++) seg.update(i, (1ll << 31) - 1);
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
