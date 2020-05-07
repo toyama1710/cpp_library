@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: segment_tree/segment_tree.hpp
+# :question: segment_tree/segment_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-06 11:00:35+00:00
+    - Last commit date: 2020-05-07 13:21:57+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL2A.test.cpp.html">test/aoj/DSL2A.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A.test.cpp.html">test/aoj/DSL2A.test.cpp</a>
 * :x: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
 
 
@@ -70,12 +70,12 @@ struct SegmentTree {
         tree.assign(distance(first, last) << 1, Monoid::identity());
 
         int i;
-        i = size;
+        i = size();
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
 
-        for (i = size - 1; i > 0; i--) {
+        for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
     };
@@ -149,12 +149,12 @@ struct SegmentTree {
         tree.assign(distance(first, last) << 1, Monoid::identity());
 
         int i;
-        i = size;
+        i = size();
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
 
-        for (i = size - 1; i > 0; i--) {
+        for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
     };

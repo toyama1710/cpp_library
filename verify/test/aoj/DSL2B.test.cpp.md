@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:11:31+09:00
+    - Last commit date: 2020-05-07 13:21:57+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :x: <a href="../../../library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
-* :x: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -132,12 +132,12 @@ struct SegmentTree {
         tree.assign(distance(first, last) << 1, Monoid::identity());
 
         int i;
-        i = size;
+        i = size();
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
 
-        for (i = size - 1; i > 0; i--) {
+        for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
     };

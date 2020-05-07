@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL2A.test.cpp
+# :heavy_check_mark: test/aoj/DSL2A.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:19:34+09:00
+    - Last commit date: 2020-05-07 13:34:27+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
-* :x: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -74,9 +74,9 @@ llong com, x, y;
 
 int main() {
     cin >> n >> q;
-    SegmentTree<MinMonoid<llong>> seg(n);
 
-    for (int i = 0; i < n; i++) seg.update(i, (1ll << 31) - 1);
+    vector<llong> v(n, (1ll << 31) - 1);
+    SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
@@ -138,12 +138,12 @@ struct SegmentTree {
         tree.assign(distance(first, last) << 1, Monoid::identity());
 
         int i;
-        i = size;
+        i = size();
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
 
-        for (i = size - 1; i > 0; i--) {
+        for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
     };
@@ -214,9 +214,9 @@ llong com, x, y;
 
 int main() {
     cin >> n >> q;
-    SegmentTree<MinMonoid<llong>> seg(n);
 
-    for (int i = 0; i < n; i++) seg.update(i, (1ll << 31) - 1);
+    vector<llong> v(n, (1ll << 31) - 1);
+    SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
