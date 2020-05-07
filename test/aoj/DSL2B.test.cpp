@@ -13,6 +13,7 @@
 #include <numeric>
 #include <algorithm>
 #include "../../segment_tree/segment_tree.hpp"
+#include "../../data_type/sum_monoid.hpp"
 using llong = long long;
 using namespace std;
 
@@ -21,7 +22,7 @@ llong com, x, y;
 
 int main() {
     cin >> n >> q;
-    SegmentTree<llong> seg(0, [](auto l, auto r){return l + r;}, n);
+    SegmentTree<SumMonoid<llong>> seg(n);
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
 
