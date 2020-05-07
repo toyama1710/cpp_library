@@ -4,6 +4,7 @@
 #include <numeric>
 #include <algorithm>
 
+//===
 template<class T>
 struct MinMonoid {
     using value_type = T;
@@ -14,5 +15,6 @@ struct MinMonoid {
         return std::max(a, b);
     };
 };
+//===
 
 #endif
