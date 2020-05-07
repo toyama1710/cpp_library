@@ -1,12 +1,7 @@
-#include <iostream>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <functional>
-#include <algorithm>
+#ifndef DUAL_SEGMENT_TREE_HPP
+#define DUAL_SEGMENT_TREE_HPP
+
 #include <vector>
-using namespace std;
-using llong = long long;
 
 //===
 template<class OperatorMonoid,
@@ -62,39 +57,4 @@ struct DualSegmentTree {
 };
 //===
 
-int AOJ_DSL_2_E() {
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-
-    auto f = [](auto l, auto r){return l + r;};
-    //DualSegmentTree<llong> dst(0, [](auto l, auto r){ return l + r; });
-    DualSegmentTree<llong, decltype(f)> dst(0, f);
-    llong n, q;
-    llong com, s, t, x;
-
-    cin >> n >> q;
-    dst.init(n);
-
-    while (q--) {
-        cin >> com;
-
-        if (com == 0) {
-            cin >> s >> t >> x;
-
-            s--;
-            dst.update(s, t, x);
-        }
-        else if (com == 1) {
-            cin >> x;
-
-            x--;
-            cout << dst[x] << '\n';
-        }
-    }
-
-    return 0;
-}
-
-int main() {
-    return AOJ_DSL_2_E();
-}
+#endif
