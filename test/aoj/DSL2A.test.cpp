@@ -24,9 +24,9 @@ llong com, x, y;
 
 int main() {
     cin >> n >> q;
-    SegmentTree<MinMonoid<llong>> seg(n);
 
-    for (int i = 0; i < n; i++) seg.update(i, (1ll << 31) - 1);
+    vector<llong> v(n, (1ll << 31) - 1);
+    SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
