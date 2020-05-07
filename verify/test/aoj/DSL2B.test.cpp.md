@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL2B.test.cpp
+# :heavy_check_mark: test/aoj/DSL2B.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2B.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:21:57+09:00
+    - Last commit date: 2020-05-07 13:37:18+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
-* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
+* :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -187,10 +187,10 @@ struct SegmentTree {
 template<class T>
 struct SumMonoid {
     using value_type = T;
-    inline static identity() {
-        return 0;
+    inline static T identity() {
+        return (T)0;
     };
-    inline static operation(const T a, const T b) {
+    inline static T operation(const T a, const T b) {
         return a + b;
     };
 };

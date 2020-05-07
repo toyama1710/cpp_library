@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: segment_tree/segment_tree.hpp
+# :heavy_check_mark: segment_tree/segment_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A.test.cpp.html">test/aoj/DSL2A.test.cpp</a>
-* :x: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
 
 
 ## Code

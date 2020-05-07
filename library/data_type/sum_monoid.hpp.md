@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: data_type/sum_monoid.hpp
+# :heavy_check_mark: data_type/sum_monoid.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#17f71d965fe9589ddbd11caf7182243e">data_type</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_type/sum_monoid.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:11:31+09:00
+    - Last commit date: 2020-05-07 13:37:18+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
 
 
 ## Code
@@ -52,10 +52,10 @@ layout: default
 template<class T>
 struct SumMonoid {
     using value_type = T;
-    inline static identity() {
-        return 0;
+    inline static T identity() {
+        return (T)0;
     };
-    inline static operation(const T a, const T b) {
+    inline static T operation(const T a, const T b) {
         return a + b;
     };
 };
@@ -75,10 +75,10 @@ struct SumMonoid {
 template<class T>
 struct SumMonoid {
     using value_type = T;
-    inline static identity() {
-        return 0;
+    inline static T identity() {
+        return (T)0;
     };
-    inline static operation(const T a, const T b) {
+    inline static T operation(const T a, const T b) {
         return a + b;
     };
 };
