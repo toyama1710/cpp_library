@@ -21,12 +21,12 @@ struct SegmentTree {
         tree.assign(distance(first, last) << 1, Monoid::identity());
 
         int i;
-        i = size;
+        i = size();
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
 
-        for (i = size - 1; i > 0; i--) {
+        for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
     };
