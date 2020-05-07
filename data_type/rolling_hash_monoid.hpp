@@ -7,16 +7,22 @@
 template<unsigned long long base, unsigned long long mod>
 struct RollingHashMonoid {
     using ull = unsigned long long;
-    using value_type = ull;
 
     struct Str {
-        ull hash;
-        ull len;
+        ull hash = 0;
+        ull len = 0;
+
+        Str() = default;
+        Str (char ch) {
+            hash = ch % mod;
+            len = 1;
+        };
     };
+    using value_type = Str;
 
     static std::vector<ull> pow_table;
-    inline static Str identitiy() {
-        return {0, 0};
+    inline static Str identity() {
+        return Str();
     };
     inline static Str operation(const Str a, const Str b) {
         Str ret;
