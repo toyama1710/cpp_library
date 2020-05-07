@@ -14,8 +14,8 @@
 #include <numeric>
 #include <algorithm>
 #include <tuple>
+#include <utility>
 #include "../../segment_tree/segment_tree.hpp"
-#include "../../data_type/rolling_hash_monoid.hpp"
 
 using namespace std;
 using llong = long long;
@@ -27,12 +27,42 @@ char com;
 string op;
 set<tuple<ull, ull, ull>> st;
 
+template<ull base>
+struct RollingHash {
+    using value_type = pair<ull, ull>;
+    using T = value_type;
+    
+    static std::vector<ull> pow_table;
+    inline static T identity() {
+        return {0ull, 0ull};
+    };
+    inline static T operation(const T a, const T b) {
+        T ret;
+        ret.first = a.first * power(b.second) + b.first;
+        ret.second = a.second + b.second;
+        return ret;
+    };
+
+    inline static ull power(ull n) {
+        while (pow_table.size() <= n) pow_table.push_back(pow_table.back() * base);
+        return pow_table[n];
+    };
+};
+template<ull base>
+vector<ull> RollingHash<base>::pow_table(1, 1);
+
 int main() {
     cin >> n >> m;
     cin >> s;
-    SegmentTree<RollingHashMonoid<1710, 10000000007>> seg1(s.begin(), s.end());
-    SegmentTree<RollingHashMonoid<1709, 998244353>> seg2(s.begin(), s.end());
-    SegmentTree<RollingHashMonoid<1719, 998244353>> seg3(s.begin(), s.end());
+
+    SegmentTree<RollingHash<1710>> seg1(n);
+    SegmentTree<RollingHash<1000000007>> seg2(n);
+    SegmentTree<RollingHash<10134>> seg3(n);
+    for (int i = 0; i < n; i++) {
+        seg1.update(i, {s[i], 1});
+        seg2.update(i, {s[i], 1});
+        seg3.update(i, {s[i], 1});
+    }
 
     llong l, r;
     l = r = 0;
@@ -49,13 +79,12 @@ int main() {
             else r--;
         }
 
-        auto key = make_tuple(seg1.fold(l, r + 1).hash,
-                              seg2.fold(l, r + 1).hash,
-                              seg3.fold(l, r + 1).hash);
+        auto key = make_tuple(seg1.fold(l, r + 1).first,
+                              seg2.fold(l, r + 1).first,
+                              seg3.fold(l, r + 1).first);
 
         st.insert(key);
     }
 
     cout << st.size() << endl;
 };
-
