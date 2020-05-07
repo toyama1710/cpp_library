@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#17f71d965fe9589ddbd11caf7182243e">data_type</a>
 * <a href="{{ site.github.repository_url }}/blob/master/data_type/max_monoid.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 14:44:00+09:00
+    - Last commit date: 2020-05-07 16:24:39+09:00
 
 
 
@@ -52,6 +52,7 @@ layout: default
 #include <numeric>
 #include <algorithm>
 
+//===
 template<class T>
 struct MinMonoid {
     using value_type = T;
@@ -62,6 +63,7 @@ struct MinMonoid {
         return std::max(a, b);
     };
 };
+//===
 
 #endif
 
@@ -78,6 +80,7 @@ struct MinMonoid {
 #include <numeric>
 #include <algorithm>
 
+//===
 template<class T>
 struct MinMonoid {
     using value_type = T;
@@ -88,6 +91,7 @@ struct MinMonoid {
         return std::max(a, b);
     };
 };
+//===
 
 
 

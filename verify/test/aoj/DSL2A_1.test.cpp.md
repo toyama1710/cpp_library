@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A_1.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 14:43:47+09:00
+    - Last commit date: 2020-05-07 16:24:39+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
-* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -192,6 +192,7 @@ struct SegmentTree {
 
 #line 6 "data_type/min_monoid.hpp"
 
+//===
 template<class T>
 struct MinMonoid {
     using value_type = T;
@@ -202,6 +203,7 @@ struct MinMonoid {
         return std::min(a, b);
     };
 };
+//===
 
 
 #line 18 "test/aoj/DSL2A_1.test.cpp"

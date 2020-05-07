@@ -65,7 +65,6 @@ layout: default
 * :heavy_check_mark: <a href="library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
 * :heavy_check_mark: <a href="library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
 * :warning: <a href="library/data_type/monoid_snippet.hpp.html">data_type/monoid_snippet.hpp</a>
-* :x: <a href="library/data_type/rolling_hash_monoid.hpp.html">data_type/rolling_hash_monoid.hpp</a>
 * :heavy_check_mark: <a href="library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
 
 
@@ -129,7 +128,7 @@ layout: default
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
 * :warning: <a href="library/segment_tree/lazy_segment_tree.cpp.html">segment_tree/lazy_segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
-* :question: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
 
 
@@ -184,7 +183,7 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/test/aoj/2444.test.cpp.html">test/aoj/2444.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/2444.test.cpp.html">test/aoj/2444.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
