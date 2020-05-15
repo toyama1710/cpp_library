@@ -122,7 +122,7 @@ layout: default
 
 ### segment_tree
 
-* :warning: <a href="library/segment_tree/dual_segment_tree.hpp.html">segment_tree/dual_segment_tree.hpp</a>
+* :heavy_check_mark: <a href="library/segment_tree/dual_segment_tree.hpp.html">segment_tree/dual_segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/dynamic_segment_tree.cpp.html">segment_tree/dynamic_segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/dynamic_starry_sky.cpp.html">segment_tree/dynamic_starry_sky.cpp</a>
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
@@ -188,6 +188,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL2D.test.cpp.html">test/aoj/DSL2D.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
