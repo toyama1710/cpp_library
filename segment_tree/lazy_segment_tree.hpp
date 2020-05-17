@@ -1,279 +1,115 @@
-#include <iostream>
+#ifndef LAZY_SEGMENT_TREE_HPP
+#define LAZY_SEGMENT_TREE_HPP
+
 #include <vector>
-#include <algorithm>
-#include <functional>
-#include <climits>
-using namespace std;
+#include <cstdint>
 
 //===
-template<class Monoid, class Laz>
+template<class MonoidwithOperator>
 struct LazySegmentTree {
+    using M = MonoidwithOperator;
+    using V = typename M::value_structure;
+    using T = typename V::value_type;
+    using O = typename M::operator_structure;
+    using E = typename O::value_type;
 
-    const function<Monoid(Monoid, Monoid)> mergeMonoid;
-    const function<Monoid(Monoid, Laz, int)> applyLaz;
-    const function<Laz(Laz, Laz)> mergeLaz;
-    
-    const Monoid e; // neutral element
-    
-    vector<Monoid> seg;
-    vector<Laz> lazy;
-    vector<bool> isUpdated;
-    
-    int size;
-                                           
-    LazySegmentTree(int nmemb, const Monoid &e,
-                    function<Monoid(Monoid, Monoid)> f,
-                    function<Monoid(Monoid, Laz, int)> g,
-                    function<Laz(Laz, Laz)> h):
-        e(e), mergeMonoid(f), applyLaz(g), mergeLaz(h)
-    {
-        size = 1;
-        while (size < nmemb) {
-            size *= 2;
-        }
+    // mergeMonoid V::operation
+    // applyOperator M::operation
+    // mergeOperator O::operation
 
-        seg.assign(2 * size - 1, e);
-        isUpdated.assign(2 * size - 1, true);
-        lazy.resize(2 * size - 1); 
+    struct Node {
+        T dat;
+        E lazy;
+
+        Node (T dat, E lazy): dat(dat), lazy(lazy) {};
     };
 
-    inline void propagation(int k, int len) {
-        if (!isUpdated[k]) {
-            seg[k] = applyLaz(seg[k], lazy[k], len);
-            if (len > 1) {
-                if (isUpdated[2 * k + 1])
-                    lazy[2 * k + 1] = lazy[k], isUpdated[2 * k + 1] = false;
-                else
-                    lazy[2 * k + 1] = mergeLaz(lazy[2 * k + 1], lazy[k]);
-                
-                if (isUpdated[2 * k + 2])
-                    lazy[2 * k + 2] = lazy[k], isUpdated[2 * k + 2] = false;
-                else 
-                    lazy[2 * k + 2] = mergeLaz(lazy[2 * k + 2], lazy[k]);
+    std::vector<Node> tree;
+
+    LazySegmentTree() = default;
+    explicit LazySegmentTree(uint32_t n):
+        tree((n << 1) | 1, Node(V::identity(), O::identity())) {};
+
+    int size() {
+        return tree.size() >> 1;
+    };
+    
+    void propagation(uint32_t k) {
+        const uint32_t l = (k << 1) | 0;
+        const uint32_t r = (k << 1) | 1;
+        tree[l].lazy = O::operation(tree[l].lazy, tree[k].lazy);
+        tree[r].lazy = O::operation(tree[r].lazy, tree[k].lazy);
+        tree[l].dat = M::operation(tree[l].dat, tree[k].lazy);
+        tree[r].dat = M::operation(tree[r].dat, tree[k].lazy);
+        tree[k].lazy = O::identity();
+    };
+    void push_down(uint32_t k) {
+        for (int i = 31; i > 0; i--) propagation(k >> i);
+    };
+    void recalc(uint32_t k) {
+        while (k > 1) {
+            k /= 2;
+            tree[k].dat = V::operation(tree[(k << 1) | 0].dat,
+                                       tree[(k << 1) | 1].dat);
+        }
+    };
+    
+    // [l, r) += dat
+    void update(int l, int r, E op) {
+        int tmpl = l;
+        int tmpr = r;
+        l += size();
+        r += size();
+        push_down(l);
+        push_down(r - 1);
+
+        while (l < r) {
+            if (l & 1) {
+                tree[l].lazy = O::operation(tree[l].lazy, op);
+                tree[l].dat = M::operation(tree[l].dat, op);
+                l++;
             }
-            isUpdated[k] = true;
+            if (r & 1) {
+                --r;
+                tree[r].lazy = O::operation(tree[r].lazy, op);
+                tree[r].dat = M::operation(tree[r].dat, op);
+            }
+            l >>= 1;
+            r >>= 1;
         }
+
+        recalc(tmpl);
+        recalc(tmpr - 1);
     };
 
-    // [l, r) <= dat
-    void update(int l, int r, Laz dat) {
-        update(0, 0, size, l, r, dat);
-    };
-    Monoid update(int k, int nl, int nr, int ql, int qr, Laz dat) {
-        propagation(k, nr - nl);
+    // foldl@[l, r)
+    T fold(int l, int r) {
+        l += size();
+        r += size();
+        push_down(l);
+        push_down(r - 1);
+        recalc(l);
+        recalc(r - 1);
 
-        if (nr <= ql || qr <= nl) return seg[k];
+        T lv = V::identity();
+        T rv = V::identity();
 
-        if (ql <= nl && nr <= qr) {
-            lazy[k] = dat;
-            isUpdated[k] = false;
-            propagation(k, nr - nl);
-            return seg[k];
+        while (l < r) {
+            if (l & 1) lv = V::operation(lv, tree[l++].dat);
+            if (r & 1) rv = V::operation(tree[--r].dat, rv);
+
+            l >>= 1;
+            r >>= 1;
         }
-        else {
-            seg[k] = mergeMonoid(update(2 * k + 1, nl, (nl + nr) / 2, ql, qr, dat),
-                                 update(2 * k + 2, (nl + nr) / 2, nr, ql, qr, dat));
-            return seg[k];
-        }
+
+        return V::operation(lv, rv);
     };
 
-    // [l, r)
-    Monoid fold(int l, int r) {
-        return fold(0, 0, size, l, r);
-    };
-    Monoid fold(int k, int nl, int nr, int ql, int qr) {
-
-        propagation(k, nr - nl);
-        
-        if (nr <= ql || qr <= nl) return e;
-
-        if (ql <= nl && nr <= qr) return seg[k];
-        else return mergeMonoid(fold(2 * k + 1, nl, (nl + nr) / 2, ql, qr),
-                                fold(2 * k + 2, (nl + nr) / 2, nr, ql, qr));
-    };
-
-    Monoid operator [](const int &k) {
-        return fold(k, k + 1);
+    T operator [](const int &k) {
+        push_down(k);
+        return tree[k].dat;
     };
 };
 //===
 
-//verify 2019/07/25 17:12
-int DSL_2_D(void)
-{
-    int n, q;
-    int com, s, t, x;
-
-    cin >> n >> q;
-
-    LazySegmentTree<int, int> seg(n, -1,
-                                  /*f=*/[](int l, int r){
-                                      return max(l, r);
-                                  },
-                                  /*g=*/[](int m, int laz, int len){
-                                      return laz;
-                                  },
-                                  /*h=*/[](int l, int r) {
-                                      return r;
-                                  });
-
-    while (q--) {
-        cin >> com;
-
-        if (com == 0) {
-            cin >> s >> t >> x;
-            seg.update(s, t + 1, x);
-        }
-        else if (com == 1) {
-            cin >> s;
-            int a = seg[s];
-
-            if (a == -1) cout << (1ll << 31ll) - 1 << endl;
-            else cout << a << endl;
-        }
-    }
-
-    return 0;
-}
-
-//verify 2019/07/25 17:21
-int DSL_2_E()
-{
-    int n, q;
-    int com, s, t, x;
-
-    cin >> n >> q;
-
-    LazySegmentTree<int, int> seg(n, 0,
-                                  [](int l, int r){
-                                      return l + r;
-                                  },
-                                  [](int l, int r, int len){
-                                      return l + (r * len);
-                                  },
-                                  [](int l, int r){
-                                      return l + r;
-                                  });
-                                  
-
-    while (q--) {
-        cin >> com;
-
-        if (com == 0) {
-            cin >> s >> t >> x;
-            s--;
-
-            seg.update(s, t, x);
-        }
-        else if (com == 1) {
-            cin >> s;
-            s--;
-
-            cout << seg[s] << endl;
-        }
-    }
-
-	return 0;
-}
-
-//verify 2019/07/25 17:27
-int DSL_2_F(void)
-{
-    using ll = long long;
-        
-    ll n, q;
-    ll com, s, t, x;
-
-    cin >> n >> q;
-
-    LazySegmentTree<ll, ll> seg(n, (1ll << 31ll) - 1,
-                                [](ll l, ll r){ return min(l, r); },
-                                [](ll m, ll laz, int len){ return laz; },
-                                [](ll l, ll r){ return r; });
-
-    while (q--) {
-        cin >> com;
-
-        if (com == 0) {
-            cin >> s >> t >> x;
-
-            seg.update(s, t + 1, x);
-        }
-        else if (com == 1) {
-            cin >> s >> t;
-            cout << seg.fold(s, t + 1) << endl;
-        }
-    }
-
-    return 0;
-}
-
-int DSL_2_H(void)
-{
-    using ll = long long;
-
-    ll n, q;
-    ll com, s, t, x;
-
-    cin >> n >> q;
-    LazySegmentTree<ll, ll> seg(n, 1ll << 60ll,
-                                [](ll l, ll r){ return min(l, r); },
-                                [](ll m, ll l, int len){ return m + l; },
-                                [](ll l, ll r){ return l + r; });
-    seg.update(0, n, -1 * (1ll << 60ll));
-
-    while (q--) {
-        cin >> com;
-
-        if (com == 0) {
-            cin >> s >> t >> x;
-            seg.update(s, t + 1, x);
-        }
-        else if (com == 1) {
-            cin >> s >> t;
-            cout << seg.fold(s, t + 1) << endl;
-        }
-        
-    }
-
-    return 0;
-}
-
-int DSL_2_I(void)
-{
-    using ll = long long;
-
-    ll n, q;
-    ll com, s, t, x;
-
-    cin >> n >> q;
-
-    LazySegmentTree<ll, ll> seg(n, 0,
-                                [](ll l, ll r){ return l + r; },
-                                [](ll m, ll l, ll len){ return l * len; },
-                                [](ll l, ll r){ return r; });
-
-    while (q--) {
-        cin >> com;
-
-        if (com == 0) {
-            cin >> s >> t >> x;
-            seg.update(s, t + 1, x);
-        }
-        else if (com == 1) {
-            cin >> s >> t;
-            cout << seg.fold(s, t + 1) << endl;
-        }
-    }
-
-    return 0;
-}
-
-int main()
-{
-    //return DSL_2_D();
-    //return DSL_2_E();
-    //return DSL_2_F();
-    //return DSL_2_H();
-    return DSL_2_I();
-}
+#endif
