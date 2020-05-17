@@ -1,3 +1,4 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <iostream>
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
