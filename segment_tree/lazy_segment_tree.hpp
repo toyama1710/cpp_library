@@ -56,10 +56,10 @@ struct LazySegmentTree {
     
     // [l, r) += dat
     void update(int l, int r, E op) {
-        int tmpl = l;
-        int tmpr = r;
         l += size();
         r += size();
+        int tmpl = l;
+        int tmpr = r;
         push_down(l);
         push_down(r - 1);
 
