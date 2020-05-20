@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/lazy_segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-20 14:36:46+09:00
+    - Last commit date: 2020-05-20 14:46:53+09:00
 
 
 
@@ -104,10 +104,10 @@ struct LazySegmentTree {
     
     // [l, r) += dat
     void update(int l, int r, E op) {
-        int tmpl = l;
-        int tmpr = r;
         l += size();
         r += size();
+        int tmpl = l;
+        int tmpr = r;
         push_down(l);
         push_down(r - 1);
 
@@ -225,10 +225,10 @@ struct LazySegmentTree {
     
     // [l, r) += dat
     void update(int l, int r, E op) {
-        int tmpl = l;
-        int tmpr = r;
         l += size();
         r += size();
+        int tmpl = l;
+        int tmpr = r;
         push_down(l);
         push_down(r - 1);
 
