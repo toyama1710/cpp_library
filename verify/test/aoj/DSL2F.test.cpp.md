@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-20 14:46:53+09:00
+    - Last commit date: 2020-05-20 15:34:44+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -150,7 +150,6 @@ struct LazySegmentTree {
     struct Node {
         T dat;
         E lazy;
-
         Node (T dat, E lazy): dat(dat), lazy(lazy) {};
     };
 
@@ -158,7 +157,7 @@ struct LazySegmentTree {
 
     LazySegmentTree() = default;
     explicit LazySegmentTree(uint32_t n):
-        tree(n << 1, Node(V::identity(), O::identity())) {};
+        tree((n << 1) | 1, Node(V::identity(), O::identity())) {};
 
     int size() {
         return tree.size() >> 1;
@@ -218,6 +217,8 @@ struct LazySegmentTree {
         r += size();
         push_down(l);
         push_down(r - 1);
+        recalc(l);
+        recalc(r - 1);
 
         T lv = V::identity();
         T rv = V::identity();
