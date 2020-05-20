@@ -54,13 +54,13 @@ struct LazySegmentTree {
     };
     
     // [l, r) += dat
-    void update(int l, int r, E op) {
+    void update(uint32_t l, uint32_t r, E op) {
         l += size();
         r += size();
-        int tmpl = l;
-        int tmpr = r;
+        uint32_t tmpl = l;
+        uint32_t tmpr = r;
         push_down(l);
-        push_down(r - 1);
+        push_down(r);
 
         while (l < r) {
             if (l & 1) {
@@ -78,17 +78,17 @@ struct LazySegmentTree {
         }
 
         recalc(tmpl);
-        recalc(tmpr - 1);
+        recalc(tmpr);
     };
 
     // foldl[l, r)
-    T fold(int l, int r) {
+    T fold(uint32_t l, uint32_t r) {
         l += size();
         r += size();
         push_down(l);
-        push_down(r - 1);
+        push_down(r);
         recalc(l);
-        recalc(r - 1);
+        recalc(r);
 
         T lv = V::identity();
         T rv = V::identity();
@@ -104,7 +104,7 @@ struct LazySegmentTree {
         return V::operation(lv, rv);
     };
 
-    T operator [](const int &k) {
+    T operator [](const uint32_t &k) {
         push_down(k + size());
         return tree[k + size()].dat;
     };
