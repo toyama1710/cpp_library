@@ -28,7 +28,7 @@ struct LazySegmentTree {
 
     LazySegmentTree() = default;
     explicit LazySegmentTree(uint32_t n):
-        tree((n << 1) | 1, Node(V::identity(), O::identity())) {};
+        tree(n << 1, Node(V::identity(), O::identity())) {};
 
     int size() {
         return tree.size() >> 1;
@@ -48,7 +48,7 @@ struct LazySegmentTree {
     };
     void recalc(uint32_t k) {
         while (k > 1) {
-            k /= 2;
+            k >>= 1;
             tree[k].dat = V::operation(tree[(k << 1) | 0].dat,
                                        tree[(k << 1) | 1].dat);
         }
@@ -82,14 +82,12 @@ struct LazySegmentTree {
         recalc(tmpr - 1);
     };
 
-    // foldl@[l, r)
+    // foldl[l, r)
     T fold(int l, int r) {
         l += size();
         r += size();
         push_down(l);
         push_down(r - 1);
-        recalc(l);
-        recalc(r - 1);
 
         T lv = V::identity();
         T rv = V::identity();
@@ -106,8 +104,8 @@ struct LazySegmentTree {
     };
 
     T operator [](const int &k) {
-        push_down(k);
-        return tree[k].dat;
+        push_down(k + size());
+        return tree[k + size()].dat;
     };
 };
 //===
