@@ -60,7 +60,7 @@ struct LazySegmentTree {
         uint32_t tmpl = l;
         uint32_t tmpr = r;
         push_down(l);
-        push_down(r);
+        push_down(r - 1);
 
         while (l < r) {
             if (l & 1) {
@@ -78,7 +78,7 @@ struct LazySegmentTree {
         }
 
         recalc(tmpl);
-        recalc(tmpr);
+        recalc(tmpr - 1);
     };
 
     // foldl[l, r)
