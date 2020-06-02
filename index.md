@@ -63,7 +63,7 @@ layout: default
 ### data_type
 
 * :heavy_check_mark: <a href="library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
-* :question: <a href="library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :heavy_check_mark: <a href="library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
 * :warning: <a href="library/data_type/monoid_snippet.hpp.html">data_type/monoid_snippet.hpp</a>
 * :heavy_check_mark: <a href="library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
 
@@ -137,7 +137,7 @@ layout: default
 ### sparse_table
 
 * :warning: <a href="library/sparse_table/disjoint_sparse_table.cpp.html">sparse_table/disjoint_sparse_table.cpp</a>
-* :x: <a href="library/sparse_table/sparse_table.hpp.html">sparse_table/sparse_table.hpp</a>
+* :heavy_check_mark: <a href="library/sparse_table/sparse_table.hpp.html">sparse_table/sparse_table.hpp</a>
 
 
 <div id="fac2a47adace059aff113283a03f6760"></div>
@@ -194,7 +194,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
-* :x: <a href="verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 
 

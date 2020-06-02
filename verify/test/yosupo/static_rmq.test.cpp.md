@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/static_rmq.test.cpp
+# :heavy_check_mark: test/yosupo/static_rmq.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/static_rmq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-03 08:26:16+09:00
+    - Last commit date: 2020-06-03 08:32:30+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
-* :x: <a href="../../../library/sparse_table/sparse_table.hpp.html">sparse_table/sparse_table.hpp</a>
+* :heavy_check_mark: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :heavy_check_mark: <a href="../../../library/sparse_table/sparse_table.hpp.html">sparse_table/sparse_table.hpp</a>
 
 
 ## Code
@@ -107,7 +107,7 @@ struct SparseTable {
     SparseTable(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         log2.assign(n + 1, 0);
-        for (int i = 2; i <= n; i++) log2[i] = log2[(i - 1) / 2] + 1;
+        for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
         
         table.reserve(log2[n] + 1);
         table.emplace_back(first, last);

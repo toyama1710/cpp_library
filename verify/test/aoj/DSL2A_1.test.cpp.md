@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
+* :heavy_check_mark: <a href="../../../library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
 * :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 

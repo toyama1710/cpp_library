@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: sparse_table/sparse_table.hpp
+# :heavy_check_mark: sparse_table/sparse_table.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#cb323a14df0a258a78d4acbe3d02dfda">sparse_table</a>
 * <a href="{{ site.github.repository_url }}/blob/master/sparse_table/sparse_table.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-03 08:26:16+09:00
+    - Last commit date: 2020-06-03 08:32:30+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
 
 
 ## Code
@@ -68,7 +68,7 @@ struct SparseTable {
     SparseTable(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         log2.assign(n + 1, 0);
-        for (int i = 2; i <= n; i++) log2[i] = log2[(i - 1) / 2] + 1;
+        for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
         
         table.reserve(log2[n] + 1);
         table.emplace_back(first, last);
@@ -129,7 +129,7 @@ struct SparseTable {
     SparseTable(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         log2.assign(n + 1, 0);
-        for (int i = 2; i <= n; i++) log2[i] = log2[(i - 1) / 2] + 1;
+        for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
         
         table.reserve(log2[n] + 1);
         table.emplace_back(first, last);
