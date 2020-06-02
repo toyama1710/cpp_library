@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-20 15:55:48+09:00
+    - Last commit date: 2020-06-02 23:29:58+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -190,7 +190,7 @@ struct LazySegmentTree {
         uint32_t tmpl = l;
         uint32_t tmpr = r;
         push_down(l);
-        push_down(r);
+        push_down(r - 1);
 
         while (l < r) {
             if (l & 1) {
@@ -208,7 +208,7 @@ struct LazySegmentTree {
         }
 
         recalc(tmpl);
-        recalc(tmpr);
+        recalc(tmpr - 1);
     };
 
     // foldl[l, r)

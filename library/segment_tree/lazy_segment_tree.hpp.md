@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/lazy_segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-20 15:55:48+09:00
+    - Last commit date: 2020-06-02 23:29:58+09:00
 
 
 
@@ -108,7 +108,7 @@ struct LazySegmentTree {
         uint32_t tmpl = l;
         uint32_t tmpr = r;
         push_down(l);
-        push_down(r);
+        push_down(r - 1);
 
         while (l < r) {
             if (l & 1) {
@@ -126,7 +126,7 @@ struct LazySegmentTree {
         }
 
         recalc(tmpl);
-        recalc(tmpr);
+        recalc(tmpr - 1);
     };
 
     // foldl[l, r)
@@ -230,7 +230,7 @@ struct LazySegmentTree {
         uint32_t tmpl = l;
         uint32_t tmpr = r;
         push_down(l);
-        push_down(r);
+        push_down(r - 1);
 
         while (l < r) {
             if (l & 1) {
@@ -248,7 +248,7 @@ struct LazySegmentTree {
         }
 
         recalc(tmpl);
-        recalc(tmpr);
+        recalc(tmpr - 1);
     };
 
     // foldl[l, r)
