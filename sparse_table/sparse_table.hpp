@@ -20,7 +20,7 @@ struct SparseTable {
     SparseTable(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         log2.assign(n + 1, 0);
-        for (int i = 2; i <= n; i++) log2[i] = log2[(i - 1) / 2] + 1;
+        for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
         
         table.reserve(log2[n] + 1);
         table.emplace_back(first, last);
