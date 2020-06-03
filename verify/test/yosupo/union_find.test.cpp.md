@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-03 06:37:29+00:00
+    - Last commit date: 2020-06-03 07:36:28+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
@@ -72,7 +72,7 @@ UnionFind uf;
 
 int main() {
     cin >> n >> q;
-    uf.init(n);
+    uf.init(n + 1);
 
     while (q--) {
         cin >> com >> u >> v;
@@ -170,7 +170,7 @@ UnionFind uf;
 
 int main() {
     cin >> n >> q;
-    uf.init(n);
+    uf.init(n + 1);
 
     while (q--) {
         cin >> com >> u >> v;
