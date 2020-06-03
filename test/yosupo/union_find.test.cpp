@@ -23,7 +23,7 @@ UnionFind uf;
 
 int main() {
     cin >> n >> q;
-    uf.init(n);
+    uf.init(n + 1);
 
     while (q--) {
         cin >> com >> u >> v;
