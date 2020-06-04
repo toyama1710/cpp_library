@@ -81,9 +81,8 @@ layout: default
 
 * :warning: <a href="library/disjoint_set/partially_persitent_union_find.cpp.html">disjoint_set/partially_persitent_union_find.cpp</a>
 * :heavy_check_mark: <a href="library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
-* :warning: <a href="library/disjoint_set/union_find.cpp.html">disjoint_set/union_find.cpp</a>
 * :heavy_check_mark: <a href="library/disjoint_set/union_find.hpp.html">disjoint_set/union_find.hpp</a>
-* :warning: <a href="library/disjoint_set/weighted_union_find.cpp.html">disjoint_set/weighted_union_find.cpp</a>
+* :heavy_check_mark: <a href="library/disjoint_set/weighted_union_find.hpp.html">disjoint_set/weighted_union_find.hpp</a>
 
 
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
@@ -186,6 +185,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/2444_1.test.cpp.html">test/aoj/2444_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/2444_2.test.cpp.html">test/aoj/2444_2.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL1B.test.cpp.html">test/aoj/DSL1B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
