@@ -82,7 +82,7 @@ layout: default
 * :warning: <a href="library/disjoint_set/partially_persitent_union_find.cpp.html">disjoint_set/partially_persitent_union_find.cpp</a>
 * :heavy_check_mark: <a href="library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
 * :warning: <a href="library/disjoint_set/union_find.cpp.html">disjoint_set/union_find.cpp</a>
-* :x: <a href="library/disjoint_set/union_find.hpp.html">disjoint_set/union_find.hpp</a>
+* :heavy_check_mark: <a href="library/disjoint_set/union_find.hpp.html">disjoint_set/union_find.hpp</a>
 * :warning: <a href="library/disjoint_set/weighted_union_find.cpp.html">disjoint_set/weighted_union_find.cpp</a>
 
 
@@ -197,6 +197,6 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
-* :x: <a href="verify/test/yosupo/union_find.test.cpp.html">test/yosupo/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/union_find.test.cpp.html">test/yosupo/union_find.test.cpp</a>
 
 

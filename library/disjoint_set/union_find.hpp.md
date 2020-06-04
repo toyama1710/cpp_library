@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: disjoint_set/union_find.hpp
+# :heavy_check_mark: disjoint_set/union_find.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#334b410b60c6352c539a44a5cc4509bc">disjoint_set</a>
 * <a href="{{ site.github.repository_url }}/blob/master/disjoint_set/union_find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-03 06:37:29+00:00
+    - Last commit date: 2020-06-04 00:09:21+00:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/union_find.test.cpp.html">test/yosupo/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/union_find.test.cpp.html">test/yosupo/union_find.test.cpp</a>
 
 
 ## Code
@@ -50,6 +50,7 @@ layout: default
 #define UNION_FIND_HPP
 
 #include <vector>
+#include <utility>
 
 //===
 struct UnionFind {
@@ -62,7 +63,7 @@ struct UnionFind {
 
     void init(int nmemb) {
         parent.clear();
-        parent.assign(nmemb, -1);
+        parent.resize(nmemb, -1);
     };
 
     int root(int x) {
@@ -106,6 +107,7 @@ struct UnionFind {
 
 
 #include <vector>
+#include <utility>
 
 //===
 struct UnionFind {
@@ -118,7 +120,7 @@ struct UnionFind {
 
     void init(int nmemb) {
         parent.clear();
-        parent.assign(nmemb, -1);
+        parent.resize(nmemb, -1);
     };
 
     int root(int x) {
