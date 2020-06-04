@@ -2,6 +2,7 @@
 #define UNION_FIND_HPP
 
 #include <vector>
+#include <utility>
 
 //===
 struct UnionFind {
@@ -14,7 +15,7 @@ struct UnionFind {
 
     void init(int nmemb) {
         parent.clear();
-        parent.assign(nmemb, -1);
+        parent.resize(nmemb, -1);
     };
 
     int root(int x) {
