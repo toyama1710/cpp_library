@@ -23,7 +23,7 @@ UnionFind uf;
 
 int main() {
     cin >> n >> q;
-    uf.init(n + 1);
+    uf.init(n);
 
     while (q--) {
         cin >> com >> u >> v;
@@ -32,7 +32,7 @@ int main() {
             uf.unite(u, v);
         }
         else {
-            cout << uf.same(u, v) ? 1 : 0 << '\n';
+            cout << (uf.same(u, v) ? 1 : 0) << endl;
         }
     }
 
