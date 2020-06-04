@@ -10,5 +10,6 @@
 "test/yosupo/queue_aggregation.test.cpp": "2020-04-27 16:50:39 +0900",
 "test/yosupo/rectangle_sum1.test.cpp": "2020-04-30 19:51:10 +0000",
 "test/yosupo/static_rmq.test.cpp": "2020-06-03 08:32:30 +0900",
-"test/yosupo/swag.test.cpp": "2020-04-27 16:50:39 +0900"
+"test/yosupo/swag.test.cpp": "2020-04-27 16:50:39 +0900",
+"test/yosupo/union_find.test.cpp": "2020-06-04 00:13:42 +0000"
 }
