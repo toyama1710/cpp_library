@@ -31,10 +31,9 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-02 23:29:58+09:00
+    - Last commit date: 2020-06-06 02:29:37+09:00
 
 
-* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
 
 
 ## Depends on
@@ -47,6 +46,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define IGNORE
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <iostream>
 #include "../../segment_tree/lazy_segment_tree.hpp"
@@ -125,6 +125,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/aoj/DSL2F.test.cpp"
+#define IGNORE
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <iostream>
 #line 1 "segment_tree/lazy_segment_tree.hpp"
@@ -242,7 +243,7 @@ struct LazySegmentTree {
 //===
 
 
-#line 4 "test/aoj/DSL2F.test.cpp"
+#line 5 "test/aoj/DSL2F.test.cpp"
 using namespace std;
 using llong = long long;
 

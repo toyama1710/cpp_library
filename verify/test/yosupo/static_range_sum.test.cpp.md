@@ -25,21 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/static_range_sum.test.cpp
+# :heavy_check_mark: test/yosupo/static_range_sum.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/static_range_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-06 02:26:01+09:00
+    - Last commit date: 2020-06-06 02:29:37+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/static_range_sum">https://judge.yosupo.jp/problem/static_range_sum</a>
 
 
 ## Depends on
 
-* :x: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
-* :x: <a href="../../../library/sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
+* :heavy_check_mark: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
+* :heavy_check_mark: <a href="../../../library/sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
 
 
 ## Code
@@ -47,6 +48,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include <iostream>
 #include "../../sparse_table/disjoint_sparse_table.hpp"
 using namespace std;
@@ -85,6 +87,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/yosupo/static_range_sum.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include <iostream>
 #line 1 "sparse_table/disjoint_sparse_table.hpp"
 
@@ -193,7 +196,7 @@ struct DisjointSparseTable {
 };
 //===
 
-#line 3 "test/yosupo/static_range_sum.test.cpp"
+#line 4 "test/yosupo/static_range_sum.test.cpp"
 using namespace std;
 using llong = long long;
 

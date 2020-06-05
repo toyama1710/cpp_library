@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: bit/msb.hpp
+# :heavy_check_mark: bit/msb.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Required by
 
-* :x: <a href="../sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
+* :heavy_check_mark: <a href="../sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
 
 
 ## Code

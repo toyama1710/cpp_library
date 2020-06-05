@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: sparse_table/disjoint_sparse_table.hpp
+# :heavy_check_mark: sparse_table/disjoint_sparse_table.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../bit/msb.hpp.html">bit/msb.hpp</a>
+* :heavy_check_mark: <a href="../bit/msb.hpp.html">bit/msb.hpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
 
 
 ## Code

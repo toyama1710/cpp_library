@@ -55,7 +55,7 @@ layout: default
 ### bit
 
 * :warning: <a href="library/bit/lsb.cpp.html">bit/lsb.cpp</a>
-* :x: <a href="library/bit/msb.hpp.html">bit/msb.hpp</a>
+* :heavy_check_mark: <a href="library/bit/msb.hpp.html">bit/msb.hpp</a>
 * :warning: <a href="library/bit/pop_count.cpp.html">bit/pop_count.cpp</a>
 
 
@@ -137,7 +137,7 @@ layout: default
 
 ### sparse_table
 
-* :x: <a href="library/sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
+* :heavy_check_mark: <a href="library/sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
 * :heavy_check_mark: <a href="library/sparse_table/sparse_table.hpp.html">sparse_table/sparse_table.hpp</a>
 
 
@@ -196,7 +196,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
-* :x: <a href="verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/union_find.test.cpp.html">test/yosupo/union_find.test.cpp</a>
