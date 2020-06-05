@@ -1,3 +1,4 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include <iostream>
 #include "../../sparse_table/disjoint_sparse_table.hpp"
 using namespace std;
