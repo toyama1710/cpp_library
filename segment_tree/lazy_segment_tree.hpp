@@ -53,14 +53,14 @@ struct LazySegmentTree {
         }
     };
     
-    // [l, r) += dat
+    // [l, r) += op
     void update(uint32_t l, uint32_t r, E op) {
         l += size();
         r += size();
         uint32_t tmpl = l;
         uint32_t tmpr = r;
         push_down(l);
-        push_down(r - 1);
+        push_down(r);
 
         while (l < r) {
             if (l & 1) {
@@ -78,7 +78,7 @@ struct LazySegmentTree {
         }
 
         recalc(tmpl);
-        recalc(tmpr - 1);
+        recalc(tmpr);
     };
 
     // foldl[l, r)

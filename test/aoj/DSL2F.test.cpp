@@ -1,4 +1,3 @@
-#define IGNORE
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <iostream>
 #include "../../segment_tree/lazy_segment_tree.hpp"
@@ -58,12 +57,11 @@ int main() {
 
         if (com == 0) {
             cin >> s >> t >> x;
-
             seg.update(s, t + 1, x);
         }
         else if (com == 1) {
             cin >> s >> t;
-            cout << seg.fold(s, t + 1) << '\n';
+            cout << seg.fold(s, t + 1) << endl;
         }
     }
 
