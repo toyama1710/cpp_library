@@ -13,7 +13,7 @@ struct Monoid {
     };
     inline static T operation(const T a, const T b) {
         return min(a, b);
-    };:
+    };
 };
 
 struct Operator {
