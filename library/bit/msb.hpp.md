@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: bit/msb.hpp
+# :question: bit/msb.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Required by
 
-* :heavy_check_mark: <a href="../segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
+* :question: <a href="../segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
 * :heavy_check_mark: <a href="../sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
 
 
@@ -46,6 +46,8 @@ layout: default
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2G.test.cpp.html">test/aoj/DSL2G.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/DSL2H.test.cpp.html">test/aoj/DSL2H.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/DSL2I.test.cpp.html">test/aoj/DSL2I.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
 
 

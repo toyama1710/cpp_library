@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
+* :question: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
 * :heavy_check_mark: <a href="../../../library/sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
 
 

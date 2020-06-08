@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
-* :heavy_check_mark: <a href="../../../library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
+* :question: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
+* :question: <a href="../../../library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
 
 
 ## Code
