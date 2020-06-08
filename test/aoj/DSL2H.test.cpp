@@ -1,3 +1,4 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H"
 #include <iostream>
 #include <algorithm>
 #include "../../segment_tree/lazy_segment_tree.hpp"
@@ -12,7 +13,7 @@ struct Monoid {
     };
     inline static T operation(const T a, const T b) {
         return min(a, b);
-    };
+    };:
 };
 
 struct Operator {
