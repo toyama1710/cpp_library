@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: segment_tree/lazy_segment_tree.hpp
+# :heavy_check_mark: segment_tree/lazy_segment_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/lazy_segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-08 11:56:19+09:00
+    - Last commit date: 2020-06-08 21:16:34+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
 
 
 ## Code
@@ -125,6 +125,8 @@ struct LazySegmentTree {
             r >>= 1;
         }
 
+        push_down(tmpl);
+        push_down(tmpr - 1);
         recalc(tmpl);
         recalc(tmpr - 1);
     };
@@ -135,8 +137,6 @@ struct LazySegmentTree {
         r += size();
         push_down(l);
         push_down(r - 1);
-        recalc(l);
-        recalc(r - 1);
 
         T lv = V::identity();
         T rv = V::identity();
@@ -259,6 +259,8 @@ struct LazySegmentTree {
             r >>= 1;
         }
 
+        push_down(tmpl);
+        push_down(tmpr - 1);
         recalc(tmpl);
         recalc(tmpr - 1);
     };
@@ -269,8 +271,6 @@ struct LazySegmentTree {
         r += size();
         push_down(l);
         push_down(r - 1);
-        recalc(l);
-        recalc(r - 1);
 
         T lv = V::identity();
         T rv = V::identity();
