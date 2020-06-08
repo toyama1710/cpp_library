@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-08 21:16:34+09:00
+    - Last commit date: 2020-06-08 22:05:23+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -39,6 +39,7 @@ layout: default
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
 * :heavy_check_mark: <a href="../../../library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
 
 
@@ -136,6 +137,44 @@ int main() {
 
 #include <vector>
 #include <cstdint>
+#line 1 "bit/msb.hpp"
+
+
+
+#line 5 "bit/msb.hpp"
+
+inline int msb32(uint32_t x) {
+        if (x == 0) return -1;
+#ifndef __has_builtin
+        int r = 0;
+        if (x >> 16) x >>= 16, r |= 16;
+        if (x >> 8) x >>= 8, r |= 8;
+        if (x >> 4) x >>= 4, r |= 4;
+        if (x >> 2) x >>= 2, r |= 2;
+        return r | (x >> 1);
+#else
+        return 31 - __builtin_clz(x);
+#endif
+};
+
+inline int msb64(uint64_t x) {
+    if (x == 0) return -1;
+
+    #ifndef __has_builtin
+        int r = 0;
+        if (x >> 32) x >>= 32, r |= 32;
+        if (x >> 16) x >>= 16, r |= 16;
+        if (x >> 8) x >>= 8, r |= 8;
+        if (x >> 4) x >>= 4, r |= 4;
+        if (x >> 2) x >>= 2, r |= 2;
+        return r | (x >> 1);
+#else
+    return 63 - __builtin_clzll(x);
+#endif
+};
+
+
+#line 7 "segment_tree/lazy_segment_tree.hpp"
 
 //===
 template<class MonoidwithOperator>
@@ -176,7 +215,9 @@ struct LazySegmentTree {
         tree[k].lazy = O::identity();
     };
     void push_down(uint32_t k) {
-        for (int i = 31; i > 0; i--) propagation(k >> i);
+        if (k == 0) return;
+        uint32_t w = msb32(k);
+        for (int i = w; i > 0; i--) propagation(k >> i);
     };
     void recalc(uint32_t k) {
         while (k > 1) {

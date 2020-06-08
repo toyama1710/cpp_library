@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/lazy_segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-08 21:16:34+09:00
+    - Last commit date: 2020-06-08 22:05:23+09:00
 
 
+
+
+## Depends on
+
+* :heavy_check_mark: <a href="../bit/msb.hpp.html">bit/msb.hpp</a>
 
 
 ## Verified with
@@ -51,6 +56,7 @@ layout: default
 
 #include <vector>
 #include <cstdint>
+#include "../bit/msb.hpp"
 
 //===
 template<class MonoidwithOperator>
@@ -91,7 +97,9 @@ struct LazySegmentTree {
         tree[k].lazy = O::identity();
     };
     void push_down(uint32_t k) {
-        for (int i = 31; i > 0; i--) propagation(k >> i);
+        if (k == 0) return;
+        uint32_t w = msb32(k);
+        for (int i = w; i > 0; i--) propagation(k >> i);
     };
     void recalc(uint32_t k) {
         while (k > 1) {
@@ -185,6 +193,44 @@ struct LazySegmentTree {
 
 #include <vector>
 #include <cstdint>
+#line 1 "bit/msb.hpp"
+
+
+
+#line 5 "bit/msb.hpp"
+
+inline int msb32(uint32_t x) {
+        if (x == 0) return -1;
+#ifndef __has_builtin
+        int r = 0;
+        if (x >> 16) x >>= 16, r |= 16;
+        if (x >> 8) x >>= 8, r |= 8;
+        if (x >> 4) x >>= 4, r |= 4;
+        if (x >> 2) x >>= 2, r |= 2;
+        return r | (x >> 1);
+#else
+        return 31 - __builtin_clz(x);
+#endif
+};
+
+inline int msb64(uint64_t x) {
+    if (x == 0) return -1;
+
+    #ifndef __has_builtin
+        int r = 0;
+        if (x >> 32) x >>= 32, r |= 32;
+        if (x >> 16) x >>= 16, r |= 16;
+        if (x >> 8) x >>= 8, r |= 8;
+        if (x >> 4) x >>= 4, r |= 4;
+        if (x >> 2) x >>= 2, r |= 2;
+        return r | (x >> 1);
+#else
+    return 63 - __builtin_clzll(x);
+#endif
+};
+
+
+#line 7 "segment_tree/lazy_segment_tree.hpp"
 
 //===
 template<class MonoidwithOperator>
@@ -225,7 +271,9 @@ struct LazySegmentTree {
         tree[k].lazy = O::identity();
     };
     void push_down(uint32_t k) {
-        for (int i = 31; i > 0; i--) propagation(k >> i);
+        if (k == 0) return;
+        uint32_t w = msb32(k);
+        for (int i = w; i > 0; i--) propagation(k >> i);
     };
     void recalc(uint32_t k) {
         while (k > 1) {
