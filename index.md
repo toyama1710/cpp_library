@@ -55,7 +55,7 @@ layout: default
 ### bit
 
 * :warning: <a href="library/bit/lsb.cpp.html">bit/lsb.cpp</a>
-* :question: <a href="library/bit/msb.hpp.html">bit/msb.hpp</a>
+* :heavy_check_mark: <a href="library/bit/msb.hpp.html">bit/msb.hpp</a>
 * :warning: <a href="library/bit/pop_count.cpp.html">bit/pop_count.cpp</a>
 
 
@@ -127,7 +127,7 @@ layout: default
 * :warning: <a href="library/segment_tree/dynamic_segment_tree.cpp.html">segment_tree/dynamic_segment_tree.cpp</a>
 * :warning: <a href="library/segment_tree/dynamic_starry_sky.cpp.html">segment_tree/dynamic_starry_sky.cpp</a>
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
-* :question: <a href="library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
+* :heavy_check_mark: <a href="library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
@@ -194,7 +194,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2E.test.cpp.html">test/aoj/DSL2E.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2G.test.cpp.html">test/aoj/DSL2G.test.cpp</a>
-* :x: <a href="verify/test/aoj/DSL2H.test.cpp.html">test/aoj/DSL2H.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL2H.test.cpp.html">test/aoj/DSL2H.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2I.test.cpp.html">test/aoj/DSL2I.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>

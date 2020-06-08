@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL2H.test.cpp
+# :heavy_check_mark: test/aoj/DSL2H.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2H.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-08 23:33:10+09:00
+    - Last commit date: 2020-06-08 23:36:52+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
-* :question: <a href="../../../library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/bit/msb.hpp.html">bit/msb.hpp</a>
+* :heavy_check_mark: <a href="../../../library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
 
 
 ## Code
@@ -63,7 +63,7 @@ struct Monoid {
     };
     inline static T operation(const T a, const T b) {
         return min(a, b);
-    };:
+    };
 };
 
 struct Operator {
@@ -298,7 +298,7 @@ struct Monoid {
     };
     inline static T operation(const T a, const T b) {
         return min(a, b);
-    };:
+    };
 };
 
 struct Operator {

@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../bit/msb.hpp.html">bit/msb.hpp</a>
+* :heavy_check_mark: <a href="../bit/msb.hpp.html">bit/msb.hpp</a>
 
 
 ## Verified with
