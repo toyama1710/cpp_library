@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cstdint>
+#include "../bit/msb.hpp"
 
 //===
 template<class MonoidwithOperator>
@@ -43,7 +44,9 @@ struct LazySegmentTree {
         tree[k].lazy = O::identity();
     };
     void push_down(uint32_t k) {
-        for (int i = 31; i > 0; i--) propagation(k >> i);
+        if (k == 0) return;
+        uint32_t w = msb32(k);
+        for (int i = w; i > 0; i--) propagation(k >> i);
     };
     void recalc(uint32_t k) {
         while (k > 1) {
