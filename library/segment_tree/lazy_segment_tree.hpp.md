@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/lazy_segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-08 22:05:23+09:00
+    - Last commit date: 2020-06-08 22:41:51+09:00
 
 
 
@@ -44,6 +44,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2G.test.cpp.html">test/aoj/DSL2G.test.cpp</a>
 
 
 ## Code
@@ -138,6 +139,15 @@ struct LazySegmentTree {
         recalc(tmpl);
         recalc(tmpr - 1);
     };
+    void update(uint32_t idx, T x) {
+        idx += size();
+        push_down(idx);
+        tree[idx].dat = x;
+        recalc(idx);
+    };
+    void set(uint32_t idx, T x) {
+        update(idx, x);
+    };
 
     // foldl[l, r)
     T fold(uint32_t l, uint32_t r) {
@@ -163,18 +173,6 @@ struct LazySegmentTree {
     T operator [](const uint32_t &k) {
         push_down(k + size());
         return tree[k + size()].dat;
-    };
-
-    void dump() {
-        int s = 1;
-        for (int w = 1; w <= size() * 2; w *= 2) {
-            for (int i = s; i < s + w; i++) {
-                std::cout << i << ':';
-                std::cout << tree[i].dat << " / " << tree[i].lazy << ' ';
-            }
-            std::cout << std::endl;
-            s += w;
-        }
     };
 };
 //===
@@ -312,6 +310,15 @@ struct LazySegmentTree {
         recalc(tmpl);
         recalc(tmpr - 1);
     };
+    void update(uint32_t idx, T x) {
+        idx += size();
+        push_down(idx);
+        tree[idx].dat = x;
+        recalc(idx);
+    };
+    void set(uint32_t idx, T x) {
+        update(idx, x);
+    };
 
     // foldl[l, r)
     T fold(uint32_t l, uint32_t r) {
@@ -337,18 +344,6 @@ struct LazySegmentTree {
     T operator [](const uint32_t &k) {
         push_down(k + size());
         return tree[k + size()].dat;
-    };
-
-    void dump() {
-        int s = 1;
-        for (int w = 1; w <= size() * 2; w *= 2) {
-            for (int i = s; i < s + w; i++) {
-                std::cout << i << ':';
-                std::cout << tree[i].dat << " / " << tree[i].lazy << ' ';
-            }
-            std::cout << std::endl;
-            s += w;
-        }
     };
 };
 //===

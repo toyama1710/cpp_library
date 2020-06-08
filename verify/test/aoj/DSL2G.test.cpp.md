@@ -25,16 +25,16 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL2F.test.cpp
+# :heavy_check_mark: test/aoj/DSL2G.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2F.test.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2G.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-06-08 22:41:51+09:00
 
 
-* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G</a>
 
 
 ## Depends on
@@ -48,89 +48,77 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 #include <iostream>
-#include <algorithm>
+#include <utility>
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
 using llong = long long;
 
-struct M {
-    struct Monoid {
-        using T = llong;
-        using value_type = T;
-
-        inline static T identity() {
-            return (1ll << 31) - 1;
-        };
-        inline static T operation(T a, T b) {
-            return min(a, b);
-        };
+struct Monoid {
+    using T = pair<llong, llong>;
+    using value_type = pair<llong, llong>;
+    inline static T identity() {
+        return {0ll, 0ll};
     };
-    struct Operator {
-        using E = llong;
-        using value_type = E;
-
-        inline static E identity() {
-            return (1ll << 31) - 1;
-        };
-        inline static E operation(E a, E b) {
-            if (a == identity()) return b;
-            else if (b == identity()) return a;
-            else return b;
-        };
-    };
-
-    using value_structure = Monoid;
-    using operator_structure = Operator;
-    using T = typename Monoid::T;
-    using E = typename Operator::E;
-
-    inline static T operation(T dat, E op) {
-        if (op == operator_structure::identity()) return dat;
-        else return op;
+    inline static T operation(T &a, T &b) {
+        return {a.first + b.first, a.second + b.second};
     };
 };
+struct Operator {
+    using E = llong;
+    using value_type = llong;
+    inline static E identity() {
+        return 0;
+    };
+    inline static E operation(E &a, E &b) {
+        return a + b;
+    };
+};
+struct A {
+    using value_structure = Monoid;
+    using operator_structure = Operator;
+    using T = typename value_structure::T;
+    using E = typename operator_structure::E;
+    inline static T operation(T &a, E &b) {
+        return {a.first + b * a.second, a.second};
+    };
+};
+
+llong n, q;
+llong com, s, t, x;
 
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
-    llong n, q;
-    llong com, s, t, x;
 
     cin >> n >> q;
+    LazySegmentTree<A> seg(n);
 
-    LazySegmentTree<M> seg(n);
+    for (int i = 0; i < n; i++) seg.set(i, {0ll, 1ll});
 
-    for (int i = 0; i < q; i++) {
-
+    while (q--) {
         cin >> com;
-
         if (com == 0) {
             cin >> s >> t >> x;
-            seg.update(s, t + 1, x);
+            seg.update(s - 1, t, x);
         }
-        else if (com == 1) {
+        else {
             cin >> s >> t;
-            cout << seg.fold(s, t + 1) << endl;
+            cout << seg.fold(s - 1, t).first << '\n';
         }
-
     }
-
-    return 0;
 }
-
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/aoj/DSL2F.test.cpp"
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
+#line 1 "test/aoj/DSL2G.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 #include <iostream>
-#include <algorithm>
+#include <utility>
 #line 1 "segment_tree/lazy_segment_tree.hpp"
 
 
@@ -295,74 +283,63 @@ struct LazySegmentTree {
 //===
 
 
-#line 5 "test/aoj/DSL2F.test.cpp"
+#line 5 "test/aoj/DSL2G.test.cpp"
 using namespace std;
 using llong = long long;
 
-struct M {
-    struct Monoid {
-        using T = llong;
-        using value_type = T;
-
-        inline static T identity() {
-            return (1ll << 31) - 1;
-        };
-        inline static T operation(T a, T b) {
-            return min(a, b);
-        };
+struct Monoid {
+    using T = pair<llong, llong>;
+    using value_type = pair<llong, llong>;
+    inline static T identity() {
+        return {0ll, 0ll};
     };
-    struct Operator {
-        using E = llong;
-        using value_type = E;
-
-        inline static E identity() {
-            return (1ll << 31) - 1;
-        };
-        inline static E operation(E a, E b) {
-            if (a == identity()) return b;
-            else if (b == identity()) return a;
-            else return b;
-        };
-    };
-
-    using value_structure = Monoid;
-    using operator_structure = Operator;
-    using T = typename Monoid::T;
-    using E = typename Operator::E;
-
-    inline static T operation(T dat, E op) {
-        if (op == operator_structure::identity()) return dat;
-        else return op;
+    inline static T operation(T &a, T &b) {
+        return {a.first + b.first, a.second + b.second};
     };
 };
+struct Operator {
+    using E = llong;
+    using value_type = llong;
+    inline static E identity() {
+        return 0;
+    };
+    inline static E operation(E &a, E &b) {
+        return a + b;
+    };
+};
+struct A {
+    using value_structure = Monoid;
+    using operator_structure = Operator;
+    using T = typename value_structure::T;
+    using E = typename operator_structure::E;
+    inline static T operation(T &a, E &b) {
+        return {a.first + b * a.second, a.second};
+    };
+};
+
+llong n, q;
+llong com, s, t, x;
 
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
-    llong n, q;
-    llong com, s, t, x;
 
     cin >> n >> q;
+    LazySegmentTree<A> seg(n);
 
-    LazySegmentTree<M> seg(n);
+    for (int i = 0; i < n; i++) seg.set(i, {0ll, 1ll});
 
-    for (int i = 0; i < q; i++) {
-
+    while (q--) {
         cin >> com;
-
         if (com == 0) {
             cin >> s >> t >> x;
-            seg.update(s, t + 1, x);
+            seg.update(s - 1, t, x);
         }
-        else if (com == 1) {
+        else {
             cin >> s >> t;
-            cout << seg.fold(s, t + 1) << endl;
+            cout << seg.fold(s - 1, t).first << '\n';
         }
-
     }
-
-    return 0;
 }
 
 ```
