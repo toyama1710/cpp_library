@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2F.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-06 23:25:20+09:00
+    - Last commit date: 2020-06-08 11:49:30+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F</a>
@@ -49,6 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <iostream>
+#include <algorithm>
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -102,6 +103,7 @@ int main() {
     LazySegmentTree<M> seg(n);
 
     for (int i = 0; i < q; i++) {
+
         cin >> com;
 
         if (com == 0) {
@@ -112,6 +114,7 @@ int main() {
             cin >> s >> t;
             cout << seg.fold(s, t + 1) << endl;
         }
+
     }
 
     return 0;
@@ -126,6 +129,7 @@ int main() {
 #line 1 "test/aoj/DSL2F.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <iostream>
+#include <algorithm>
 #line 1 "segment_tree/lazy_segment_tree.hpp"
 
 
@@ -156,7 +160,7 @@ struct LazySegmentTree {
 
     LazySegmentTree() = default;
     explicit LazySegmentTree(uint32_t n):
-        tree((n << 1) | 1, Node(V::identity(), O::identity())) {};
+        tree(n * 2 + 2, Node(V::identity(), O::identity())) {};
 
     int size() {
         return tree.size() >> 1;
@@ -223,8 +227,8 @@ struct LazySegmentTree {
         T rv = V::identity();
 
         while (l < r) {
-            if (l & 1) lv = V::operation(lv, tree[l++].dat);
-            if (r & 1) rv = V::operation(tree[--r].dat, rv);
+            if (l & 1) lv = V::operation(lv, tree[l].dat), l++;
+            if (r & 1) --r, rv = V::operation(tree[r].dat, rv);
 
             l >>= 1;
             r >>= 1;
@@ -237,11 +241,23 @@ struct LazySegmentTree {
         push_down(k + size());
         return tree[k + size()].dat;
     };
+
+    void dump() {
+        int s = 1;
+        for (int w = 1; w <= size() * 2; w *= 2) {
+            for (int i = s; i < s + w; i++) {
+                std::cout << i << ':';
+                std::cout << tree[i].dat << " / " << tree[i].lazy << ' ';
+            }
+            std::cout << std::endl;
+            s += w;
+        }
+    };
 };
 //===
 
 
-#line 4 "test/aoj/DSL2F.test.cpp"
+#line 5 "test/aoj/DSL2F.test.cpp"
 using namespace std;
 using llong = long long;
 
@@ -294,6 +310,7 @@ int main() {
     LazySegmentTree<M> seg(n);
 
     for (int i = 0; i < q; i++) {
+
         cin >> com;
 
         if (com == 0) {
@@ -304,6 +321,7 @@ int main() {
             cin >> s >> t;
             cout << seg.fold(s, t + 1) << endl;
         }
+
     }
 
     return 0;
