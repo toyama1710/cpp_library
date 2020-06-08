@@ -31,9 +31,10 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2H.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-08 23:30:24+09:00
+    - Last commit date: 2020-06-08 23:33:10+09:00
 
 
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H</a>
 
 
 ## Depends on
@@ -47,6 +48,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H"
 #include <iostream>
 #include <algorithm>
 #include "../../segment_tree/lazy_segment_tree.hpp"
@@ -61,7 +63,7 @@ struct Monoid {
     };
     inline static T operation(const T a, const T b) {
         return min(a, b);
-    };
+    };:
 };
 
 struct Operator {
@@ -117,6 +119,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/aoj/DSL2H.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H"
 #include <iostream>
 #include <algorithm>
 #line 1 "segment_tree/lazy_segment_tree.hpp"
@@ -283,7 +286,7 @@ struct LazySegmentTree {
 //===
 
 
-#line 4 "test/aoj/DSL2H.test.cpp"
+#line 5 "test/aoj/DSL2H.test.cpp"
 using namespace std;
 using llong = long long;
 
@@ -295,7 +298,7 @@ struct Monoid {
     };
     inline static T operation(const T a, const T b) {
         return min(a, b);
-    };
+    };:
 };
 
 struct Operator {

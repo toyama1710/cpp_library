@@ -195,7 +195,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2G.test.cpp.html">test/aoj/DSL2G.test.cpp</a>
 * :x: <a href="verify/test/aoj/DSL2H.test.cpp.html">test/aoj/DSL2H.test.cpp</a>
-* :x: <a href="verify/test/aoj/DSL2I.test.cpp.html">test/aoj/DSL2I.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL2I.test.cpp.html">test/aoj/DSL2I.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
