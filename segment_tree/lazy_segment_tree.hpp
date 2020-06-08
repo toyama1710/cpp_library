@@ -85,6 +85,15 @@ struct LazySegmentTree {
         recalc(tmpl);
         recalc(tmpr - 1);
     };
+    void update(uint32_t idx, T x) {
+        idx += size();
+        push_down(idx);
+        tree[idx].dat = x;
+        recalc(idx);
+    };
+    void set(uint32_t idx, T x) {
+        update(idx, x);
+    };
 
     // foldl[l, r)
     T fold(uint32_t l, uint32_t r) {
@@ -110,18 +119,6 @@ struct LazySegmentTree {
     T operator [](const uint32_t &k) {
         push_down(k + size());
         return tree[k + size()].dat;
-    };
-
-    void dump() {
-        int s = 1;
-        for (int w = 1; w <= size() * 2; w *= 2) {
-            for (int i = s; i < s + w; i++) {
-                std::cout << i << ':';
-                std::cout << tree[i].dat << " / " << tree[i].lazy << ' ';
-            }
-            std::cout << std::endl;
-            s += w;
-        }
     };
 };
 //===
