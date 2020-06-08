@@ -77,6 +77,8 @@ struct LazySegmentTree {
             r >>= 1;
         }
 
+        push_down(tmpl);
+        push_down(tmpr - 1);
         recalc(tmpl);
         recalc(tmpr - 1);
     };
@@ -87,8 +89,6 @@ struct LazySegmentTree {
         r += size();
         push_down(l);
         push_down(r - 1);
-        recalc(l);
-        recalc(r - 1);
 
         T lv = V::identity();
         T rv = V::identity();
