@@ -25,7 +25,6 @@ struct SegmentTree {
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
-
         for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
@@ -64,6 +63,43 @@ struct SegmentTree {
         }
 
         return Monoid::operation(lv, rv);
+    };
+
+    template<class F>
+    int bsearch(int l, int r, T s, F f) {
+        l += size();
+        r += size();
+        std::vector<int> left, right;
+        std::vector<int> q_idx;
+        while (l < r) {
+            if (l & 1) left.push_back(l++);
+            if (r & 1) right.push_back(--r);
+            l >>= 1;
+            r >>= 1;
+        }
+        std::swap(q_idx, left);
+        for (auto itr = right.rbegin(); itr != right.rend(); itr++) q_idx.push_back(*itr);
+
+        T sum = Monoid::identity();
+        for (auto v:q_idx) {
+            if (f(Monoid::operation(sum, tree[v]))) {
+                int i = v;
+                while (i < size()) {
+                    if (f(Monoid::operation(sum, tree[i << 1]))) {
+                        i = i << 1;
+                    }
+                    else {
+                        sum = Monoid::operation(sum, tree[i << 1]);
+                        i = (i << 1) | 1;
+                    }
+                }
+                return i - size();
+            }
+            else {
+                sum = Monoid::operation(sum, tree[v]);
+            }
+        }
+        return -1;
     };
 };
 //===
