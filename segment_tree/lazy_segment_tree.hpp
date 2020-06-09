@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cstdint>
+#include "../bit/msb.hpp"
 
 //===
 template<class MonoidwithOperator>
@@ -27,7 +28,7 @@ struct LazySegmentTree {
 
     LazySegmentTree() = default;
     explicit LazySegmentTree(uint32_t n):
-        tree((n << 1) | 1, Node(V::identity(), O::identity())) {};
+        tree(n * 2 + 2, Node(V::identity(), O::identity())) {};
 
     int size() {
         return tree.size() >> 1;
@@ -43,7 +44,9 @@ struct LazySegmentTree {
         tree[k].lazy = O::identity();
     };
     void push_down(uint32_t k) {
-        for (int i = 31; i > 0; i--) propagation(k >> i);
+        if (k == 0) return;
+        uint32_t w = msb32(k);
+        for (int i = w; i > 0; i--) propagation(k >> i);
     };
     void recalc(uint32_t k) {
         while (k > 1) {
@@ -53,7 +56,7 @@ struct LazySegmentTree {
         }
     };
     
-    // [l, r) += dat
+    // [l, r) += op
     void update(uint32_t l, uint32_t r, E op) {
         l += size();
         r += size();
@@ -77,8 +80,19 @@ struct LazySegmentTree {
             r >>= 1;
         }
 
+        push_down(tmpl);
+        push_down(tmpr - 1);
         recalc(tmpl);
         recalc(tmpr - 1);
+    };
+    void update(uint32_t idx, T x) {
+        idx += size();
+        push_down(idx);
+        tree[idx].dat = x;
+        recalc(idx);
+    };
+    void set(uint32_t idx, T x) {
+        update(idx, x);
     };
 
     // foldl[l, r)
@@ -86,16 +100,14 @@ struct LazySegmentTree {
         l += size();
         r += size();
         push_down(l);
-        push_down(r);
-        recalc(l);
-        recalc(r);
+        push_down(r - 1);
 
         T lv = V::identity();
         T rv = V::identity();
 
         while (l < r) {
-            if (l & 1) lv = V::operation(lv, tree[l++].dat);
-            if (r & 1) rv = V::operation(tree[--r].dat, rv);
+            if (l & 1) lv = V::operation(lv, tree[l].dat), l++;
+            if (r & 1) --r, rv = V::operation(tree[r].dat, rv);
 
             l >>= 1;
             r >>= 1;
