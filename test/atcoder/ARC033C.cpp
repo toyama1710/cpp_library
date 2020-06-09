@@ -36,7 +36,7 @@ int main() {
             st.update(x, st[x] + 1);
         }
         else {
-            int idx = st.bsearch(0, n, x,
+            int idx = st.search(0,
                     [&](llong sum){
                         return sum >= x;
                     });
