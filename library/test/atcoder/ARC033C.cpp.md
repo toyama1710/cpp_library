@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/atcoder/ARC033C.test.cpp
+# :warning: test/atcoder/ARC033C.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#e8ba03245cc911ba95395348d53122a0">test/atcoder</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/atcoder/ARC033C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-09 18:13:47+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/atcoder/ARC033C.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-09 18:17:07+09:00
 
 
 
 
 ## Depends on
 
-* :question: <a href="../../../library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
-* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
+* :heavy_check_mark: <a href="../../segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -48,7 +48,7 @@ layout: default
 {% raw %}
 ```cpp
 #define IGNORE
-//#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
+#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
 // header file section
 #include <iostream>
 #include <cstdio>
@@ -104,9 +104,9 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/atcoder/ARC033C.test.cpp"
+#line 1 "test/atcoder/ARC033C.cpp"
 #define IGNORE
-//#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
+#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
 // header file section
 #include <iostream>
 #include <cstdio>
@@ -243,7 +243,7 @@ struct SumMonoid {
 };
 
 
-#line 18 "test/atcoder/ARC033C.test.cpp"
+#line 18 "test/atcoder/ARC033C.cpp"
 
 using namespace std;
 using llong = long long;
