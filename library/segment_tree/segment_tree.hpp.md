@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: segment_tree/segment_tree.hpp
+# :question: segment_tree/segment_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:21:57+09:00
+    - Last commit date: 2020-06-09 07:02:40+00:00
 
 
 
@@ -42,6 +42,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :x: <a href="../../verify/test/atcoder/ARC033C.test.cpp.html">test/atcoder/ARC033C.test.cpp</a>
 
 
 ## Code
@@ -76,7 +77,6 @@ struct SegmentTree {
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
-
         for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
@@ -115,6 +115,43 @@ struct SegmentTree {
         }
 
         return Monoid::operation(lv, rv);
+    };
+
+    template<class F>
+    int bsearch(int l, int r, T s, F f) {
+        l += size();
+        r += size();
+        std::vector<int> left, right;
+        std::vector<int> q_idx;
+        while (l < r) {
+            if (l & 1) left.push_back(l++);
+            if (r & 1) right.push_back(--r);
+            l >>= 1;
+            r >>= 1;
+        }
+        std::swap(q_idx, left);
+        for (auto itr = right.rbegin(); itr != right.rend(); itr++) q_idx.push_back(*itr);
+
+        T sum = Monoid::identity();
+        for (auto v:q_idx) {
+            if (f(Monoid::operation(sum, tree[v]))) {
+                int i = v;
+                while (i < size()) {
+                    if (f(Monoid::operation(sum, tree[i << 1]))) {
+                        i = i << 1;
+                    }
+                    else {
+                        sum = Monoid::operation(sum, tree[i << 1]);
+                        i = (i << 1) | 1;
+                    }
+                }
+                return i - size();
+            }
+            else {
+                sum = Monoid::operation(sum, tree[v]);
+            }
+        }
+        return -1;
     };
 };
 //===
@@ -155,7 +192,6 @@ struct SegmentTree {
         for (InputIterator itr = first; itr != last; itr++) {
             tree[i++] = *itr;
         }
-
         for (i = size() - 1; i > 0; i--) {
             tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
         }
@@ -194,6 +230,43 @@ struct SegmentTree {
         }
 
         return Monoid::operation(lv, rv);
+    };
+
+    template<class F>
+    int bsearch(int l, int r, T s, F f) {
+        l += size();
+        r += size();
+        std::vector<int> left, right;
+        std::vector<int> q_idx;
+        while (l < r) {
+            if (l & 1) left.push_back(l++);
+            if (r & 1) right.push_back(--r);
+            l >>= 1;
+            r >>= 1;
+        }
+        std::swap(q_idx, left);
+        for (auto itr = right.rbegin(); itr != right.rend(); itr++) q_idx.push_back(*itr);
+
+        T sum = Monoid::identity();
+        for (auto v:q_idx) {
+            if (f(Monoid::operation(sum, tree[v]))) {
+                int i = v;
+                while (i < size()) {
+                    if (f(Monoid::operation(sum, tree[i << 1]))) {
+                        i = i << 1;
+                    }
+                    else {
+                        sum = Monoid::operation(sum, tree[i << 1]);
+                        i = (i << 1) | 1;
+                    }
+                }
+                return i - size();
+            }
+            else {
+                sum = Monoid::operation(sum, tree[v]);
+            }
+        }
+        return -1;
     };
 };
 //===

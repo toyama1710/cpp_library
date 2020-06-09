@@ -25,21 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: data_type/sum_monoid.hpp
+# :warning: data_type/semi_group_snippet.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#17f71d965fe9589ddbd11caf7182243e">data_type</a>
-* <a href="{{ site.github.repository_url }}/blob/master/data_type/sum_monoid.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-07 13:37:18+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/data_type/semi_group_snippet.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-06 06:53:33+00:00
 
 
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
-* :x: <a href="../../verify/test/atcoder/ARC033C.test.cpp.html">test/atcoder/ARC033C.test.cpp</a>
 
 
 ## Code
@@ -47,21 +41,13 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef SUM_MONOID_HPP
-#define SUM_MONOID_HPP
 
-template<class T>
-struct SumMonoid {
+template<class T = int>
+struct SemiGroupSnippet {
     using value_type = T;
-    inline static T identity() {
-        return (T)0;
-    };
     inline static T operation(const T a, const T b) {
-        return a + b;
     };
 };
-
-#endif
 
 ```
 {% endraw %}
@@ -69,22 +55,14 @@ struct SumMonoid {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "data_type/sum_monoid.hpp"
+#line 1 "data_type/semi_group_snippet.hpp"
 
-
-
-template<class T>
-struct SumMonoid {
+template<class T = int>
+struct SemiGroupSnippet {
     using value_type = T;
-    inline static T identity() {
-        return (T)0;
-    };
     inline static T operation(const T a, const T b) {
-        return a + b;
     };
 };
-
-
 
 ```
 {% endraw %}

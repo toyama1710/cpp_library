@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/2444_1.test.cpp
+# :x: test/atcoder/ARC033C.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/2444_1.test.cpp">View this file on GitHub</a>
+* category: <a href="../../../index.html#e8ba03245cc911ba95395348d53122a0">test/atcoder</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/atcoder/ARC033C.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-06-09 07:02:40+00:00
 
 
-* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2444">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2444</a>
 
 
 ## Depends on
 
+* :question: <a href="../../../library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
 * :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
@@ -47,8 +47,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2444"
-
+#define IGNORE
+#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
 // header file section
 #include <iostream>
 #include <cstdio>
@@ -62,81 +62,41 @@ layout: default
 #include <functional>
 #include <numeric>
 #include <algorithm>
-#include <tuple>
-#include <utility>
 #include "../../segment_tree/segment_tree.hpp"
+#include "../../data_type/sum_monoid.hpp"
 
 using namespace std;
 using llong = long long;
-using ull = unsigned long long;
 
-llong n, m;
-string s;
-char com;
-string op;
-set<tuple<ull, ull, ull>> st;
-
-template<ull base>
-struct RollingHash {
-    using value_type = pair<ull, ull>;
-    using T = value_type;
-    
-    static std::vector<ull> pow_table;
-    inline static T identity() {
-        return {0ull, 0ull};
-    };
-    inline static T operation(const T a, const T b) {
-        T ret;
-        ret.first = a.first * power(b.second) + b.first;
-        ret.second = a.second + b.second;
-        return ret;
-    };
-
-    inline static ull power(ull n) {
-        while (pow_table.size() <= n) pow_table.push_back(pow_table.back() * base);
-        return pow_table[n];
-    };
-};
-template<ull base>
-vector<ull> RollingHash<base>::pow_table(1, 1);
+int q;
+int t, x;
+const int n = 200001;
+SegmentTree<SumMonoid<llong>> st(n);
 
 int main() {
-    cin >> n >> m;
-    cin >> s;
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
 
-    SegmentTree<RollingHash<1710>> seg1(n);
-    SegmentTree<RollingHash<1000000007>> seg2(n);
-    SegmentTree<RollingHash<10134>> seg3(n);
-    for (int i = 0; i < n; i++) {
-        seg1.update(i, {s[i], 1});
-        seg2.update(i, {s[i], 1});
-        seg3.update(i, {s[i], 1});
+    cin >> q;
+    while (q--) {
+        cin >> t >> x;
+
+        if (t == 1) {
+            st.update(x, st[x] + 1);
+        }
+        else {
+            int idx = st.bsearch(0, n, x,
+                    [&](llong sum){
+                        return sum >= x;
+                    });
+            st.update(idx, st[idx] - 1);
+            cout << idx << '\n';
+        }
     }
 
-    llong l, r;
-    l = r = 0;
-
-    for (int i = 0; i < m; i++) {
-        cin >> com >> op;
-
-        if (com == 'L') {
-            if (op == "++") l++;
-            else l--;
-        }
-        else if (com == 'R') {
-            if (op == "++") r++;
-            else r--;
-        }
-
-        auto key = make_tuple(seg1.fold(l, r + 1).first,
-                              seg2.fold(l, r + 1).first,
-                              seg3.fold(l, r + 1).first);
-
-        st.insert(key);
-    }
-
-    cout << st.size() << endl;
+    return 0;
 };
+
 
 ```
 {% endraw %}
@@ -144,9 +104,9 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/aoj/2444_1.test.cpp"
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2444"
-
+#line 1 "test/atcoder/ARC033C.test.cpp"
+#define IGNORE
+#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
 // header file section
 #include <iostream>
 #include <cstdio>
@@ -160,8 +120,6 @@ int main() {
 #include <functional>
 #include <numeric>
 #include <algorithm>
-#include <tuple>
-#include <utility>
 #line 1 "segment_tree/segment_tree.hpp"
 
 
@@ -269,79 +227,56 @@ struct SegmentTree {
 //===
 
 
-#line 19 "test/aoj/2444_1.test.cpp"
+#line 1 "data_type/sum_monoid.hpp"
+
+
+
+template<class T>
+struct SumMonoid {
+    using value_type = T;
+    inline static T identity() {
+        return (T)0;
+    };
+    inline static T operation(const T a, const T b) {
+        return a + b;
+    };
+};
+
+
+#line 18 "test/atcoder/ARC033C.test.cpp"
 
 using namespace std;
 using llong = long long;
-using ull = unsigned long long;
 
-llong n, m;
-string s;
-char com;
-string op;
-set<tuple<ull, ull, ull>> st;
-
-template<ull base>
-struct RollingHash {
-    using value_type = pair<ull, ull>;
-    using T = value_type;
-    
-    static std::vector<ull> pow_table;
-    inline static T identity() {
-        return {0ull, 0ull};
-    };
-    inline static T operation(const T a, const T b) {
-        T ret;
-        ret.first = a.first * power(b.second) + b.first;
-        ret.second = a.second + b.second;
-        return ret;
-    };
-
-    inline static ull power(ull n) {
-        while (pow_table.size() <= n) pow_table.push_back(pow_table.back() * base);
-        return pow_table[n];
-    };
-};
-template<ull base>
-vector<ull> RollingHash<base>::pow_table(1, 1);
+int q;
+int t, x;
+const int n = 200001;
+SegmentTree<SumMonoid<llong>> st(n);
 
 int main() {
-    cin >> n >> m;
-    cin >> s;
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
 
-    SegmentTree<RollingHash<1710>> seg1(n);
-    SegmentTree<RollingHash<1000000007>> seg2(n);
-    SegmentTree<RollingHash<10134>> seg3(n);
-    for (int i = 0; i < n; i++) {
-        seg1.update(i, {s[i], 1});
-        seg2.update(i, {s[i], 1});
-        seg3.update(i, {s[i], 1});
+    cin >> q;
+    while (q--) {
+        cin >> t >> x;
+
+        if (t == 1) {
+            st.update(x, st[x] + 1);
+        }
+        else {
+            int idx = st.bsearch(0, n, x,
+                    [&](llong sum){
+                        return sum >= x;
+                    });
+            st.update(idx, st[idx] - 1);
+            cout << idx << '\n';
+        }
     }
 
-    llong l, r;
-    l = r = 0;
-
-    for (int i = 0; i < m; i++) {
-        cin >> com >> op;
-
-        if (com == 'L') {
-            if (op == "++") l++;
-            else l--;
-        }
-        else if (com == 'R') {
-            if (op == "++") r++;
-            else r--;
-        }
-
-        auto key = make_tuple(seg1.fold(l, r + 1).first,
-                              seg2.fold(l, r + 1).first,
-                              seg3.fold(l, r + 1).first);
-
-        st.insert(key);
-    }
-
-    cout << st.size() << endl;
+    return 0;
 };
+
 
 ```
 {% endraw %}
