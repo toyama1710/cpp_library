@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#e8ba03245cc911ba95395348d53122a0">test/atcoder</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/atcoder/ARC033C.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-09 07:02:40+00:00
+    - Last commit date: 2020-06-09 18:13:47+09:00
 
 
 
@@ -48,7 +48,7 @@ layout: default
 {% raw %}
 ```cpp
 #define IGNORE
-#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
+//#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
 // header file section
 #include <iostream>
 #include <cstdio>
@@ -106,7 +106,7 @@ int main() {
 ```cpp
 #line 1 "test/atcoder/ARC033C.test.cpp"
 #define IGNORE
-#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
+//#define PROBLEM "https://atcoder.jp/contests/arc033/tasks/arc033_3"
 // header file section
 #include <iostream>
 #include <cstdio>
