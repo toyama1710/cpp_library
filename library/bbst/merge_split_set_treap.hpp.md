@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#d342894e126a2cdd0812cd3a6c903bbd">bbst</a>
 * <a href="{{ site.github.repository_url }}/blob/master/bbst/merge_split_set_treap.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-10 22:54:04+09:00
+    - Last commit date: 2020-06-11 00:47:56+09:00
 
 
 
@@ -150,7 +150,7 @@ struct Treap {
             if (cmp(dat, u->dat)) u = u->lch;
             else u = u->rch;
         }
-        return u == nullptr;
+        return u != nullptr;
     };
 
     void insert(T dat) {
@@ -162,8 +162,7 @@ struct Treap {
     void erase(T dat) {
         assert(find(dat));
         pn t = split(root, dat);
-        erase_rightist(t.first);
-        root = merge(t.first, t.second);
+        root = merge(erase_rightist(t.first), t.second);
     };
     Node *erase_rightist(Node *u) {
         if (u->rch == nullptr) {
@@ -176,7 +175,7 @@ struct Treap {
         return u;
     }
 
-    int order_of(T x) {
+    int order_of(T x) { // 0-index
         Node *u = root;
         int k = 0;
         while (u != nullptr && (cmp(u->dat, x) || cmp(x, u->dat))) {
@@ -193,17 +192,20 @@ struct Treap {
         k += size(u->lch);
         return k;
     };
-    T find_Kth_element(uint k) {
+    T find_Kth_element(uint k) { // 0-index
         assert(k < size());
+        assert(k >= 0);
+        
         Node *u = root;
-        while (k > 0) {
-            if (size(u->lch) == k) return u->dat;
-            if (size(u->lch) + 1 <= k) {
-                k -= size(u->lch) + 1;
-                u = u->rch;
+        int idx = size(u->lch);
+        while (idx != k) {
+            if (idx > k) {
+                u = u->lch;
+                idx -= size(u->rch) + 1;
             }
             else {
-                u = u->lch;
+                u = u->rch;
+                idx += size(u->lch) + 1;
             }
         }
 
@@ -320,7 +322,7 @@ struct Treap {
             if (cmp(dat, u->dat)) u = u->lch;
             else u = u->rch;
         }
-        return u == nullptr;
+        return u != nullptr;
     };
 
     void insert(T dat) {
@@ -332,8 +334,7 @@ struct Treap {
     void erase(T dat) {
         assert(find(dat));
         pn t = split(root, dat);
-        erase_rightist(t.first);
-        root = merge(t.first, t.second);
+        root = merge(erase_rightist(t.first), t.second);
     };
     Node *erase_rightist(Node *u) {
         if (u->rch == nullptr) {
@@ -346,7 +347,7 @@ struct Treap {
         return u;
     }
 
-    int order_of(T x) {
+    int order_of(T x) { // 0-index
         Node *u = root;
         int k = 0;
         while (u != nullptr && (cmp(u->dat, x) || cmp(x, u->dat))) {
@@ -363,17 +364,20 @@ struct Treap {
         k += size(u->lch);
         return k;
     };
-    T find_Kth_element(uint k) {
+    T find_Kth_element(uint k) { // 0-index
         assert(k < size());
+        assert(k >= 0);
+        
         Node *u = root;
-        while (k > 0) {
-            if (size(u->lch) == k) return u->dat;
-            if (size(u->lch) + 1 <= k) {
-                k -= size(u->lch) + 1;
-                u = u->rch;
+        int idx = size(u->lch);
+        while (idx != k) {
+            if (idx > k) {
+                u = u->lch;
+                idx -= size(u->rch) + 1;
             }
             else {
-                u = u->lch;
+                u = u->rch;
+                idx += size(u->lch) + 1;
             }
         }
 
