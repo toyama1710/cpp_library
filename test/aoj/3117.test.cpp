@@ -12,7 +12,7 @@
 #include <functional>
 #include <numeric>
 #include <algorithm>
-#include "../../bbst/merge_split_set_treap.hpp"
+#include "../../bbst/set/merge_split_treap.hpp"
 
 using namespace std;
 using llong = long long;
