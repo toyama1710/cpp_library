@@ -169,6 +169,7 @@ layout: default
 ### test/atcoder
 
 * :warning: <a href="library/test/atcoder/ARC033C.cpp.html">test/atcoder/ARC033C.cpp</a>
+* :warning: <a href="library/test/atcoder/ARC033C_2.cpp.html">test/atcoder/ARC033C_2.cpp</a>
 
 
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
