@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: bbst/merge_split_set_treap.hpp
+# :heavy_check_mark: bbst/merge_split_set_treap.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#d342894e126a2cdd0812cd3a6c903bbd">bbst</a>
 * <a href="{{ site.github.repository_url }}/blob/master/bbst/merge_split_set_treap.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-10 13:05:32+00:00
+    - Last commit date: 2020-06-10 22:54:04+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/aoj/3117.test.cpp.html">test/aoj/3117.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/3117.test.cpp.html">test/aoj/3117.test.cpp</a>
 
 
 ## Code
@@ -161,8 +161,8 @@ struct Treap {
         root = merge(t.first, t.second);
     };
     Node *erase_rightist(Node *u) {
-        if (u.rch == nullptr) {
-            Node *ret = u.lch;
+        if (u->rch == nullptr) {
+            Node *ret = u->lch;
             Traits::deallocate(alc, u, 1);
             return ret;
         }
@@ -331,8 +331,8 @@ struct Treap {
         root = merge(t.first, t.second);
     };
     Node *erase_rightist(Node *u) {
-        if (u.rch == nullptr) {
-            Node *ret = u.lch;
+        if (u->rch == nullptr) {
+            Node *ret = u->lch;
             Traits::deallocate(alc, u, 1);
             return ret;
         }
