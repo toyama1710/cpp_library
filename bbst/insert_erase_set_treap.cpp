@@ -1,3 +1,6 @@
+#ifndef TREAP_SET
+#define TREAP_SET
+
 #include <iostream>
 #include <cstdint>
 #include <random>
@@ -372,3 +375,4 @@ int main() {
     return ARC033C();
     //return pck2016_pre09();
 }
+#endif
