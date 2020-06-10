@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: bbst/set/merge_split_treap.hpp
+# :heavy_check_mark: bbst/set/merge_split_treap.hpp
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-06-11 01:24:49+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/aoj/3117.test.cpp.html">test/aoj/3117.test.cpp</a>
 
 
 ## Code
