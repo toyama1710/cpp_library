@@ -83,7 +83,7 @@ struct SegmentTree {
     template<class F>
     int search(int l, F f) {
         l += size();
-        int r = size() * 2; // r = n;
+        int r = size() * 2; //r = n;
         int tmpr = r;
         int shift = 0;
 
