@@ -113,8 +113,8 @@ struct Treap {
         root = merge(t.first, t.second);
     };
     Node *erase_rightist(Node *u) {
-        if (u.rch == nullptr) {
-            Node *ret = u.lch;
+        if (u->rch == nullptr) {
+            Node *ret = u->lch;
             Traits::deallocate(alc, u, 1);
             return ret;
         }
