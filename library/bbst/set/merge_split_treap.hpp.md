@@ -21,29 +21,19 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: bbst/merge_split_set_treap.hpp
+# :warning: bbst/set/merge_split_treap.hpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#d342894e126a2cdd0812cd3a6c903bbd">bbst</a>
-* <a href="{{ site.github.repository_url }}/blob/master/bbst/merge_split_set_treap.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-11 00:47:56+09:00
-
-
+* category: <a href="../../../index.html#3ab1a2985fc70661dd7191a6b145a786">bbst/set</a>
+* <a href="{{ site.github.repository_url }}/blob/master/bbst/set/merge_split_treap.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-11 01:24:49+09:00
 
 
-## Required by
-
-* :warning: <a href="../test/atcoder/ARC033C_2.cpp.html">test/atcoder/ARC033C_2.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/test/aoj/3117.test.cpp.html">test/aoj/3117.test.cpp</a>
 
 
 ## Code
@@ -222,7 +212,7 @@ struct Treap {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "bbst/merge_split_set_treap.hpp"
+#line 1 "bbst/set/merge_split_treap.hpp"
 
 
 
@@ -391,5 +381,5 @@ struct Treap {
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
