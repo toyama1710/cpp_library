@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: bbst/treap.cpp
+# :warning: bbst/insert_erase_set_treap.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#d342894e126a2cdd0812cd3a6c903bbd">bbst</a>
-* <a href="{{ site.github.repository_url }}/blob/master/bbst/treap.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-03 07:26:58+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/bbst/insert_erase_set_treap.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-10 13:05:32+00:00
 
 
 
@@ -41,6 +41,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef TREAP_SET
+#define TREAP_SET
+
 #include <iostream>
 #include <cstdint>
 #include <random>
@@ -415,6 +418,7 @@ int main() {
     return ARC033C();
     //return pck2016_pre09();
 }
+#endif
 
 ```
 {% endraw %}
@@ -422,7 +426,10 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "bbst/treap.cpp"
+#line 1 "bbst/insert_erase_set_treap.cpp"
+
+
+
 #include <iostream>
 #include <cstdint>
 #include <random>
@@ -797,6 +804,7 @@ int main() {
     return ARC033C();
     //return pck2016_pre09();
 }
+
 
 ```
 {% endraw %}

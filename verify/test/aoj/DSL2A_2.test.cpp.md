@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A_2.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-10 02:00:48+09:00
+    - Last commit date: 2020-06-09 07:02:40+00:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
-* :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :question: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
 
 
 ## Code
@@ -183,53 +183,39 @@ struct SegmentTree {
     };
 
     template<class F>
-    inline int sub_tree_search(int i, T sum, F f) {
-        while (i < size()) {
-            T x = Monoid::operation(sum, tree[i << 1]);
-            if (f(x)) {
-                i = i << 1;
-            }
-            else {
-                sum = x;
-                i = (i << 1) | 1;
-            }
-        }
-        return i - size();
-    }
-
-    template<class F>
-    int search(int l, F f) {
+    int bsearch(int l, int r, T s, F f) {
         l += size();
-        int r = size() * 2; // r = n;
-        int tmpr = r;
-        int shift = 0;
-
-        T sum = Monoid::identity();
+        r += size();
+        std::vector<int> left, right;
+        std::vector<int> q_idx;
         while (l < r) {
-            if (l & 1) {
-                if (f(Monoid::operation(sum, tree[l]))) {
-                    return sub_tree_search(l, sum, f);
-                }
-                sum = Monoid::operation(sum, tree[l]);
-                l++;
-            }
+            if (l & 1) left.push_back(l++);
+            if (r & 1) right.push_back(--r);
             l >>= 1;
             r >>= 1;
-            shift++;
         }
+        std::swap(q_idx, left);
+        for (auto itr = right.rbegin(); itr != right.rend(); itr++) q_idx.push_back(*itr);
 
-        while (shift > 0) {
-            shift--;
-            r = tmpr >> shift;
-            if (r & 1) {
-                r--;
-                if (f(Monoid::operation(sum, tree[r]))) {
-                    return sub_tree_search(r, sum, f);
+        T sum = Monoid::identity();
+        for (auto v:q_idx) {
+            if (f(Monoid::operation(sum, tree[v]))) {
+                int i = v;
+                while (i < size()) {
+                    if (f(Monoid::operation(sum, tree[i << 1]))) {
+                        i = i << 1;
+                    }
+                    else {
+                        sum = Monoid::operation(sum, tree[i << 1]);
+                        i = (i << 1) | 1;
+                    }
                 }
-                sum = Monoid::operation(sum, tree[r]);
+                return i - size();
+            }
+            else {
+                sum = Monoid::operation(sum, tree[v]);
             }
         }
-
         return -1;
     };
 };

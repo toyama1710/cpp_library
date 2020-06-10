@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: data_type/sum_monoid.hpp
+# :question: data_type/sum_monoid.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -36,14 +36,10 @@ layout: default
 
 
 
-## Required by
-
-* :warning: <a href="../test/atcoder/ARC033C.cpp.html">test/atcoder/ARC033C.cpp</a>
-
-
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
+* :x: <a href="../../verify/test/atcoder/ARC033C.test.cpp.html">test/atcoder/ARC033C.test.cpp</a>
 
 
 ## Code
