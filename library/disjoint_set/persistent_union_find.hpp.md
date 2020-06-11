@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#334b410b60c6352c539a44a5cc4509bc">disjoint_set</a>
 * <a href="{{ site.github.repository_url }}/blob/master/disjoint_set/persistent_union_find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:50:39+09:00
+    - Last commit date: 2020-06-11 21:13:37+09:00
 
 
 
@@ -128,7 +128,7 @@ struct PersistentUnionFind {
 // #include <cstring>
 // #include <algorithm>
 // K-ary tree
-template<class T, int K = 2, template<class> class Alloc = std::allocator>
+template<class T, int K = 2>
 struct PersistentArray {
     struct Node;
     using Leaf = T;

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f1f713c9e000f5d3f280adbd124df4f5">array</a>
 * <a href="{{ site.github.repository_url }}/blob/master/array/persistent_array.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:48:22+09:00
+    - Last commit date: 2020-06-11 21:13:37+09:00
 
 
 
@@ -65,7 +65,7 @@ layout: default
 // #include <cstring>
 // #include <algorithm>
 // K-ary tree
-template<class T, int K = 2, template<class> class Alloc = std::allocator>
+template<class T, int K = 2>
 struct PersistentArray {
     struct Node;
     using Leaf = T;
@@ -167,7 +167,7 @@ struct PersistentArray {
 // #include <cstring>
 // #include <algorithm>
 // K-ary tree
-template<class T, int K = 2, template<class> class Alloc = std::allocator>
+template<class T, int K = 2>
 struct PersistentArray {
     struct Node;
     using Leaf = T;

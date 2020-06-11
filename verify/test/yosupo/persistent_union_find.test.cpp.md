@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/persistent_union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 16:50:39+09:00
+    - Last commit date: 2020-06-11 21:13:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/persistent_unionfind">https://judge.yosupo.jp/problem/persistent_unionfind</a>
@@ -142,7 +142,7 @@ int main() {
 // #include <cstring>
 // #include <algorithm>
 // K-ary tree
-template<class T, int K = 2, template<class> class Alloc = std::allocator>
+template<class T, int K = 2>
 struct PersistentArray {
     struct Node;
     using Leaf = T;
