@@ -1,25 +1,27 @@
-#include <iostream>
+#ifndef MEMORY_POOL_ALLOCATOR_HPP
+#define MEMORY_POOL_ALLOCATOR_HPP
+
 #include <vector>
 #include <cassert>
 #include <numeric>
 #include <cstdint>
-using namespace std;
 
 //===
 
 // for use: speed up tree (ex. persistent data structure)
 template<class T>
 struct MemoryPoolAllocator {
-    vector<T *> addr;
-    vector<T> mem;
+    std::vector<T *> addr;
+    std::vector<char> mem;
     size_t ptr;
 
     MemoryPoolAllocator(size_t n) {
-        mem.resize(n);
+        ptr = 0;
+        mem.resize(sizeof(T) * n);
         addr.resize(n);
 
         for (int i = 0; i < n; i++) {
-            addr[i] = &(mem[i]);
+            addr[i] = &(mem[i * sizeof(T)]);
         }
     };
 
@@ -35,6 +37,4 @@ struct MemoryPoolAllocator {
 };
 
 //===
-
-int main() {
-}
+#endif
