@@ -12,7 +12,7 @@
 // #include <cstring>
 // #include <algorithm>
 // K-ary tree
-template<class T, int K = 2, template<class> class Alloc = std::allocator>
+template<class T, int K = 2>
 struct PersistentArray {
     struct Node;
     using Leaf = T;
