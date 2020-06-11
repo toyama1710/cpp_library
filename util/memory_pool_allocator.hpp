@@ -20,7 +20,7 @@ struct MemoryPoolAllocator {
         ptr = 0;
 
         for (int i = 0; i < sz; i++) {
-            addr[i] = &(mem[i * sizeof(T)]);
+            addr[i] = (T *)(&(mem[i * sizeof(T)]));
         }
     };
 
