@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/memory_pool_allocator.hpp
+# :heavy_check_mark: util/memory_pool_allocator.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/memory_pool_allocator.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-11 04:14:11+00:00
+    - Last commit date: 2020-06-11 07:49:55+00:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/test/aoj/3117_2.test.cpp.html">test/aoj/3117_2.test.cpp</a>
 
 
 ## Code
@@ -63,7 +68,7 @@ struct MemoryPoolAllocator {
         ptr = 0;
 
         for (int i = 0; i < sz; i++) {
-            addr[i] = &(mem[i * sizeof(T)]);
+            addr[i] = (T *)(&(mem[i * sizeof(T)]));
         }
     };
 
@@ -119,7 +124,7 @@ struct MemoryPoolAllocator {
         ptr = 0;
 
         for (int i = 0; i < sz; i++) {
-            addr[i] = &(mem[i * sizeof(T)]);
+            addr[i] = (T *)(&(mem[i * sizeof(T)]));
         }
     };
 

@@ -193,7 +193,7 @@ layout: default
 ### util
 
 * :heavy_check_mark: <a href="library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
-* :warning: <a href="library/util/memory_pool_allocator.hpp.html">util/memory_pool_allocator.hpp</a>
+* :heavy_check_mark: <a href="library/util/memory_pool_allocator.hpp.html">util/memory_pool_allocator.hpp</a>
 * :warning: <a href="library/util/sparse_array.hpp.html">util/sparse_array.hpp</a>
 * :warning: <a href="library/util/xorshift.cpp.html">util/xorshift.cpp</a>
 
@@ -202,7 +202,8 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/2444_1.test.cpp.html">test/aoj/2444_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/2444_2.test.cpp.html">test/aoj/2444_2.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/3117.test.cpp.html">test/aoj/3117.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/3117_1.test.cpp.html">test/aoj/3117_1.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/3117_2.test.cpp.html">test/aoj/3117_2.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL1B.test.cpp.html">test/aoj/DSL1B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
