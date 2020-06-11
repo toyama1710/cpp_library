@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: util/memory_pool_allocator.cpp
+# :warning: util/memory_pool_allocator.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
-* <a href="{{ site.github.repository_url }}/blob/master/util/memory_pool_allocator.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-11 02:18:30+00:00
+* <a href="{{ site.github.repository_url }}/blob/master/util/memory_pool_allocator.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-11 04:14:11+00:00
 
 
 
@@ -44,28 +44,32 @@ layout: default
 #ifndef MEMORY_POOL_ALLOCATOR_HPP
 #define MEMORY_POOL_ALLOCATOR_HPP
 
-#include <vector>
 #include <cassert>
+#include <array>
 #include <numeric>
 #include <cstdint>
 
 //===
 
-// for use: speed up tree (ex. persistent data structure)
-template<class T>
+// for use: speed up (ex. persistent data structure)
+template<class T, size_t sz>
 struct MemoryPoolAllocator {
-    std::vector<T *> addr;
-    std::vector<char> mem;
+    using value_type = T;
+    std::array<T *, sz> addr;
+    std::array<char, sizeof(T) * sz> mem;
     size_t ptr;
 
-    MemoryPoolAllocator(size_t n) {
+    MemoryPoolAllocator() {
         ptr = 0;
-        mem.resize(sizeof(T) * n);
-        addr.resize(n);
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < sz; i++) {
             addr[i] = &(mem[i * sizeof(T)]);
         }
+    };
+
+    template<class U>
+    struct rebind {
+        using other = MemoryPoolAllocator<U, sz>;
     };
 
     T *allocate(size_t n) {
@@ -76,6 +80,10 @@ struct MemoryPoolAllocator {
     void deallocate(T *p, size_t n) {
         assert(n == 1);
         addr[--ptr] = p;
+    };
+
+    int max_size() {
+        return 1;
     };
 };
 
@@ -88,32 +96,36 @@ struct MemoryPoolAllocator {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "util/memory_pool_allocator.cpp"
+#line 1 "util/memory_pool_allocator.hpp"
 
 
 
-#include <vector>
 #include <cassert>
+#include <array>
 #include <numeric>
 #include <cstdint>
 
 //===
 
-// for use: speed up tree (ex. persistent data structure)
-template<class T>
+// for use: speed up (ex. persistent data structure)
+template<class T, size_t sz>
 struct MemoryPoolAllocator {
-    std::vector<T *> addr;
-    std::vector<char> mem;
+    using value_type = T;
+    std::array<T *, sz> addr;
+    std::array<char, sizeof(T) * sz> mem;
     size_t ptr;
 
-    MemoryPoolAllocator(size_t n) {
+    MemoryPoolAllocator() {
         ptr = 0;
-        mem.resize(sizeof(T) * n);
-        addr.resize(n);
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < sz; i++) {
             addr[i] = &(mem[i * sizeof(T)]);
         }
+    };
+
+    template<class U>
+    struct rebind {
+        using other = MemoryPoolAllocator<U, sz>;
     };
 
     T *allocate(size_t n) {
@@ -124,6 +136,10 @@ struct MemoryPoolAllocator {
     void deallocate(T *p, size_t n) {
         assert(n == 1);
         addr[--ptr] = p;
+    };
+
+    int max_size() {
+        return 1;
     };
 };
 

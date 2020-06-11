@@ -193,7 +193,7 @@ layout: default
 ### util
 
 * :heavy_check_mark: <a href="library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
-* :warning: <a href="library/util/memory_pool_allocator.cpp.html">util/memory_pool_allocator.cpp</a>
+* :warning: <a href="library/util/memory_pool_allocator.hpp.html">util/memory_pool_allocator.hpp</a>
 * :warning: <a href="library/util/sparse_array.hpp.html">util/sparse_array.hpp</a>
 * :warning: <a href="library/util/xorshift.cpp.html">util/xorshift.cpp</a>
 
