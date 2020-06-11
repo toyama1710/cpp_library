@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/memory_pool_allocator.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 13:11:05+09:00
+    - Last commit date: 2020-06-11 02:18:30+00:00
 
 
 
@@ -41,28 +41,30 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <iostream>
+#ifndef MEMORY_POOL_ALLOCATOR_HPP
+#define MEMORY_POOL_ALLOCATOR_HPP
+
 #include <vector>
 #include <cassert>
 #include <numeric>
 #include <cstdint>
-using namespace std;
 
 //===
 
 // for use: speed up tree (ex. persistent data structure)
 template<class T>
 struct MemoryPoolAllocator {
-    vector<T *> addr;
-    vector<T> mem;
+    std::vector<T *> addr;
+    std::vector<char> mem;
     size_t ptr;
 
     MemoryPoolAllocator(size_t n) {
-        mem.resize(n);
+        ptr = 0;
+        mem.resize(sizeof(T) * n);
         addr.resize(n);
 
         for (int i = 0; i < n; i++) {
-            addr[i] = &(mem[i]);
+            addr[i] = &(mem[i * sizeof(T)]);
         }
     };
 
@@ -78,9 +80,7 @@ struct MemoryPoolAllocator {
 };
 
 //===
-
-int main() {
-}
+#endif
 
 ```
 {% endraw %}
@@ -89,28 +89,30 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "util/memory_pool_allocator.cpp"
-#include <iostream>
+
+
+
 #include <vector>
 #include <cassert>
 #include <numeric>
 #include <cstdint>
-using namespace std;
 
 //===
 
 // for use: speed up tree (ex. persistent data structure)
 template<class T>
 struct MemoryPoolAllocator {
-    vector<T *> addr;
-    vector<T> mem;
+    std::vector<T *> addr;
+    std::vector<char> mem;
     size_t ptr;
 
     MemoryPoolAllocator(size_t n) {
-        mem.resize(n);
+        ptr = 0;
+        mem.resize(sizeof(T) * n);
         addr.resize(n);
 
         for (int i = 0; i < n; i++) {
-            addr[i] = &(mem[i]);
+            addr[i] = &(mem[i * sizeof(T)]);
         }
     };
 
@@ -127,8 +129,6 @@ struct MemoryPoolAllocator {
 
 //===
 
-int main() {
-}
 
 ```
 {% endraw %}
