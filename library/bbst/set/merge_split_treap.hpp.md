@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#3ab1a2985fc70661dd7191a6b145a786">bbst/set</a>
 * <a href="{{ site.github.repository_url }}/blob/master/bbst/set/merge_split_treap.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-11 01:24:49+09:00
+    - Last commit date: 2020-06-11 07:44:37+00:00
 
 
 
@@ -59,7 +59,7 @@ layout: default
 
 //===
 template <class T, class Compare = std::less<T>,
-          template<class> class Alloc = std::allocator>
+         class A = std::allocator<T>>
 struct Treap {
     using uint = uint_fast32_t;
     using uint64 = uint_fast64_t;
@@ -82,11 +82,12 @@ struct Treap {
     const Compare cmp;
     std::mt19937 rnd;
     
-    Alloc<Node> alc;
-    using Traits = std::allocator_traits<Alloc<Node> >;
+    using Alloc = typename std::allocator_traits<A>::template rebind_alloc<Node>;
+    using Traits = typename std::allocator_traits<Alloc>;
+    Alloc alc;
     
     Treap(const Compare &cmp = Compare()):
-        root(nullptr), cmp(cmp), rnd(std::mt19937(std::random_device()())) {};
+        root(nullptr), cmp(cmp), rnd(std::mt19937(std::random_device()())), alc() {};
     
     void clear(Node *u) {
         if (u == nullptr) return;
@@ -231,7 +232,7 @@ struct Treap {
 
 //===
 template <class T, class Compare = std::less<T>,
-          template<class> class Alloc = std::allocator>
+         class A = std::allocator<T>>
 struct Treap {
     using uint = uint_fast32_t;
     using uint64 = uint_fast64_t;
@@ -254,11 +255,12 @@ struct Treap {
     const Compare cmp;
     std::mt19937 rnd;
     
-    Alloc<Node> alc;
-    using Traits = std::allocator_traits<Alloc<Node> >;
+    using Alloc = typename std::allocator_traits<A>::template rebind_alloc<Node>;
+    using Traits = typename std::allocator_traits<Alloc>;
+    Alloc alc;
     
     Treap(const Compare &cmp = Compare()):
-        root(nullptr), cmp(cmp), rnd(std::mt19937(std::random_device()())) {};
+        root(nullptr), cmp(cmp), rnd(std::mt19937(std::random_device()())), alc() {};
     
     void clear(Node *u) {
         if (u == nullptr) return;
