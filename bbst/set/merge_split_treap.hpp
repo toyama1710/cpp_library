@@ -11,7 +11,7 @@
 
 //===
 template <class T, class Compare = std::less<T>,
-          template<class> class Alloc = std::allocator>
+         class A = std::allocator<T>>
 struct Treap {
     using uint = uint_fast32_t;
     using uint64 = uint_fast64_t;
@@ -34,11 +34,12 @@ struct Treap {
     const Compare cmp;
     std::mt19937 rnd;
     
-    Alloc<Node> alc;
-    using Traits = std::allocator_traits<Alloc<Node> >;
+    using Alloc = typename std::allocator_traits<A>::template rebind_alloc<Node>;
+    using Traits = typename std::allocator_traits<Alloc>;
+    Alloc alc;
     
     Treap(const Compare &cmp = Compare()):
-        root(nullptr), cmp(cmp), rnd(std::mt19937(std::random_device()())) {};
+        root(nullptr), cmp(cmp), rnd(std::mt19937(std::random_device()())), alc() {};
     
     void clear(Node *u) {
         if (u == nullptr) return;
