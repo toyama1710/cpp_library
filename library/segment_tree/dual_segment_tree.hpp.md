@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#ca810e3a5259e4bd613e780cf209098c">segment_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/segment_tree/dual_segment_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-15 15:43:45+09:00
+    - Last commit date: 2020-07-02 04:49:03+00:00
 
 
 
@@ -92,11 +92,15 @@ struct DualSegmentTree {
             r >>= 1;
         }
     };
- 
-    T operator [] (uint32_t k) {
+
+    T get(uint32_t k) {
         k += size();
         push_down(k);
         return lazy[k];
+    };
+ 
+    T operator [] (uint32_t k) {
+        return  get(k);
     };
 };
 //===
@@ -155,11 +159,15 @@ struct DualSegmentTree {
             r >>= 1;
         }
     };
- 
-    T operator [] (uint32_t k) {
+
+    T get(uint32_t k) {
         k += size();
         push_down(k);
         return lazy[k];
+    };
+ 
+    T operator [] (uint32_t k) {
+        return  get(k);
     };
 };
 //===

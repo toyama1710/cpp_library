@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2D.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-05-15 15:43:45+09:00
+    - Last commit date: 2020-07-02 04:49:03+00:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D</a>
@@ -144,11 +144,15 @@ struct DualSegmentTree {
             r >>= 1;
         }
     };
- 
-    T operator [] (uint32_t k) {
+
+    T get(uint32_t k) {
         k += size();
         push_down(k);
         return lazy[k];
+    };
+ 
+    T operator [] (uint32_t k) {
+        return  get(k);
     };
 };
 //===
