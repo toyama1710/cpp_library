@@ -43,11 +43,15 @@ struct DualSegmentTree {
             r >>= 1;
         }
     };
- 
-    T operator [] (uint32_t k) {
+
+    T get(uint32_t k) {
         k += size();
         push_down(k);
         return lazy[k];
+    };
+ 
+    T operator [] (uint32_t k) {
+        return  get(k);
     };
 };
 //===
