@@ -26,7 +26,7 @@ int main() {
     cin >> n >> q;
 
     vector<llong> v(n, -1 * ((1ll << 31) - 1));
-    DynamicSegmentTree<MinMonoid<llong>> seg();
+    DynamicSegmentTree<MinMonoid<llong>> seg;
     for (int i = 0; i < n; i++) {
         seg.update(i, v[i]);
     }
