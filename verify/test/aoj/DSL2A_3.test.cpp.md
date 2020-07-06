@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/aoj/DSL2A_2.test.cpp
+# :x: test/aoj/DSL2A_3.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A_2.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-10 22:44:18+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A_3.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-07-06 02:42:07+00:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :question: <a href="../../../library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
-* :heavy_check_mark: <a href="../../../library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
+* :x: <a href="../../../library/segment_tree/dynamic_segment_tree.hpp.html">segment_tree/dynamic_segment_tree.hpp</a>
 
 
 ## Code
@@ -63,7 +63,7 @@ layout: default
 #include <functional>
 #include <numeric>
 #include <algorithm>
-#include "../../segment_tree/segment_tree.hpp"
+#include "../../segment_tree/dynamic_segment_tree.hpp"
 #include "../../data_type/max_monoid.hpp"
 
 using namespace std;
@@ -76,7 +76,10 @@ int main() {
     cin >> n >> q;
 
     vector<llong> v(n, -1 * ((1ll << 31) - 1));
-    SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
+    DynamicSegmentTree<MinMonoid<llong>> seg();
+    for (int i = 0; i < n; i++) {
+        seg.update(i, v[i]);
+    }
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
@@ -99,7 +102,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/aoj/DSL2A_2.test.cpp"
+#line 1 "test/aoj/DSL2A_3.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
 
 // header file section
@@ -115,127 +118,106 @@ int main() {
 #include <functional>
 #include <numeric>
 #include <algorithm>
-#line 1 "segment_tree/segment_tree.hpp"
-
-
-
-#line 6 "segment_tree/segment_tree.hpp"
-#include <iterator>
-
+#line 1 "segment_tree/dynamic_segment_tree.hpp"
 //===
 template<class Monoid>
-struct SegmentTree {
+struct DynamicSegmentTree {
     using T = typename Monoid::value_type;
+    using llong = long long;
 
-    std::vector<T> tree;
+    struct Node {
+        Node *left, *right;
+        T v;
+        Node(T v):v(v), left(nullptr), right(nullptr) {};
+    };
 
-    SegmentTree() = default;
-    explicit SegmentTree(int n)
-        :tree(n << 1, Monoid::identity()) {};
+    Node *root = nullptr;
+    llong L = 0, R = 0;
 
-    template<class InputIterator>
-    SegmentTree(InputIterator first, InputIterator last) {
-        tree.assign(distance(first, last) << 1, Monoid::identity());
+    DynamicSegmentTree() = default;
 
-        int i;
-        i = size();
-        for (InputIterator itr = first; itr != last; itr++) {
-            tree[i++] = *itr;
+    inline void eval(Node &u) {
+        T lv = Monoid::identity(), rv = Monoid::identity();
+        if (u.left) lv = u.left->v;
+        if (u.right) rv = u.right->v;
+        u.v = Monoid::operation(lv, rv);
+    };
+
+    inline void expand(llong i) {
+        if (L == R) {
+            R++;
+            while (i >= R) R += R - L;
+            while (i < L) L -= R - L;
+            root = new Node(Monoid::identity());
         }
-        for (i = size() - 1; i > 0; i--) {
-            tree[i] = Monoid::operation(tree[(i << 1)], tree[(i << 1) | 1]);
+        else {
+            Node *tmp;
+            while (i >= R) {
+                R += R - L;
+                tmp = new Node(root->v);
+                tmp->left = root;
+                root = tmp;
+            }
+            while (i < L) {
+                L -= R - L;
+                tmp = new Node(root->v);
+                tmp->right = root;
+                root = tmp;
+            }
         }
     };
 
-    inline int size() {
-        return tree.size() >> 1;
+    inline void update(llong i, T v) {
+        if (i < L || R <= i) expand(i);
+        update(root, L, R, i, v);
     };
 
-    inline T operator[] (int k) {
-        return tree[k + size()];
-    };
-
-    void update(int k, const T dat) {
-        k += size();
-        tree[k] = dat;
-        
-        while(k > 1) {
-            k >>= 1;
-            tree[k] = Monoid::operation(tree[(k << 1)], tree[(k << 1) | 1]);
+    void update(Node *node, llong nl, llong nr, llong k, T v) {
+        if (nr - nl <= 1) {
+            node->v = v;
+            return;
         }
-    };
+
+        llong mid = (nl + nr) / 2;
+        if (k < mid) {
+            if (!node->left) node->left = new Node(Monoid::identity());
+            update(node->left, nl, (nl + nr) / 2, k, v);
+        }
+        else {
+            if (!node->right) node->right = new Node(Monoid::identity());
+            update(node->right, (nl + nr) / 2, nr, k, v);
+        }
+
+        eval(*node);
+        return;
+    }
 
     // [l, r)
-    T fold(int l, int r) {
-        l += size(); //points leaf
-        r += size();
+    inline T fold(llong l, llong r) {
+        if (l < L) expand(l);
+        if (r > R) expand(r);
+        return fold(root, L, R, l, r);
+    };
+    T fold(Node *node, llong nl, llong nr, llong ql, llong qr) {
+        if (ql <= nl && nr <= qr) return node->v;
 
-        T lv = Monoid::identity();
-        T rv = Monoid::identity();
-        while (l < r) {
-            if (l & 1) lv = Monoid::operation(lv, tree[l++]);
-            if (r & 1) rv = Monoid::operation(tree[--r], rv);
-            l >>= 1;
-            r >>= 1;
+        T lv = Monoid::identity(), rv = Monoid::identity();
+        llong mid = (nl + nr) / 2;
+        if (node->left && ql < mid && nl < qr) {
+            lv = fold(node->left, nl, mid, ql, qr);
+        }
+        if (node->right && ql < nr && mid < qr) {
+            rv = fold(node->right, mid, nr, ql, qr);
         }
 
         return Monoid::operation(lv, rv);
     };
-
-    template<class F>
-    inline int sub_tree_search(int i, T sum, F f) {
-        while (i < size()) {
-            T x = Monoid::operation(sum, tree[i << 1]);
-            if (f(x)) {
-                i = i << 1;
-            }
-            else {
-                sum = x;
-                i = (i << 1) | 1;
-            }
-        }
-        return i - size();
-    }
-
-    template<class F>
-    int search(int l, F f) {
-        l += size();
-        int r = size() * 2; //r = n;
-        int tmpr = r;
-        int shift = 0;
-
-        T sum = Monoid::identity();
-        while (l < r) {
-            if (l & 1) {
-                if (f(Monoid::operation(sum, tree[l]))) {
-                    return sub_tree_search(l, sum, f);
-                }
-                sum = Monoid::operation(sum, tree[l]);
-                l++;
-            }
-            l >>= 1;
-            r >>= 1;
-            shift++;
-        }
-
-        while (shift > 0) {
-            shift--;
-            r = tmpr >> shift;
-            if (r & 1) {
-                r--;
-                if (f(Monoid::operation(sum, tree[r]))) {
-                    return sub_tree_search(r, sum, f);
-                }
-                sum = Monoid::operation(sum, tree[r]);
-            }
-        }
-
-        return -1;
+    
+    T operator[] (const llong k) {
+        return fold(k, k + 1);
     };
 };
 //===
-
-
 #line 1 "data_type/max_monoid.hpp"
 
 
@@ -256,7 +238,7 @@ struct MinMonoid {
 //===
 
 
-#line 18 "test/aoj/DSL2A_2.test.cpp"
+#line 18 "test/aoj/DSL2A_3.test.cpp"
 
 using namespace std;
 using llong = long long;
@@ -268,7 +250,10 @@ int main() {
     cin >> n >> q;
 
     vector<llong> v(n, -1 * ((1ll << 31) - 1));
-    SegmentTree<MinMonoid<llong>> seg(v.begin(), v.end());
+    DynamicSegmentTree<MinMonoid<llong>> seg();
+    for (int i = 0; i < n; i++) {
+        seg.update(i, v[i]);
+    }
 
     for (int i = 0; i < q; i++) {
         cin >> com >> x >> y;
