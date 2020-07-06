@@ -77,7 +77,7 @@ layout: default
 
 ### data_type
 
-* :question: <a href="library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
+* :heavy_check_mark: <a href="library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
 * :heavy_check_mark: <a href="library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
 * :warning: <a href="library/data_type/monoid_snippet.hpp.html">data_type/monoid_snippet.hpp</a>
 * :warning: <a href="library/data_type/semi_group_snippet.hpp.html">data_type/semi_group_snippet.hpp</a>
@@ -139,7 +139,7 @@ layout: default
 ### segment_tree
 
 * :heavy_check_mark: <a href="library/segment_tree/dual_segment_tree.hpp.html">segment_tree/dual_segment_tree.hpp</a>
-* :x: <a href="library/segment_tree/dynamic_segment_tree.hpp.html">segment_tree/dynamic_segment_tree.hpp</a>
+* :heavy_check_mark: <a href="library/segment_tree/dynamic_segment_tree.hpp.html">segment_tree/dynamic_segment_tree.hpp</a>
 * :warning: <a href="library/segment_tree/dynamic_starry_sky.cpp.html">segment_tree/dynamic_starry_sky.cpp</a>
 * :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
@@ -214,7 +214,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/aoj/DSL1B.test.cpp.html">test/aoj/DSL1B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
-* :x: <a href="verify/test/aoj/DSL2A_3.test.cpp.html">test/aoj/DSL2A_3.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/aoj/DSL2A_3.test.cpp.html">test/aoj/DSL2A_3.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2D.test.cpp.html">test/aoj/DSL2D.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL2E.test.cpp.html">test/aoj/DSL2E.test.cpp</a>

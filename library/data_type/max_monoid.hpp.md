@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: data_type/max_monoid.hpp
+# :heavy_check_mark: data_type/max_monoid.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
-* :x: <a href="../../verify/test/aoj/DSL2A_3.test.cpp.html">test/aoj/DSL2A_3.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/aoj/DSL2A_3.test.cpp.html">test/aoj/DSL2A_3.test.cpp</a>
 
 
 ## Code

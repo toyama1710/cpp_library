@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/aoj/DSL2A_3.test.cpp
+# :heavy_check_mark: test/aoj/DSL2A_3.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0d0c91c0cca30af9c1c9faef0cf04aa9">test/aoj</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/aoj/DSL2A_3.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-06 02:42:07+00:00
+    - Last commit date: 2020-07-06 02:53:34+00:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
-* :x: <a href="../../../library/segment_tree/dynamic_segment_tree.hpp.html">segment_tree/dynamic_segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
+* :heavy_check_mark: <a href="../../../library/segment_tree/dynamic_segment_tree.hpp.html">segment_tree/dynamic_segment_tree.hpp</a>
 
 
 ## Code
@@ -76,7 +76,7 @@ int main() {
     cin >> n >> q;
 
     vector<llong> v(n, -1 * ((1ll << 31) - 1));
-    DynamicSegmentTree<MinMonoid<llong>> seg();
+    DynamicSegmentTree<MinMonoid<llong>> seg;
     for (int i = 0; i < n; i++) {
         seg.update(i, v[i]);
     }
@@ -250,7 +250,7 @@ int main() {
     cin >> n >> q;
 
     vector<llong> v(n, -1 * ((1ll << 31) - 1));
-    DynamicSegmentTree<MinMonoid<llong>> seg();
+    DynamicSegmentTree<MinMonoid<llong>> seg;
     for (int i = 0; i < n; i++) {
         seg.update(i, v[i]);
     }
