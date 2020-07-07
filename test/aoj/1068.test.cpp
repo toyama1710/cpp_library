@@ -1,4 +1,4 @@
-#define PROBLEM "judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1068"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1068"
 
 #include <iostream>
 #include "../../segment_tree/segment_tree2d.hpp"
