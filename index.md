@@ -145,7 +145,7 @@ layout: default
 * :heavy_check_mark: <a href="library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
-* :warning: <a href="library/segment_tree/segment_tree2d.cpp.html">segment_tree/segment_tree2d.cpp</a>
+* :x: <a href="library/segment_tree/segment_tree2d.hpp.html">segment_tree/segment_tree2d.hpp</a>
 
 
 <div id="cb323a14df0a258a78d4acbe3d02dfda"></div>
@@ -209,6 +209,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/aoj/2444_1.test.cpp.html">test/aoj/2444_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/2444_2.test.cpp.html">test/aoj/2444_2.test.cpp</a>
+* :x: <a href="verify/test/aoj/2842.test.cpp.html">test/aoj/2842.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/3117_1.test.cpp.html">test/aoj/3117_1.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/3117_2.test.cpp.html">test/aoj/3117_2.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/aoj/DSL1B.test.cpp.html">test/aoj/DSL1B.test.cpp</a>
