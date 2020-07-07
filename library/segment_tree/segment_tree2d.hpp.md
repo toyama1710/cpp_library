@@ -39,6 +39,7 @@ layout: default
 ## Verified with
 
 * :x: <a href="../../verify/test/aoj/1068.test.cpp.html">test/aoj/1068.test.cpp</a>
+* :x: <a href="../../verify/test/aoj/2842.test.cpp.html">test/aoj/2842.test.cpp</a>
 
 
 ## Code
