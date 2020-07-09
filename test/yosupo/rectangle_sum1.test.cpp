@@ -19,8 +19,18 @@
 using namespace std;
 using llong = long long;
 
+struct Monoid {
+    using value_type = llong;
+    static llong operation(llong a, llong b) {
+        return a + b;
+    };
+    static llong identity() {
+        return 0;
+    }
+};
+
 llong n, q;
-vector<PersistentSegmentTree<llong>> v;
+vector<PersistentSegmentTree<Monoid>> v;
 vector<tuple<llong, llong, llong>> p;
 CoordinateCompression x_axis;
 CoordinateCompression y_axis;
@@ -42,9 +52,7 @@ int main() {
     x_axis.build();
     y_axis.build();
 
-    v.push_back(PersistentSegmentTree<llong>(0,
-                [](auto l, auto r) {return l + r;},
-                x_axis.size()));
+    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));
 
     for (int i = 0; i < p.size(); i++) {
         llong x, y, w;
