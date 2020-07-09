@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/rectangle_sum1.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-30 19:51:10+00:00
+    - Last commit date: 2020-07-09 16:11:51+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/rectangle_sum">https://judge.yosupo.jp/problem/rectangle_sum</a>
@@ -69,8 +69,18 @@ layout: default
 using namespace std;
 using llong = long long;
 
+struct Monoid {
+    using value_type = llong;
+    static llong operation(llong a, llong b) {
+        return a + b;
+    };
+    static llong identity() {
+        return 0;
+    }
+};
+
 llong n, q;
-vector<PersistentSegmentTree<llong>> v;
+vector<PersistentSegmentTree<Monoid>> v;
 vector<tuple<llong, llong, llong>> p;
 CoordinateCompression x_axis;
 CoordinateCompression y_axis;
@@ -92,9 +102,7 @@ int main() {
     x_axis.build();
     y_axis.build();
 
-    v.push_back(PersistentSegmentTree<llong>(0,
-                [](auto l, auto r) {return l + r;},
-                x_axis.size()));
+    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));
 
     for (int i = 0; i < p.size(); i++) {
         llong x, y, w;
@@ -163,31 +171,25 @@ int main() {
 
 //===
 // LIBRARY SECTION
-// #include <iterator>
-// #include <functional>
-// #include <vector>
-// #include <cstdint>
-// #include <cstddef>
-template<class Monoid, class F = std::function<Monoid(Monoid, Monoid)>>
+template<class Monoid>
 struct PersistentSegmentTree {
     using uint = size_t;
+    using T = typename Monoid::value_type;
     
     struct Node {
-        Monoid dat;
+        T dat;
         Node *l = nullptr, *r = nullptr;
 
-        Node (Monoid dat):dat(dat) {};
+        Node (T dat):dat(dat) {};
     };
     
-    Monoid e;
-    F f;
     Node *root;
     uint n;
 
     Node *merge_node(Node *lch, Node *rch) {
-        Monoid l = (lch ? lch->dat : e);
-        Monoid r = (rch ? rch->dat : e);
-        Node *ret = new Node(f(l, r));
+        T l = (lch ? lch->dat : Monoid::identity());
+        T r = (rch ? rch->dat : Monoid::identity());
+        Node *ret = new Node(Monoid::operation(l, r));
         ret->l = lch;
         ret->r = rch;
 
@@ -195,36 +197,36 @@ struct PersistentSegmentTree {
     };
 
     PersistentSegmentTree(const PersistentSegmentTree &) = default;
-    PersistentSegmentTree(Monoid e, F f, uint n, Node *r)
-        :e(e), f(f), n(n), root(r) {};
-    PersistentSegmentTree(Monoid e, F f, uint n)
-        :e(e), f(f), n(n), root(alloc(0, n, std::vector<Monoid>(n, e))) {};
+    PersistentSegmentTree &operator = (const PersistentSegmentTree &) = default;
+    PersistentSegmentTree(uint n, Node *r):n(n), root(r) {};
+    PersistentSegmentTree(uint n)
+        :n(n), root(alloc(0, n, std::vector<T>(n, Monoid::identity()))) {};
     template<class InputItr>
-    PersistentSegmentTree(Monoid e, F f, const InputItr first, const InputItr last)
-        :e(e), f(f), n(std::distance(first, last)), root(alloc(0, n, std::vector<Monoid>(first, last))) {};
+    PersistentSegmentTree(const InputItr first, const InputItr last)
+        :n(std::distance(first, last)), root(alloc(0, n, std::vector<T>(first, last))) {};
 
-    Node *alloc(uint nl, uint nr, const std::vector<Monoid> &v) {
+    Node *alloc(uint nl, uint nr, const std::vector<T> &v) {
         if (nr - nl <= 1) return new Node(v[nl]);
         else return merge_node(alloc(nl, (nl + nr) / 2, v),
                 alloc((nl + nr) / 2, nr, v));
     };
 
-    const Monoid fold(uint l, uint r) const {
+    const T fold(uint l, uint r) const {
         return fold(l, r, 0, n, root);
     };
-    const Monoid fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const {
-        if (np == nullptr || qr <= nl || nr <= ql) return e;
+    const T fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const {
+        if (np == nullptr || qr <= nl || nr <= ql) return Monoid::identity();
         else if (ql <= nl && nr <= qr) return np->dat;
-        else return f(fold(ql, qr, nl, (nl + nr) / 2, np->l), fold(ql, qr, (nl + nr) / 2, nr, np->r));
+        else return Monoid::operation(fold(ql, qr, nl, (nl + nr) / 2, np->l), fold(ql, qr, (nl + nr) / 2, nr, np->r));
     };
 
-    PersistentSegmentTree update(uint idx, Monoid d) {
+    PersistentSegmentTree update(uint idx, T d) {
         return set(idx, d);
     };
-    PersistentSegmentTree set(uint idx, Monoid d) {
-        return PersistentSegmentTree(e, f, n, update(0, n, idx, d, root));
+    PersistentSegmentTree set(uint idx, T d) {
+        return PersistentSegmentTree(n, update(0, n, idx, d, root));
     };
-    Node *update(uint nl, uint nr, uint idx, Monoid d, Node *np) {
+    Node *update(uint nl, uint nr, uint idx, T d, Node *np) {
         if (idx < nl || nr <= idx) return np;
         else if (nr - nl == 1) return new Node(d);
         else return merge_node(update(nl, (nl + nr) / 2, idx, d, np->l), update((nl + nr) / 2, nr, idx, d, np->r));
@@ -234,11 +236,10 @@ struct PersistentSegmentTree {
         return *this;
     };
 
-    Monoid operator [] (uint idx) {
+    T operator [] (uint idx) {
         return fold(idx, idx + 1, 0, n, root);
     };
 
-    PersistentSegmentTree &operator = (const PersistentSegmentTree &) = default;
 };
 //===
 
@@ -313,8 +314,18 @@ struct CoordinateCompression {
 using namespace std;
 using llong = long long;
 
+struct Monoid {
+    using value_type = llong;
+    static llong operation(llong a, llong b) {
+        return a + b;
+    };
+    static llong identity() {
+        return 0;
+    }
+};
+
 llong n, q;
-vector<PersistentSegmentTree<llong>> v;
+vector<PersistentSegmentTree<Monoid>> v;
 vector<tuple<llong, llong, llong>> p;
 CoordinateCompression x_axis;
 CoordinateCompression y_axis;
@@ -336,9 +347,7 @@ int main() {
     x_axis.build();
     y_axis.build();
 
-    v.push_back(PersistentSegmentTree<llong>(0,
-                [](auto l, auto r) {return l + r;},
-                x_axis.size()));
+    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));
 
     for (int i = 0; i < p.size(); i++) {
         llong x, y, w;
