@@ -1,3 +1,4 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 // header file section
 #include "bits/stdc++.h"
 #include "../../cht/li_chao_tree.hpp"
