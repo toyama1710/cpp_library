@@ -51,7 +51,6 @@ int main() {
             cout << cht.get(x) << endl;
         }
     }
-    cout << "check" << endl;
 
     return 0;
 };

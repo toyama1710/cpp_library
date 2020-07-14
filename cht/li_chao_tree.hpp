@@ -80,7 +80,7 @@ struct LiChaoTree {
         }
     };
 
-    T get(int x) {
+    T get(T x) {
         int k = std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
 
         T ret = seg[k].get(x);
