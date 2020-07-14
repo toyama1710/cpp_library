@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: cht/li_chao_tree.hpp
+# :x: cht/li_chao_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-03 08:42:43+00:00
+    - Last commit date: 2020-07-14 02:30:04+00:00
 
 
+
+
+## Verified with
+
+* :x: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
 
 
 ## Code
@@ -47,6 +52,8 @@ layout: default
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <numeric>
+#include <iterator>
 
 template <class T = long long>
 struct LiChaoTree {
@@ -63,20 +70,30 @@ struct LiChaoTree {
     };
 
     std::vector<Line> seg;
+    std::vector<T> pos;
 
     LiChaoTree() = default;
-    explicit LiChaoTree(int n):seg(n << 1, Line::identity()) {};
+    explicit LiChaoTree(int n):seg(n << 1, Line::identity()), pos(n) {
+        std::iota(pos.begin(), pos.end(), 0);
+    };
+    template<class InputItr>
+    LiChaoTree(InputItr first, InputItr last):
+        seg(std::distance(first, last) << 1, Line::identity()), pos(first, last)
+    {};
 
     int size() {
         return  seg.size() >> 1;
     };
 
-    void add_segment(T a, T b, int l, int r) {
+    void add_line(T a, T b) {
+        add_segment(a, b, pos[0], pos.back());
+    };
+    void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
+        int l = std::lower_bound(pos.begin(), pos.end(), l) - pos.begin() + size();
+        int r = std::lower_bound(pos.begin(), pos.end(), r) - pos.begin() + size();
         int ll = l, lr = l + 1;
         int rl = r - 1, rr = r;
-        l += size();
-        r += size();
         while (l < r) {
             if (l & 1) {
                 update(x, l, ll, lr);
@@ -100,17 +117,20 @@ struct LiChaoTree {
     };
 
     void update(Line &x, int k, int l, int r) {
-        //replace
-        if (x.get(l) <= seg[k].get(l) && x.get(r - 1) <= seg[k].get(r - 1)) seg[k] = x;
-        //left
-        else if (x.get(l) < seg[k].get(l)) update(x, k << 1, l, (l + r) >> 1);
-        //right
-        else if (x.get(r - 1) < seg[k].get(r - 1)) update(x, (k << 1) | 1, (l + r) >> 1, r);
-        else return;
+        T pl = pos[l];
+        T pr = pos[r - 1];
+        if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
+            seg[k] = x;
+        }
+        else if (x.get(pl) < seg[k].get(pl) || x.get(pr) < seg[k].get(pr)) {
+            update(x, k << 1, l, (l + r) >> 1);
+            update(x, (k << 1) | 1, (l + r) >> 1, r);
+        }
     };
 
     T get(int x) {
-        int k = x + size();
+        int k = std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
+
         T ret = seg[k].get(x);
         while (k > 0) {
             k >>= 1;
@@ -135,6 +155,8 @@ struct LiChaoTree {
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <numeric>
+#include <iterator>
 
 template <class T = long long>
 struct LiChaoTree {
@@ -151,20 +173,30 @@ struct LiChaoTree {
     };
 
     std::vector<Line> seg;
+    std::vector<T> pos;
 
     LiChaoTree() = default;
-    explicit LiChaoTree(int n):seg(n << 1, Line::identity()) {};
+    explicit LiChaoTree(int n):seg(n << 1, Line::identity()), pos(n) {
+        std::iota(pos.begin(), pos.end(), 0);
+    };
+    template<class InputItr>
+    LiChaoTree(InputItr first, InputItr last):
+        seg(std::distance(first, last) << 1, Line::identity()), pos(first, last)
+    {};
 
     int size() {
         return  seg.size() >> 1;
     };
 
-    void add_segment(T a, T b, int l, int r) {
+    void add_line(T a, T b) {
+        add_segment(a, b, pos[0], pos.back());
+    };
+    void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
+        int l = std::lower_bound(pos.begin(), pos.end(), l) - pos.begin() + size();
+        int r = std::lower_bound(pos.begin(), pos.end(), r) - pos.begin() + size();
         int ll = l, lr = l + 1;
         int rl = r - 1, rr = r;
-        l += size();
-        r += size();
         while (l < r) {
             if (l & 1) {
                 update(x, l, ll, lr);
@@ -188,17 +220,20 @@ struct LiChaoTree {
     };
 
     void update(Line &x, int k, int l, int r) {
-        //replace
-        if (x.get(l) <= seg[k].get(l) && x.get(r - 1) <= seg[k].get(r - 1)) seg[k] = x;
-        //left
-        else if (x.get(l) < seg[k].get(l)) update(x, k << 1, l, (l + r) >> 1);
-        //right
-        else if (x.get(r - 1) < seg[k].get(r - 1)) update(x, (k << 1) | 1, (l + r) >> 1, r);
-        else return;
+        T pl = pos[l];
+        T pr = pos[r - 1];
+        if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
+            seg[k] = x;
+        }
+        else if (x.get(pl) < seg[k].get(pl) || x.get(pr) < seg[k].get(pr)) {
+            update(x, k << 1, l, (l + r) >> 1);
+            update(x, (k << 1) | 1, (l + r) >> 1, r);
+        }
     };
 
     T get(int x) {
-        int k = x + size();
+        int k = std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
+
         T ret = seg[k].get(x);
         while (k > 0) {
             k >>= 1;
