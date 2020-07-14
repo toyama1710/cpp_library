@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-14 02:30:04+00:00
+    - Last commit date: 2020-07-14 02:47:06+00:00
 
 
 
@@ -128,7 +128,7 @@ struct LiChaoTree {
         }
     };
 
-    T get(int x) {
+    T get(T x) {
         int k = std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
 
         T ret = seg[k].get(x);
@@ -231,7 +231,7 @@ struct LiChaoTree {
         }
     };
 
-    T get(int x) {
+    T get(T x) {
         int k = std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
 
         T ret = seg[k].get(x);

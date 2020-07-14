@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-14 02:32:46+00:00
+    - Last commit date: 2020-07-14 02:47:06+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -100,7 +100,6 @@ int main() {
             cout << cht.get(x) << endl;
         }
     }
-    cout << "check" << endl;
 
     return 0;
 };
