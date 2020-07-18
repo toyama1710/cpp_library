@@ -40,6 +40,7 @@ layout: default
 
 * :warning: <a href="library/array/partially_persistent_array.cpp.html">array/partially_persistent_array.cpp</a>
 * :heavy_check_mark: <a href="library/array/persistent_array.hpp.html">array/persistent_array.hpp</a>
+* :warning: <a href="library/array/persistent_array2.hpp.html">array/persistent_array2.hpp</a>
 
 
 <div id="d342894e126a2cdd0812cd3a6c903bbd"></div>
