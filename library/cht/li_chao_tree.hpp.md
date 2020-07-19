@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-19 16:11:54+00:00
+    - Last commit date: 2020-07-19 16:25:15+00:00
 
 
 
@@ -98,7 +98,7 @@ struct LiChaoTree {
     };
 
     void add_line(T a, T b) {
-        update(a, b, 0, 0, size());
+        update(Line(a, b), 1, 0, size());
     };
     void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
@@ -217,7 +217,7 @@ struct LiChaoTree {
     };
 
     void add_line(T a, T b) {
-        update(a, b, 0, 0, size());
+        update(Line(a, b), 1, 0, size());
     };
     void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
