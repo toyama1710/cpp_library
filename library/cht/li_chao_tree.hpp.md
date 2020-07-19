@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-14 02:47:06+00:00
+    - Last commit date: 2020-07-19 16:11:54+00:00
 
 
 
@@ -73,20 +73,32 @@ struct LiChaoTree {
     std::vector<T> pos;
 
     LiChaoTree() = default;
-    explicit LiChaoTree(int n):seg(n << 1, Line::identity()), pos(n) {
-        std::iota(pos.begin(), pos.end(), 0);
+    explicit LiChaoTree(int n) {
+        int n_ = 1;
+        while (n_ < n) n_ *= 2;
+        seg.resize(n_ * 2, Line::identity());
+        pos.resize(n_);
+        std::iota(pos.begin(), pos.end(), 0); 
     };
     template<class InputItr>
-    LiChaoTree(InputItr first, InputItr last):
-        seg(std::distance(first, last) << 1, Line::identity()), pos(first, last)
-    {};
+    LiChaoTree(InputItr first, InputItr last) {
+        int n = std::distance(first, last);
+        int n_ = 1;
+
+        while (n_ < n) n_ *= 2;
+
+        seg.resize(n_ * 2, Line::identity());
+        pos.reserve(n_);
+        for (; first != last; first++) pos.push_back(*first);
+        while (pos.size() < n_) pos.push_back(pos.back());
+    };
 
     int size() {
         return  seg.size() >> 1;
     };
 
     void add_line(T a, T b) {
-        add_segment(a, b, pos[0], pos.back());
+        update(a, b, 0, 0, size());
     };
     void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
@@ -116,16 +128,20 @@ struct LiChaoTree {
         }
     };
 
-    void update(Line &x, int k, int l, int r) {
+    // [pos[l], pos[r])
+    void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r - 1];
+        T pm = pos[(l + r) / 2];
+
         if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
             seg[k] = x;
+            return;
         }
-        else if (x.get(pl) < seg[k].get(pl) || x.get(pr) < seg[k].get(pr)) {
-            update(x, k << 1, l, (l + r) >> 1);
-            update(x, (k << 1) | 1, (l + r) >> 1, r);
-        }
+
+        if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
+        if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
+        else update(x, (k << 1) | 1, (l + r) / 2, r);
     };
 
     T get(T x) {
@@ -176,20 +192,32 @@ struct LiChaoTree {
     std::vector<T> pos;
 
     LiChaoTree() = default;
-    explicit LiChaoTree(int n):seg(n << 1, Line::identity()), pos(n) {
-        std::iota(pos.begin(), pos.end(), 0);
+    explicit LiChaoTree(int n) {
+        int n_ = 1;
+        while (n_ < n) n_ *= 2;
+        seg.resize(n_ * 2, Line::identity());
+        pos.resize(n_);
+        std::iota(pos.begin(), pos.end(), 0); 
     };
     template<class InputItr>
-    LiChaoTree(InputItr first, InputItr last):
-        seg(std::distance(first, last) << 1, Line::identity()), pos(first, last)
-    {};
+    LiChaoTree(InputItr first, InputItr last) {
+        int n = std::distance(first, last);
+        int n_ = 1;
+
+        while (n_ < n) n_ *= 2;
+
+        seg.resize(n_ * 2, Line::identity());
+        pos.reserve(n_);
+        for (; first != last; first++) pos.push_back(*first);
+        while (pos.size() < n_) pos.push_back(pos.back());
+    };
 
     int size() {
         return  seg.size() >> 1;
     };
 
     void add_line(T a, T b) {
-        add_segment(a, b, pos[0], pos.back());
+        update(a, b, 0, 0, size());
     };
     void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
@@ -219,16 +247,20 @@ struct LiChaoTree {
         }
     };
 
-    void update(Line &x, int k, int l, int r) {
+    // [pos[l], pos[r])
+    void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r - 1];
+        T pm = pos[(l + r) / 2];
+
         if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
             seg[k] = x;
+            return;
         }
-        else if (x.get(pl) < seg[k].get(pl) || x.get(pr) < seg[k].get(pr)) {
-            update(x, k << 1, l, (l + r) >> 1);
-            update(x, (k << 1) | 1, (l + r) >> 1, r);
-        }
+
+        if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
+        if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
+        else update(x, (k << 1) | 1, (l + r) / 2, r);
     };
 
     T get(T x) {
