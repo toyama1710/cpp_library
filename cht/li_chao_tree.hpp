@@ -50,7 +50,7 @@ struct LiChaoTree {
     };
 
     void add_line(T a, T b) {
-        update(a, b, 0, 0, size());
+        update(Line(a, b), 1, 0, size());
     };
     void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
