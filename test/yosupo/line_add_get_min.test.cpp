@@ -1,6 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
-// header file section
-#include "bits/stdc++.h"
+
+#include <iostream>
+#include <vector>
+#include <tuple>
+#include <algorithm>
 #include "../../cht/li_chao_tree.hpp"
 
 using namespace std;
@@ -15,7 +18,7 @@ int main() {
     cin >> n >> q;
     a.resize(n);
     b.resize(n);
-    query.resize(n);
+    query.resize(q);
     for (int i = 0; i < n; i++) {
         cin >> a[i] >> b[i];
     }
