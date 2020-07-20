@@ -42,7 +42,7 @@ struct LiChaoTree {
         seg.resize(n_ * 2, Line::identity());
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
-        while (pos.size() < n_) pos.push_back(pos.back());
+        while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
 
     int size() {
