@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-20 01:57:58+00:00
+    - Last commit date: 2020-07-20 02:05:57+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -165,7 +165,7 @@ struct LiChaoTree {
         seg.resize(n_ * 2, Line::identity());
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
-        while (pos.size() < n_) pos.push_back(pos.back());
+        while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
 
     int size() {

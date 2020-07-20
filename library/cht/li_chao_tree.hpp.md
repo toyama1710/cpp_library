@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-19 16:25:15+00:00
+    - Last commit date: 2020-07-20 02:05:57+00:00
 
 
 
@@ -90,7 +90,7 @@ struct LiChaoTree {
         seg.resize(n_ * 2, Line::identity());
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
-        while (pos.size() < n_) pos.push_back(pos.back());
+        while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
 
     int size() {
@@ -209,7 +209,7 @@ struct LiChaoTree {
         seg.resize(n_ * 2, Line::identity());
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
-        while (pos.size() < n_) pos.push_back(pos.back());
+        while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
 
     int size() {
