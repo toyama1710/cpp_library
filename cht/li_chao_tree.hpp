@@ -66,37 +66,29 @@ struct LiChaoTree {
     // [s, t)
     void add_segment(T a, T b, T s, T t) {
         Line x(a, b);
-        int sl, sr;
-        int tl, tr;
+        int sl, tl;
+        int len = 1;
 
         sl = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin();
-        sr = sl;
         tl = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin();
-        tr = tl;
 
-        s = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin();
-        t = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin();
-        s += size();
-        t += size();
+        s = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin() + size();
+        t = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin() + size();
 
         while (s < t) {
-            int len = sr - sl + 1;
             if (s & 1) {
-                update(x, s, sl, sr);
+                update(x, s, sl, sl + len - 1);
                 sl += len;
-                sr += len;
                 s++;
             }
             if (t & 1) {
                 t--;
                 tl -= len;
-                tr -= len;
-                update(x, t, tl, tr);
+                update(x, t, tl, tl + len - 1);
             }
             s >>= 1;
-            sr += len;
             t >>= 1;
-            tr += len;
+            len <<= 1;
         }
     };
 
