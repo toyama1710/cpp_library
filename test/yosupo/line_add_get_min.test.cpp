@@ -38,6 +38,7 @@ int main() {
     }
 
     sort(p.begin(), p.end());
+    p.erase(unique(p.begin(), p.end()), p.end());
     LiChaoTree<llong> cht(p.begin(), p.end());
     for (int i = 0; i < n; i++) {
         cht.add_line(a[i], b[i]);

@@ -30,7 +30,7 @@ struct LiChaoTree {
         while (n_ < n) n_ *= 2;
         seg.resize(n_ * 2, Line::identity());
         pos.resize(n_);
-        std::iota(pos.begin(), pos.end(), 0); 
+        std::iota(pos.begin(), pos.end(), T(0)); 
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
@@ -57,7 +57,7 @@ struct LiChaoTree {
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r];
-        T pm = (pl + pr) / 2;
+        T pm = pos[(l + r) / 2];
 
         if (x.get(pl) >= seg[k].get(pl) && x.get(pr) >= seg[k].get(pr)) return;
 
@@ -66,7 +66,7 @@ struct LiChaoTree {
             return;
         }
 
-        if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
+        if (x.get(pm) < seg[k].get(pm)) std::swap(x, seg[k]);
         if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
         else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };
