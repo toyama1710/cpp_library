@@ -34,6 +34,8 @@ int main() {
         cin >> com;
         if (com == 0) {
             cin >> l >> r >> a >> b;
+            p.push_back(l);
+            p.push_back(r);
         }
         else {
             cin >> l;
