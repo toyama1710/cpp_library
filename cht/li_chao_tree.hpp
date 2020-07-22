@@ -50,41 +50,16 @@ struct LiChaoTree {
     };
 
     void add_line(T a, T b) {
-        update(Line(a, b), 1, 0, size());
-    };
-    void add_segment(T a, T b, T s, T t) {
-        Line x(a, b);
-        int l = std::lower_bound(pos.begin(), pos.end(), l) - pos.begin() + size();
-        int r = std::lower_bound(pos.begin(), pos.end(), r) - pos.begin() + size();
-        int ll = l, lr = l + 1;
-        int rl = r - 1, rr = r;
-        while (l < r) {
-            if (l & 1) {
-                update(x, l, ll, lr);
-                l++;
-                int range = lr - ll;
-                ll += range;
-                lr += range;
-            }
-            if (r & 1) {
-                r--;
-                update(x, r, rl, rr);
-                int range = rr - rl;
-                rl -= range;
-                rr -= range;
-            }
-            l >>= 1;
-            lr += lr - ll;
-            r >>= 1;
-            rl -= rr - rl;
-        }
+        update(Line(a, b), 1, 0, size() - 1);
     };
 
     // [l, r]
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r];
-        T pm = pos[(l + r) / 2];
+        T pm = (pl + pr) / 2;
+
+        if (x.get(pl) >= seg[k].get(pl) && x.get(pr) >= seg[k].get(pr)) return;
 
         if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
             seg[k] = x;
