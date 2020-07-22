@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/segment_add_get_min.test.cpp
+# :heavy_check_mark: test/yosupo/segment_add_get_min.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/segment_add_get_min.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 02:32:05+09:00
+    - Last commit date: 2020-07-23 02:56:29+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/segment_add_get_min">https://judge.yosupo.jp/problem/segment_add_get_min</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 ## Code
@@ -225,14 +225,14 @@ struct LiChaoTree {
             }
             if (t & 1) {
                 t--;
-                tl += len;
-                tr += len;
+                tl -= len;
+                tr -= len;
                 update(x, t, tl, tr);
             }
             s >>= 1;
             sr += len;
             t >>= 1;
-            tl -= len;
+            tr += len;
         }
     };
 

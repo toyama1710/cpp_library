@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: cht/li_chao_tree.hpp
+# :heavy_check_mark: cht/li_chao_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 02:20:56+09:00
+    - Last commit date: 2020-07-23 02:56:29+09:00
 
 
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
-* :x: <a href="../../verify/test/yosupo/segment_add_get_min.test.cpp.html">test/yosupo/segment_add_get_min.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/segment_add_get_min.test.cpp.html">test/yosupo/segment_add_get_min.test.cpp</a>
 
 
 ## Code
@@ -138,14 +138,14 @@ struct LiChaoTree {
             }
             if (t & 1) {
                 t--;
-                tl += len;
-                tr += len;
+                tl -= len;
+                tr -= len;
                 update(x, t, tl, tr);
             }
             s >>= 1;
             sr += len;
             t >>= 1;
-            tl -= len;
+            tr += len;
         }
     };
 
@@ -279,14 +279,14 @@ struct LiChaoTree {
             }
             if (t & 1) {
                 t--;
-                tl += len;
-                tr += len;
+                tl -= len;
+                tr -= len;
                 update(x, t, tl, tr);
             }
             s >>= 1;
             sr += len;
             t >>= 1;
-            tl -= len;
+            tr += len;
         }
     };
 
