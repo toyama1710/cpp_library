@@ -80,10 +80,10 @@ struct LiChaoTree {
         }
     };
 
-    // [pos[l], pos[r])
+    // [l, r]
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
-        T pr = pos[r - 1];
+        T pr = pos[r];
         T pm = pos[(l + r) / 2];
 
         if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
@@ -93,7 +93,7 @@ struct LiChaoTree {
 
         if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
         if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
-        else update(x, (k << 1) | 1, (l + r) / 2, r);
+        else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };
 
     T get(T x) {
