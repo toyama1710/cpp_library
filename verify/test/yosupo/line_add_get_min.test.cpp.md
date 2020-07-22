@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :question: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 ## Code

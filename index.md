@@ -70,7 +70,7 @@ layout: default
 
 ### cht
 
-* :heavy_check_mark: <a href="library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :question: <a href="library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 <div id="17f71d965fe9589ddbd11caf7182243e"></div>
@@ -185,13 +185,6 @@ layout: default
 * :warning: <a href="library/test/atcoder/ARC033C_2.cpp.html">test/atcoder/ARC033C_2.cpp</a>
 
 
-<div id="0b58406058f6619a0f31a172defc0230"></div>
-
-### test/yosupo
-
-* :warning: <a href="library/test/yosupo/segment_add_get_min.cpp.html">test/yosupo/segment_add_get_min.cpp</a>
-
-
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
 
 ### tree
@@ -236,6 +229,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/range_affine_range_sum.test.cpp.html">test/yosupo/range_affine_range_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
+* :x: <a href="verify/test/yosupo/segment_add_get_min.test.cpp.html">test/yosupo/segment_add_get_min.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>

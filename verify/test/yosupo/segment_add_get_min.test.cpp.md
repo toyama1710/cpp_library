@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: test/yosupo/segment_add_get_min.cpp
+# :x: test/yosupo/segment_add_get_min.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/segment_add_get_min.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 02:20:56+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/segment_add_get_min.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-07-23 02:24:15+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/segment_add_get_min">https://judge.yosupo.jp/problem/segment_add_get_min</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :question: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 ## Code
@@ -125,7 +125,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/yosupo/segment_add_get_min.cpp"
+#line 1 "test/yosupo/segment_add_get_min.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
 #include <iostream>
@@ -265,7 +265,7 @@ struct LiChaoTree {
 };
 
 
-#line 8 "test/yosupo/segment_add_get_min.cpp"
+#line 8 "test/yosupo/segment_add_get_min.test.cpp"
 
 using namespace std;
 using llong = long long;

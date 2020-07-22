@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: cht/li_chao_tree.hpp
+# :question: cht/li_chao_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -36,14 +36,10 @@ layout: default
 
 
 
-## Required by
-
-* :warning: <a href="../test/yosupo/segment_add_get_min.cpp.html">test/yosupo/segment_add_get_min.cpp</a>
-
-
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
+* :x: <a href="../../verify/test/yosupo/segment_add_get_min.test.cpp.html">test/yosupo/segment_add_get_min.test.cpp</a>
 
 
 ## Code
