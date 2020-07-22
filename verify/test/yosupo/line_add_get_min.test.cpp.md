@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-20 02:05:57+00:00
+    - Last commit date: 2020-07-22 23:49:41+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -203,10 +203,10 @@ struct LiChaoTree {
         }
     };
 
-    // [pos[l], pos[r])
+    // [l, r]
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
-        T pr = pos[r - 1];
+        T pr = pos[r];
         T pm = pos[(l + r) / 2];
 
         if (x.get(pl) <= seg[k].get(pl) && x.get(pr) <= seg[k].get(pr)) {
@@ -216,7 +216,7 @@ struct LiChaoTree {
 
         if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
         if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
-        else update(x, (k << 1) | 1, (l + r) / 2, r);
+        else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };
 
     T get(T x) {
