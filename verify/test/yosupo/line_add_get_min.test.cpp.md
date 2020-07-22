@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/line_add_get_min.test.cpp
+# :x: test/yosupo/line_add_get_min.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 00:41:04+09:00
+    - Last commit date: 2020-07-23 00:46:50+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :x: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 ## Code
@@ -86,9 +86,7 @@ int main() {
         query[i] = tie(com, x, y);
     }
 
-    sort(p.begin(), p.end());
-    p.erase(unique(p.begin(), p.end()), p.end());
-    LiChaoTree<llong> cht(p.begin(), p.end());
+    LiChaoTree<llong> cht(p);
     for (int i = 0; i < n; i++) {
         cht.add_line(a[i], b[i]);
     }
@@ -168,6 +166,11 @@ struct LiChaoTree {
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        LiChaoTree(p.begin(), p.end());
+    }
 
     int size() {
         return  seg.size() >> 1;
@@ -241,9 +244,7 @@ int main() {
         query[i] = tie(com, x, y);
     }
 
-    sort(p.begin(), p.end());
-    p.erase(unique(p.begin(), p.end()), p.end());
-    LiChaoTree<llong> cht(p.begin(), p.end());
+    LiChaoTree<llong> cht(p);
     for (int i = 0; i < n; i++) {
         cht.add_line(a[i], b[i]);
     }

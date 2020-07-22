@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: cht/li_chao_tree.hpp
+# :x: cht/li_chao_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 00:41:04+09:00
+    - Last commit date: 2020-07-23 00:46:50+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
+* :x: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
 
 
 ## Code
@@ -92,6 +92,11 @@ struct LiChaoTree {
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        LiChaoTree(p.begin(), p.end());
+    }
 
     int size() {
         return  seg.size() >> 1;
@@ -186,6 +191,11 @@ struct LiChaoTree {
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        LiChaoTree(p.begin(), p.end());
+    }
 
     int size() {
         return  seg.size() >> 1;
