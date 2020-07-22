@@ -34,6 +34,16 @@ struct LiChaoTree {
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
+        init(first, last);
+    };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        init(p.begin(), p.end());
+    }
+
+    template<class InputItr>
+    void init(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         int n_ = 1;
 
@@ -43,11 +53,6 @@ struct LiChaoTree {
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
-    };
-    LiChaoTree(std::vector<T> p) {
-        std::sort(p.begin(), p.end());
-        p.erase(std::unique(p.begin(), p.end()), p.end());
-        LiChaoTree(p.begin(), p.end());
     }
 
     int size() {
