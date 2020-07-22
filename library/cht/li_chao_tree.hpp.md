@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: cht/li_chao_tree.hpp
+# :heavy_check_mark: cht/li_chao_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 00:08:08+09:00
+    - Last commit date: 2020-07-23 00:41:04+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
 
 
 ## Code
@@ -78,7 +78,7 @@ struct LiChaoTree {
         while (n_ < n) n_ *= 2;
         seg.resize(n_ * 2, Line::identity());
         pos.resize(n_);
-        std::iota(pos.begin(), pos.end(), 0); 
+        std::iota(pos.begin(), pos.end(), T(0)); 
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
@@ -105,7 +105,7 @@ struct LiChaoTree {
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r];
-        T pm = (pl + pr) / 2;
+        T pm = pos[(l + r) / 2];
 
         if (x.get(pl) >= seg[k].get(pl) && x.get(pr) >= seg[k].get(pr)) return;
 
@@ -114,7 +114,7 @@ struct LiChaoTree {
             return;
         }
 
-        if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
+        if (x.get(pm) < seg[k].get(pm)) std::swap(x, seg[k]);
         if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
         else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };
@@ -172,7 +172,7 @@ struct LiChaoTree {
         while (n_ < n) n_ *= 2;
         seg.resize(n_ * 2, Line::identity());
         pos.resize(n_);
-        std::iota(pos.begin(), pos.end(), 0); 
+        std::iota(pos.begin(), pos.end(), T(0)); 
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
@@ -199,7 +199,7 @@ struct LiChaoTree {
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r];
-        T pm = (pl + pr) / 2;
+        T pm = pos[(l + r) / 2];
 
         if (x.get(pl) >= seg[k].get(pl) && x.get(pr) >= seg[k].get(pr)) return;
 
@@ -208,7 +208,7 @@ struct LiChaoTree {
             return;
         }
 
-        if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
+        if (x.get(pm) < seg[k].get(pm)) std::swap(x, seg[k]);
         if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
         else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };

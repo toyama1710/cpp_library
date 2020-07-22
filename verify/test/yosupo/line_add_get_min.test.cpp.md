@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/yosupo/line_add_get_min.test.cpp
+# :heavy_check_mark: test/yosupo/line_add_get_min.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 00:08:08+09:00
+    - Last commit date: 2020-07-23 00:41:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :heavy_check_mark: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 ## Code
@@ -87,6 +87,7 @@ int main() {
     }
 
     sort(p.begin(), p.end());
+    p.erase(unique(p.begin(), p.end()), p.end());
     LiChaoTree<llong> cht(p.begin(), p.end());
     for (int i = 0; i < n; i++) {
         cht.add_line(a[i], b[i]);
@@ -153,7 +154,7 @@ struct LiChaoTree {
         while (n_ < n) n_ *= 2;
         seg.resize(n_ * 2, Line::identity());
         pos.resize(n_);
-        std::iota(pos.begin(), pos.end(), 0); 
+        std::iota(pos.begin(), pos.end(), T(0)); 
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
@@ -180,7 +181,7 @@ struct LiChaoTree {
     void update(Line x, int k, int l, int r) {
         T pl = pos[l];
         T pr = pos[r];
-        T pm = (pl + pr) / 2;
+        T pm = pos[(l + r) / 2];
 
         if (x.get(pl) >= seg[k].get(pl) && x.get(pr) >= seg[k].get(pr)) return;
 
@@ -189,7 +190,7 @@ struct LiChaoTree {
             return;
         }
 
-        if (x.get(pm) <= seg[k].get(pm)) std::swap(x, seg[k]);
+        if (x.get(pm) < seg[k].get(pm)) std::swap(x, seg[k]);
         if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
         else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };
@@ -241,6 +242,7 @@ int main() {
     }
 
     sort(p.begin(), p.end());
+    p.erase(unique(p.begin(), p.end()), p.end());
     LiChaoTree<llong> cht(p.begin(), p.end());
     for (int i = 0; i < n; i++) {
         cht.add_line(a[i], b[i]);
