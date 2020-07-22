@@ -185,6 +185,13 @@ layout: default
 * :warning: <a href="library/test/atcoder/ARC033C_2.cpp.html">test/atcoder/ARC033C_2.cpp</a>
 
 
+<div id="0b58406058f6619a0f31a172defc0230"></div>
+
+### test/yosupo
+
+* :warning: <a href="library/test/yosupo/segment_add_get_min.cpp.html">test/yosupo/segment_add_get_min.cpp</a>
+
+
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
 
 ### tree

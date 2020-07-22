@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/yosupo/line_add_get_min.test.cpp
+# :warning: test/yosupo/segment_add_get_min.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min.test.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/segment_add_get_min.cpp">View this file on GitHub</a>
     - Last commit date: 2020-07-23 02:20:56+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
+* see: <a href="https://judge.yosupo.jp/problem/segment_add_get_min">https://judge.yosupo.jp/problem/segment_add_get_min</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
+* :heavy_check_mark: <a href="../../cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
 ## Code
@@ -47,7 +47,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
+#define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
 #include <iostream>
 #include <vector>
@@ -59,47 +59,59 @@ using namespace std;
 using llong = long long;
 
 llong n, q;
-vector<tuple<llong, llong, llong>> query;
+vector<tuple<llong, llong, llong, llong, llong>> query;
+vector<llong> l, r;
 vector<llong> a, b;
 vector<llong> p;
 
 int main() {
     cin >> n >> q;
+    l.resize(n);
+    r.resize(n);
     a.resize(n);
     b.resize(n);
     query.resize(q);
     for (int i = 0; i < n; i++) {
-        cin >> a[i] >> b[i];
+        cin >> l[i] >> r[i] >> a[i] >> b[i];
+        p.push_back(l[i]);
+        p.push_back(r[i]);
     }
 
     for (int i = 0; i < q; i++) {
-        llong com, x, y;
+        llong com, l, r, a, b;
 
         cin >> com;
         if (com == 0) {
-            cin >> x >> y;
+            cin >> l >> r >> a >> b;
         }
         else {
-            cin >> x;
-            p.push_back(x);
+            cin >> l;
+            p.push_back(l);
         }
-        query[i] = tie(com, x, y);
+        query[i] = tie(com, l, r, a, b);
     }
 
     LiChaoTree<llong> cht(p);
     for (int i = 0; i < n; i++) {
-        cht.add_line(a[i], b[i]);
+        cht.add_segment(a[i], b[i], l[i], r[i]);
     }
 
     for (int i = 0; i < q; i++) {
-        llong com, x, y;
-        tie(com, x, y) = query[i];
+        llong com, l, r, a, b;
+        tie(com, l, r, a, b) = query[i];
 
         if (com == 0) {
-            cht.add_line(x, y);
+            cht.add_segment(a, b, l, r);
         }
         else {
-            cout << cht.get(x) << endl;
+            auto out = cht.get(l);
+
+            if (out >= llong(1e18) * 3) {
+                cout << "INFINITY" << '\n';
+            }
+            else {
+                cout << out << '\n';
+            }
         }
     }
 
@@ -113,8 +125,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/yosupo/line_add_get_min.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
+#line 1 "test/yosupo/segment_add_get_min.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
 #include <iostream>
 #include <vector>
@@ -253,53 +265,65 @@ struct LiChaoTree {
 };
 
 
-#line 8 "test/yosupo/line_add_get_min.test.cpp"
+#line 8 "test/yosupo/segment_add_get_min.cpp"
 
 using namespace std;
 using llong = long long;
 
 llong n, q;
-vector<tuple<llong, llong, llong>> query;
+vector<tuple<llong, llong, llong, llong, llong>> query;
+vector<llong> l, r;
 vector<llong> a, b;
 vector<llong> p;
 
 int main() {
     cin >> n >> q;
+    l.resize(n);
+    r.resize(n);
     a.resize(n);
     b.resize(n);
     query.resize(q);
     for (int i = 0; i < n; i++) {
-        cin >> a[i] >> b[i];
+        cin >> l[i] >> r[i] >> a[i] >> b[i];
+        p.push_back(l[i]);
+        p.push_back(r[i]);
     }
 
     for (int i = 0; i < q; i++) {
-        llong com, x, y;
+        llong com, l, r, a, b;
 
         cin >> com;
         if (com == 0) {
-            cin >> x >> y;
+            cin >> l >> r >> a >> b;
         }
         else {
-            cin >> x;
-            p.push_back(x);
+            cin >> l;
+            p.push_back(l);
         }
-        query[i] = tie(com, x, y);
+        query[i] = tie(com, l, r, a, b);
     }
 
     LiChaoTree<llong> cht(p);
     for (int i = 0; i < n; i++) {
-        cht.add_line(a[i], b[i]);
+        cht.add_segment(a[i], b[i], l[i], r[i]);
     }
 
     for (int i = 0; i < q; i++) {
-        llong com, x, y;
-        tie(com, x, y) = query[i];
+        llong com, l, r, a, b;
+        tie(com, l, r, a, b) = query[i];
 
         if (com == 0) {
-            cht.add_line(x, y);
+            cht.add_segment(a, b, l, r);
         }
         else {
-            cout << cht.get(x) << endl;
+            auto out = cht.get(l);
+
+            if (out >= llong(1e18) * 3) {
+                cout << "INFINITY" << '\n';
+            }
+            else {
+                cout << out << '\n';
+            }
         }
     }
 

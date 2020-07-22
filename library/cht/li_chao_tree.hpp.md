@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 00:54:57+09:00
+    - Last commit date: 2020-07-23 02:20:56+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="../test/yosupo/segment_add_get_min.cpp.html">test/yosupo/segment_add_get_min.cpp</a>
 
 
 ## Verified with
@@ -109,6 +114,43 @@ struct LiChaoTree {
 
     void add_line(T a, T b) {
         update(Line(a, b), 1, 0, size() - 1);
+    };
+
+    // [s, t)
+    void add_segment(T a, T b, T s, T t) {
+        Line x(a, b);
+        int sl, sr;
+        int tl, tr;
+
+        sl = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin();
+        sr = sl;
+        tl = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin();
+        tr = tl;
+
+        s = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin();
+        t = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin();
+        s += size();
+        t += size();
+
+        while (s < t) {
+            int len = sr - sl + 1;
+            if (s & 1) {
+                update(x, s, sl, sr);
+                sl += len;
+                sr += len;
+                s++;
+            }
+            if (t & 1) {
+                t--;
+                tl += len;
+                tr += len;
+                update(x, t, tl, tr);
+            }
+            s >>= 1;
+            sr += len;
+            t >>= 1;
+            tl -= len;
+        }
     };
 
     // [l, r]
@@ -213,6 +255,43 @@ struct LiChaoTree {
 
     void add_line(T a, T b) {
         update(Line(a, b), 1, 0, size() - 1);
+    };
+
+    // [s, t)
+    void add_segment(T a, T b, T s, T t) {
+        Line x(a, b);
+        int sl, sr;
+        int tl, tr;
+
+        sl = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin();
+        sr = sl;
+        tl = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin();
+        tr = tl;
+
+        s = std::lower_bound(pos.begin(), pos.end(), s) - pos.begin();
+        t = std::lower_bound(pos.begin(), pos.end(), t) - pos.begin();
+        s += size();
+        t += size();
+
+        while (s < t) {
+            int len = sr - sl + 1;
+            if (s & 1) {
+                update(x, s, sl, sr);
+                sl += len;
+                sr += len;
+                s++;
+            }
+            if (t & 1) {
+                t--;
+                tl += len;
+                tr += len;
+                update(x, t, tl, tr);
+            }
+            s >>= 1;
+            sr += len;
+            t >>= 1;
+            tl -= len;
+        }
     };
 
     // [l, r]
