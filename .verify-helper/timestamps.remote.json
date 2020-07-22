@@ -16,6 +16,7 @@
 "test/aoj/DSL2G.test.cpp": "2020-06-08 22:41:51 +0900",
 "test/aoj/DSL2H.test.cpp": "2020-06-08 23:36:52 +0900",
 "test/aoj/DSL2I.test.cpp": "2020-06-08 23:33:10 +0900",
+"test/yosupo/line_add_get_min.test.cpp": "2020-07-23 00:41:04 +0900",
 "test/yosupo/persistent_union_find.test.cpp": "2020-06-11 21:13:37 +0900",
 "test/yosupo/queue_aggregation.test.cpp": "2020-04-27 16:50:39 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-06-09 00:16:13 +0900",
