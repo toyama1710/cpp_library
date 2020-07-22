@@ -44,6 +44,11 @@ struct LiChaoTree {
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
     };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        LiChaoTree(p.begin(), p.end());
+    }
 
     int size() {
         return  seg.size() >> 1;

@@ -37,9 +37,7 @@ int main() {
         query[i] = tie(com, x, y);
     }
 
-    sort(p.begin(), p.end());
-    p.erase(unique(p.begin(), p.end()), p.end());
-    LiChaoTree<llong> cht(p.begin(), p.end());
+    LiChaoTree<llong> cht(p);
     for (int i = 0; i < n; i++) {
         cht.add_line(a[i], b[i]);
     }
