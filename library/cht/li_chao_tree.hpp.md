@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: cht/li_chao_tree.hpp
+# :heavy_check_mark: cht/li_chao_tree.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#7d1cf34ccafd0e26b00bb21cd8cce647">cht</a>
 * <a href="{{ site.github.repository_url }}/blob/master/cht/li_chao_tree.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 00:46:50+09:00
+    - Last commit date: 2020-07-23 00:54:57+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
 
 
 ## Code
@@ -82,6 +82,16 @@ struct LiChaoTree {
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
+        init(first, last);
+    };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        init(p.begin(), p.end());
+    }
+
+    template<class InputItr>
+    void init(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         int n_ = 1;
 
@@ -91,11 +101,6 @@ struct LiChaoTree {
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
-    };
-    LiChaoTree(std::vector<T> p) {
-        std::sort(p.begin(), p.end());
-        p.erase(std::unique(p.begin(), p.end()), p.end());
-        LiChaoTree(p.begin(), p.end());
     }
 
     int size() {
@@ -181,6 +186,16 @@ struct LiChaoTree {
     };
     template<class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
+        init(first, last);
+    };
+    LiChaoTree(std::vector<T> p) {
+        std::sort(p.begin(), p.end());
+        p.erase(std::unique(p.begin(), p.end()), p.end());
+        init(p.begin(), p.end());
+    }
+
+    template<class InputItr>
+    void init(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         int n_ = 1;
 
@@ -190,11 +205,6 @@ struct LiChaoTree {
         pos.reserve(n_);
         for (; first != last; first++) pos.push_back(*first);
         while (pos.size() < n_) pos.push_back(pos.back() + 1);
-    };
-    LiChaoTree(std::vector<T> p) {
-        std::sort(p.begin(), p.end());
-        p.erase(std::unique(p.begin(), p.end()), p.end());
-        LiChaoTree(p.begin(), p.end());
     }
 
     int size() {
