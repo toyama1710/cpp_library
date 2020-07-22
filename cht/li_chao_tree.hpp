@@ -89,14 +89,14 @@ struct LiChaoTree {
             }
             if (t & 1) {
                 t--;
-                tl += len;
-                tr += len;
+                tl -= len;
+                tr -= len;
                 update(x, t, tl, tr);
             }
             s >>= 1;
             sr += len;
             t >>= 1;
-            tl -= len;
+            tr += len;
         }
     };
 
