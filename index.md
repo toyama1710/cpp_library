@@ -73,6 +73,13 @@ layout: default
 * :heavy_check_mark: <a href="library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
 
 
+<div id="5f15b424ad8b963fc9e5594111bd69bf"></div>
+
+### compact_data_structure
+
+* :warning: <a href="library/compact_data_structure/bit_vector.hpp.html">compact_data_structure/bit_vector.hpp</a>
+
+
 <div id="17f71d965fe9589ddbd11caf7182243e"></div>
 
 ### data_type
