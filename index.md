@@ -64,6 +64,7 @@ layout: default
 * :warning: <a href="library/bit/lsb.cpp.html">bit/lsb.cpp</a>
 * :heavy_check_mark: <a href="library/bit/msb.hpp.html">bit/msb.hpp</a>
 * :warning: <a href="library/bit/pop_count.cpp.html">bit/pop_count.cpp</a>
+* :warning: <a href="library/bit/pop_count.hpp.html">bit/pop_count.hpp</a>
 
 
 <div id="7d1cf34ccafd0e26b00bb21cd8cce647"></div>
@@ -196,6 +197,7 @@ layout: default
 * :heavy_check_mark: <a href="library/util/memory_pool_allocator.hpp.html">util/memory_pool_allocator.hpp</a>
 * :warning: <a href="library/util/sparse_array.hpp.html">util/sparse_array.hpp</a>
 * :warning: <a href="library/util/xorshift.cpp.html">util/xorshift.cpp</a>
+* :warning: <a href="library/util/xorshift.hpp.html">util/xorshift.hpp</a>
 
 
 ## Verify Files
