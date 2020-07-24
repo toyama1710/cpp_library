@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5f15b424ad8b963fc9e5594111bd69bf">compact_data_structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/compact_data_structure/bit_vector.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 13:07:35+09:00
+    - Last commit date: 2020-07-25 00:50:00+09:00
 
 
 
@@ -39,6 +39,11 @@ layout: default
 ## Depends on
 
 * :warning: <a href="../bit/pop_count.hpp.html">bit/pop_count.hpp</a>
+
+
+## Required by
+
+* :warning: <a href="../test/ws/wm_rank.cpp.html">test/ws/wm_rank.cpp</a>
 
 
 ## Code
@@ -75,6 +80,10 @@ struct BitVector {
         }
     };
 
+    bool operator[] (int k) {
+        return bool((bit[k / 32] >> (k & 31)) & 1);
+    };
+
     void set(int k) {
         bit[k / 32] |= 1u << (k & 31);
     };
@@ -91,7 +100,7 @@ struct BitVector {
     // count number of 1 in [0, k)
     int rank1(int k) {
         return chunk[k / 32] +
-        popcnt32(bit[k / 32] & (~0) >> (k & 31));
+        popcnt32(bit[k / 32] & ~((~0u) << (k & 31)));
     };
     // count number of 0 in [0, k)
     int rank0(int k) {
@@ -193,6 +202,10 @@ struct BitVector {
         }
     };
 
+    bool operator[] (int k) {
+        return bool((bit[k / 32] >> (k & 31)) & 1);
+    };
+
     void set(int k) {
         bit[k / 32] |= 1u << (k & 31);
     };
@@ -209,7 +222,7 @@ struct BitVector {
     // count number of 1 in [0, k)
     int rank1(int k) {
         return chunk[k / 32] +
-        popcnt32(bit[k / 32] & (~0) >> (k & 31));
+        popcnt32(bit[k / 32] & ~((~0u) << (k & 31)));
     };
     // count number of 0 in [0, k)
     int rank0(int k) {

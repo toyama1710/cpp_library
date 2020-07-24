@@ -185,6 +185,13 @@ layout: default
 * :warning: <a href="library/test/atcoder/ARC033C_2.cpp.html">test/atcoder/ARC033C_2.cpp</a>
 
 
+<div id="371cfd9101dedf155cc0c947ec787865"></div>
+
+### test/ws
+
+* :warning: <a href="library/test/ws/wm_rank.cpp.html">test/ws/wm_rank.cpp</a>
+
+
 <div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
 
 ### tree
