@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#05c7e24700502a079cdd88012b5a76d3">util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/util/xorshift.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-23 12:09:35+09:00
+    - Last commit date: 2020-07-25 00:09:57+09:00
 
 
 
@@ -46,13 +46,16 @@ layout: default
 #include <ctime>
 
 //===
+static uint32_t __seed__ = 1710;
 uint32_t xorshift32() {
-    static uint32_t s = 1710;
-    s = s ^ (s << 13);
-    s = s ^ (s >> 17);
-    s = s ^ (s << 5);
-    return s;
+    __seed__ = __seed__ ^ (__seed__ << 13);
+    __seed__ = __seed__ ^ (__seed__ >> 17);
+    __seed__ = __seed__ ^ (__seed__ << 5);
+    return __seed__;
 }
+void set_seed(uint32_t s) {
+    __seed__ = s;
+};
 //===
 ```
 {% endraw %}
@@ -66,13 +69,16 @@ uint32_t xorshift32() {
 #include <ctime>
 
 //===
+static uint32_t __seed__ = 1710;
 uint32_t xorshift32() {
-    static uint32_t s = 1710;
-    s = s ^ (s << 13);
-    s = s ^ (s >> 17);
-    s = s ^ (s << 5);
-    return s;
+    __seed__ = __seed__ ^ (__seed__ << 13);
+    __seed__ = __seed__ ^ (__seed__ >> 17);
+    __seed__ = __seed__ ^ (__seed__ << 5);
+    return __seed__;
 }
+void set_seed(uint32_t s) {
+    __seed__ = s;
+};
 //===
 
 ```
