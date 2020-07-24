@@ -27,6 +27,10 @@ struct BitVector {
         }
     };
 
+    bool operator[] (int k) {
+        return bool((bit[k / 32] >> (k & 31)) & 1);
+    };
+
     void set(int k) {
         bit[k / 32] |= 1u << (k & 31);
     };
@@ -43,7 +47,7 @@ struct BitVector {
     // count number of 1 in [0, k)
     int rank1(int k) {
         return chunk[k / 32] +
-        popcnt32(bit[k / 32] & (~0) >> (k & 31));
+        popcnt32(bit[k / 32] & ~((~0u) << (k & 31)));
     };
     // count number of 0 in [0, k)
     int rank0(int k) {
