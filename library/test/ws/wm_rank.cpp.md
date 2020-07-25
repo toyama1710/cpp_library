@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#371cfd9101dedf155cc0c947ec787865">test/ws</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/ws/wm_rank.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-25 00:50:00+09:00
+    - Last commit date: 2020-07-25 10:46:20+09:00
 
 
 
@@ -69,20 +69,19 @@ int main() {
         v[i] = xorshift32() % 128;
     }
 
-    WaveletMatrix<unsigned int, 32, BitVector> wm(v);
+    WaveletMatrix<unsigned int, 16, BitVector> wm(v);
 
     for (int i = 0; i < n * n; i++) {
         int k = xorshift32() % n;
         int x = v[(xorshift32()) % n];
 
         int cnt = 0;
-        for (int i = 0; i < k; i++) cnt += (v[i] == x);
+        for (int i = 0; i < k; i++) if (v[i] == x) cnt++;
 
         if (cnt != wm.rank(x, k)) {
             cout << x << ' ' << k << ':' << "test failed" << endl;
             cout << cnt << ' ' << wm.rank(x, k) << endl;
         }
-        assert(cnt == wm.rank(x, k));
     }
 }
 ```
@@ -286,6 +285,28 @@ struct WaveletMatrix {
         }
         return r - l;
     };
+
+    int less(T v, int l, int r) {
+        int ret = 0;
+        for (depth = 0; depth < LOG; depth++) {
+            if ((v >> (LOG - depth - 1)) & 1) {
+                ret += bits[depth].rank0(r) - bits[depth].rank0(l);
+                int b = bits[depth].rank0(len);
+                l = b + bits[depth].rank1(l);
+                r = b + bits[depth].rank1(r);
+            }
+            else {
+                l = bits[depth].rank0(l);
+                r = bits[depth].rank0(r);
+            }
+        }
+        return ret;
+    };
+
+    int range_freq(int l, int r, int lower, int upper) {
+        if (lower == 0) return less(upper, l, r);
+        else return less(upper, l, r) - less(lower - 1, l, r);
+    };
 };
 
 
@@ -316,20 +337,19 @@ int main() {
         v[i] = xorshift32() % 128;
     }
 
-    WaveletMatrix<unsigned int, 32, BitVector> wm(v);
+    WaveletMatrix<unsigned int, 16, BitVector> wm(v);
 
     for (int i = 0; i < n * n; i++) {
         int k = xorshift32() % n;
         int x = v[(xorshift32()) % n];
 
         int cnt = 0;
-        for (int i = 0; i < k; i++) cnt += (v[i] == x);
+        for (int i = 0; i < k; i++) if (v[i] == x) cnt++;
 
         if (cnt != wm.rank(x, k)) {
             cout << x << ' ' << k << ':' << "test failed" << endl;
             cout << cnt << ' ' << wm.rank(x, k) << endl;
         }
-        assert(cnt == wm.rank(x, k));
     }
 }
 

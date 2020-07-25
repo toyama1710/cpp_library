@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#2e27b575d470dfe6774b874d3fb14827">wavelet_tree</a>
 * <a href="{{ site.github.repository_url }}/blob/master/wavelet_tree/wavelet_matrix.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-25 00:50:00+09:00
+    - Last commit date: 2020-07-25 10:46:20+09:00
 
 
 
@@ -119,6 +119,28 @@ struct WaveletMatrix {
         }
         return r - l;
     };
+
+    int less(T v, int l, int r) {
+        int ret = 0;
+        for (depth = 0; depth < LOG; depth++) {
+            if ((v >> (LOG - depth - 1)) & 1) {
+                ret += bits[depth].rank0(r) - bits[depth].rank0(l);
+                int b = bits[depth].rank0(len);
+                l = b + bits[depth].rank1(l);
+                r = b + bits[depth].rank1(r);
+            }
+            else {
+                l = bits[depth].rank0(l);
+                r = bits[depth].rank0(r);
+            }
+        }
+        return ret;
+    };
+
+    int range_freq(int l, int r, int lower, int upper) {
+        if (lower == 0) return less(upper, l, r);
+        else return less(upper, l, r) - less(lower - 1, l, r);
+    };
 };
 
 #endif
@@ -201,6 +223,28 @@ struct WaveletMatrix {
             }
         }
         return r - l;
+    };
+
+    int less(T v, int l, int r) {
+        int ret = 0;
+        for (depth = 0; depth < LOG; depth++) {
+            if ((v >> (LOG - depth - 1)) & 1) {
+                ret += bits[depth].rank0(r) - bits[depth].rank0(l);
+                int b = bits[depth].rank0(len);
+                l = b + bits[depth].rank1(l);
+                r = b + bits[depth].rank1(r);
+            }
+            else {
+                l = bits[depth].rank0(l);
+                r = bits[depth].rank0(r);
+            }
+        }
+        return ret;
+    };
+
+    int range_freq(int l, int r, int lower, int upper) {
+        if (lower == 0) return less(upper, l, r);
+        else return less(upper, l, r) - less(lower - 1, l, r);
     };
 };
 
