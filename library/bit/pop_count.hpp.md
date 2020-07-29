@@ -39,7 +39,6 @@ layout: default
 ## Required by
 
 * :warning: <a href="../compact_data_structure/bit_vector.hpp.html">compact_data_structure/bit_vector.hpp</a>
-* :warning: <a href="../test/ws/wm_rank.cpp.html">test/ws/wm_rank.cpp</a>
 
 
 ## Code

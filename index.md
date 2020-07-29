@@ -219,13 +219,6 @@ layout: default
 * :warning: <a href="library/wavelet_matrix/wavelet_matrix.hpp.html">wavelet_matrix/wavelet_matrix.hpp</a>
 
 
-<div id="2e27b575d470dfe6774b874d3fb14827"></div>
-
-### wavelet_tree
-
-* :warning: <a href="library/wavelet_tree/wavelet_matrix.hpp.html">wavelet_tree/wavelet_matrix.hpp</a>
-
-
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/aoj/1068.test.cpp.html">test/aoj/1068.test.cpp</a>
