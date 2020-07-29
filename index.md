@@ -212,6 +212,13 @@ layout: default
 * :warning: <a href="library/util/xorshift.hpp.html">util/xorshift.hpp</a>
 
 
+<div id="1b146cfabd0723a5965d40cf5331ccfd"></div>
+
+### wavelet_matrix
+
+* :warning: <a href="library/wavelet_matrix/wavelet_matrix.hpp.html">wavelet_matrix/wavelet_matrix.hpp</a>
+
+
 <div id="2e27b575d470dfe6774b874d3fb14827"></div>
 
 ### wavelet_tree
