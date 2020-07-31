@@ -42,7 +42,7 @@ struct DynamicLiChaoTree {
         T mx = (lx + rx) / 2;
         if (x.get(mx) < u->x.get(mx)) std::swap(x, u->x);
         if (x.get(lx) < u->x.get(lx)) u->l = update(u->l, x, lx, mx);
-        else u->r = update(u->r, x, mx, rx);
+        else u->r = update(u->r, x, mx + 1, rx);
 
         return u;
     };
@@ -55,7 +55,7 @@ struct DynamicLiChaoTree {
 
         T mx = (lx + rx) / 2;
         if (x < mx) return std::min(u->x.get(x), get(x, u->l, lx, mx));
-        else return std::min(u->x.get(x), get(x, u->r, mx, rx));
+        else return std::min(u->x.get(x), get(x, u->r, mx + 1, rx));
     };
 };
 

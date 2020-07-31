@@ -90,8 +90,7 @@ struct WaveletMatrix {
     };
 
     int range_freq(int l, int r, int lower, int upper) {
-        if (lower == 0) return less(upper, l, r);
-        else return less(upper, l, r) - less(lower - 1, l, r);
+        return less(upper, l, r) - less(lower - 1, l, r);
     };
 };
 
