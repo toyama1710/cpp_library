@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#1b146cfabd0723a5965d40cf5331ccfd">wavelet_matrix</a>
 * <a href="{{ site.github.repository_url }}/blob/master/wavelet_matrix/wavelet_matrix.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-29 08:10:03+00:00
+    - Last commit date: 2020-07-31 08:58:53+00:00
 
 
 
@@ -133,12 +133,12 @@ struct WaveletMatrix {
     };
 
     int range_freq(int l, int r, int lower, int upper) {
-        if (lower == 0) return less(upper, l, r);
-        else return less(upper, l, r) - less(lower - 1, l, r);
+        return less(upper, l, r) - less(lower - 1, l, r);
     };
 };
 
 #endif
+
 ```
 {% endraw %}
 
@@ -238,8 +238,7 @@ struct WaveletMatrix {
     };
 
     int range_freq(int l, int r, int lower, int upper) {
-        if (lower == 0) return less(upper, l, r);
-        else return less(upper, l, r) - less(lower - 1, l, r);
+        return less(upper, l, r) - less(lower - 1, l, r);
     };
 };
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#0b58406058f6619a0f31a172defc0230">test/yosupo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/yosupo/line_add_get_min2.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-30 01:03:24+00:00
+    - Last commit date: 2020-07-31 08:58:53+00:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -147,7 +147,7 @@ struct DynamicLiChaoTree {
         T mx = (lx + rx) / 2;
         if (x.get(mx) < u->x.get(mx)) std::swap(x, u->x);
         if (x.get(lx) < u->x.get(lx)) u->l = update(u->l, x, lx, mx);
-        else u->r = update(u->r, x, mx, rx);
+        else u->r = update(u->r, x, mx + 1, rx);
 
         return u;
     };
@@ -160,7 +160,7 @@ struct DynamicLiChaoTree {
 
         T mx = (lx + rx) / 2;
         if (x < mx) return std::min(u->x.get(x), get(x, u->l, lx, mx));
-        else return std::min(u->x.get(x), get(x, u->r, mx, rx));
+        else return std::min(u->x.get(x), get(x, u->r, mx + 1, rx));
     };
 };
 
