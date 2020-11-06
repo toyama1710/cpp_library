@@ -18,14 +18,14 @@ struct UnionFind {
         parent.resize(nmemb, -1);
     };
 
-    int root(int x) {
+    int represent(int x) {
         if (parent[x] < 0) return x;
-        return parent[x] = root(parent[x]);
+        return parent[x] = represent(parent[x]);
     };
 
     void unite(int x, int y) {
-        x = root(x);
-        y = root(y);
+        x = represent(x);
+        y = represent(y);
 
         if (x == y) return;
 
@@ -38,10 +38,10 @@ struct UnionFind {
     };
     
     bool same(int x, int y) {
-        return root(x) == root(y);
+        return represent(x) == represent(y);
     };
     int size(int x) {
-        return -(parent[root(x)]);
+        return -(parent[represent(x)]);
     };
 };
 //===
