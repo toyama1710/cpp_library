@@ -40,9 +40,6 @@ data:
       title: bit/pop_count.hpp
   - name: cht
     pages:
-    - icon: ':x:'
-      path: cht/dynamic_li_chao_tree.hpp
-      title: cht/dynamic_li_chao_tree.hpp
     - icon: ':heavy_check_mark:'
       path: cht/li_chao_tree.hpp
       title: cht/li_chao_tree.hpp
