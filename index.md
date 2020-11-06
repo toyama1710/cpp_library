@@ -1,261 +1,305 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: array
+    pages:
+    - icon: ':warning:'
+      path: array/partially_persistent_array.cpp
+      title: array/partially_persistent_array.cpp
+    - icon: ':heavy_check_mark:'
+      path: array/persistent_array.hpp
+      title: array/persistent_array.hpp
+  - name: bbst/array
+    pages:
+    - icon: ':warning:'
+      path: bbst/array/merge_split_treap.hpp
+      title: bbst/array/merge_split_treap.hpp
+  - name: bbst/set
+    pages:
+    - icon: ':warning:'
+      path: bbst/set/insert_erase_treap.cpp
+      title: bbst/set/insert_erase_treap.cpp
+    - icon: ':heavy_check_mark:'
+      path: bbst/set/merge_split_treap.hpp
+      title: bbst/set/merge_split_treap.hpp
+  - name: bbst
+    pages:
+    - icon: ':warning:'
+      path: bbst/treap_test.cpp
+      title: bbst/treap_test.cpp
+  - name: bit
+    pages:
+    - icon: ':warning:'
+      path: bit/lsb.cpp
+      title: bit/lsb.cpp
+    - icon: ':heavy_check_mark:'
+      path: bit/msb.hpp
+      title: bit/msb.hpp
+    - icon: ':warning:'
+      path: bit/pop_count.hpp
+      title: bit/pop_count.hpp
+  - name: cht
+    pages:
+    - icon: ':x:'
+      path: cht/dynamic_li_chao_tree.hpp
+      title: cht/dynamic_li_chao_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: cht/li_chao_tree.hpp
+      title: cht/li_chao_tree.hpp
+  - name: compact_data_structure
+    pages:
+    - icon: ':warning:'
+      path: compact_data_structure/bit_vector.hpp
+      title: compact_data_structure/bit_vector.hpp
+  - name: data_type
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data_type/max_monoid.hpp
+      title: data_type/max_monoid.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_type/min_monoid.hpp
+      title: data_type/min_monoid.hpp
+    - icon: ':warning:'
+      path: data_type/monoid_snippet.hpp
+      title: data_type/monoid_snippet.hpp
+    - icon: ':warning:'
+      path: data_type/semi_group_snippet.hpp
+      title: data_type/semi_group_snippet.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_type/sum_monoid.hpp
+      title: data_type/sum_monoid.hpp
+  - name: deque
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: deque/sliding_window.hpp
+      title: deque/sliding_window.hpp
+  - name: disjoint_set
+    pages:
+    - icon: ':warning:'
+      path: disjoint_set/partially_persitent_union_find.cpp
+      title: disjoint_set/partially_persitent_union_find.cpp
+    - icon: ':heavy_check_mark:'
+      path: disjoint_set/persistent_union_find.hpp
+      title: disjoint_set/persistent_union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: disjoint_set/union_find.hpp
+      title: disjoint_set/union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: disjoint_set/weighted_union_find.hpp
+      title: disjoint_set/weighted_union_find.hpp
+  - name: graph
+    pages:
+    - icon: ':warning:'
+      path: graph/basic.cpp
+      title: graph/basic.cpp
+    - icon: ':warning:'
+      path: graph/bellman_ford.cpp
+      title: graph/bellman_ford.cpp
+    - icon: ':warning:'
+      path: graph/dijkstra.cpp
+      title: graph/dijkstra.cpp
+  - name: heap
+    pages:
+    - icon: ':warning:'
+      path: heap/find_kth.cpp
+      title: heap/find_kth.cpp
+    - icon: ':warning:'
+      path: heap/meldable_heap.cpp
+      title: heap/meldable_heap.cpp
+    - icon: ':warning:'
+      path: heap/skew_heap.cpp
+      title: heap/skew_heap.cpp
+  - name: math
+    pages:
+    - icon: ':warning:'
+      path: math/combination.cpp
+      title: math/combination.cpp
+    - icon: ':warning:'
+      path: math/modint.cpp
+      title: math/modint.cpp
+  - name: queue
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: queue/queue_aggregation.hpp
+      title: queue/queue_aggregation.hpp
+  - name: segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: segment_tree/dual_segment_tree.hpp
+      title: segment_tree/dual_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: segment_tree/dynamic_segment_tree.hpp
+      title: segment_tree/dynamic_segment_tree.hpp
+    - icon: ':warning:'
+      path: segment_tree/dynamic_starry_sky.cpp
+      title: segment_tree/dynamic_starry_sky.cpp
+    - icon: ':warning:'
+      path: segment_tree/fenwick_tree.cpp
+      title: segment_tree/fenwick_tree.cpp
+    - icon: ':heavy_check_mark:'
+      path: segment_tree/lazy_segment_tree.hpp
+      title: segment_tree/lazy_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: segment_tree/persistent_segment_tree.hpp
+      title: segment_tree/persistent_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: segment_tree/segment_tree.hpp
+      title: segment_tree/segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: segment_tree/segment_tree2d.hpp
+      title: segment_tree/segment_tree2d.hpp
+  - name: sparse_table
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: sparse_table/disjoint_sparse_table.hpp
+      title: sparse_table/disjoint_sparse_table.hpp
+    - icon: ':heavy_check_mark:'
+      path: sparse_table/sparse_table.hpp
+      title: sparse_table/sparse_table.hpp
+  - name: stack
+    pages:
+    - icon: ':warning:'
+      path: stack/persistent_stack.cpp
+      title: stack/persistent_stack.cpp
+  - name: string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: string/rolling_hash.hpp
+      title: string/rolling_hash.hpp
+  - name: test/atcoder
+    pages:
+    - icon: ':warning:'
+      path: test/atcoder/ARC033C.cpp
+      title: test/atcoder/ARC033C.cpp
+    - icon: ':warning:'
+      path: test/atcoder/ARC033C_2.cpp
+      title: test/atcoder/ARC033C_2.cpp
+  - name: test/ws
+    pages:
+    - icon: ':warning:'
+      path: test/ws/wm_rank.cpp
+      title: test/ws/wm_rank.cpp
+  - name: tree
+    pages:
+    - icon: ':warning:'
+      path: tree/doubling_tree.cpp
+      title: tree/doubling_tree.cpp
+    - icon: ':warning:'
+      path: tree/euler_tour_vertex.cpp
+      title: tree/euler_tour_vertex.cpp
+    - icon: ':warning:'
+      path: tree/heavy_light_decomposition.hpp
+      title: tree/heavy_light_decomposition.hpp
+    - icon: ':warning:'
+      path: tree/niu_decomposition.cpp
+      title: tree/niu_decomposition.cpp
+  - name: util
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: util/coordinate_compression.hpp
+      title: util/coordinate_compression.hpp
+    - icon: ':heavy_check_mark:'
+      path: util/memory_pool_allocator.hpp
+      title: util/memory_pool_allocator.hpp
+    - icon: ':warning:'
+      path: util/sparse_array.hpp
+      title: util/sparse_array.hpp
+    - icon: ':warning:'
+      path: util/xorshift.hpp
+      title: util/xorshift.hpp
+  - name: wavelet_matrix
+    pages:
+    - icon: ':warning:'
+      path: wavelet_matrix/wavelet_matrix.hpp
+      title: wavelet_matrix/wavelet_matrix.hpp
+  verificationCategories:
+  - name: test/aoj
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1068.test.cpp
+      title: test/aoj/1068.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2444_1.test.cpp
+      title: test/aoj/2444_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2444_2.test.cpp
+      title: test/aoj/2444_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2842.test.cpp
+      title: test/aoj/2842.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/3117_1.test.cpp
+      title: test/aoj/3117_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/3117_2.test.cpp
+      title: test/aoj/3117_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL1B.test.cpp
+      title: test/aoj/DSL1B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2A_1.test.cpp
+      title: test/aoj/DSL2A_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2A_2.test.cpp
+      title: test/aoj/DSL2A_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2A_3.test.cpp
+      title: test/aoj/DSL2A_3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2B.test.cpp
+      title: test/aoj/DSL2B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2D.test.cpp
+      title: test/aoj/DSL2D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2E.test.cpp
+      title: test/aoj/DSL2E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2F.test.cpp
+      title: test/aoj/DSL2F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2G.test.cpp
+      title: test/aoj/DSL2G.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2H.test.cpp
+      title: test/aoj/DSL2H.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL2I.test.cpp
+      title: test/aoj/DSL2I.test.cpp
+  - name: test/yosupo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/line_add_get_min.test.cpp
+      title: test/yosupo/line_add_get_min.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/line_add_get_min2.test.cpp
+      title: test/yosupo/line_add_get_min2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/persistent_union_find.test.cpp
+      title: test/yosupo/persistent_union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/queue_aggregation.test.cpp
+      title: test/yosupo/queue_aggregation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/range_affine_range_sum.test.cpp
+      title: test/yosupo/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/rectangle_sum1.test.cpp
+      title: test/yosupo/rectangle_sum1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/segment_add_get_min.test.cpp
+      title: test/yosupo/segment_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/static_range_sum.test.cpp
+      title: test/yosupo/static_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/static_rmq.test.cpp
+      title: test/yosupo/static_rmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/swag.test.cpp
+      title: test/yosupo/swag.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/union_find.test.cpp
+      title: test/yosupo/union_find.test.cpp
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/online-judge-tools/verification-helper">online-judge-tools/verification-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="f1f713c9e000f5d3f280adbd124df4f5"></div>
-
-### array
-
-* :warning: <a href="library/array/partially_persistent_array.cpp.html">array/partially_persistent_array.cpp</a>
-* :heavy_check_mark: <a href="library/array/persistent_array.hpp.html">array/persistent_array.hpp</a>
-
-
-<div id="d342894e126a2cdd0812cd3a6c903bbd"></div>
-
-### bbst
-
-* :warning: <a href="library/bbst/treap_test.cpp.html">bbst/treap_test.cpp</a>
-
-
-<div id="cedb0123e293c41264ad27a06222986c"></div>
-
-### bbst/array
-
-* :warning: <a href="library/bbst/array/merge_split_treap.hpp.html">bbst/array/merge_split_treap.hpp</a>
-
-
-<div id="3ab1a2985fc70661dd7191a6b145a786"></div>
-
-### bbst/set
-
-* :warning: <a href="library/bbst/set/insert_erase_treap.cpp.html">bbst/set/insert_erase_treap.cpp</a>
-* :heavy_check_mark: <a href="library/bbst/set/merge_split_treap.hpp.html">bbst/set/merge_split_treap.hpp</a>
-
-
-<div id="f67169dfbf72c4ca285e9ee12e3e9ac5"></div>
-
-### bit
-
-* :warning: <a href="library/bit/lsb.cpp.html">bit/lsb.cpp</a>
-* :heavy_check_mark: <a href="library/bit/msb.hpp.html">bit/msb.hpp</a>
-* :warning: <a href="library/bit/pop_count.hpp.html">bit/pop_count.hpp</a>
-
-
-<div id="7d1cf34ccafd0e26b00bb21cd8cce647"></div>
-
-### cht
-
-* :x: <a href="library/cht/dynamic_li_chao_tree.hpp.html">cht/dynamic_li_chao_tree.hpp</a>
-* :heavy_check_mark: <a href="library/cht/li_chao_tree.hpp.html">cht/li_chao_tree.hpp</a>
-
-
-<div id="5f15b424ad8b963fc9e5594111bd69bf"></div>
-
-### compact_data_structure
-
-* :warning: <a href="library/compact_data_structure/bit_vector.hpp.html">compact_data_structure/bit_vector.hpp</a>
-
-
-<div id="17f71d965fe9589ddbd11caf7182243e"></div>
-
-### data_type
-
-* :heavy_check_mark: <a href="library/data_type/max_monoid.hpp.html">data_type/max_monoid.hpp</a>
-* :heavy_check_mark: <a href="library/data_type/min_monoid.hpp.html">data_type/min_monoid.hpp</a>
-* :warning: <a href="library/data_type/monoid_snippet.hpp.html">data_type/monoid_snippet.hpp</a>
-* :warning: <a href="library/data_type/semi_group_snippet.hpp.html">data_type/semi_group_snippet.hpp</a>
-* :heavy_check_mark: <a href="library/data_type/sum_monoid.hpp.html">data_type/sum_monoid.hpp</a>
-
-
-<div id="eb30267afe2f60536940ebb01df616b5"></div>
-
-### deque
-
-* :heavy_check_mark: <a href="library/deque/sliding_window.hpp.html">deque/sliding_window.hpp</a>
-
-
-<div id="334b410b60c6352c539a44a5cc4509bc"></div>
-
-### disjoint_set
-
-* :warning: <a href="library/disjoint_set/partially_persitent_union_find.cpp.html">disjoint_set/partially_persitent_union_find.cpp</a>
-* :heavy_check_mark: <a href="library/disjoint_set/persistent_union_find.hpp.html">disjoint_set/persistent_union_find.hpp</a>
-* :heavy_check_mark: <a href="library/disjoint_set/union_find.hpp.html">disjoint_set/union_find.hpp</a>
-* :heavy_check_mark: <a href="library/disjoint_set/weighted_union_find.hpp.html">disjoint_set/weighted_union_find.hpp</a>
-
-
-<div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
-
-### graph
-
-* :warning: <a href="library/graph/basic.cpp.html">graph/basic.cpp</a>
-* :warning: <a href="library/graph/bellman_ford.cpp.html">graph/bellman_ford.cpp</a>
-* :warning: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
-
-
-<div id="4d4a9aa362b6ffe089fd2e992ccf4f5f"></div>
-
-### heap
-
-* :warning: <a href="library/heap/find_kth.cpp.html">heap/find_kth.cpp</a>
-* :warning: <a href="library/heap/meldable_heap.cpp.html">heap/meldable_heap.cpp</a>
-* :warning: <a href="library/heap/skew_heap.cpp.html">heap/skew_heap.cpp</a>
-
-
-<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
-
-### math
-
-* :warning: <a href="library/math/combination.cpp.html">math/combination.cpp</a>
-* :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
-
-
-<div id="a9d1cbf71942327e98b40cf5ef38a960"></div>
-
-### queue
-
-* :heavy_check_mark: <a href="library/queue/queue_aggregation.hpp.html">queue/queue_aggregation.hpp</a>
-
-
-<div id="ca810e3a5259e4bd613e780cf209098c"></div>
-
-### segment_tree
-
-* :heavy_check_mark: <a href="library/segment_tree/dual_segment_tree.hpp.html">segment_tree/dual_segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/segment_tree/dynamic_segment_tree.hpp.html">segment_tree/dynamic_segment_tree.hpp</a>
-* :warning: <a href="library/segment_tree/dynamic_starry_sky.cpp.html">segment_tree/dynamic_starry_sky.cpp</a>
-* :warning: <a href="library/segment_tree/fenwick_tree.cpp.html">segment_tree/fenwick_tree.cpp</a>
-* :heavy_check_mark: <a href="library/segment_tree/lazy_segment_tree.hpp.html">segment_tree/lazy_segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/segment_tree/persistent_segment_tree.hpp.html">segment_tree/persistent_segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/segment_tree/segment_tree.hpp.html">segment_tree/segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/segment_tree/segment_tree2d.hpp.html">segment_tree/segment_tree2d.hpp</a>
-
-
-<div id="cb323a14df0a258a78d4acbe3d02dfda"></div>
-
-### sparse_table
-
-* :heavy_check_mark: <a href="library/sparse_table/disjoint_sparse_table.hpp.html">sparse_table/disjoint_sparse_table.hpp</a>
-* :heavy_check_mark: <a href="library/sparse_table/sparse_table.hpp.html">sparse_table/sparse_table.hpp</a>
-
-
-<div id="fac2a47adace059aff113283a03f6760"></div>
-
-### stack
-
-* :warning: <a href="library/stack/persistent_stack.cpp.html">stack/persistent_stack.cpp</a>
-
-
-<div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
-
-### string
-
-* :heavy_check_mark: <a href="library/string/rolling_hash.hpp.html">string/rolling_hash.hpp</a>
-
-
-<div id="e8ba03245cc911ba95395348d53122a0"></div>
-
-### test/atcoder
-
-* :warning: <a href="library/test/atcoder/ARC033C.cpp.html">test/atcoder/ARC033C.cpp</a>
-* :warning: <a href="library/test/atcoder/ARC033C_2.cpp.html">test/atcoder/ARC033C_2.cpp</a>
-
-
-<div id="371cfd9101dedf155cc0c947ec787865"></div>
-
-### test/ws
-
-* :warning: <a href="library/test/ws/wm_rank.cpp.html">test/ws/wm_rank.cpp</a>
-
-
-<div id="c0af77cf8294ff93a5cdb2963ca9f038"></div>
-
-### tree
-
-* :warning: <a href="library/tree/doubling_tree.cpp.html">tree/doubling_tree.cpp</a>
-* :warning: <a href="library/tree/euler_tour_vertex.cpp.html">tree/euler_tour_vertex.cpp</a>
-* :warning: <a href="library/tree/heavy_light_decomposition.hpp.html">tree/heavy_light_decomposition.hpp</a>
-* :warning: <a href="library/tree/niu_decomposition.cpp.html">tree/niu_decomposition.cpp</a>
-
-
-<div id="05c7e24700502a079cdd88012b5a76d3"></div>
-
-### util
-
-* :heavy_check_mark: <a href="library/util/coordinate_compression.hpp.html">util/coordinate_compression.hpp</a>
-* :heavy_check_mark: <a href="library/util/memory_pool_allocator.hpp.html">util/memory_pool_allocator.hpp</a>
-* :warning: <a href="library/util/sparse_array.hpp.html">util/sparse_array.hpp</a>
-* :warning: <a href="library/util/xorshift.hpp.html">util/xorshift.hpp</a>
-
-
-<div id="1b146cfabd0723a5965d40cf5331ccfd"></div>
-
-### wavelet_matrix
-
-* :warning: <a href="library/wavelet_matrix/wavelet_matrix.hpp.html">wavelet_matrix/wavelet_matrix.hpp</a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/test/aoj/1068.test.cpp.html">test/aoj/1068.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/2444_1.test.cpp.html">test/aoj/2444_1.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/2444_2.test.cpp.html">test/aoj/2444_2.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/2842.test.cpp.html">test/aoj/2842.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/3117_1.test.cpp.html">test/aoj/3117_1.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/3117_2.test.cpp.html">test/aoj/3117_2.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL1B.test.cpp.html">test/aoj/DSL1B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2A_1.test.cpp.html">test/aoj/DSL2A_1.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2A_2.test.cpp.html">test/aoj/DSL2A_2.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2A_3.test.cpp.html">test/aoj/DSL2A_3.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2B.test.cpp.html">test/aoj/DSL2B.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2D.test.cpp.html">test/aoj/DSL2D.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2E.test.cpp.html">test/aoj/DSL2E.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2F.test.cpp.html">test/aoj/DSL2F.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2G.test.cpp.html">test/aoj/DSL2G.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2H.test.cpp.html">test/aoj/DSL2H.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/aoj/DSL2I.test.cpp.html">test/aoj/DSL2I.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/line_add_get_min.test.cpp.html">test/yosupo/line_add_get_min.test.cpp</a>
-* :x: <a href="verify/test/yosupo/line_add_get_min2.test.cpp.html">test/yosupo/line_add_get_min2.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/persistent_union_find.test.cpp.html">test/yosupo/persistent_union_find.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/queue_aggregation.test.cpp.html">test/yosupo/queue_aggregation.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/range_affine_range_sum.test.cpp.html">test/yosupo/range_affine_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/rectangle_sum1.test.cpp.html">test/yosupo/rectangle_sum1.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/segment_add_get_min.test.cpp.html">test/yosupo/segment_add_get_min.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/static_range_sum.test.cpp.html">test/yosupo/static_range_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/static_rmq.test.cpp.html">test/yosupo/static_rmq.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/swag.test.cpp.html">test/yosupo/swag.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/yosupo/union_find.test.cpp.html">test/yosupo/union_find.test.cpp</a>
-
-
