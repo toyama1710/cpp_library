@@ -26,8 +26,8 @@ struct PersistentLazySegmentTree {
         Node(const Node &) = default;
     };
 
-    Node *root;
     int sz;
+    Node *root;
 
     Self<A>() = default;
     Self<A>(const Self<A> &) = default;
