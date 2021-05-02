@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/atcoder/ARC033C.cpp
-    title: test/atcoder/ARC033C.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2B.test.cpp
@@ -25,8 +22,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: data_type/sum_monoid.hpp
-  requiredBy:
-  - test/atcoder/ARC033C.cpp
+  requiredBy: []
   timestamp: '2020-05-07 13:37:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

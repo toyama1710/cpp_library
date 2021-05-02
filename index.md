@@ -145,14 +145,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: string/rolling_hash.hpp
-  - name: test/atcoder
-    pages:
-    - icon: ':warning:'
-      path: test/atcoder/ARC033C.cpp
-      title: test/atcoder/ARC033C.cpp
-    - icon: ':warning:'
-      path: test/atcoder/ARC033C_2.cpp
-      title: test/atcoder/ARC033C_2.cpp
   - name: tree
     pages:
     - icon: ':warning:'
@@ -192,12 +184,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2842.test.cpp
       title: test/aoj/2842.test.cpp
-    - icon: ':x:'
-      path: test/aoj/3117_1.test.cpp
-      title: test/aoj/3117_1.test.cpp
-    - icon: ':x:'
-      path: test/aoj/3117_2.test.cpp
-      title: test/aoj/3117_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL1B.test.cpp
       title: test/aoj/DSL1B.test.cpp

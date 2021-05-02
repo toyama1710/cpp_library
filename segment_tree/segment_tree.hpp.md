@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/atcoder/ARC033C.cpp
-    title: test/atcoder/ARC033C.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2444_1.test.cpp
@@ -102,8 +99,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/segment_tree.hpp
-  requiredBy:
-  - test/atcoder/ARC033C.cpp
+  requiredBy: []
   timestamp: '2020-06-10 22:44:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
