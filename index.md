@@ -9,24 +9,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: array/persistent_array.hpp
       title: array/persistent_array.hpp
-  - name: bbst/array
-    pages:
-    - icon: ':warning:'
-      path: bbst/array/merge_split_treap.hpp
-      title: bbst/array/merge_split_treap.hpp
-  - name: bbst/set
-    pages:
-    - icon: ':warning:'
-      path: bbst/set/insert_erase_treap.cpp
-      title: bbst/set/insert_erase_treap.cpp
-    - icon: ':heavy_check_mark:'
-      path: bbst/set/merge_split_treap.hpp
-      title: bbst/set/merge_split_treap.hpp
-  - name: bbst
-    pages:
-    - icon: ':warning:'
-      path: bbst/treap_test.cpp
-      title: bbst/treap_test.cpp
   - name: bit
     pages:
     - icon: ':warning:'
@@ -128,9 +110,6 @@ data:
       path: segment_tree/dynamic_segment_tree.hpp
       title: segment_tree/dynamic_segment_tree.hpp
     - icon: ':warning:'
-      path: segment_tree/dynamic_starry_sky.cpp
-      title: segment_tree/dynamic_starry_sky.cpp
-    - icon: ':warning:'
       path: segment_tree/fenwick_tree.cpp
       title: segment_tree/fenwick_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -174,11 +153,6 @@ data:
     - icon: ':warning:'
       path: test/atcoder/ARC033C_2.cpp
       title: test/atcoder/ARC033C_2.cpp
-  - name: test/ws
-    pages:
-    - icon: ':warning:'
-      path: test/ws/wm_rank.cpp
-      title: test/ws/wm_rank.cpp
   - name: tree
     pages:
     - icon: ':warning:'
@@ -187,23 +161,14 @@ data:
     - icon: ':warning:'
       path: tree/euler_tour_vertex.cpp
       title: tree/euler_tour_vertex.cpp
-    - icon: ':warning:'
-      path: tree/heavy_light_decomposition.hpp
-      title: tree/heavy_light_decomposition.hpp
-    - icon: ':warning:'
-      path: tree/niu_decomposition.cpp
-      title: tree/niu_decomposition.cpp
   - name: util
     pages:
     - icon: ':heavy_check_mark:'
       path: util/coordinate_compression.hpp
       title: util/coordinate_compression.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: util/memory_pool_allocator.hpp
       title: util/memory_pool_allocator.hpp
-    - icon: ':warning:'
-      path: util/sparse_array.hpp
-      title: util/sparse_array.hpp
     - icon: ':warning:'
       path: util/xorshift.hpp
       title: util/xorshift.hpp
@@ -227,10 +192,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2842.test.cpp
       title: test/aoj/2842.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/3117_1.test.cpp
       title: test/aoj/3117_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/3117_2.test.cpp
       title: test/aoj/3117_2.test.cpp
     - icon: ':heavy_check_mark:'

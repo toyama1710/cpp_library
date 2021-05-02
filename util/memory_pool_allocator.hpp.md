@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/3117_2.test.cpp
-    title: test/aoj/3117_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"util/memory_pool_allocator.hpp\"\n\n\n\n#include <cassert>\n\
@@ -40,9 +37,8 @@ data:
   path: util/memory_pool_allocator.hpp
   requiredBy: []
   timestamp: '2020-06-11 07:49:55+00:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/3117_2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: util/memory_pool_allocator.hpp
 layout: document
 redirect_from:
