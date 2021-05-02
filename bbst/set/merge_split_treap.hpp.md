@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/3117_2.test.cpp
     title: test/aoj/3117_2.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -128,8 +129,8 @@ data:
   timestamp: '2020-06-11 07:44:37+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/3117_1.test.cpp
   - test/aoj/3117_2.test.cpp
+  - test/aoj/3117_1.test.cpp
 documentation_of: bbst/set/merge_split_treap.hpp
 layout: document
 redirect_from:

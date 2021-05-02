@@ -18,6 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2B.test.cpp
     title: test/aoj/DSL2B.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -107,8 +108,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL2B.test.cpp
-  - test/aoj/DSL2A_1.test.cpp
   - test/aoj/DSL2A_2.test.cpp
+  - test/aoj/DSL2A_1.test.cpp
   - test/aoj/2444_1.test.cpp
 documentation_of: segment_tree/segment_tree.hpp
 layout: document

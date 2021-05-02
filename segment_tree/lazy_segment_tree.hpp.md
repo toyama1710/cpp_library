@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL2F.test.cpp
-    title: test/aoj/DSL2F.test.cpp
+    path: test/aoj/DSL2F_1.test.cpp
+    title: test/aoj/DSL2F_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2G.test.cpp
     title: test/aoj/DSL2G.test.cpp
@@ -21,6 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -128,11 +129,11 @@ data:
   timestamp: '2020-06-08 22:41:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2F.test.cpp
-  - test/aoj/DSL2H.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL2G.test.cpp
   - test/aoj/DSL2I.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/aoj/DSL2F_1.test.cpp
+  - test/aoj/DSL2H.test.cpp
 documentation_of: segment_tree/lazy_segment_tree.hpp
 layout: document
 redirect_from:

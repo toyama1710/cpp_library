@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_rmq.test.cpp
     title: test/yosupo/static_rmq.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -30,8 +31,8 @@ data:
   timestamp: '2020-05-07 16:24:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2A_1.test.cpp
   - test/yosupo/static_rmq.test.cpp
+  - test/aoj/DSL2A_1.test.cpp
 documentation_of: data_type/min_monoid.hpp
 layout: document
 redirect_from:

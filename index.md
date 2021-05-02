@@ -136,6 +136,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: segment_tree/lazy_segment_tree.hpp
       title: segment_tree/lazy_segment_tree.hpp
+    - icon: ':x:'
+      path: segment_tree/persistent_lazy_segment_tree.hpp
+      title: segment_tree/persistent_lazy_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_segment_tree.hpp
       title: segment_tree/persistent_segment_tree.hpp
@@ -252,8 +255,11 @@ data:
       path: test/aoj/DSL2E.test.cpp
       title: test/aoj/DSL2E.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL2F.test.cpp
-      title: test/aoj/DSL2F.test.cpp
+      path: test/aoj/DSL2F_1.test.cpp
+      title: test/aoj/DSL2F_1.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DSL2F_2.test.cpp
+      title: test/aoj/DSL2F_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2G.test.cpp
       title: test/aoj/DSL2G.test.cpp
@@ -268,9 +274,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':x:'
-      path: test/yosupo/line_add_get_min2.test.cpp
-      title: test/yosupo/line_add_get_min2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_union_find.test.cpp
       title: test/yosupo/persistent_union_find.test.cpp

@@ -6,6 +6,7 @@ data:
     path: compact_data_structure/bit_vector.hpp
     title: compact_data_structure/bit_vector.hpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:

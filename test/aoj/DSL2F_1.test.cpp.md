@@ -9,6 +9,7 @@ data:
     title: segment_tree/lazy_segment_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -16,7 +17,7 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
-  bundledCode: "#line 1 \"test/aoj/DSL2F.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
+  bundledCode: "#line 1 \"test/aoj/DSL2F_1.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
     \n#include <iostream>\n#include <algorithm>\n#line 1 \"segment_tree/lazy_segment_tree.hpp\"\
     \n\n\n\n#include <vector>\n#include <cstdint>\n#line 1 \"bit/msb.hpp\"\n\n\n\n\
     #line 5 \"bit/msb.hpp\"\n\ninline int msb32(uint32_t x) {\n        if (x == 0)\
@@ -70,7 +71,7 @@ data:
     \ l >>= 1;\n            r >>= 1;\n        }\n\n        return V::operation(lv,\
     \ rv);\n    };\n\n    T operator [](const uint32_t &k) {\n        push_down(k\
     \ + size());\n        return tree[k + size()].dat;\n    };\n};\n//===\n\n\n#line\
-    \ 5 \"test/aoj/DSL2F.test.cpp\"\nusing namespace std;\nusing llong = long long;\n\
+    \ 5 \"test/aoj/DSL2F_1.test.cpp\"\nusing namespace std;\nusing llong = long long;\n\
     \nstruct M {\n    struct Monoid {\n        using T = llong;\n        using value_type\
     \ = T;\n\n        inline static T identity() {\n            return (1ll << 31)\
     \ - 1;\n        };\n        inline static T operation(T a, T b) {\n          \
@@ -114,15 +115,15 @@ data:
   - segment_tree/lazy_segment_tree.hpp
   - bit/msb.hpp
   isVerificationFile: true
-  path: test/aoj/DSL2F.test.cpp
+  path: test/aoj/DSL2F_1.test.cpp
   requiredBy: []
-  timestamp: '2020-06-08 22:41:51+09:00'
+  timestamp: '2021-05-02 16:37:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL2F.test.cpp
+documentation_of: test/aoj/DSL2F_1.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL2F.test.cpp
-- /verify/test/aoj/DSL2F.test.cpp.html
-title: test/aoj/DSL2F.test.cpp
+- /verify/test/aoj/DSL2F_1.test.cpp
+- /verify/test/aoj/DSL2F_1.test.cpp.html
+title: test/aoj/DSL2F_1.test.cpp
 ---
