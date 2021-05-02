@@ -136,7 +136,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: segment_tree/lazy_segment_tree.hpp
       title: segment_tree/lazy_segment_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_lazy_segment_tree.hpp
       title: segment_tree/persistent_lazy_segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -257,7 +257,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2F_1.test.cpp
       title: test/aoj/DSL2F_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2F_2.test.cpp
       title: test/aoj/DSL2F_2.test.cpp
     - icon: ':heavy_check_mark:'
