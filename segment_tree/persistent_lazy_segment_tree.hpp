@@ -4,8 +4,6 @@
 #include <iostream>
 template <class MonoidwithOperator>
 struct PersistentLazySegmentTree {
-    template <class C>
-    using Self = PersistentLazySegmentTree<C>;
     using A = MonoidwithOperator;
     using M = typename A::value_structure;
     using O = typename A::operator_structure;
@@ -26,15 +24,18 @@ struct PersistentLazySegmentTree {
         Node(const Node &) = default;
     };
 
-    int sz;
     Node *root;
+    int sz;
 
-    Self<A>() = default;
-    Self<A>(const Self<A> &) = default;
-    explicit Self<A>(int n) : sz(n), root(alloc(0, n, M::identity())){};
-    Self<A>(int n, T init_v) : sz(n), root(alloc(0, n, init_v)){};
-    Self<A>(Node *u, int sz) : root(u), sz(sz){};
-    Self<A> &operator=(const Self<A> &) = default;
+    PersistentLazySegmentTree() = default;
+    PersistentLazySegmentTree(const PersistentLazySegmentTree &) = default;
+    explicit PersistentLazySegmentTree(int n)
+        : root(alloc(0, n, M::identity())), sz(n){};
+    PersistentLazySegmentTree(int n, T init_v)
+        : root(alloc(0, n, init_v)), sz(n){};
+    PersistentLazySegmentTree(Node *u, int sz) : root(u), sz(sz){};
+    PersistentLazySegmentTree &operator=(const PersistentLazySegmentTree &) =
+        default;
 
     Node *alloc(int nl, int nr, T init_v) {
         if (nr - nl <= 1) return new Node(init_v, O::identity());
@@ -80,9 +81,9 @@ struct PersistentLazySegmentTree {
         }
     };
 
-    Self<A> update(int l, int r, E op) {
-        if (r <= l) return Self<A>(*this);
-        return Self<A>(update(root, op, 0, sz, l, r), sz);
+    PersistentLazySegmentTree update(int l, int r, E op) {
+        if (r <= l) return PersistentLazySegmentTree(*this);
+        return PersistentLazySegmentTree(update(root, op, 0, sz, l, r), sz);
     };
     Node *update(Node *u, E op, int nl, int nr, int ql, int qr) {
         Node *ret = new Node(*u);
