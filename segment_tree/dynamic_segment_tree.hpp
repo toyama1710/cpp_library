@@ -5,8 +5,8 @@ struct DynamicSegmentTree {
     using llong = long long;
 
     struct Node {
-        Node *left, *right;
         T v;
+        Node *left, *right;
         Node(T v):v(v), left(nullptr), right(nullptr) {};
     };
 

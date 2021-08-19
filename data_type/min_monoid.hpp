@@ -2,6 +2,7 @@
 #define MIN_MONOID_HPP
 
 #include <numeric>
+#include <limits>
 #include <algorithm>
 
 //===

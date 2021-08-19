@@ -2,17 +2,7 @@
 
 // header file section
 #include <iostream>
-#include <cstdio>
-#include <cfloat>
 #include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <functional>
-#include <numeric>
-#include <algorithm>
 #include "../../segment_tree/dynamic_segment_tree.hpp"
 #include "../../data_type/max_monoid.hpp"
 
