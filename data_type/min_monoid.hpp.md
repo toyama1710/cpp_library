@@ -15,20 +15,20 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"data_type/min_monoid.hpp\"\n\n\n\n#include <numeric>\n#include\
-    \ <algorithm>\n\n//===\ntemplate<class T>\nstruct MinMonoid {\n    using value_type\
-    \ = T;\n    inline static T identity() {\n        return std::numeric_limits<T>::max();\n\
-    \    };\n    inline static T operation(const T a, const T b) {\n        return\
-    \ std::min(a, b);\n    };\n};\n//===\n\n\n"
+    \ <limits>\n#include <algorithm>\n\n//===\ntemplate<class T>\nstruct MinMonoid\
+    \ {\n    using value_type = T;\n    inline static T identity() {\n        return\
+    \ std::numeric_limits<T>::max();\n    };\n    inline static T operation(const\
+    \ T a, const T b) {\n        return std::min(a, b);\n    };\n};\n//===\n\n\n"
   code: "#ifndef MIN_MONOID_HPP\n#define MIN_MONOID_HPP\n\n#include <numeric>\n#include\
-    \ <algorithm>\n\n//===\ntemplate<class T>\nstruct MinMonoid {\n    using value_type\
-    \ = T;\n    inline static T identity() {\n        return std::numeric_limits<T>::max();\n\
-    \    };\n    inline static T operation(const T a, const T b) {\n        return\
-    \ std::min(a, b);\n    };\n};\n//===\n\n#endif\n"
+    \ <limits>\n#include <algorithm>\n\n//===\ntemplate<class T>\nstruct MinMonoid\
+    \ {\n    using value_type = T;\n    inline static T identity() {\n        return\
+    \ std::numeric_limits<T>::max();\n    };\n    inline static T operation(const\
+    \ T a, const T b) {\n        return std::min(a, b);\n    };\n};\n//===\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: data_type/min_monoid.hpp
   requiredBy: []
-  timestamp: '2020-05-07 16:24:39+09:00'
+  timestamp: '2021-08-19 23:45:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_rmq.test.cpp

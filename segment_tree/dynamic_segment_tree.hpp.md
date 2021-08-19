@@ -13,9 +13,9 @@ data:
     links: []
   bundledCode: "#line 1 \"segment_tree/dynamic_segment_tree.hpp\"\n//===\ntemplate<class\
     \ Monoid>\nstruct DynamicSegmentTree {\n    using T = typename Monoid::value_type;\n\
-    \    using llong = long long;\n\n    struct Node {\n        Node *left, *right;\n\
-    \        T v;\n        Node(T v):v(v), left(nullptr), right(nullptr) {};\n   \
-    \ };\n\n    Node *root = nullptr;\n    llong L = 0, R = 0;\n\n    DynamicSegmentTree()\
+    \    using llong = long long;\n\n    struct Node {\n        T v;\n        Node\
+    \ *left, *right;\n        Node(T v):v(v), left(nullptr), right(nullptr) {};\n\
+    \    };\n\n    Node *root = nullptr;\n    llong L = 0, R = 0;\n\n    DynamicSegmentTree()\
     \ = default;\n\n    inline void eval(Node &u) {\n        T lv = Monoid::identity(),\
     \ rv = Monoid::identity();\n        if (u.left) lv = u.left->v;\n        if (u.right)\
     \ rv = u.right->v;\n        u.v = Monoid::operation(lv, rv);\n    };\n\n    inline\
@@ -48,7 +48,7 @@ data:
     \ k + 1);\n    };\n};\n//===\n"
   code: "//===\ntemplate<class Monoid>\nstruct DynamicSegmentTree {\n    using T =\
     \ typename Monoid::value_type;\n    using llong = long long;\n\n    struct Node\
-    \ {\n        Node *left, *right;\n        T v;\n        Node(T v):v(v), left(nullptr),\
+    \ {\n        T v;\n        Node *left, *right;\n        Node(T v):v(v), left(nullptr),\
     \ right(nullptr) {};\n    };\n\n    Node *root = nullptr;\n    llong L = 0, R\
     \ = 0;\n\n    DynamicSegmentTree() = default;\n\n    inline void eval(Node &u)\
     \ {\n        T lv = Monoid::identity(), rv = Monoid::identity();\n        if (u.left)\
@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: segment_tree/dynamic_segment_tree.hpp
   requiredBy: []
-  timestamp: '2020-07-06 02:39:07+00:00'
+  timestamp: '2021-08-19 23:45:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL2A_3.test.cpp
