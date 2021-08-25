@@ -164,11 +164,6 @@ data:
     - icon: ':warning:'
       path: util/xorshift.hpp
       title: util/xorshift.hpp
-  - name: wavelet_matrix
-    pages:
-    - icon: ':warning:'
-      path: wavelet_matrix/wavelet_matrix.hpp
-      title: wavelet_matrix/wavelet_matrix.hpp
   verificationCategories:
   - name: test/aoj
     pages:
