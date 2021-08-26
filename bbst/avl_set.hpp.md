@@ -47,12 +47,11 @@ data:
     \    };\n    Node *erase_node(Node *u) {\n        if (u->ch[0] == nullptr || u->ch[1]\
     \ == nullptr) {\n            Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n\
     \            delete u;\n            return ret;\n        } else {\n          \
-    \  auto dfs = [&](auto &&f, Node *v) -> Node * {\n                if (v->ch[1]\
-    \ != nullptr) {\n                    v->ch[1] = f(f, v->ch[1]);\n            \
-    \        return balance(recalc(v));\n                } else {\n              \
-    \      std::swap(u->dat, v->dat);\n                    return erase_node(v);\n\
-    \                }\n            };\n            u->ch[0] = dfs(dfs, u->ch[0]);\n\
-    \            return balance(recalc(u));\n        }\n    };\n\n    bool contains(T\
+    \  u->ch[0] = erase_node(u, u->ch[0]);\n            return balance(recalc(u));\n\
+    \        }\n    };\n    Node *erase_node(Node *u, Node *v) {\n        if (v->ch[1]\
+    \ != nullptr) {\n            v->ch[1] = erase_node(u, v->ch[1]);\n           \
+    \ return balance(recalc(v));\n        } else {\n            std::swap(u->dat,\
+    \ v->dat);\n            return erase_node(v);\n        }\n    };\n\n    bool contains(T\
     \ dat) {\n        Node *u = root;\n        while (u != nullptr) {\n          \
     \  if (cmp(dat, u->dat)) {\n                u = u->ch[0];\n            } else\
     \ if (cmp(u->dat, dat)) {\n                u = u->ch[1];\n            } else {\n\
@@ -64,9 +63,21 @@ data:
     \ u->sz << \", \" << u->hi << \")\"\n                      << std::endl;\n   \
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
     \n    /*\n    std::optional<T> lower_bound(T x){};\n    std::optional<T> upper_bound(T\
-    \ x){};\n\n    T find_Kth(int k);\n    int count(T x) { return size() - count_upper(x)\
-    \ - count_lower(x); };\n    int count_lower(T x);\n    int count_upper(T x);\n\
-    \    */\n};\n\n\n"
+    \ x){};\n    */\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
+    \        if (size() <= k || k <= 0)\n            return std::nullopt;\n      \
+    \  else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
+    \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
+    \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
+    \    };\n\n    int count(const T &x) { return size() - count_upper(x) - count_lower(x);\
+    \ };\n    int count_lower(const T &x) { return count_lower(x, root); };\n    int\
+    \ count_lower(const T &x, Node *u) {\n        if (u == nullptr) return 0;\n  \
+    \      if (cmp(u->dat, x))\n            return count_lower(x, u->ch[1]) + size(u->ch[0])\
+    \ + 1;\n        else\n            return count_lower(x, u->ch[0]);\n    };\n \
+    \   int count_upper(const T &x) { return count_upper(x, root); };\n    int count_upper(const\
+    \ T &x, Node *u) {\n        if (u == nullptr) return 0;\n        if (cmp(x, u->dat))\n\
+    \            return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;\n        else\n\
+    \            return count_upper(x, u->ch[1]);\n    };\n};\n\n\n"
   code: "#ifndef AVL_SET\n#define AVL_SET\n\n#include <algorithm>\n#include <cassert>\n\
     #include <functional>\n#include <iostream>\n#include <optional>\n#include <utility>\n\
     \n// insert/erase base AVLtree\n// multiset\ntemplate <class T, class Compare\
@@ -106,12 +117,11 @@ data:
     \    };\n    Node *erase_node(Node *u) {\n        if (u->ch[0] == nullptr || u->ch[1]\
     \ == nullptr) {\n            Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n\
     \            delete u;\n            return ret;\n        } else {\n          \
-    \  auto dfs = [&](auto &&f, Node *v) -> Node * {\n                if (v->ch[1]\
-    \ != nullptr) {\n                    v->ch[1] = f(f, v->ch[1]);\n            \
-    \        return balance(recalc(v));\n                } else {\n              \
-    \      std::swap(u->dat, v->dat);\n                    return erase_node(v);\n\
-    \                }\n            };\n            u->ch[0] = dfs(dfs, u->ch[0]);\n\
-    \            return balance(recalc(u));\n        }\n    };\n\n    bool contains(T\
+    \  u->ch[0] = erase_node(u, u->ch[0]);\n            return balance(recalc(u));\n\
+    \        }\n    };\n    Node *erase_node(Node *u, Node *v) {\n        if (v->ch[1]\
+    \ != nullptr) {\n            v->ch[1] = erase_node(u, v->ch[1]);\n           \
+    \ return balance(recalc(v));\n        } else {\n            std::swap(u->dat,\
+    \ v->dat);\n            return erase_node(v);\n        }\n    };\n\n    bool contains(T\
     \ dat) {\n        Node *u = root;\n        while (u != nullptr) {\n          \
     \  if (cmp(dat, u->dat)) {\n                u = u->ch[0];\n            } else\
     \ if (cmp(u->dat, dat)) {\n                u = u->ch[1];\n            } else {\n\
@@ -123,14 +133,26 @@ data:
     \ u->sz << \", \" << u->hi << \")\"\n                      << std::endl;\n   \
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
     \n    /*\n    std::optional<T> lower_bound(T x){};\n    std::optional<T> upper_bound(T\
-    \ x){};\n\n    T find_Kth(int k);\n    int count(T x) { return size() - count_upper(x)\
-    \ - count_lower(x); };\n    int count_lower(T x);\n    int count_upper(T x);\n\
-    \    */\n};\n\n#endif"
+    \ x){};\n    */\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
+    \        if (size() <= k || k <= 0)\n            return std::nullopt;\n      \
+    \  else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
+    \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
+    \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
+    \    };\n\n    int count(const T &x) { return size() - count_upper(x) - count_lower(x);\
+    \ };\n    int count_lower(const T &x) { return count_lower(x, root); };\n    int\
+    \ count_lower(const T &x, Node *u) {\n        if (u == nullptr) return 0;\n  \
+    \      if (cmp(u->dat, x))\n            return count_lower(x, u->ch[1]) + size(u->ch[0])\
+    \ + 1;\n        else\n            return count_lower(x, u->ch[0]);\n    };\n \
+    \   int count_upper(const T &x) { return count_upper(x, root); };\n    int count_upper(const\
+    \ T &x, Node *u) {\n        if (u == nullptr) return 0;\n        if (cmp(x, u->dat))\n\
+    \            return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;\n        else\n\
+    \            return count_upper(x, u->ch[1]);\n    };\n};\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: bbst/avl_set.hpp
   requiredBy: []
-  timestamp: '2021-08-27 00:26:34+09:00'
+  timestamp: '2021-08-27 01:20:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bbst/avl_set.hpp
