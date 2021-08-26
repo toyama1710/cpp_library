@@ -226,6 +226,9 @@ data:
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/associative_array.test.cpp
+      title: test/yosupo/associative_array.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'

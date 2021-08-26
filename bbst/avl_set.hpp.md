@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0343.test.cpp
     title: test/aoj/0343.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/associative_array.test.cpp
+    title: test/yosupo/associative_array.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -158,6 +161,7 @@ data:
   timestamp: '2021-08-27 02:04:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/associative_array.test.cpp
   - test/aoj/0343.test.cpp
 documentation_of: bbst/avl_set.hpp
 layout: document
