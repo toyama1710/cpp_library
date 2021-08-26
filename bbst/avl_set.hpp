@@ -6,6 +6,7 @@
 #include <functional>
 #include <iostream>
 #include <optional>
+#include <utility>
 
 // insert/erase base AVLtree
 // multiset
@@ -26,7 +27,7 @@ struct AVLSet {
     AVLSet(const AVLSet &) = default;
 
     int size(Node *u) {
-        if (u)
+        if (u != nullptr)
             return u->sz;
         else
             return 0;
@@ -34,7 +35,7 @@ struct AVLSet {
     int size() { return size(root); };
 
     int height(Node *u) {
-        if (u)
+        if (u != nullptr)
             return u->hi;
         else
             return 0;
@@ -109,11 +110,9 @@ struct AVLSet {
             auto dfs = [&](auto &&f, Node *v) -> Node * {
                 if (v->ch[1] != nullptr) {
                     v->ch[1] = f(f, v->ch[1]);
-                    balance(v);
-                    recalc(v);
-                    return v;
+                    return balance(recalc(v));
                 } else {
-                    u->dat = v->dat;
+                    std::swap(u->dat, v->dat);
                     return erase_node(v);
                 }
             };
@@ -124,7 +123,6 @@ struct AVLSet {
 
     bool contains(T dat) {
         Node *u = root;
-
         while (u != nullptr) {
             if (cmp(dat, u->dat)) {
                 u = u->ch[0];
