@@ -11,7 +11,7 @@ data:
       title: array/persistent_array.hpp
   - name: bbst
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_set.hpp
       title: bbst/avl_set.hpp
   - name: bit
@@ -172,6 +172,9 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/0343.test.cpp
+      title: test/aoj/0343.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1068.test.cpp
       title: test/aoj/1068.test.cpp

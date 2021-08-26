@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0343.test.cpp
+    title: test/aoj/0343.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -64,8 +67,8 @@ data:
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
     \n    /*\n    std::optional<T> lower_bound(T x){};\n    std::optional<T> upper_bound(T\
     \ x){};\n    */\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
-    \        if (size() <= k || k <= 0)\n            return std::nullopt;\n      \
-    \  else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \        if (size() <= k || k < 0)\n            return std::nullopt;\n       \
+    \ else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
     \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
     \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
     \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
@@ -134,8 +137,8 @@ data:
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
     \n    /*\n    std::optional<T> lower_bound(T x){};\n    std::optional<T> upper_bound(T\
     \ x){};\n    */\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
-    \        if (size() <= k || k <= 0)\n            return std::nullopt;\n      \
-    \  else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \        if (size() <= k || k < 0)\n            return std::nullopt;\n       \
+    \ else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
     \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
     \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
     \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
@@ -152,9 +155,10 @@ data:
   isVerificationFile: false
   path: bbst/avl_set.hpp
   requiredBy: []
-  timestamp: '2021-08-27 01:20:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-08-27 02:04:17+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/0343.test.cpp
 documentation_of: bbst/avl_set.hpp
 layout: document
 redirect_from:
