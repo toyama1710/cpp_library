@@ -107,17 +107,17 @@ struct AVLSet {
             delete u;
             return ret;
         } else {
-            auto dfs = [&](auto &&f, Node *v) -> Node * {
-                if (v->ch[1] != nullptr) {
-                    v->ch[1] = f(f, v->ch[1]);
-                    return balance(recalc(v));
-                } else {
-                    std::swap(u->dat, v->dat);
-                    return erase_node(v);
-                }
-            };
-            u->ch[0] = dfs(dfs, u->ch[0]);
+            u->ch[0] = erase_node(u, u->ch[0]);
             return balance(recalc(u));
+        }
+    };
+    Node *erase_node(Node *u, Node *v) {
+        if (v->ch[1] != nullptr) {
+            v->ch[1] = erase_node(u, v->ch[1]);
+            return balance(recalc(v));
+        } else {
+            std::swap(u->dat, v->dat);
+            return erase_node(v);
         }
     };
 
@@ -152,12 +152,41 @@ struct AVLSet {
     /*
     std::optional<T> lower_bound(T x){};
     std::optional<T> upper_bound(T x){};
-
-    T find_Kth(int k);
-    int count(T x) { return size() - count_upper(x) - count_lower(x); };
-    int count_lower(T x);
-    int count_upper(T x);
     */
+
+    // 0-indexed
+    std::optional<T> find_Kth(int k) {
+        if (size() <= k || k <= 0)
+            return std::nullopt;
+        else
+            return find_Kth(root, k)->dat;
+    };
+    Node *find_Kth(Node *u, int k) {
+        if (size(u->ch[0]) == k)
+            return u;
+        else if (size(u->ch[0]) > k)
+            return find_Kth(u->ch[0], k);
+        else
+            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);
+    };
+
+    int count(const T &x) { return size() - count_upper(x) - count_lower(x); };
+    int count_lower(const T &x) { return count_lower(x, root); };
+    int count_lower(const T &x, Node *u) {
+        if (u == nullptr) return 0;
+        if (cmp(u->dat, x))
+            return count_lower(x, u->ch[1]) + size(u->ch[0]) + 1;
+        else
+            return count_lower(x, u->ch[0]);
+    };
+    int count_upper(const T &x) { return count_upper(x, root); };
+    int count_upper(const T &x, Node *u) {
+        if (u == nullptr) return 0;
+        if (cmp(x, u->dat))
+            return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;
+        else
+            return count_upper(x, u->ch[1]);
+    };
 };
 
 #endif
