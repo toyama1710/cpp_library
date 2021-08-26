@@ -156,7 +156,7 @@ struct AVLSet {
 
     // 0-indexed
     std::optional<T> find_Kth(int k) {
-        if (size() <= k || k <= 0)
+        if (size() <= k || k < 0)
             return std::nullopt;
         else
             return find_Kth(root, k)->dat;
