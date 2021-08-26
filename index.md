@@ -9,6 +9,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: array/persistent_array.hpp
       title: array/persistent_array.hpp
+  - name: bbst
+    pages:
+    - icon: ':warning:'
+      path: bbst/avl_set.hpp
+      title: bbst/avl_set.hpp
   - name: bit
     pages:
     - icon: ':warning:'
