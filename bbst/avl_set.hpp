@@ -47,7 +47,6 @@ struct AVLSet {
         Node *v = u->ch[d];
         u->ch[d] = v->ch[d ^ 1];
         v->ch[d ^ 1] = u;
-
         recalc(u);
         recalc(v);
         return v;
@@ -149,10 +148,32 @@ struct AVLSet {
         f(f, 0, root);
     };
 
-    /*
-    std::optional<T> lower_bound(T x){};
-    std::optional<T> upper_bound(T x){};
-    */
+    std::optional<T> lower_bound(const T &x) { return lower_bound(root, x); };
+    std::optional<T> lower_bound(Node *u, const T &x) {
+        if (u == nullptr) return std::nullopt;
+        if (cmp(u->dat, x)) {
+            return lower_bound(u->ch[1], x);
+        } else {
+            auto ret = lower_bound(u->ch[0], x);
+            if (ret)
+                return ret;
+            else
+                return u->dat;
+        }
+    };
+    std::optional<T> upper_bound(const T &x) { return upper_bound(root, x); };
+    std::optional<T> upper_bound(Node *u, const T &x) {
+        if (u == nullptr) return std::nullopt;
+        if (cmp(x, u->dat)) {
+            auto ret = upper_bound(u->ch[0], x);
+            if (ret)
+                return ret;
+            else
+                return u->dat;
+        } else {
+            return upper_bound(u->ch[1], x);
+        }
+    };
 
     // 0-indexed
     std::optional<T> find_Kth(int k) {
