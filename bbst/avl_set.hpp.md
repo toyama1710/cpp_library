@@ -6,12 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0343.test.cpp
     title: test/aoj/0343.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ALDS1_9_C.test.cpp
+    title: test/aoj/ALDS1_9_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/associative_array.test.cpp
     title: test/yosupo/associative_array.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -28,7 +31,7 @@ data:
     \ nullptr)\n            return u->hi;\n        else\n            return 0;\n \
     \   };\n\n    template <int d>  // 0: left, 1: right\n    Node *rotate(Node *u)\
     \ {\n        assert(u != nullptr && u->ch[d] != nullptr);\n        Node *v = u->ch[d];\n\
-    \        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n\n        recalc(u);\n\
+    \        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n        recalc(u);\n\
     \        recalc(v);\n        return v;\n    };\n    int balance_factor(Node *u)\
     \ {\n        if (u == nullptr) return 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n\
     \    };\n    Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
@@ -68,10 +71,20 @@ data:
     \    \";\n            }\n            std::cout << \"(\" << u->dat << \", \" <<\
     \ u->sz << \", \" << u->hi << \")\"\n                      << std::endl;\n   \
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
-    \n    /*\n    std::optional<T> lower_bound(T x){};\n    std::optional<T> upper_bound(T\
-    \ x){};\n    */\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
-    \        if (size() <= k || k < 0)\n            return std::nullopt;\n       \
-    \ else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \n    std::optional<T> lower_bound(const T &x) { return lower_bound(root, x);\
+    \ };\n    std::optional<T> lower_bound(Node *u, const T &x) {\n        if (u ==\
+    \ nullptr) return std::nullopt;\n        if (cmp(u->dat, x)) {\n            return\
+    \ lower_bound(u->ch[1], x);\n        } else {\n            auto ret = lower_bound(u->ch[0],\
+    \ x);\n            if (ret)\n                return ret;\n            else\n \
+    \               return u->dat;\n        }\n    };\n    std::optional<T> upper_bound(const\
+    \ T &x) { return upper_bound(root, x); };\n    std::optional<T> upper_bound(Node\
+    \ *u, const T &x) {\n        if (u == nullptr) return std::nullopt;\n        if\
+    \ (cmp(x, u->dat)) {\n            auto ret = upper_bound(u->ch[0], x);\n     \
+    \       if (ret)\n                return ret;\n            else\n            \
+    \    return u->dat;\n        } else {\n            return upper_bound(u->ch[1],\
+    \ x);\n        }\n    };\n\n    // 0-indexed\n    std::optional<T> find_Kth(int\
+    \ k) {\n        if (size() <= k || k < 0)\n            return std::nullopt;\n\
+    \        else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
     \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
     \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
     \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
@@ -98,7 +111,7 @@ data:
     \            return u->hi;\n        else\n            return 0;\n    };\n\n  \
     \  template <int d>  // 0: left, 1: right\n    Node *rotate(Node *u) {\n     \
     \   assert(u != nullptr && u->ch[d] != nullptr);\n        Node *v = u->ch[d];\n\
-    \        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n\n        recalc(u);\n\
+    \        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n        recalc(u);\n\
     \        recalc(v);\n        return v;\n    };\n    int balance_factor(Node *u)\
     \ {\n        if (u == nullptr) return 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n\
     \    };\n    Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
@@ -138,10 +151,20 @@ data:
     \    \";\n            }\n            std::cout << \"(\" << u->dat << \", \" <<\
     \ u->sz << \", \" << u->hi << \")\"\n                      << std::endl;\n   \
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
-    \n    /*\n    std::optional<T> lower_bound(T x){};\n    std::optional<T> upper_bound(T\
-    \ x){};\n    */\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
-    \        if (size() <= k || k < 0)\n            return std::nullopt;\n       \
-    \ else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \n    std::optional<T> lower_bound(const T &x) { return lower_bound(root, x);\
+    \ };\n    std::optional<T> lower_bound(Node *u, const T &x) {\n        if (u ==\
+    \ nullptr) return std::nullopt;\n        if (cmp(u->dat, x)) {\n            return\
+    \ lower_bound(u->ch[1], x);\n        } else {\n            auto ret = lower_bound(u->ch[0],\
+    \ x);\n            if (ret)\n                return ret;\n            else\n \
+    \               return u->dat;\n        }\n    };\n    std::optional<T> upper_bound(const\
+    \ T &x) { return upper_bound(root, x); };\n    std::optional<T> upper_bound(Node\
+    \ *u, const T &x) {\n        if (u == nullptr) return std::nullopt;\n        if\
+    \ (cmp(x, u->dat)) {\n            auto ret = upper_bound(u->ch[0], x);\n     \
+    \       if (ret)\n                return ret;\n            else\n            \
+    \    return u->dat;\n        } else {\n            return upper_bound(u->ch[1],\
+    \ x);\n        }\n    };\n\n    // 0-indexed\n    std::optional<T> find_Kth(int\
+    \ k) {\n        if (size() <= k || k < 0)\n            return std::nullopt;\n\
+    \        else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
     \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
     \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
     \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
@@ -158,11 +181,12 @@ data:
   isVerificationFile: false
   path: bbst/avl_set.hpp
   requiredBy: []
-  timestamp: '2021-08-27 02:04:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-08-27 10:26:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/associative_array.test.cpp
   - test/aoj/0343.test.cpp
+  - test/aoj/ALDS1_9_C.test.cpp
 documentation_of: bbst/avl_set.hpp
 layout: document
 redirect_from:

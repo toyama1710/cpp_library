@@ -6,17 +6,18 @@ data:
     title: bbst/avl_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/associative_array
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/" "description.jsp?id=ALDS1_9_C
     links:
-    - https://judge.yosupo.jp/problem/associative_array
-  bundledCode: "#line 1 \"test/yosupo/associative_array.test.cpp\"\n#pragma GCC optimize(\"\
-    O3\")\n#pragma GCC optimize(\"unroll-loops\")\n#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\
-    \n\n#include <iostream>\n\n#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/
+  bundledCode: "#line 1 \"test/aoj/ALDS1_9_C.test.cpp\"\n#define PROBLEM         \
+    \                      \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/\" \\\n\
+    \    \"description.jsp?id=ALDS1_9_C\"\n\n#include <iostream>\n#include <string>\n\
+    #include <tuple>\n\n#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <functional>\n#line 8 \"bbst/avl_set.hpp\"\n#include\
     \ <optional>\n#include <utility>\n\n// insert/erase base AVLtree\n// multiset\n\
     template <class T, class Compare = std::less<T>>\nstruct AVLSet {\n    struct\
@@ -96,52 +97,56 @@ data:
     \ T &x) { return count_upper(x, root); };\n    int count_upper(const T &x, Node\
     \ *u) {\n        if (u == nullptr) return 0;\n        if (cmp(x, u->dat))\n  \
     \          return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;\n        else\n\
-    \            return count_upper(x, u->ch[1]);\n    };\n};\n\n\n#line 8 \"test/yosupo/associative_array.test.cpp\"\
+    \            return count_upper(x, u->ch[1]);\n    };\n};\n\n\n#line 10 \"test/aoj/ALDS1_9_C.test.cpp\"\
     \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
     \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
     \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
     \ _rep3, _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n\
     #define ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\n\
     using u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    using P = pair<i64, i64>;\n    auto cmp = [](P lhs, P rhs) -> bool { return\
-    \ lhs.first < rhs.first; };\n    AVLSet<P, decltype(cmp)> st(cmp);\n\n    i64\
-    \ q;\n    cin >> q;\n\n    rep(_, q) {\n        i64 com, k, v;\n\n        cin\
-    \ >> com;\n\n        if (com == 0) {\n            cin >> k >> v;\n           \
-    \ st.erase(P(k, 0));\n            st.insert(P(k, v));\n        } else if (com\
-    \ == 1) {\n            cin >> k;\n            if (st.contains(P(k, 0))) {\n  \
-    \              cout << st.find_Kth(st.count_lower(P(k, 0))).value().second\n \
-    \                    << '\\n';\n            } else {\n                cout <<\
-    \ 0 << '\\n';\n            }\n        }\n    }\n\n    return 0;\n}\n"
-  code: "#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n\n#include <iostream>\n\
-    \n#include \"../../bbst/avl_set.hpp\"\n\n#define _overload(_1, _2, _3, _4, name,\
-    \ ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define _rep2(Itr, a,\
-    \ b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64 Itr = a; Itr\
-    \ < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3, _rep2,\
-    \ _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define ALL(X)\
-    \ begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing u64\
-    \ = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    using P = pair<i64, i64>;\n    auto cmp = [](P lhs, P rhs) -> bool { return\
-    \ lhs.first < rhs.first; };\n    AVLSet<P, decltype(cmp)> st(cmp);\n\n    i64\
-    \ q;\n    cin >> q;\n\n    rep(_, q) {\n        i64 com, k, v;\n\n        cin\
-    \ >> com;\n\n        if (com == 0) {\n            cin >> k >> v;\n           \
-    \ st.erase(P(k, 0));\n            st.insert(P(k, v));\n        } else if (com\
-    \ == 1) {\n            cin >> k;\n            if (st.contains(P(k, 0))) {\n  \
-    \              cout << st.find_Kth(st.count_lower(P(k, 0))).value().second\n \
-    \                    << '\\n';\n            } else {\n                cout <<\
-    \ 0 << '\\n';\n            }\n        }\n    }\n\n    return 0;\n}"
+    \n    auto cmp = [](i64 lhs, i64 rhs) { return lhs > rhs; };\n    AVLSet<i64,\
+    \ decltype(cmp)> gr(cmp);\n    AVLSet<i64> le;\n\n    string s;\n    const int\
+    \ inf = 2'000'000'000;\n    while (cin >> s, s != \"end\") {\n        if (s ==\
+    \ \"insert\") {\n            i64 k;\n            cin >> k;\n            gr.insert(k);\n\
+    \            le.insert(k);\n        } else {\n            auto [x, y, z] =\n \
+    \               tuple(le.find_Kth(le.size() - 1), gr.lower_bound(inf),\n     \
+    \                 gr.upper_bound(inf + 1));\n\n            assert(x && y && z);\n\
+    \            assert(x.value() == y.value() && y.value() == z.value() &&\n    \
+    \               x.value() == z.value());\n\n            cout << x.value() << '\\\
+    n';\n\n            le.erase(x.value());\n            gr.erase(x.value());\n  \
+    \      }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM                               \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/\"\
+    \ \\\n    \"description.jsp?id=ALDS1_9_C\"\n\n#include <iostream>\n#include <string>\n\
+    #include <tuple>\n\n#include \"../../bbst/avl_set.hpp\"\n\n#define _overload(_1,\
+    \ _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define\
+    \ _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64\
+    \ Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3,\
+    \ _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define\
+    \ ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing\
+    \ u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
+    \n    auto cmp = [](i64 lhs, i64 rhs) { return lhs > rhs; };\n    AVLSet<i64,\
+    \ decltype(cmp)> gr(cmp);\n    AVLSet<i64> le;\n\n    string s;\n    const int\
+    \ inf = 2'000'000'000;\n    while (cin >> s, s != \"end\") {\n        if (s ==\
+    \ \"insert\") {\n            i64 k;\n            cin >> k;\n            gr.insert(k);\n\
+    \            le.insert(k);\n        } else {\n            auto [x, y, z] =\n \
+    \               tuple(le.find_Kth(le.size() - 1), gr.lower_bound(inf),\n     \
+    \                 gr.upper_bound(inf + 1));\n\n            assert(x && y && z);\n\
+    \            assert(x.value() == y.value() && y.value() == z.value() &&\n    \
+    \               x.value() == z.value());\n\n            cout << x.value() << '\\\
+    n';\n\n            le.erase(x.value());\n            gr.erase(x.value());\n  \
+    \      }\n    }\n\n    return 0;\n}"
   dependsOn:
   - bbst/avl_set.hpp
   isVerificationFile: true
-  path: test/yosupo/associative_array.test.cpp
+  path: test/aoj/ALDS1_9_C.test.cpp
   requiredBy: []
   timestamp: '2021-08-27 10:26:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/associative_array.test.cpp
+documentation_of: test/aoj/ALDS1_9_C.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/associative_array.test.cpp
-- /verify/test/yosupo/associative_array.test.cpp.html
-title: test/yosupo/associative_array.test.cpp
+- /verify/test/aoj/ALDS1_9_C.test.cpp
+- /verify/test/aoj/ALDS1_9_C.test.cpp.html
+title: test/aoj/ALDS1_9_C.test.cpp
 ---
