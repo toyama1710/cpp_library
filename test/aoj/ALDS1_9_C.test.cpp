@@ -1,6 +1,5 @@
-#define PROBLEM                               \
-    "https://judge.u-aizu.ac.jp/onlinejudge/" \
-    "description.jsp?id=ALDS1_9_C"
+#define PROBLEM \
+    "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C"
 
 #include <iostream>
 #include <string>
