@@ -225,17 +225,21 @@ struct AVLSet {
     };
 
     std::pair<AVLSet, AVLSet> split(int k) {
-        assert(k > 0 && k <= size());
+        assert(k >= 0 && k <= size());
         auto [l, r] = split(root, k);
         root = nullptr;
         return {AVLSet(l), AVLSet(r)};
     };
     std::pair<Node *, Node *> split(Node *u, int k) {
         int lsize = size(u->ch[0]);
+        Node *l = u->ch[0];
+        Node *r = u->ch[1];
         if (lsize == k) {
-            Node *l = u->ch[0];
             u->ch[0] = u->ch[1] = nullptr;
-            return {l, insert(u->ch[1], balance(recalc(u)))};
+            return {l, insert(r, recalc(u))};
+        } else if (lsize + 1 == k) {
+            u->ch[0] = u->ch[1] = nullptr;
+            return {insert(l, recalc(u)), r};
         } else if (lsize > k) {
             auto [x, y] = split(u->ch[0], k);
             u->ch[0] = y;
