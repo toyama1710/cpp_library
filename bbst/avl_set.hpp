@@ -7,6 +7,7 @@
 #include <iostream>
 #include <optional>
 #include <utility>
+#include <vector>
 
 // insert/erase base AVLtree
 // multiset
@@ -251,6 +252,18 @@ struct AVLSet {
         }
     };
 
+    std::vector<T> list() {
+        std::vector<T> ret;
+        ret.reserve(size());
+        auto dfs = [&](Node *u, auto &&f) {
+            if (u == nullptr) return;
+            f(u->ch[0], f);
+            ret.emplace_back(u->dat);
+            f(u->ch[1], f);
+        };
+        dfs(root, dfs);
+        return ret;
+    };
     void dump() {
         auto f = [](auto &&f, int d, Node *u) -> void {
             if (u == nullptr) return;
