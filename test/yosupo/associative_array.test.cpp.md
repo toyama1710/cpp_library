@@ -14,26 +14,25 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/associative_array
     links:
     - https://judge.yosupo.jp/problem/associative_array
-  bundledCode: "#line 1 \"test/yosupo/associative_array.test.cpp\"\n#pragma GCC optimize(\"\
-    O3\")\n#pragma GCC optimize(\"unroll-loops\")\n#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\
-    \n\n#include <iostream>\n\n#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <functional>\n#line 8 \"bbst/avl_set.hpp\"\n#include\
-    \ <optional>\n#include <utility>\n\n// insert/erase base AVLtree\n// multiset\n\
-    template <class T, class Compare = std::less<T>>\nstruct AVLSet {\n    struct\
-    \ Node {\n        int sz, hi;\n        T dat;\n        Node *ch[2];\n        Node(T\
-    \ dat) : sz(1), hi(1), dat(dat), ch{nullptr, nullptr} {};\n    };\n\n    Node\
-    \ *root;\n    const Compare cmp;\n\n    AVLSet(const Compare &cmp = Compare())\
-    \ : root(nullptr), cmp(cmp){};\n    AVLSet(Node *r, Compare &cmp) : root(r), cmp(cmp){};\n\
-    \    AVLSet(const AVLSet &) = default;\n\n    int size(Node *u) {\n        if\
-    \ (u != nullptr)\n            return u->sz;\n        else\n            return\
-    \ 0;\n    };\n    int size() { return size(root); };\n\n    int height(Node *u)\
-    \ {\n        if (u != nullptr)\n            return u->hi;\n        else\n    \
-    \        return 0;\n    };\n\n    template <int d>  // 0: left, 1: right\n   \
-    \ Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d] != nullptr);\n\
-    \        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d\
-    \ ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return v;\n    };\n\
-    \    int balance_factor(Node *u) {\n        if (u == nullptr) return 0;\n    \
-    \    return height(u->ch[0]) - height(u->ch[1]);\n    };\n    Node *balance(Node\
+  bundledCode: "#line 1 \"test/yosupo/associative_array.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/associative_array\"\n\n#include <iostream>\n\
+    \n#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+    #include <functional>\n#line 8 \"bbst/avl_set.hpp\"\n#include <optional>\n#include\
+    \ <utility>\n\n// insert/erase base AVLtree\n// multiset\ntemplate <class T>\n\
+    struct AVLSet {\n    struct Node {\n        int sz, hi;\n        T dat;\n    \
+    \    Node *ch[2];\n        Node(T dat) : sz(1), hi(1), dat(dat), ch{nullptr, nullptr}\
+    \ {};\n    };\n\n    Node *root;\n\n    AVLSet(Node *r = nullptr) : root(r){};\n\
+    \    AVLSet(const AVLSet &x) : root(x.root){};\n    AVLSet &operator=(const AVLSet\
+    \ &x) {\n        root = x.root;\n        return *this;\n    };\n\n    int size(Node\
+    \ *u) {\n        if (u != nullptr)\n            return u->sz;\n        else\n\
+    \            return 0;\n    };\n    int size() { return size(root); };\n\n   \
+    \ int height(Node *u) {\n        if (u != nullptr)\n            return u->hi;\n\
+    \        else\n            return 0;\n    };\n\n    template <int d>  // 0: left,\
+    \ 1: right\n    Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d]\
+    \ != nullptr);\n        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n\
+    \        v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return\
+    \ v;\n    };\n    int balance_factor(Node *u) {\n        if (u == nullptr) return\
+    \ 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n    Node *balance(Node\
     \ *u) {\n        if (u == nullptr) return nullptr;\n        assert(-2 <= balance_factor(u)\
     \ && balance_factor(u) <= 2);\n        if (balance_factor(u) == 2) {\n       \
     \     if (balance_factor(u->ch[0]) == -1) u->ch[0] = rotate<1>(u->ch[0]);\n  \
@@ -45,97 +44,120 @@ data:
     \ height(u->ch[1])) + 1;\n        return u;\n    };\n\n    void insert(T dat)\
     \ {\n        Node *u = new Node(dat);\n        root = insert(root, u);\n    };\n\
     \    Node *insert(Node *u, Node *nv) {\n        if (u == nullptr) return nv;\n\
-    \        if (cmp(u->dat, nv->dat))\n            u->ch[1] = insert(u->ch[1], nv);\n\
+    \        if (u->dat < nv->dat)\n            u->ch[1] = insert(u->ch[1], nv);\n\
     \        else\n            u->ch[0] = insert(u->ch[0], nv);\n\n        return\
-    \ balance(recalc(u));\n    };\n\n    void erase(T dat) { root = erase(root, dat);\
-    \ };\n    Node *erase(Node *u, const T &dat) {\n        if (u == nullptr) return\
-    \ nullptr;\n        if (cmp(u->dat, dat)) {\n            u->ch[1] = erase(u->ch[1],\
-    \ dat);\n        } else if (cmp(dat, u->dat)) {\n            u->ch[0] = erase(u->ch[0],\
-    \ dat);\n        } else {\n            u = erase_node(u);\n        }\n       \
-    \ return balance(recalc(u));\n    };\n    Node *erase_node(Node *u) {\n      \
-    \  if (u->ch[0] == nullptr || u->ch[1] == nullptr) {\n            Node *ret =\
-    \ u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n            delete u;\n        \
-    \    return ret;\n        } else {\n            u->ch[0] = erase_node(u, u->ch[0]);\n\
-    \            return balance(recalc(u));\n        }\n    };\n    Node *erase_node(Node\
-    \ *u, Node *v) {\n        if (v->ch[1] != nullptr) {\n            v->ch[1] = erase_node(u,\
-    \ v->ch[1]);\n            return balance(recalc(v));\n        } else {\n     \
-    \       std::swap(u->dat, v->dat);\n            return erase_node(v);\n      \
-    \  }\n    };\n\n    bool contains(T dat) {\n        Node *u = root;\n        while\
-    \ (u != nullptr) {\n            if (cmp(dat, u->dat)) {\n                u = u->ch[0];\n\
-    \            } else if (cmp(u->dat, dat)) {\n                u = u->ch[1];\n \
-    \           } else {\n                return true;\n            }\n        }\n\
-    \        return false;\n    };\n\n    void dump() {\n        auto f = [](auto\
-    \ &&f, int d, Node *u) -> void {\n            if (u == nullptr) return;\n    \
-    \        f(f, d + 1, u->ch[1]);\n            for (int i = 0; i < d; i++) {\n \
-    \               std::cout << \"      \";\n            }\n            std::cout\
-    \ << \"(\" << u->dat << \", \" << u->sz << \", \" << u->hi << \")\"\n        \
-    \              << std::endl;\n            f(f, d + 1, u->ch[0]);\n        };\n\
-    \        f(f, 0, root);\n    };\n\n    std::optional<T> lower_bound(const T &x)\
-    \ { return lower_bound(root, x); };\n    std::optional<T> lower_bound(Node *u,\
-    \ const T &x) {\n        if (u == nullptr) return std::nullopt;\n        if (cmp(u->dat,\
-    \ x)) {\n            return lower_bound(u->ch[1], x);\n        } else {\n    \
-    \        auto ret = lower_bound(u->ch[0], x);\n            if (ret)\n        \
-    \        return ret;\n            else\n                return u->dat;\n     \
-    \   }\n    };\n    std::optional<T> upper_bound(const T &x) { return upper_bound(root,\
-    \ x); };\n    std::optional<T> upper_bound(Node *u, const T &x) {\n        if\
-    \ (u == nullptr) return std::nullopt;\n        if (cmp(x, u->dat)) {\n       \
-    \     auto ret = upper_bound(u->ch[0], x);\n            if (ret)\n           \
-    \     return ret;\n            else\n                return u->dat;\n        }\
-    \ else {\n            return upper_bound(u->ch[1], x);\n        }\n    };\n\n\
-    \    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n        if (size()\
-    \ <= k || k < 0)\n            return std::nullopt;\n        else\n           \
-    \ return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node *u, int k) {\n\
-    \        if (size(u->ch[0]) == k)\n            return u;\n        else if (size(u->ch[0])\
-    \ > k)\n            return find_Kth(u->ch[0], k);\n        else\n            return\
-    \ find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\n    int count(const T\
-    \ &x) { return size() - count_upper(x) - count_lower(x); };\n    int count_lower(const\
-    \ T &x) { return count_lower(x, root); };\n    int count_lower(const T &x, Node\
-    \ *u) {\n        if (u == nullptr) return 0;\n        if (cmp(u->dat, x))\n  \
-    \          return count_lower(x, u->ch[1]) + size(u->ch[0]) + 1;\n        else\n\
-    \            return count_lower(x, u->ch[0]);\n    };\n    int count_upper(const\
-    \ T &x) { return count_upper(x, root); };\n    int count_upper(const T &x, Node\
-    \ *u) {\n        if (u == nullptr) return 0;\n        if (cmp(x, u->dat))\n  \
-    \          return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;\n        else\n\
-    \            return count_upper(x, u->ch[1]);\n    };\n};\n\n\n#line 8 \"test/yosupo/associative_array.test.cpp\"\
+    \ balance(recalc(u));\n    };\n\n    void erase(const T &dat) { root = erase(root,\
+    \ dat); };\n    Node *erase(Node *u, const T &dat) {\n        if (u == nullptr)\
+    \ return nullptr;\n        if (u->dat < dat) {\n            u->ch[1] = erase(u->ch[1],\
+    \ dat);\n        } else if (dat < u->dat) {\n            u->ch[0] = erase(u->ch[0],\
+    \ dat);\n        } else {\n            Node *del = u;\n            u = isolate_node(u);\n\
+    \            delete del;\n        }\n        return balance(recalc(u));\n    };\n\
+    \    Node *isolate_node(Node *u) {\n        if (u->ch[0] == nullptr || u->ch[1]\
+    \ == nullptr) {\n            Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n\
+    \            return ret;\n        } else {\n            Node *l = isolate_node(&u,\
+    \ u->ch[0]);\n            u->ch[0] = l;\n            return balance(recalc(u));\n\
+    \        }\n    };\n    Node *isolate_node(Node **dst, Node *v) {\n        if\
+    \ (v->ch[1] != nullptr) {\n            v->ch[1] = isolate_node(dst, v->ch[1]);\n\
+    \            return balance(recalc(v));\n        } else {\n            std::swap((*dst)->ch[0],\
+    \ v->ch[0]);\n            std::swap((*dst)->ch[1], v->ch[1]);\n            std::swap(*dst,\
+    \ v);\n            return isolate_node(v);\n        }\n    };\n\n    bool contains(T\
+    \ dat) {\n        Node *u = root;\n        while (u != nullptr) {\n          \
+    \  if (dat < u->dat) {\n                u = u->ch[0];\n            } else if (u->dat\
+    \ < dat) {\n                u = u->ch[1];\n            } else {\n            \
+    \    return true;\n            }\n        }\n        return false;\n    };\n\n\
+    \    std::optional<T> lower_bound(const T &x) { return lower_bound(root, x); };\n\
+    \    std::optional<T> lower_bound(Node *u, const T &x) {\n        if (u == nullptr)\
+    \ return std::nullopt;\n        if (u->dat < x) {\n            return lower_bound(u->ch[1],\
+    \ x);\n        } else {\n            auto ret = lower_bound(u->ch[0], x);\n  \
+    \          if (ret)\n                return ret;\n            else\n         \
+    \       return u->dat;\n        }\n    };\n    std::optional<T> upper_bound(const\
+    \ T &x) { return upper_bound(root, x); };\n    std::optional<T> upper_bound(Node\
+    \ *u, const T &x) {\n        if (u == nullptr) return std::nullopt;\n        if\
+    \ (x < u->dat) {\n            auto ret = upper_bound(u->ch[0], x);\n         \
+    \   if (ret)\n                return ret;\n            else\n                return\
+    \ u->dat;\n        } else {\n            return upper_bound(u->ch[1], x);\n  \
+    \      }\n    };\n\n    // 0-indexed\n    std::optional<T> find_Kth(int k) {\n\
+    \        if (size() <= k || k < 0)\n            return std::nullopt;\n       \
+    \ else\n            return find_Kth(root, k)->dat;\n    };\n    Node *find_Kth(Node\
+    \ *u, int k) {\n        if (size(u->ch[0]) == k)\n            return u;\n    \
+    \    else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
+    \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
+    \    };\n\n    int count(const T &x) { return size() - count_upper(x) - count_lower(x);\
+    \ };\n    int count_lower(const T &x) { return count_lower(x, root); };\n    int\
+    \ count_lower(const T &x, Node *u) {\n        if (u == nullptr) return 0;\n  \
+    \      if (u->dat < x)\n            return count_lower(x, u->ch[1]) + size(u->ch[0])\
+    \ + 1;\n        else\n            return count_lower(x, u->ch[0]);\n    };\n \
+    \   int count_upper(const T &x) { return count_upper(x, root); };\n    int count_upper(const\
+    \ T &x, Node *u) {\n        if (u == nullptr) return 0;\n        if (x < u->dat)\n\
+    \            return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;\n        else\n\
+    \            return count_upper(x, u->ch[1]);\n    };\n\n    AVLSet merge_with(AVLSet\
+    \ r) {\n        if (size() == 0) {\n            root = r.root;\n        } else\
+    \ if (r.size() > 0) {\n            Node dummy = *root;\n            root = merge(&dummy,\
+    \ root, r.root);\n        }\n        return *this;\n    };\n    Node *merge(Node\
+    \ *dummy, Node *l, Node *r) {\n        if (abs(height(l) - height(r)) <= 2) {\n\
+    \            dummy->ch[0] = l;\n            dummy->ch[1] = r;\n            return\
+    \ isolate_node(dummy);\n        } else if (height(l) > height(r)) {\n        \
+    \    l->ch[1] = merge(dummy, l->ch[1], r);\n            return balance(recalc(l));\n\
+    \        } else {\n            r->ch[0] = merge(dummy, l, r->ch[0]);\n       \
+    \     return balance(recalc(r));\n        }\n    };\n\n    std::pair<AVLSet, AVLSet>\
+    \ split(int k) {\n        assert(k > 0 && k <= size());\n        auto [l, r] =\
+    \ split(root, k);\n        root = nullptr;\n        return {AVLSet(l), AVLSet(r)};\n\
+    \    };\n    std::pair<Node *, Node *> split(Node *u, int k) {\n        int lsize\
+    \ = size(u->ch[0]);\n        if (lsize == k) {\n            Node *l = u->ch[0];\n\
+    \            u->ch[0] = u->ch[1] = nullptr;\n            return {l, insert(u->ch[1],\
+    \ balance(recalc(u)))};\n        } else if (lsize > k) {\n            auto [x,\
+    \ y] = split(u->ch[0], k);\n            u->ch[0] = y;\n            return {x,\
+    \ balance((recalc(u)))};\n        } else {\n            auto [x, y] = split(u->ch[1],\
+    \ k - size(u->ch[0]) - 1);\n            u->ch[1] = x;\n            return {balance(recalc(u)),\
+    \ y};\n        }\n    };\n\n    void dump() {\n        auto f = [](auto &&f, int\
+    \ d, Node *u) -> void {\n            if (u == nullptr) return;\n            f(f,\
+    \ d + 1, u->ch[1]);\n            for (int i = 0; i < d; i++) {\n             \
+    \   std::cout << \"      \";\n            }\n            std::cout << \"(\" <<\
+    \ u->dat << \", \" << u->sz << \", \" << u->hi << \")\"\n                    \
+    \  << std::endl;\n            f(f, d + 1, u->ch[0]);\n        };\n        f(f,\
+    \ 0, root);\n    };\n};\n\n\n#line 6 \"test/yosupo/associative_array.test.cpp\"\
     \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
     \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
     \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
     \ _rep3, _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n\
     #define ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\n\
-    using u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    using P = pair<i64, i64>;\n    auto cmp = [](P lhs, P rhs) -> bool { return\
-    \ lhs.first < rhs.first; };\n    AVLSet<P, decltype(cmp)> st(cmp);\n\n    i64\
-    \ q;\n    cin >> q;\n\n    rep(_, q) {\n        i64 com, k, v;\n\n        cin\
-    \ >> com;\n\n        if (com == 0) {\n            cin >> k >> v;\n           \
-    \ st.erase(P(k, 0));\n            st.insert(P(k, v));\n        } else if (com\
-    \ == 1) {\n            cin >> k;\n            if (st.contains(P(k, 0))) {\n  \
-    \              cout << st.find_Kth(st.count_lower(P(k, 0))).value().second\n \
-    \                    << '\\n';\n            } else {\n                cout <<\
-    \ 0 << '\\n';\n            }\n        }\n    }\n\n    return 0;\n}\n"
-  code: "#pragma GCC optimize(\"O3\")\n#pragma GCC optimize(\"unroll-loops\")\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n\n#include <iostream>\n\
-    \n#include \"../../bbst/avl_set.hpp\"\n\n#define _overload(_1, _2, _3, _4, name,\
-    \ ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define _rep2(Itr, a,\
-    \ b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64 Itr = a; Itr\
-    \ < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3, _rep2,\
-    \ _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define ALL(X)\
-    \ begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing u64\
-    \ = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    using P = pair<i64, i64>;\n    auto cmp = [](P lhs, P rhs) -> bool { return\
-    \ lhs.first < rhs.first; };\n    AVLSet<P, decltype(cmp)> st(cmp);\n\n    i64\
-    \ q;\n    cin >> q;\n\n    rep(_, q) {\n        i64 com, k, v;\n\n        cin\
-    \ >> com;\n\n        if (com == 0) {\n            cin >> k >> v;\n           \
-    \ st.erase(P(k, 0));\n            st.insert(P(k, v));\n        } else if (com\
-    \ == 1) {\n            cin >> k;\n            if (st.contains(P(k, 0))) {\n  \
-    \              cout << st.find_Kth(st.count_lower(P(k, 0))).value().second\n \
-    \                    << '\\n';\n            } else {\n                cout <<\
-    \ 0 << '\\n';\n            }\n        }\n    }\n\n    return 0;\n}"
+    using u64 = unsigned long long;\n\nusing P = pair<i64, i64>;\nstruct DictItem\
+    \ {\n    P item;\n    DictItem(P x) : item(x){};\n    bool operator<(const DictItem\
+    \ &y) const {\n        return item.first < y.item.first;\n    };\n};\n\nint main()\
+    \ {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\n    AVLSet<DictItem>\
+    \ st;\n\n    i64 q;\n    cin >> q;\n\n    rep(_, q) {\n        i64 com, k, v;\n\
+    \n        cin >> com;\n\n        if (com == 0) {\n            cin >> k >> v;\n\
+    \            st.erase(DictItem(P(k, 0)));\n            st.insert(DictItem(P(k,\
+    \ v)));\n        } else if (com == 1) {\n            cin >> k;\n            if\
+    \ (st.contains(DictItem(P(k, 0)))) {\n                auto item = st.find_Kth(st.count_lower(DictItem(P(k,\
+    \ 0))));\n                cout << item.value().item.second << '\\n';\n       \
+    \     } else {\n                cout << 0 << '\\n';\n            }\n        }\n\
+    \    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n\n\
+    #include <iostream>\n\n#include \"../../bbst/avl_set.hpp\"\n\n#define _overload(_1,\
+    \ _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define\
+    \ _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64\
+    \ Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3,\
+    \ _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define\
+    \ ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing\
+    \ u64 = unsigned long long;\n\nusing P = pair<i64, i64>;\nstruct DictItem {\n\
+    \    P item;\n    DictItem(P x) : item(x){};\n    bool operator<(const DictItem\
+    \ &y) const {\n        return item.first < y.item.first;\n    };\n};\n\nint main()\
+    \ {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\n    AVLSet<DictItem>\
+    \ st;\n\n    i64 q;\n    cin >> q;\n\n    rep(_, q) {\n        i64 com, k, v;\n\
+    \n        cin >> com;\n\n        if (com == 0) {\n            cin >> k >> v;\n\
+    \            st.erase(DictItem(P(k, 0)));\n            st.insert(DictItem(P(k,\
+    \ v)));\n        } else if (com == 1) {\n            cin >> k;\n            if\
+    \ (st.contains(DictItem(P(k, 0)))) {\n                auto item = st.find_Kth(st.count_lower(DictItem(P(k,\
+    \ 0))));\n                cout << item.value().item.second << '\\n';\n       \
+    \     } else {\n                cout << 0 << '\\n';\n            }\n        }\n\
+    \    }\n\n    return 0;\n}"
   dependsOn:
   - bbst/avl_set.hpp
   isVerificationFile: true
   path: test/yosupo/associative_array.test.cpp
   requiredBy: []
-  timestamp: '2021-08-27 10:26:20+09:00'
+  timestamp: '2021-08-30 13:49:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/associative_array.test.cpp
