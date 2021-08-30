@@ -2,6 +2,7 @@
     "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C"
 
 #include <iostream>
+#include <queue>
 #include <string>
 #include <tuple>
 
@@ -24,31 +25,28 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    auto cmp = [](i64 lhs, i64 rhs) { return lhs > rhs; };
-    AVLSet<i64, decltype(cmp)> gr(cmp);
     AVLSet<i64> le;
+    priority_queue<i64> que;
 
     string s;
-    const int inf = 2'000'000'000;
     while (cin >> s, s != "end") {
         if (s == "insert") {
             i64 k;
             cin >> k;
-            gr.insert(k);
             le.insert(k);
+            que.push(k);
         } else {
             auto [x, y, z] =
-                tuple(le.find_Kth(le.size() - 1), gr.lower_bound(inf),
-                      gr.upper_bound(inf + 1));
+                tuple(le.find_Kth(le.size() - 1), le.upper_bound(que.top()),
+                      le.lower_bound(que.top()));
 
-            assert(x && y && z);
-            assert(x.value() == y.value() && y.value() == z.value() &&
-                   x.value() == z.value());
+            assert(x && !y && z);
+            assert(x.value() == z.value() && x.value() == que.top());
 
             cout << x.value() << '\n';
 
             le.erase(x.value());
-            gr.erase(x.value());
+            que.pop();
         }
     }
 

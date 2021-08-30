@@ -1,5 +1,3 @@
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
 #define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
 
 #include <iostream>
@@ -19,13 +17,20 @@ using namespace std;
 using i64 = long long;
 using u64 = unsigned long long;
 
+using P = pair<i64, i64>;
+struct DictItem {
+    P item;
+    DictItem(P x) : item(x){};
+    bool operator<(const DictItem &y) const {
+        return item.first < y.item.first;
+    };
+};
+
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    using P = pair<i64, i64>;
-    auto cmp = [](P lhs, P rhs) -> bool { return lhs.first < rhs.first; };
-    AVLSet<P, decltype(cmp)> st(cmp);
+    AVLSet<DictItem> st;
 
     i64 q;
     cin >> q;
@@ -37,13 +42,13 @@ int main() {
 
         if (com == 0) {
             cin >> k >> v;
-            st.erase(P(k, 0));
-            st.insert(P(k, v));
+            st.erase(DictItem(P(k, 0)));
+            st.insert(DictItem(P(k, v)));
         } else if (com == 1) {
             cin >> k;
-            if (st.contains(P(k, 0))) {
-                cout << st.find_Kth(st.count_lower(P(k, 0))).value().second
-                     << '\n';
+            if (st.contains(DictItem(P(k, 0)))) {
+                auto item = st.find_Kth(st.count_lower(DictItem(P(k, 0))));
+                cout << item.value().item.second << '\n';
             } else {
                 cout << 0 << '\n';
             }

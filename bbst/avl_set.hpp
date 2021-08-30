@@ -10,7 +10,7 @@
 
 // insert/erase base AVLtree
 // multiset
-template <class T, class Compare = std::less<T>>
+template <class T>
 struct AVLSet {
     struct Node {
         int sz, hi;
@@ -20,11 +20,13 @@ struct AVLSet {
     };
 
     Node *root;
-    const Compare cmp;
 
-    AVLSet(const Compare &cmp = Compare()) : root(nullptr), cmp(cmp){};
-    AVLSet(Node *r, Compare &cmp) : root(r), cmp(cmp){};
-    AVLSet(const AVLSet &) = default;
+    AVLSet(Node *r = nullptr) : root(r){};
+    AVLSet(const AVLSet &x) : root(x.root){};
+    AVLSet &operator=(const AVLSet &x) {
+        root = x.root;
+        return *this;
+    };
 
     int size(Node *u) {
         if (u != nullptr)
@@ -80,7 +82,7 @@ struct AVLSet {
     };
     Node *insert(Node *u, Node *nv) {
         if (u == nullptr) return nv;
-        if (cmp(u->dat, nv->dat))
+        if (u->dat < nv->dat)
             u->ch[1] = insert(u->ch[1], nv);
         else
             u->ch[0] = insert(u->ch[0], nv);
@@ -88,44 +90,48 @@ struct AVLSet {
         return balance(recalc(u));
     };
 
-    void erase(T dat) { root = erase(root, dat); };
+    void erase(const T &dat) { root = erase(root, dat); };
     Node *erase(Node *u, const T &dat) {
         if (u == nullptr) return nullptr;
-        if (cmp(u->dat, dat)) {
+        if (u->dat < dat) {
             u->ch[1] = erase(u->ch[1], dat);
-        } else if (cmp(dat, u->dat)) {
+        } else if (dat < u->dat) {
             u->ch[0] = erase(u->ch[0], dat);
         } else {
-            u = erase_node(u);
+            Node *del = u;
+            u = isolate_node(u);
+            delete del;
         }
         return balance(recalc(u));
     };
-    Node *erase_node(Node *u) {
+    Node *isolate_node(Node *u) {
         if (u->ch[0] == nullptr || u->ch[1] == nullptr) {
             Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];
-            delete u;
             return ret;
         } else {
-            u->ch[0] = erase_node(u, u->ch[0]);
+            Node *l = isolate_node(&u, u->ch[0]);
+            u->ch[0] = l;
             return balance(recalc(u));
         }
     };
-    Node *erase_node(Node *u, Node *v) {
+    Node *isolate_node(Node **dst, Node *v) {
         if (v->ch[1] != nullptr) {
-            v->ch[1] = erase_node(u, v->ch[1]);
+            v->ch[1] = isolate_node(dst, v->ch[1]);
             return balance(recalc(v));
         } else {
-            std::swap(u->dat, v->dat);
-            return erase_node(v);
+            std::swap((*dst)->ch[0], v->ch[0]);
+            std::swap((*dst)->ch[1], v->ch[1]);
+            std::swap(*dst, v);
+            return isolate_node(v);
         }
     };
 
     bool contains(T dat) {
         Node *u = root;
         while (u != nullptr) {
-            if (cmp(dat, u->dat)) {
+            if (dat < u->dat) {
                 u = u->ch[0];
-            } else if (cmp(u->dat, dat)) {
+            } else if (u->dat < dat) {
                 u = u->ch[1];
             } else {
                 return true;
@@ -134,24 +140,10 @@ struct AVLSet {
         return false;
     };
 
-    void dump() {
-        auto f = [](auto &&f, int d, Node *u) -> void {
-            if (u == nullptr) return;
-            f(f, d + 1, u->ch[1]);
-            for (int i = 0; i < d; i++) {
-                std::cout << "      ";
-            }
-            std::cout << "(" << u->dat << ", " << u->sz << ", " << u->hi << ")"
-                      << std::endl;
-            f(f, d + 1, u->ch[0]);
-        };
-        f(f, 0, root);
-    };
-
     std::optional<T> lower_bound(const T &x) { return lower_bound(root, x); };
     std::optional<T> lower_bound(Node *u, const T &x) {
         if (u == nullptr) return std::nullopt;
-        if (cmp(u->dat, x)) {
+        if (u->dat < x) {
             return lower_bound(u->ch[1], x);
         } else {
             auto ret = lower_bound(u->ch[0], x);
@@ -164,7 +156,7 @@ struct AVLSet {
     std::optional<T> upper_bound(const T &x) { return upper_bound(root, x); };
     std::optional<T> upper_bound(Node *u, const T &x) {
         if (u == nullptr) return std::nullopt;
-        if (cmp(x, u->dat)) {
+        if (x < u->dat) {
             auto ret = upper_bound(u->ch[0], x);
             if (ret)
                 return ret;
@@ -195,7 +187,7 @@ struct AVLSet {
     int count_lower(const T &x) { return count_lower(x, root); };
     int count_lower(const T &x, Node *u) {
         if (u == nullptr) return 0;
-        if (cmp(u->dat, x))
+        if (u->dat < x)
             return count_lower(x, u->ch[1]) + size(u->ch[0]) + 1;
         else
             return count_lower(x, u->ch[0]);
@@ -203,10 +195,70 @@ struct AVLSet {
     int count_upper(const T &x) { return count_upper(x, root); };
     int count_upper(const T &x, Node *u) {
         if (u == nullptr) return 0;
-        if (cmp(x, u->dat))
+        if (x < u->dat)
             return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;
         else
             return count_upper(x, u->ch[1]);
+    };
+
+    AVLSet merge_with(AVLSet r) {
+        if (size() == 0) {
+            root = r.root;
+        } else if (r.size() > 0) {
+            Node dummy = *root;
+            root = merge(&dummy, root, r.root);
+        }
+        return *this;
+    };
+    Node *merge(Node *dummy, Node *l, Node *r) {
+        if (abs(height(l) - height(r)) <= 2) {
+            dummy->ch[0] = l;
+            dummy->ch[1] = r;
+            return isolate_node(dummy);
+        } else if (height(l) > height(r)) {
+            l->ch[1] = merge(dummy, l->ch[1], r);
+            return balance(recalc(l));
+        } else {
+            r->ch[0] = merge(dummy, l, r->ch[0]);
+            return balance(recalc(r));
+        }
+    };
+
+    std::pair<AVLSet, AVLSet> split(int k) {
+        assert(k > 0 && k <= size());
+        auto [l, r] = split(root, k);
+        root = nullptr;
+        return {AVLSet(l), AVLSet(r)};
+    };
+    std::pair<Node *, Node *> split(Node *u, int k) {
+        int lsize = size(u->ch[0]);
+        if (lsize == k) {
+            Node *l = u->ch[0];
+            u->ch[0] = u->ch[1] = nullptr;
+            return {l, insert(u->ch[1], balance(recalc(u)))};
+        } else if (lsize > k) {
+            auto [x, y] = split(u->ch[0], k);
+            u->ch[0] = y;
+            return {x, balance((recalc(u)))};
+        } else {
+            auto [x, y] = split(u->ch[1], k - size(u->ch[0]) - 1);
+            u->ch[1] = x;
+            return {balance(recalc(u)), y};
+        }
+    };
+
+    void dump() {
+        auto f = [](auto &&f, int d, Node *u) -> void {
+            if (u == nullptr) return;
+            f(f, d + 1, u->ch[1]);
+            for (int i = 0; i < d; i++) {
+                std::cout << "      ";
+            }
+            std::cout << "(" << u->dat << ", " << u->sz << ", " << u->hi << ")"
+                      << std::endl;
+            f(f, d + 1, u->ch[0]);
+        };
+        f(f, 0, root);
     };
 };
 
