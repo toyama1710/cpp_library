@@ -101,17 +101,19 @@ data:
     \    l->ch[1] = merge(dummy, l->ch[1], r);\n            return balance(recalc(l));\n\
     \        } else {\n            r->ch[0] = merge(dummy, l, r->ch[0]);\n       \
     \     return balance(recalc(r));\n        }\n    };\n\n    std::pair<AVLSet, AVLSet>\
-    \ split(int k) {\n        assert(k > 0 && k <= size());\n        auto [l, r] =\
-    \ split(root, k);\n        root = nullptr;\n        return {AVLSet(l), AVLSet(r)};\n\
+    \ split(int k) {\n        assert(k >= 0 && k <= size());\n        auto [l, r]\
+    \ = split(root, k);\n        root = nullptr;\n        return {AVLSet(l), AVLSet(r)};\n\
     \    };\n    std::pair<Node *, Node *> split(Node *u, int k) {\n        int lsize\
-    \ = size(u->ch[0]);\n        if (lsize == k) {\n            Node *l = u->ch[0];\n\
-    \            u->ch[0] = u->ch[1] = nullptr;\n            return {l, insert(u->ch[1],\
-    \ balance(recalc(u)))};\n        } else if (lsize > k) {\n            auto [x,\
-    \ y] = split(u->ch[0], k);\n            u->ch[0] = y;\n            return {x,\
-    \ balance((recalc(u)))};\n        } else {\n            auto [x, y] = split(u->ch[1],\
-    \ k - size(u->ch[0]) - 1);\n            u->ch[1] = x;\n            return {balance(recalc(u)),\
-    \ y};\n        }\n    };\n\n    void dump() {\n        auto f = [](auto &&f, int\
-    \ d, Node *u) -> void {\n            if (u == nullptr) return;\n            f(f,\
+    \ = size(u->ch[0]);\n        Node *l = u->ch[0];\n        Node *r = u->ch[1];\n\
+    \        if (lsize == k) {\n            u->ch[0] = u->ch[1] = nullptr;\n     \
+    \       return {l, insert(r, recalc(u))};\n        } else if (lsize + 1 == k)\
+    \ {\n            u->ch[0] = u->ch[1] = nullptr;\n            return {insert(l,\
+    \ recalc(u)), r};\n        } else if (lsize > k) {\n            auto [x, y] =\
+    \ split(u->ch[0], k);\n            u->ch[0] = y;\n            return {x, balance((recalc(u)))};\n\
+    \        } else {\n            auto [x, y] = split(u->ch[1], k - size(u->ch[0])\
+    \ - 1);\n            u->ch[1] = x;\n            return {balance(recalc(u)), y};\n\
+    \        }\n    };\n\n    void dump() {\n        auto f = [](auto &&f, int d,\
+    \ Node *u) -> void {\n            if (u == nullptr) return;\n            f(f,\
     \ d + 1, u->ch[1]);\n            for (int i = 0; i < d; i++) {\n             \
     \   std::cout << \"      \";\n            }\n            std::cout << \"(\" <<\
     \ u->dat << \", \" << u->sz << \", \" << u->hi << \")\"\n                    \
@@ -155,7 +157,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_9_C.test.cpp
   requiredBy: []
-  timestamp: '2021-08-30 13:49:14+09:00'
+  timestamp: '2021-08-30 14:14:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C.test.cpp
