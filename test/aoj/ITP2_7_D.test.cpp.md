@@ -11,29 +11,30 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_7_D
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343
-  bundledCode: "#line 1 \"test/aoj/0343.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343\"\
-    \n#include <iostream>\n#include <vector>\n\n#line 1 \"bbst/avl_set.hpp\"\n\n\n\
-    \n#include <algorithm>\n#include <cassert>\n#include <functional>\n#line 8 \"\
-    bbst/avl_set.hpp\"\n#include <optional>\n#include <utility>\n#line 11 \"bbst/avl_set.hpp\"\
-    \n\n// insert/erase base AVLtree\n// multiset\ntemplate <class T>\nstruct AVLSet\
-    \ {\n    struct Node {\n        int sz, hi;\n        T dat;\n        Node *ch[2];\n\
-    \        Node(const Node *x)\n            : sz(x->sz), hi(x->hi), dat(x->dat),\
-    \ ch{x->ch[0], x->ch[1]} {};\n        Node(T dat) : sz(1), hi(1), dat(dat), ch{nullptr,\
-    \ nullptr} {};\n    };\n\n    Node *root;\n\n    AVLSet(Node *r = nullptr) : root(r){};\n\
-    \    AVLSet(const AVLSet &x) : root(x.root){};\n    AVLSet &operator=(const AVLSet\
-    \ &x) {\n        root = x.root;\n        return *this;\n    };\n\n    int size(Node\
-    \ *u) {\n        if (u != nullptr)\n            return u->sz;\n        else\n\
-    \            return 0;\n    };\n    int size() { return size(root); };\n\n   \
-    \ int height(Node *u) {\n        if (u != nullptr)\n            return u->hi;\n\
-    \        else\n            return 0;\n    };\n\n    template <int d>  // 0: left,\
-    \ 1: right\n    Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d]\
-    \ != nullptr);\n        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n\
-    \        v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return\
-    \ v;\n    };\n    int balance_factor(Node *u) {\n        if (u == nullptr) return\
-    \ 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n    Node *balance(Node\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_7_D
+  bundledCode: "#line 1 \"test/aoj/ITP2_7_D.test.cpp\"\n#define PROBLEM \\\n    \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_7_D\"\n#include\
+    \ <iostream>\n\n#line 1 \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <functional>\n#line 8 \"bbst/avl_set.hpp\"\n#include <optional>\n\
+    #include <utility>\n#include <vector>\n\n// insert/erase base AVLtree\n// multiset\n\
+    template <class T>\nstruct AVLSet {\n    struct Node {\n        int sz, hi;\n\
+    \        T dat;\n        Node *ch[2];\n        Node(const Node *x)\n         \
+    \   : sz(x->sz), hi(x->hi), dat(x->dat), ch{x->ch[0], x->ch[1]} {};\n        Node(T\
+    \ dat) : sz(1), hi(1), dat(dat), ch{nullptr, nullptr} {};\n    };\n\n    Node\
+    \ *root;\n\n    AVLSet(Node *r = nullptr) : root(r){};\n    AVLSet(const AVLSet\
+    \ &x) : root(x.root){};\n    AVLSet &operator=(const AVLSet &x) {\n        root\
+    \ = x.root;\n        return *this;\n    };\n\n    int size(Node *u) {\n      \
+    \  if (u != nullptr)\n            return u->sz;\n        else\n            return\
+    \ 0;\n    };\n    int size() { return size(root); };\n\n    int height(Node *u)\
+    \ {\n        if (u != nullptr)\n            return u->hi;\n        else\n    \
+    \        return 0;\n    };\n\n    template <int d>  // 0: left, 1: right\n   \
+    \ Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d] != nullptr);\n\
+    \        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d\
+    \ ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return v;\n    };\n\
+    \    int balance_factor(Node *u) {\n        if (u == nullptr) return 0;\n    \
+    \    return height(u->ch[0]) - height(u->ch[1]);\n    };\n    Node *balance(Node\
     \ *u) {\n        if (u == nullptr) return nullptr;\n        assert(-2 <= balance_factor(u)\
     \ && balance_factor(u) <= 2);\n        if (balance_factor(u) == 2) {\n       \
     \     if (balance_factor(u->ch[0]) == -1) u->ch[0] = rotate<1>(u->ch[0]);\n  \
@@ -121,49 +122,63 @@ data:
     \    \";\n            }\n            std::cout << \"(\" << u->dat << \", \" <<\
     \ u->sz << \", \" << u->hi << \")\"\n                      << std::endl;\n   \
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
-    };\n\n\n#line 6 \"test/aoj/0343.test.cpp\"\n\n#define _overload(_1, _2, _3, _4,\
-    \ name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define _rep2(Itr,\
+    };\n\n\n#line 6 \"test/aoj/ITP2_7_D.test.cpp\"\n\n#define _overload(_1, _2, _3,\
+    \ _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define _rep2(Itr,\
     \ a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64 Itr = a;\
     \ Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3, _rep2,\
     \ _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define ALL(X)\
     \ begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing u64\
     \ = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    i64 n, c;\n    cin >> n >> c;\n\n    using P = pair<i64, i64>;\n    AVLSet<P>\
-    \ st;\n    rep(i, n) st.insert(P(0, i));\n    vector<i64> score(n);\n\n    i64\
-    \ com, t, m, p;\n    rep(_, c) {\n        cin >> com;\n        if (com == 0) {\n\
-    \            cin >> t >> p;\n            --t;\n            st.erase(P(-score[t],\
-    \ t));\n            score[t] += p;\n            st.insert(P(-score[t], t));\n\
-    \        } else if (com == 1) {\n            cin >> m;\n            auto s = st.find_Kth(m\
-    \ - 1).value();\n            cout << s.second + 1 << ' ' << -s.first << '\\n';\n\
-    \        }\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0343\"\
-    \n#include <iostream>\n#include <vector>\n\n#include \"../../bbst/avl_set.hpp\"\
-    \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
-    \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
-    \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
-    \ _rep3, _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n\
-    #define ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\n\
-    using u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    i64 n, c;\n    cin >> n >> c;\n\n    using P = pair<i64, i64>;\n    AVLSet<P>\
-    \ st;\n    rep(i, n) st.insert(P(0, i));\n    vector<i64> score(n);\n\n    i64\
-    \ com, t, m, p;\n    rep(_, c) {\n        cin >> com;\n        if (com == 0) {\n\
-    \            cin >> t >> p;\n            --t;\n            st.erase(P(-score[t],\
-    \ t));\n            score[t] += p;\n            st.insert(P(-score[t], t));\n\
-    \        } else if (com == 1) {\n            cin >> m;\n            auto s = st.find_Kth(m\
-    \ - 1).value();\n            cout << s.second + 1 << ' ' << -s.first << '\\n';\n\
-    \        }\n    }\n\n    return 0;\n}"
+    \n    i64 q;\n    cin >> q;\n    AVLSet<i64> st;\n\n    i64 com, x, l, r;\n  \
+    \  rep(_, q) {\n        cin >> com;\n\n        switch (com) {\n            case\
+    \ 0: {\n                cin >> x;\n                st.insert(x);\n           \
+    \     cout << st.size() << '\\n';\n                break;\n            }\n   \
+    \         case 1: {\n                cin >> x;\n                cout << st.count(x)\
+    \ << '\\n';\n                break;\n            }\n            case 2: {\n  \
+    \              cin >> x;\n                auto [low, tmp] = st.split(st.count_lower(x));\n\
+    \                auto [del, upp] = tmp.split(tmp.count(x));\n                st.merge_with(low);\n\
+    \                st.merge_with(upp);\n                break;\n            }\n\
+    \            case 3: {\n                cin >> l >> r;\n                auto [low,\
+    \ tmp] = st.split(st.count_lower(l));\n                auto [t, upp] = tmp.split(tmp.count_lower(r)\
+    \ + tmp.count(r));\n\n                auto v = t.list();\n                for\
+    \ (auto vs : v) {\n                    cout << vs << '\\n';\n                }\n\
+    \                st.merge_with(low).merge_with(t).merge_with(upp);\n         \
+    \   }\n        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_7_D\"\
+    \n#include <iostream>\n\n#include \"../../bbst/avl_set.hpp\"\n\n#define _overload(_1,\
+    \ _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define\
+    \ _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64\
+    \ Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3,\
+    \ _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define\
+    \ ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing\
+    \ u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
+    \n    i64 q;\n    cin >> q;\n    AVLSet<i64> st;\n\n    i64 com, x, l, r;\n  \
+    \  rep(_, q) {\n        cin >> com;\n\n        switch (com) {\n            case\
+    \ 0: {\n                cin >> x;\n                st.insert(x);\n           \
+    \     cout << st.size() << '\\n';\n                break;\n            }\n   \
+    \         case 1: {\n                cin >> x;\n                cout << st.count(x)\
+    \ << '\\n';\n                break;\n            }\n            case 2: {\n  \
+    \              cin >> x;\n                auto [low, tmp] = st.split(st.count_lower(x));\n\
+    \                auto [del, upp] = tmp.split(tmp.count(x));\n                st.merge_with(low);\n\
+    \                st.merge_with(upp);\n                break;\n            }\n\
+    \            case 3: {\n                cin >> l >> r;\n                auto [low,\
+    \ tmp] = st.split(st.count_lower(l));\n                auto [t, upp] = tmp.split(tmp.count_lower(r)\
+    \ + tmp.count(r));\n\n                auto v = t.list();\n                for\
+    \ (auto vs : v) {\n                    cout << vs << '\\n';\n                }\n\
+    \                st.merge_with(low).merge_with(t).merge_with(upp);\n         \
+    \   }\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - bbst/avl_set.hpp
   isVerificationFile: true
-  path: test/aoj/0343.test.cpp
+  path: test/aoj/ITP2_7_D.test.cpp
   requiredBy: []
   timestamp: '2021-09-02 01:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/0343.test.cpp
+documentation_of: test/aoj/ITP2_7_D.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/0343.test.cpp
-- /verify/test/aoj/0343.test.cpp.html
-title: test/aoj/0343.test.cpp
+- /verify/test/aoj/ITP2_7_D.test.cpp
+- /verify/test/aoj/ITP2_7_D.test.cpp.html
+title: test/aoj/ITP2_7_D.test.cpp
 ---
