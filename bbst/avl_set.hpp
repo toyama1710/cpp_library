@@ -128,7 +128,7 @@ struct AVLSet {
         }
     };
 
-    bool contains(T dat) {
+    bool contains(const T &dat) {
         Node *u = root;
         while (u != nullptr) {
             if (dat < u->dat) {
