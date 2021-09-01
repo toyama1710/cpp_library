@@ -216,7 +216,7 @@ struct AVLSet {
         return *this;
     };
     Node *merge(Node *root, Node *l, Node *r) {
-        if (abs(height(l) - height(r)) <= 1) {
+        if (abs(height(l) - height(r)) <= 2) {
             root->ch[0] = l;
             root->ch[1] = r;
             return balance(recalc(root));
@@ -242,7 +242,7 @@ struct AVLSet {
         Node *r = u->ch[1];
         u->ch[0] = u->ch[1] = nullptr;
         if (lsize == k) {
-            return {l, merge(recalc(u), nullptr, r)};
+            return {l, insert(r, recalc(u))};
         } else if (k < lsize) {
             auto [x, y] = split(l, k);
             return {x, merge(recalc(u), y, r)};
