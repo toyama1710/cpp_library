@@ -44,17 +44,17 @@ data:
     \        return u;\n    };\n    Node *recalc(Node *u) {\n        if (u == nullptr)\
     \ return nullptr;\n        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n    \
     \    u->hi = std::max(height(u->ch[0]), height(u->ch[1])) + 1;\n        return\
-    \ u;\n    };\n\n    void insert(T dat) {\n        Node *u = new Node(dat);\n \
-    \       root = insert(root, u);\n    };\n    Node *insert(Node *u, Node *nv) {\n\
-    \        if (u == nullptr) return nv;\n        if (u->dat < nv->dat)\n       \
-    \     u->ch[1] = insert(u->ch[1], nv);\n        else\n            u->ch[0] = insert(u->ch[0],\
-    \ nv);\n\n        return balance(recalc(u));\n    };\n\n    void erase(const T\
-    \ &dat) { root = erase(root, dat); };\n    Node *erase(Node *u, const T &dat)\
-    \ {\n        if (u == nullptr) return nullptr;\n        if (u->dat < dat) {\n\
-    \            u->ch[1] = erase(u->ch[1], dat);\n        } else if (dat < u->dat)\
-    \ {\n            u->ch[0] = erase(u->ch[0], dat);\n        } else {\n        \
-    \    Node *del = u;\n            u = isolate_node(u);\n            delete del;\n\
-    \        }\n        return balance(recalc(u));\n    };\n    Node *isolate_node(Node\
+    \ u;\n    };\n\n    void insert(const T &dat) {\n        Node *u = new Node(dat);\n\
+    \        root = insert(root, u);\n    };\n    Node *insert(Node *u, Node *nv)\
+    \ {\n        if (u == nullptr) return nv;\n        if (u->dat < nv->dat)\n   \
+    \         u->ch[1] = insert(u->ch[1], nv);\n        else\n            u->ch[0]\
+    \ = insert(u->ch[0], nv);\n\n        return balance(recalc(u));\n    };\n\n  \
+    \  void erase(const T &dat) { root = erase(root, dat); };\n    Node *erase(Node\
+    \ *u, const T &dat) {\n        if (u == nullptr) return nullptr;\n        if (u->dat\
+    \ < dat) {\n            u->ch[1] = erase(u->ch[1], dat);\n        } else if (dat\
+    \ < u->dat) {\n            u->ch[0] = erase(u->ch[0], dat);\n        } else {\n\
+    \            Node *del = u;\n            u = isolate_node(u);\n            delete\
+    \ del;\n        }\n        return balance(recalc(u));\n    };\n    Node *isolate_node(Node\
     \ *u) {\n        if (u->ch[0] == nullptr || u->ch[1] == nullptr) {\n         \
     \   Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n            return\
     \ ret;\n        } else {\n            auto [l, nv] = split_rightest_node(u->ch[0]);\n\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_9_C.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 01:27:44+09:00'
+  timestamp: '2021-09-02 02:07:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C.test.cpp

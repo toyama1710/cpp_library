@@ -47,23 +47,24 @@ data:
     \            u = rotate<1>(u);\n        }\n        return u;\n    };\n    Node\
     \ *recalc(Node *u) {\n        if (u == nullptr) return nullptr;\n        u->sz\
     \ = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
-    \ height(u->ch[1])) + 1;\n        return u;\n    };\n\n    void insert(T dat)\
-    \ {\n        Node *u = new Node(dat);\n        root = insert(root, u);\n    };\n\
-    \    Node *insert(Node *u, Node *nv) {\n        if (u == nullptr) return nv;\n\
-    \        if (u->dat < nv->dat)\n            u->ch[1] = insert(u->ch[1], nv);\n\
-    \        else\n            u->ch[0] = insert(u->ch[0], nv);\n\n        return\
-    \ balance(recalc(u));\n    };\n\n    void erase(const T &dat) { root = erase(root,\
-    \ dat); };\n    Node *erase(Node *u, const T &dat) {\n        if (u == nullptr)\
-    \ return nullptr;\n        if (u->dat < dat) {\n            u->ch[1] = erase(u->ch[1],\
-    \ dat);\n        } else if (dat < u->dat) {\n            u->ch[0] = erase(u->ch[0],\
-    \ dat);\n        } else {\n            Node *del = u;\n            u = isolate_node(u);\n\
-    \            delete del;\n        }\n        return balance(recalc(u));\n    };\n\
-    \    Node *isolate_node(Node *u) {\n        if (u->ch[0] == nullptr || u->ch[1]\
-    \ == nullptr) {\n            Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n\
-    \            return ret;\n        } else {\n            auto [l, nv] = split_rightest_node(u->ch[0]);\n\
-    \            nv->ch[0] = l;\n            nv->ch[1] = u->ch[1];\n            return\
-    \ balance(recalc(nv));\n        }\n    };\n    std::pair<Node *, Node *> split_rightest_node(Node\
-    \ *v) {\n        if (v->ch[1] != nullptr) {\n            auto [l, ret] = split_rightest_node(v->ch[1]);\n\
+    \ height(u->ch[1])) + 1;\n        return u;\n    };\n\n    void insert(const T\
+    \ &dat) {\n        Node *u = new Node(dat);\n        root = insert(root, u);\n\
+    \    };\n    Node *insert(Node *u, Node *nv) {\n        if (u == nullptr) return\
+    \ nv;\n        if (u->dat < nv->dat)\n            u->ch[1] = insert(u->ch[1],\
+    \ nv);\n        else\n            u->ch[0] = insert(u->ch[0], nv);\n\n       \
+    \ return balance(recalc(u));\n    };\n\n    void erase(const T &dat) { root =\
+    \ erase(root, dat); };\n    Node *erase(Node *u, const T &dat) {\n        if (u\
+    \ == nullptr) return nullptr;\n        if (u->dat < dat) {\n            u->ch[1]\
+    \ = erase(u->ch[1], dat);\n        } else if (dat < u->dat) {\n            u->ch[0]\
+    \ = erase(u->ch[0], dat);\n        } else {\n            Node *del = u;\n    \
+    \        u = isolate_node(u);\n            delete del;\n        }\n        return\
+    \ balance(recalc(u));\n    };\n    Node *isolate_node(Node *u) {\n        if (u->ch[0]\
+    \ == nullptr || u->ch[1] == nullptr) {\n            Node *ret = u->ch[0] != nullptr\
+    \ ? u->ch[0] : u->ch[1];\n            return ret;\n        } else {\n        \
+    \    auto [l, nv] = split_rightest_node(u->ch[0]);\n            nv->ch[0] = l;\n\
+    \            nv->ch[1] = u->ch[1];\n            return balance(recalc(nv));\n\
+    \        }\n    };\n    std::pair<Node *, Node *> split_rightest_node(Node *v)\
+    \ {\n        if (v->ch[1] != nullptr) {\n            auto [l, ret] = split_rightest_node(v->ch[1]);\n\
     \            v->ch[1] = l;\n            return {balance(recalc(v)), ret};\n  \
     \      } else {\n            return {isolate_node(v), v};\n        }\n    };\n\
     \n    bool contains(T dat) {\n        Node *u = root;\n        while (u != nullptr)\
@@ -154,17 +155,17 @@ data:
     \        return u;\n    };\n    Node *recalc(Node *u) {\n        if (u == nullptr)\
     \ return nullptr;\n        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n    \
     \    u->hi = std::max(height(u->ch[0]), height(u->ch[1])) + 1;\n        return\
-    \ u;\n    };\n\n    void insert(T dat) {\n        Node *u = new Node(dat);\n \
-    \       root = insert(root, u);\n    };\n    Node *insert(Node *u, Node *nv) {\n\
-    \        if (u == nullptr) return nv;\n        if (u->dat < nv->dat)\n       \
-    \     u->ch[1] = insert(u->ch[1], nv);\n        else\n            u->ch[0] = insert(u->ch[0],\
-    \ nv);\n\n        return balance(recalc(u));\n    };\n\n    void erase(const T\
-    \ &dat) { root = erase(root, dat); };\n    Node *erase(Node *u, const T &dat)\
-    \ {\n        if (u == nullptr) return nullptr;\n        if (u->dat < dat) {\n\
-    \            u->ch[1] = erase(u->ch[1], dat);\n        } else if (dat < u->dat)\
-    \ {\n            u->ch[0] = erase(u->ch[0], dat);\n        } else {\n        \
-    \    Node *del = u;\n            u = isolate_node(u);\n            delete del;\n\
-    \        }\n        return balance(recalc(u));\n    };\n    Node *isolate_node(Node\
+    \ u;\n    };\n\n    void insert(const T &dat) {\n        Node *u = new Node(dat);\n\
+    \        root = insert(root, u);\n    };\n    Node *insert(Node *u, Node *nv)\
+    \ {\n        if (u == nullptr) return nv;\n        if (u->dat < nv->dat)\n   \
+    \         u->ch[1] = insert(u->ch[1], nv);\n        else\n            u->ch[0]\
+    \ = insert(u->ch[0], nv);\n\n        return balance(recalc(u));\n    };\n\n  \
+    \  void erase(const T &dat) { root = erase(root, dat); };\n    Node *erase(Node\
+    \ *u, const T &dat) {\n        if (u == nullptr) return nullptr;\n        if (u->dat\
+    \ < dat) {\n            u->ch[1] = erase(u->ch[1], dat);\n        } else if (dat\
+    \ < u->dat) {\n            u->ch[0] = erase(u->ch[0], dat);\n        } else {\n\
+    \            Node *del = u;\n            u = isolate_node(u);\n            delete\
+    \ del;\n        }\n        return balance(recalc(u));\n    };\n    Node *isolate_node(Node\
     \ *u) {\n        if (u->ch[0] == nullptr || u->ch[1] == nullptr) {\n         \
     \   Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n            return\
     \ ret;\n        } else {\n            auto [l, nv] = split_rightest_node(u->ch[0]);\n\
@@ -233,12 +234,12 @@ data:
     \    \";\n            }\n            std::cout << \"(\" << u->dat << \", \" <<\
     \ u->sz << \", \" << u->hi << \")\"\n                      << std::endl;\n   \
     \         f(f, d + 1, u->ch[0]);\n        };\n        f(f, 0, root);\n    };\n\
-    };\n\n#endif"
+    };\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: bbst/avl_set.hpp
   requiredBy: []
-  timestamp: '2021-09-02 01:27:44+09:00'
+  timestamp: '2021-09-02 02:07:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/associative_array.test.cpp
