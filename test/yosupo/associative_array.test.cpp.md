@@ -97,7 +97,7 @@ data:
     \   auto [l, tmp] = split_rightest_node(root);\n            root = merge(tmp,\
     \ l, r.root);\n            r.root = nullptr;\n        }\n        return *this;\n\
     \    };\n    Node *merge(Node *root, Node *l, Node *r) {\n        if (abs(height(l)\
-    \ - height(r)) <= 1) {\n            root->ch[0] = l;\n            root->ch[1]\
+    \ - height(r)) <= 2) {\n            root->ch[0] = l;\n            root->ch[1]\
     \ = r;\n            return balance(recalc(root));\n        } else if (height(l)\
     \ > height(r)) {\n            l->ch[1] = merge(root, l->ch[1], r);\n         \
     \   return balance(recalc(l));\n        } else {\n            r->ch[0] = merge(root,\
@@ -108,9 +108,9 @@ data:
     \ int k) {\n        if (u == nullptr) return {nullptr, nullptr};\n        int\
     \ lsize = size(u->ch[0]);\n        Node *l = u->ch[0];\n        Node *r = u->ch[1];\n\
     \        u->ch[0] = u->ch[1] = nullptr;\n        if (lsize == k) {\n         \
-    \   return {l, merge(recalc(u), nullptr, r)};\n        } else if (k < lsize) {\n\
-    \            auto [x, y] = split(l, k);\n            return {x, merge(recalc(u),\
-    \ y, r)};\n        } else {\n            auto [x, y] = split(r, k - lsize - 1);\n\
+    \   return {l, insert(r, recalc(u))};\n        } else if (k < lsize) {\n     \
+    \       auto [x, y] = split(l, k);\n            return {x, merge(recalc(u), y,\
+    \ r)};\n        } else {\n            auto [x, y] = split(r, k - lsize - 1);\n\
     \            return {merge(recalc(u), l, x), y};\n        }\n    };\n\n    std::vector<T>\
     \ list() {\n        std::vector<T> ret;\n        ret.reserve(size());\n      \
     \  auto dfs = [&](Node *u, auto &&f) {\n            if (u == nullptr) return;\n\
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/associative_array.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 01:18:55+09:00'
+  timestamp: '2021-09-02 01:27:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/associative_array.test.cpp
