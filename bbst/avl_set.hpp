@@ -79,7 +79,7 @@ struct AVLSet {
         return u;
     };
 
-    void insert(T dat) {
+    void insert(const T &dat) {
         Node *u = new Node(dat);
         root = insert(root, u);
     };
