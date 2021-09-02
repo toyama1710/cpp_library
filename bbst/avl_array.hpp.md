@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   _isVerificationFailed: false
@@ -54,7 +57,7 @@ data:
     \   } else if (height(l) > height(r)) {\n            l->ch[1] = merge(mid, l->ch[1],\
     \ r);\n            return balance(recalc(l));\n        } else {\n            r->ch[0]\
     \ = merge(mid, l, r->ch[0]);\n            return balance(recalc(r));\n       \
-    \ }\n    };\n\n    // first:[0, k), second:[k, n)\n    std::pair<AVLArray, AVLArray>\
+    \ }\n    };\n\n    // first: [0, k), second: [k, n)\n    std::pair<AVLArray, AVLArray>\
     \ split_at(int k) {\n        assert(0 <= k && k <= size());\n        auto [l,\
     \ r] = split();\n        root = nullptr;\n        return {AVLArray(l), AVLArray(r)};\n\
     \    };\n    static std::pair<Node *, Node *> split(Node *u, int k) {\n      \
@@ -77,11 +80,15 @@ data:
     \ AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n       \
     \ auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
     \        delete mid;\n        root = merge(l, r);\n        return *this;\n   \
-    \ };\n\n    const T operator[](int k) { return at(root, k); };\n    const T at(Node\
-    \ *u, int k) {\n        assert(0 <= k && k < size(u));\n        if (size(u->ch[0])\
-    \ == k)\n            return u->val;\n        else if (k < size(u->ch[0]))\n  \
-    \          return at(u->ch[0], k);\n        else\n            return at(u->ch[1],\
-    \ k - size(u->ch[0]) - 1);\n    };\n};\n\n\n"
+    \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
+    \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
+    \ [left, m1] = split(tmp2, l);\n        root = merge(left, merge(m2, merge(m1,\
+    \ right)));\n        return *this;\n    };\n\n    const T operator[](int k) {\
+    \ return at(root, k); };\n    const T at(Node *u, int k) {\n        assert(0 <=\
+    \ k && k < size(u));\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
+    \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
+    \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
+    };\n\n\n"
   code: "#ifndef AVL_ARRAY_HPP\n#define AVL_ARRAY_HPP\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <optional>\n#include <utility>\n\ntemplate <class Monoid>\n\
     struct AVLArray {\n    using M = Monoid;\n    using T = typename Monoid::value_type;\n\
@@ -125,7 +132,7 @@ data:
     \   } else if (height(l) > height(r)) {\n            l->ch[1] = merge(mid, l->ch[1],\
     \ r);\n            return balance(recalc(l));\n        } else {\n            r->ch[0]\
     \ = merge(mid, l, r->ch[0]);\n            return balance(recalc(r));\n       \
-    \ }\n    };\n\n    // first:[0, k), second:[k, n)\n    std::pair<AVLArray, AVLArray>\
+    \ }\n    };\n\n    // first: [0, k), second: [k, n)\n    std::pair<AVLArray, AVLArray>\
     \ split_at(int k) {\n        assert(0 <= k && k <= size());\n        auto [l,\
     \ r] = split();\n        root = nullptr;\n        return {AVLArray(l), AVLArray(r)};\n\
     \    };\n    static std::pair<Node *, Node *> split(Node *u, int k) {\n      \
@@ -148,19 +155,24 @@ data:
     \ AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n       \
     \ auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
     \        delete mid;\n        root = merge(l, r);\n        return *this;\n   \
-    \ };\n\n    const T operator[](int k) { return at(root, k); };\n    const T at(Node\
-    \ *u, int k) {\n        assert(0 <= k && k < size(u));\n        if (size(u->ch[0])\
-    \ == k)\n            return u->val;\n        else if (k < size(u->ch[0]))\n  \
-    \          return at(u->ch[0], k);\n        else\n            return at(u->ch[1],\
-    \ k - size(u->ch[0]) - 1);\n    };\n};\n\n#endif"
+    \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
+    \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
+    \ [left, m1] = split(tmp2, l);\n        root = merge(left, merge(m2, merge(m1,\
+    \ right)));\n        return *this;\n    };\n\n    const T operator[](int k) {\
+    \ return at(root, k); };\n    const T at(Node *u, int k) {\n        assert(0 <=\
+    \ k && k < size(u));\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
+    \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
+    \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
+    };\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: bbst/avl_array.hpp
   requiredBy: []
-  timestamp: '2021-09-02 18:35:05+09:00'
+  timestamp: '2021-09-02 20:50:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_range_sum.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: bbst/avl_array.hpp
 layout: document
 redirect_from:
