@@ -118,7 +118,7 @@ struct AVLArray {
         }
     };
 
-    // first:[0, k), second:[k, n)
+    // first: [0, k), second: [k, n)
     std::pair<AVLArray, AVLArray> split_at(int k) {
         assert(0 <= k && k <= size());
         auto [l, r] = split();
@@ -172,6 +172,14 @@ struct AVLArray {
         auto [l, mid] = split_rightest_node(tmp);
         delete mid;
         root = merge(l, r);
+        return *this;
+    };
+
+    AVLArray &rotate(int l, int mid, int r) {
+        auto [tmp1, right] = split(root, r);
+        auto [tmp2, m2] = split(tmp1, mid);
+        auto [left, m1] = split(tmp2, l);
+        root = merge(left, merge(m2, merge(m1, right)));
         return *this;
     };
 
