@@ -21,6 +21,7 @@
 "test/yosupo/associative_array.test.cpp": "2021-09-02 02:44:00 +0900",
 "test/yosupo/line_add_get_min.test.cpp": "2020-07-23 03:00:37 +0900",
 "test/yosupo/persistent_union_find.test.cpp": "2020-06-11 21:13:37 +0900",
+"test/yosupo/point_add_range_sum.test.cpp": "2021-09-02 18:35:05 +0900",
 "test/yosupo/queue_aggregation.test.cpp": "2020-04-27 16:50:39 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2020-06-09 00:16:13 +0900",
 "test/yosupo/rectangle_sum1.test.cpp": "2020-07-09 16:11:51 +0000",
