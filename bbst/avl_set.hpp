@@ -1,9 +1,8 @@
-#ifndef AVL_SET
-#define AVL_SET
+#ifndef AVL_SET_HPP
+#define AVL_SET_HPP
 
 #include <algorithm>
 #include <cassert>
-#include <functional>
 #include <iostream>
 #include <optional>
 #include <utility>

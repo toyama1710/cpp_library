@@ -3,8 +3,8 @@
 
 #include <algorithm>
 #include <cassert>
-#include <optional>
 #include <utility>
+#include <vector>
 
 template <class Monoid>
 struct AVLArray {
@@ -181,6 +181,18 @@ struct AVLArray {
         auto [left, m1] = split(tmp2, l);
         root = merge(left, merge(m2, merge(m1, right)));
         return *this;
+    };
+
+    std::vector<T> list() {
+        std::vector<T> ret;
+        ret.reserve(size());
+        auto dfs = [&](auto &&f, Node *u) {
+            f(f, u->ch[0]);
+            ret.push_back(u->dat);
+            f(f, u->ch[1]);
+        };
+        dfs(dfs, root);
+        return ret;
     };
 
     const T operator[](int k) { return at(root, k); };
