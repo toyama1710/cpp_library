@@ -12,6 +12,9 @@ data:
   - name: bbst
     pages:
     - icon: ':heavy_check_mark:'
+      path: bbst/avl_array.hpp
+      title: bbst/avl_array.hpp
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_set.hpp
       title: bbst/avl_set.hpp
   - name: bit
@@ -240,6 +243,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_union_find.test.cpp
       title: test/yosupo/persistent_union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/point_add_range_sum.test.cpp
+      title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_aggregation.test.cpp
       title: test/yosupo/queue_aggregation.test.cpp

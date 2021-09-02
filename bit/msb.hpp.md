@@ -65,10 +65,10 @@ data:
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/static_range_sum.test.cpp
-  - test/aoj/DSL2F_1.test.cpp
-  - test/aoj/DSL2I.test.cpp
-  - test/aoj/DSL2H.test.cpp
   - test/aoj/DSL2G.test.cpp
+  - test/aoj/DSL2I.test.cpp
+  - test/aoj/DSL2F_1.test.cpp
+  - test/aoj/DSL2H.test.cpp
 documentation_of: bit/msb.hpp
 layout: document
 redirect_from:
