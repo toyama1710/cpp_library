@@ -17,50 +17,50 @@ data:
   bundledCode: "#line 1 \"test/aoj/ALDS1_9_C.test.cpp\"\n#define PROBLEM \\\n    \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C\"\n\n#include\
     \ <iostream>\n#include <queue>\n#include <string>\n#include <tuple>\n\n#line 1\
-    \ \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n#include\
-    \ <functional>\n#line 8 \"bbst/avl_set.hpp\"\n#include <optional>\n#include <utility>\n\
-    #include <vector>\n\n// insert/erase base AVLtree\n// multiset\ntemplate <class\
-    \ T>\nstruct AVLSet {\n    struct Node {\n        int sz, hi;\n        T dat;\n\
-    \        Node *ch[2];\n        Node(const Node *x)\n            : sz(x->sz), hi(x->hi),\
-    \ dat(x->dat), ch{x->ch[0], x->ch[1]} {};\n        Node(T dat) : sz(1), hi(1),\
-    \ dat(dat), ch{nullptr, nullptr} {};\n    };\n\n    Node *root;\n\n    AVLSet(Node\
-    \ *r = nullptr) : root(r){};\n    AVLSet(const AVLSet &x) : root(x.root){};\n\
-    \    AVLSet &operator=(const AVLSet &x) {\n        root = x.root;\n        return\
-    \ *this;\n    };\n\n    int size(Node *u) {\n        if (u != nullptr)\n     \
-    \       return u->sz;\n        else\n            return 0;\n    };\n    int size()\
-    \ { return size(root); };\n\n    int height(Node *u) {\n        if (u != nullptr)\n\
-    \            return u->hi;\n        else\n            return 0;\n    };\n\n  \
-    \  template <int d>  // 0: left, 1: right\n    Node *rotate(Node *u) {\n     \
-    \   assert(u != nullptr && u->ch[d] != nullptr);\n        Node *v = u->ch[d];\n\
-    \        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n        recalc(u);\n\
-    \        recalc(v);\n        return v;\n    };\n    int balance_factor(Node *u)\
-    \ {\n        if (u == nullptr) return 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n\
-    \    };\n    Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
-    \        assert(-2 <= balance_factor(u) && balance_factor(u) <= 2);\n        if\
-    \ (balance_factor(u) == 2) {\n            if (balance_factor(u->ch[0]) == -1)\
-    \ u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n        } else\
-    \ if (balance_factor(u) == -2) {\n            if (balance_factor(u->ch[1]) ==\
-    \ 1) u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n        }\n\
-    \        return u;\n    };\n    Node *recalc(Node *u) {\n        if (u == nullptr)\
-    \ return nullptr;\n        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n    \
-    \    u->hi = std::max(height(u->ch[0]), height(u->ch[1])) + 1;\n        return\
-    \ u;\n    };\n\n    void insert(const T &dat) {\n        Node *u = new Node(dat);\n\
-    \        root = insert(root, u);\n    };\n    Node *insert(Node *u, Node *nv)\
-    \ {\n        if (u == nullptr) return nv;\n        if (u->dat < nv->dat)\n   \
-    \         u->ch[1] = insert(u->ch[1], nv);\n        else\n            u->ch[0]\
-    \ = insert(u->ch[0], nv);\n\n        return balance(recalc(u));\n    };\n\n  \
-    \  void erase(const T &dat) { root = erase(root, dat); };\n    Node *erase(Node\
-    \ *u, const T &dat) {\n        if (u == nullptr) return nullptr;\n        if (u->dat\
-    \ < dat) {\n            u->ch[1] = erase(u->ch[1], dat);\n        } else if (dat\
-    \ < u->dat) {\n            u->ch[0] = erase(u->ch[0], dat);\n        } else {\n\
-    \            Node *del = u;\n            u = isolate_node(u);\n            delete\
-    \ del;\n        }\n        return balance(recalc(u));\n    };\n    Node *isolate_node(Node\
-    \ *u) {\n        if (u->ch[0] == nullptr || u->ch[1] == nullptr) {\n         \
-    \   Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n            return\
-    \ ret;\n        } else {\n            auto [l, nv] = split_rightest_node(u->ch[0]);\n\
-    \            nv->ch[0] = l;\n            nv->ch[1] = u->ch[1];\n            return\
-    \ balance(recalc(nv));\n        }\n    };\n    std::pair<Node *, Node *> split_rightest_node(Node\
-    \ *v) {\n        if (v->ch[1] != nullptr) {\n            auto [l, ret] = split_rightest_node(v->ch[1]);\n\
+    \ \"bbst/avl_set.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n#line\
+    \ 7 \"bbst/avl_set.hpp\"\n#include <optional>\n#include <utility>\n#include <vector>\n\
+    \n// insert/erase base AVLtree\n// multiset\ntemplate <class T>\nstruct AVLSet\
+    \ {\n    struct Node {\n        int sz, hi;\n        T dat;\n        Node *ch[2];\n\
+    \        Node(const Node *x)\n            : sz(x->sz), hi(x->hi), dat(x->dat),\
+    \ ch{x->ch[0], x->ch[1]} {};\n        Node(T dat) : sz(1), hi(1), dat(dat), ch{nullptr,\
+    \ nullptr} {};\n    };\n\n    Node *root;\n\n    AVLSet(Node *r = nullptr) : root(r){};\n\
+    \    AVLSet(const AVLSet &x) : root(x.root){};\n    AVLSet &operator=(const AVLSet\
+    \ &x) {\n        root = x.root;\n        return *this;\n    };\n\n    int size(Node\
+    \ *u) {\n        if (u != nullptr)\n            return u->sz;\n        else\n\
+    \            return 0;\n    };\n    int size() { return size(root); };\n\n   \
+    \ int height(Node *u) {\n        if (u != nullptr)\n            return u->hi;\n\
+    \        else\n            return 0;\n    };\n\n    template <int d>  // 0: left,\
+    \ 1: right\n    Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d]\
+    \ != nullptr);\n        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n\
+    \        v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return\
+    \ v;\n    };\n    int balance_factor(Node *u) {\n        if (u == nullptr) return\
+    \ 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n    Node *balance(Node\
+    \ *u) {\n        if (u == nullptr) return nullptr;\n        assert(-2 <= balance_factor(u)\
+    \ && balance_factor(u) <= 2);\n        if (balance_factor(u) == 2) {\n       \
+    \     if (balance_factor(u->ch[0]) == -1) u->ch[0] = rotate<1>(u->ch[0]);\n  \
+    \          u = rotate<0>(u);\n        } else if (balance_factor(u) == -2) {\n\
+    \            if (balance_factor(u->ch[1]) == 1) u->ch[1] = rotate<0>(u->ch[1]);\n\
+    \            u = rotate<1>(u);\n        }\n        return u;\n    };\n    Node\
+    \ *recalc(Node *u) {\n        if (u == nullptr) return nullptr;\n        u->sz\
+    \ = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
+    \ height(u->ch[1])) + 1;\n        return u;\n    };\n\n    void insert(const T\
+    \ &dat) {\n        Node *u = new Node(dat);\n        root = insert(root, u);\n\
+    \    };\n    Node *insert(Node *u, Node *nv) {\n        if (u == nullptr) return\
+    \ nv;\n        if (u->dat < nv->dat)\n            u->ch[1] = insert(u->ch[1],\
+    \ nv);\n        else\n            u->ch[0] = insert(u->ch[0], nv);\n\n       \
+    \ return balance(recalc(u));\n    };\n\n    void erase(const T &dat) { root =\
+    \ erase(root, dat); };\n    Node *erase(Node *u, const T &dat) {\n        if (u\
+    \ == nullptr) return nullptr;\n        if (u->dat < dat) {\n            u->ch[1]\
+    \ = erase(u->ch[1], dat);\n        } else if (dat < u->dat) {\n            u->ch[0]\
+    \ = erase(u->ch[0], dat);\n        } else {\n            Node *del = u;\n    \
+    \        u = isolate_node(u);\n            delete del;\n        }\n        return\
+    \ balance(recalc(u));\n    };\n    Node *isolate_node(Node *u) {\n        if (u->ch[0]\
+    \ == nullptr || u->ch[1] == nullptr) {\n            Node *ret = u->ch[0] != nullptr\
+    \ ? u->ch[0] : u->ch[1];\n            return ret;\n        } else {\n        \
+    \    auto [l, nv] = split_rightest_node(u->ch[0]);\n            nv->ch[0] = l;\n\
+    \            nv->ch[1] = u->ch[1];\n            return balance(recalc(nv));\n\
+    \        }\n    };\n    std::pair<Node *, Node *> split_rightest_node(Node *v)\
+    \ {\n        if (v->ch[1] != nullptr) {\n            auto [l, ret] = split_rightest_node(v->ch[1]);\n\
     \            v->ch[1] = l;\n            return {balance(recalc(v)), ret};\n  \
     \      } else {\n            return {isolate_node(v), v};\n        }\n    };\n\
     \n    bool contains(const T &dat) {\n        Node *u = root;\n        while (u\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_9_C.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 02:44:00+09:00'
+  timestamp: '2021-09-02 23:03:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C.test.cpp

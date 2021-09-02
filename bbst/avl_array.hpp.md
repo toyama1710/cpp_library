@@ -15,7 +15,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <optional>\n#include <utility>\n\ntemplate <class Monoid>\n\
+    \ <cassert>\n#include <utility>\n#include <vector>\n\ntemplate <class Monoid>\n\
     struct AVLArray {\n    using M = Monoid;\n    using T = typename Monoid::value_type;\n\
     \    struct Node {\n        T val;\n        T sum;\n        int hi;\n        int\
     \ sz;\n        Node *ch[2];\n\n        Node(const T &val = M::identity())\n  \
@@ -83,14 +83,17 @@ data:
     \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
     \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
     \ [left, m1] = split(tmp2, l);\n        root = merge(left, merge(m2, merge(m1,\
-    \ right)));\n        return *this;\n    };\n\n    const T operator[](int k) {\
-    \ return at(root, k); };\n    const T at(Node *u, int k) {\n        assert(0 <=\
-    \ k && k < size(u));\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
-    \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
-    \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
-    };\n\n\n"
+    \ right)));\n        return *this;\n    };\n\n    std::vector<T> list() {\n  \
+    \      std::vector<T> ret;\n        ret.reserve(size());\n        auto dfs = [&](auto\
+    \ &&f, Node *u) {\n            f(f, u->ch[0]);\n            ret.push_back(u->dat);\n\
+    \            f(f, u->ch[1]);\n        };\n        dfs(dfs, root);\n        return\
+    \ ret;\n    };\n\n    const T operator[](int k) { return at(root, k); };\n   \
+    \ const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n     \
+    \   if (size(u->ch[0]) == k)\n            return u->val;\n        else if (k <\
+    \ size(u->ch[0]))\n            return at(u->ch[0], k);\n        else\n       \
+    \     return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n};\n\n\n"
   code: "#ifndef AVL_ARRAY_HPP\n#define AVL_ARRAY_HPP\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <optional>\n#include <utility>\n\ntemplate <class Monoid>\n\
+    \ <cassert>\n#include <utility>\n#include <vector>\n\ntemplate <class Monoid>\n\
     struct AVLArray {\n    using M = Monoid;\n    using T = typename Monoid::value_type;\n\
     \    struct Node {\n        T val;\n        T sum;\n        int hi;\n        int\
     \ sz;\n        Node *ch[2];\n\n        Node(const T &val = M::identity())\n  \
@@ -158,17 +161,20 @@ data:
     \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
     \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
     \ [left, m1] = split(tmp2, l);\n        root = merge(left, merge(m2, merge(m1,\
-    \ right)));\n        return *this;\n    };\n\n    const T operator[](int k) {\
-    \ return at(root, k); };\n    const T at(Node *u, int k) {\n        assert(0 <=\
-    \ k && k < size(u));\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
-    \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
-    \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
-    };\n\n#endif"
+    \ right)));\n        return *this;\n    };\n\n    std::vector<T> list() {\n  \
+    \      std::vector<T> ret;\n        ret.reserve(size());\n        auto dfs = [&](auto\
+    \ &&f, Node *u) {\n            f(f, u->ch[0]);\n            ret.push_back(u->dat);\n\
+    \            f(f, u->ch[1]);\n        };\n        dfs(dfs, root);\n        return\
+    \ ret;\n    };\n\n    const T operator[](int k) { return at(root, k); };\n   \
+    \ const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n     \
+    \   if (size(u->ch[0]) == k)\n            return u->val;\n        else if (k <\
+    \ size(u->ch[0]))\n            return at(u->ch[0], k);\n        else\n       \
+    \     return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n};\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: bbst/avl_array.hpp
   requiredBy: []
-  timestamp: '2021-09-02 20:50:32+09:00'
+  timestamp: '2021-09-02 23:03:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_range_sum.test.cpp

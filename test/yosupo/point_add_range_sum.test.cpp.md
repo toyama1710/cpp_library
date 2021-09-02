@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/point_add_range_sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n#include <iostream>\n\
     \n#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <optional>\n#include <utility>\n\ntemplate <class Monoid>\nstruct AVLArray\
+    #include <utility>\n#include <vector>\n\ntemplate <class Monoid>\nstruct AVLArray\
     \ {\n    using M = Monoid;\n    using T = typename Monoid::value_type;\n    struct\
     \ Node {\n        T val;\n        T sum;\n        int hi;\n        int sz;\n \
     \       Node *ch[2];\n\n        Node(const T &val = M::identity())\n         \
@@ -85,18 +85,22 @@ data:
     \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
     \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
     \ [left, m1] = split(tmp2, l);\n        root = merge(left, merge(m2, merge(m1,\
-    \ right)));\n        return *this;\n    };\n\n    const T operator[](int k) {\
-    \ return at(root, k); };\n    const T at(Node *u, int k) {\n        assert(0 <=\
-    \ k && k < size(u));\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
-    \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
-    \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
-    };\n\n\n#line 6 \"test/yosupo/point_add_range_sum.test.cpp\"\n\n#define _overload(_1,\
-    \ _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define\
-    \ _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64\
-    \ Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3,\
-    \ _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define\
-    \ ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing\
-    \ u64 = unsigned long long;\n\nstruct Sum {\n    using T = i64;\n    using value_type\
+    \ right)));\n        return *this;\n    };\n\n    std::vector<T> list() {\n  \
+    \      std::vector<T> ret;\n        ret.reserve(size());\n        auto dfs = [&](auto\
+    \ &&f, Node *u) {\n            f(f, u->ch[0]);\n            ret.push_back(u->dat);\n\
+    \            f(f, u->ch[1]);\n        };\n        dfs(dfs, root);\n        return\
+    \ ret;\n    };\n\n    const T operator[](int k) { return at(root, k); };\n   \
+    \ const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n     \
+    \   if (size(u->ch[0]) == k)\n            return u->val;\n        else if (k <\
+    \ size(u->ch[0]))\n            return at(u->ch[0], k);\n        else\n       \
+    \     return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n};\n\n\n#line 6 \"\
+    test/yosupo/point_add_range_sum.test.cpp\"\n\n#define _overload(_1, _2, _3, _4,\
+    \ name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define _rep2(Itr,\
+    \ a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64 Itr = a;\
+    \ Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3, _rep2,\
+    \ _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define ALL(X)\
+    \ begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing u64\
+    \ = unsigned long long;\n\nstruct Sum {\n    using T = i64;\n    using value_type\
     \ = T;\n    static T identity() { return 0; };\n    static T operation(T lhs,\
     \ T rhs) { return lhs + rhs; };\n};\n\nint main() {\n    cin.tie(nullptr);\n \
     \   ios::sync_with_stdio(false);\n\n    int n, q;\n    cin >> n >> q;\n\n    AVLArray<Sum>\
@@ -126,7 +130,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 20:50:32+09:00'
+  timestamp: '2021-09-02 23:03:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.test.cpp
