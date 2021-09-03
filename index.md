@@ -175,7 +175,7 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/0343.test.cpp
       title: test/aoj/0343.test.cpp
     - icon: ':heavy_check_mark:'
