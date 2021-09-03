@@ -17,11 +17,23 @@ using i64 = long long;
 using u64 = unsigned long long;
 constexpr i64 inf = 1ll << 60;
 
-struct Min {
-    using T = i64;
-    using value_type = T;
-    static T identity() { return inf; };
-    static T operation(T lhs, T rhs) { return min(lhs, rhs); };
+struct A {
+    struct M {
+        using T = i64;
+        using value_type = T;
+        static T identity() { return inf; };
+        static T operation(T lhs, T rhs) { return min(lhs, rhs); };
+    };
+    struct O {
+        using T = int;
+        using value_type = T;
+        static T identity() { return 0; };
+        static T operation(T lhs, T rhs) { return 0; };
+    };
+
+    using value_structure = M;
+    using operator_structure = O;
+    static M::T operation(M::T v, O::T o) { return v; };
 };
 
 int main() {
@@ -30,12 +42,12 @@ int main() {
 
     i64 n, q;
     cin >> n >> q;
-    AVLArray<Min> arr;
+    AVLArray<A> arr;
 
     rep(_, n) {
         i64 a;
         cin >> a;
-        AVLArray<Min> tmp;
+        AVLArray<A> tmp;
         tmp.insert_at(0, a);
         arr.append(tmp);
     }

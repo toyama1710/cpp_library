@@ -18,10 +18,26 @@ using i64 = long long;
 using u64 = unsigned long long;
 
 struct Sum {
-    using T = i64;
-    using value_type = T;
-    static T identity() { return 0; };
-    static T operation(T lhs, T rhs) { return lhs + rhs; };
+    struct M {
+        using T = pair<i64, i64>;
+        using value_type = T;
+        static T identity() { return {0, 0}; };
+        static T operation(T lhs, T rhs) {
+            return {lhs.first + rhs.first, lhs.second + rhs.second};
+        };
+    };
+    struct O {
+        using T = i64;
+        using value_type = T;
+        static T identity() { return 0; };
+        static T operation(T lhs, T rhs) { return lhs + rhs; };
+    };
+
+    using value_structure = M;
+    using operator_structure = O;
+    static M::T operation(M::T v, O::T o) {
+        return {v.first + o * v.second, v.second};
+    };
 };
 
 int main() {
@@ -35,16 +51,19 @@ int main() {
     rep(i, n) {
         i64 a;
         cin >> a;
-        arr.insert_at(i, a);
+        arr.insert_at(i, {a, 1});
     }
 
     i64 com, a, b;
     rep(_, q) {
         cin >> com >> a >> b;
         if (com == 0) {
-            arr.update_at(a, arr[a] + b);
+            if (_ & 1)
+                arr.update(a, a + 1, b);
+            else
+                arr.set(a, {arr[a].first + b, 1});
         } else if (com == 1) {
-            cout << arr.fold(a, b) << '\n';
+            cout << arr.fold(a, b).first << '\n';
         }
     }
 
