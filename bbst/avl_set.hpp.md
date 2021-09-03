@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/0343.test.cpp
+    title: test/aoj/0343.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_9_C.test.cpp
     title: test/aoj/ALDS1_9_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -239,6 +242,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/associative_array.test.cpp
+  - test/aoj/0343.test.cpp
   - test/aoj/ITP2_7_D.test.cpp
   - test/aoj/ALDS1_9_C.test.cpp
 documentation_of: bbst/avl_set.hpp
