@@ -11,7 +11,7 @@ data:
       title: array/persistent_array.hpp
   - name: bbst
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: bbst/avl_array.hpp
       title: bbst/avl_array.hpp
     - icon: ':heavy_check_mark:'
@@ -240,6 +240,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/associative_array.test.cpp
       title: test/yosupo/associative_array.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp

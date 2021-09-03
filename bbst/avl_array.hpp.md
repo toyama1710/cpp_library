@@ -6,12 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -53,7 +56,7 @@ data:
     \    static Node *calc_sum(Node *u) {\n        u->sum =\n            M::operation(M::operation(sum(u->ch[0]),\
     \ u->val), sum(u->ch[1]));\n        u->rev_sum = M::operation(M::operation(rev_sum(u->ch[1]),\
     \ u->val),\n                                  rev_sum(u->ch[0]));\n        return\
-    \ u;\n    };\n    static Node *recalc(Node *u) {\n        assert(u->op == O::identity());\n\
+    \ u;\n    };\n    static Node *recalc(Node *u) {\n        // assert(u->op == O::identity());\n\
     \        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
     \ height(u->ch[1])) + 1;\n        return calc_sum(u);\n    };\n\n    template\
     \ <int d>\n    static Node *rotate(Node *u) {\n        assert(u != nullptr &&\
@@ -166,7 +169,7 @@ data:
     \    static Node *calc_sum(Node *u) {\n        u->sum =\n            M::operation(M::operation(sum(u->ch[0]),\
     \ u->val), sum(u->ch[1]));\n        u->rev_sum = M::operation(M::operation(rev_sum(u->ch[1]),\
     \ u->val),\n                                  rev_sum(u->ch[0]));\n        return\
-    \ u;\n    };\n    static Node *recalc(Node *u) {\n        assert(u->op == O::identity());\n\
+    \ u;\n    };\n    static Node *recalc(Node *u) {\n        // assert(u->op == O::identity());\n\
     \        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
     \ height(u->ch[1])) + 1;\n        return calc_sum(u);\n    };\n\n    template\
     \ <int d>\n    static Node *rotate(Node *u) {\n        assert(u != nullptr &&\
@@ -244,10 +247,11 @@ data:
   isVerificationFile: false
   path: bbst/avl_array.hpp
   requiredBy: []
-  timestamp: '2021-09-03 19:43:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-03 21:22:12+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/aoj/1508.test.cpp
 documentation_of: bbst/avl_array.hpp
 layout: document

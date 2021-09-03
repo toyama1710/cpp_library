@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/avl_array.hpp
     title: bbst/avl_array.hpp
   _extendedRequiredBy: []
@@ -55,7 +55,7 @@ data:
     \    static Node *calc_sum(Node *u) {\n        u->sum =\n            M::operation(M::operation(sum(u->ch[0]),\
     \ u->val), sum(u->ch[1]));\n        u->rev_sum = M::operation(M::operation(rev_sum(u->ch[1]),\
     \ u->val),\n                                  rev_sum(u->ch[0]));\n        return\
-    \ u;\n    };\n    static Node *recalc(Node *u) {\n        assert(u->op == O::identity());\n\
+    \ u;\n    };\n    static Node *recalc(Node *u) {\n        // assert(u->op == O::identity());\n\
     \        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
     \ height(u->ch[1])) + 1;\n        return calc_sum(u);\n    };\n\n    template\
     \ <int d>\n    static Node *rotate(Node *u) {\n        assert(u != nullptr &&\
@@ -180,7 +180,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-03 19:43:38+09:00'
+  timestamp: '2021-09-03 21:22:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.test.cpp
