@@ -111,7 +111,7 @@ struct AVLArray {
         return u;
     };
     static Node *recalc(Node *u) {
-        assert(u->op == O::identity());
+        // assert(u->op == O::identity());
         u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;
         u->hi = std::max(height(u->ch[0]), height(u->ch[1])) + 1;
         return calc_sum(u);
