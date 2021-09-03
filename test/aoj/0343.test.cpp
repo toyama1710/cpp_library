@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../../bbst/if/avl_set.hpp"
+#include "../../bbst/avl_set.hpp"
 
 #define _overload(_1, _2, _3, _4, name, ...) name
 #define _rep1(Itr, N) _rep3(Itr, 0, N, 1)
