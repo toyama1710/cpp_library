@@ -1,37 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bbst/avl_array.hpp
     title: bbst/avl_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    IGNORE: ''
-    IGNORE_IF_CLANG: ''
-    IGNORE_IF_GCC: ''
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
   bundledCode: "#line 1 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
-    \n#define IGNORE\n#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n#include <iostream>\n#include <valarray>\n\n#line 1 \"bbst/avl_array.hpp\"\n\
-    \n\n\n#include <algorithm>\n#include <cassert>\n#include <utility>\n#include <vector>\n\
-    \ntemplate <class MonoidwithOperator>\nstruct AVLArray {\n    using A = MonoidwithOperator;\n\
-    \    using M = typename A::value_structure;\n    using T = typename M::value_type;\n\
-    \    using O = typename A::operator_structure;\n    using E = typename O::value_type;\n\
-    \n    struct Node {\n        T val;\n        T sum;\n        E op;\n        T\
-    \ rev_sum;\n        bool rev_flag;\n        int hi;\n        int sz;\n       \
-    \ Node *ch[2];\n\n        Node(const T &val = M::identity(), const E &op = O::identity())\n\
-    \            : val(val),\n              sum(val),\n              op(op),\n   \
-    \           rev_sum(val),\n              rev_flag(false),\n              hi(1),\n\
-    \              sz(1),\n              ch{nullptr, nullptr} {};\n    };\n\n    Node\
-    \ *root;\n\n    explicit AVLArray(Node *root = nullptr) : root(root){};\n    AVLArray(const\
-    \ AVLArray &x) : root(x.root){};\n    AVLArray &operator=(const AVLArray &x) {\n\
-    \        root = x.root;\n        return *this;\n    };\n\n    static int height(const\
+    \n#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#include <iostream>\n\n#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <utility>\n#include <vector>\n\ntemplate <class MonoidwithOperator>\n\
+    struct AVLArray {\n    using A = MonoidwithOperator;\n    using M = typename A::value_structure;\n\
+    \    using T = typename M::value_type;\n    using O = typename A::operator_structure;\n\
+    \    using E = typename O::value_type;\n\n    struct Node {\n        T val;\n\
+    \        T sum;\n        E op;\n        T rev_sum;\n        bool rev_flag;\n \
+    \       int hi;\n        int sz;\n        Node *ch[2];\n\n        Node(const T\
+    \ &val = M::identity(), const E &op = O::identity())\n            : val(val),\n\
+    \              sum(val),\n              op(op),\n              rev_sum(val),\n\
+    \              rev_flag(false),\n              hi(1),\n              sz(1),\n\
+    \              ch{nullptr, nullptr} {};\n    };\n\n    Node *root;\n\n    explicit\
+    \ AVLArray(Node *root = nullptr) : root(root){};\n    AVLArray(const AVLArray\
+    \ &x) : root(x.root){};\n    AVLArray &operator=(const AVLArray &x) {\n      \
+    \  root = x.root;\n        return *this;\n    };\n\n    static int height(const\
     \ Node *u) {\n        if (u == nullptr)\n            return 0;\n        else\n\
     \            return u->hi;\n    };\n    static int balance_factor(const Node *u)\
     \ {\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n\n    int size()\
@@ -61,15 +59,15 @@ data:
     \        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
     \ height(u->ch[1])) + 1;\n        return calc_sum(u);\n    };\n\n    template\
     \ <int d>\n    static Node *rotate(Node *u) {\n        assert(u != nullptr &&\
-    \ u->ch[d] != nullptr);\n        Node *v = u->ch[d];\n        push_down(u);\n\
-    \        push_down(v);\n        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1]\
-    \ = u;\n        recalc(u);\n        recalc(v);\n        return v;\n    };\n  \
-    \  static Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
-    \        if (balance_factor(u) == 2) {\n            if (balance_factor(u->ch[0])\
-    \ == -1) u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n    \
-    \    } else if (balance_factor(u) == -2) {\n            if (balance_factor(u->ch[1])\
-    \ == 1) u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n     \
-    \   }\n        return u;\n    };\n    static std::pair<Node *, Node *> split_rightest_node(Node\
+    \ u->ch[d] != nullptr);\n        Node *v = push_down(u->ch[d]);\n        u->ch[d]\
+    \ = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n\
+    \        return v;\n    };\n    static Node *balance(Node *u) {\n        if (u\
+    \ == nullptr) return nullptr;\n        push_down(u);\n        if (balance_factor(u)\
+    \ == 2) {\n            if (balance_factor(push_down(u->ch[0])) == -1)\n      \
+    \          u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n  \
+    \      } else if (balance_factor(u) == -2) {\n            if (balance_factor(push_down(u->ch[1]))\
+    \ == 1)\n                u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n\
+    \        }\n        return u;\n    };\n    static std::pair<Node *, Node *> split_rightest_node(Node\
     \ *u) {\n        push_down(u);\n        if (u->ch[1] != nullptr) {\n         \
     \   auto [l, ret] = split_rightest_node(u->ch[1]);\n            u->ch[1] = l;\n\
     \            return {balance(recalc(u)), ret};\n        } else {\n           \
@@ -101,7 +99,7 @@ data:
     \        root = merge(merge(left, mid), right);\n        return ret;\n    };\n\
     \    T fold_rev(int l, int r) {\n        if (r <= l) return M::identity();\n \
     \       reverse(l, r);\n        T ret = fold(l, r);\n        reverse(l, r);\n\
-    \        return ret;\n    }\n    AVLArray &reverse(int l, int r) {\n        if\
+    \        return ret;\n    };\n    AVLArray &reverse(int l, int r) {\n        if\
     \ (r <= l) return *this;\n        auto [tmp, right] = split(root, r);\n      \
     \  auto [left, mid] = split(tmp, l);\n        mid->rev_flag ^= 1;\n        root\
     \ = merge(merge(left, mid), right);\n        return *this;\n    };\n\n    AVLArray\
@@ -130,7 +128,7 @@ data:
     \ <= k && k < size(u));\n        push_down(u);\n        if (size(u->ch[0]) ==\
     \ k)\n            return u->val;\n        else if (k < size(u->ch[0]))\n     \
     \       return at(u->ch[0], k);\n        else\n            return at(u->ch[1],\
-    \ k - size(u->ch[0]) - 1);\n    };\n};\n\n\n#line 8 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \ k - size(u->ch[0]) - 1);\n    };\n};\n\n\n#line 6 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
     \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
     \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
@@ -147,30 +145,33 @@ data:
     \ % mod};\n        };\n    };\n\n    using value_structure = M;\n    using operator_structure\
     \ = O;\n    static M::T operation(M::T v, O::T o) {\n        return {((i64)v.first\
     \ * o.first + (i64)v.second * o.second) % mod,\n                v.second};\n \
-    \   };\n};\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    AVLArray<A> arr;\n\n    i64 n, q;\n    cin >> n >> q;\n    rep(i, n) {\n\
-    \        i64 a;\n        cin >> a;\n        arr.insert_at(i, {a, 1});\n    }\n\
-    \n    i64 com, i, l, r, a, b, c;\n    rep(_, q) {\n        cin >> com;\n\n   \
-    \     switch (com) {\n            case 0: {\n                cin >> i >> a;\n\
-    \                arr.insert_at(i, {a, 1});\n                break;\n         \
-    \   }\n            case 1: {\n                cin >> i;\n                arr.erase_at(i);\n\
+    \   };\n};\n\n/*\nAVLArray<A>::Node *nodes =\n    (AVLArray<A>::Node *)malloc(sizeof(AVLArray<A>::Node)\
+    \ * 1'000'001);\nvoid *operator new(size_t) {\n    auto ret = nodes;\n    nodes++;\n\
+    \    return ret;\n}\nvoid operator delete(void *) { return; }\n*/\n\nint main()\
+    \ {\n    AVLArray<A> arr;\n\n    int n, q;\n    scanf(\"%d %d\", &n, &q);\n  \
+    \  rep(i, n) {\n        int a;\n        scanf(\"%d\", &a);\n        arr.insert_at(i,\
+    \ {a, 1});\n    }\n\n    int com, i, l, r, a, b, c;\n    rep(_, q) {\n       \
+    \ // cout << _ << endl;\n        scanf(\"%d\", &com);\n\n        switch (com)\
+    \ {\n            case 0: {\n                scanf(\"%d %d\", &i, &a);\n      \
+    \          arr.insert_at(i, {a, 1});\n                break;\n            }\n\
+    \            case 1: {\n                scanf(\"%d\", &i);\n                arr.erase_at(i);\n\
     \                break;\n            }\n            case 2: {\n              \
-    \  cin >> l >> r;\n                arr.reverse(l, r);\n                break;\n\
-    \            }\n            case 3: {\n                cin >> l >> r >> b >> c;\n\
-    \                arr.update(l, r, {b, c});\n                break;\n         \
-    \   }\n            case 4: {\n                cin >> l >> r;\n               \
-    \ cout << arr.fold(l, r).first << '\\n';\n                break;\n           \
-    \ }\n        }\n    }\n\n    return 0;\n}\n"
-  code: "#define IGNORE\n#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n#include <iostream>\n#include <valarray>\n\n#include \"../../bbst/avl_array.hpp\"\
-    \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
-    \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
-    \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
-    \ _rep3, _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n\
-    #define ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\n\
-    using u64 = unsigned long long;\n\nconstexpr i64 mod = 998244353;\nstruct A {\n\
-    \    struct M {\n        using T = pair<int, int>;\n        using value_type =\
-    \ T;\n        static T identity() { return {0, 0}; };\n        static T operation(T\
+    \  scanf(\"%d %d\", &l, &r);\n                arr.reverse(l, r);\n           \
+    \     break;\n            }\n            case 3: {\n                scanf(\"%d\
+    \ %d %d %d\", &l, &r, &b, &c);\n                arr.update(l, r, {b, c});\n  \
+    \              break;\n            }\n            case 4: {\n                scanf(\"\
+    %d %d\", &l, &r);\n                printf(\"%d\\n\", arr.fold(l, r).first);\n\
+    \                break;\n            }\n        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#include <iostream>\n\n#include \"../../bbst/avl_array.hpp\"\n\n#define _overload(_1,\
+    \ _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define\
+    \ _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64\
+    \ Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3,\
+    \ _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define\
+    \ ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing\
+    \ u64 = unsigned long long;\n\nconstexpr i64 mod = 998244353;\nstruct A {\n  \
+    \  struct M {\n        using T = pair<int, int>;\n        using value_type = T;\n\
+    \        static T identity() { return {0, 0}; };\n        static T operation(T\
     \ lhs, T rhs) {\n            return {(lhs.first + rhs.first) % mod, lhs.second\
     \ + rhs.second};\n        };\n    };\n    struct O {\n        using T = pair<int,\
     \ int>;\n        using value_type = T;\n        static T identity() { return {1,\
@@ -179,27 +180,30 @@ data:
     \ % mod};\n        };\n    };\n\n    using value_structure = M;\n    using operator_structure\
     \ = O;\n    static M::T operation(M::T v, O::T o) {\n        return {((i64)v.first\
     \ * o.first + (i64)v.second * o.second) % mod,\n                v.second};\n \
-    \   };\n};\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
-    \n    AVLArray<A> arr;\n\n    i64 n, q;\n    cin >> n >> q;\n    rep(i, n) {\n\
-    \        i64 a;\n        cin >> a;\n        arr.insert_at(i, {a, 1});\n    }\n\
-    \n    i64 com, i, l, r, a, b, c;\n    rep(_, q) {\n        cin >> com;\n\n   \
-    \     switch (com) {\n            case 0: {\n                cin >> i >> a;\n\
-    \                arr.insert_at(i, {a, 1});\n                break;\n         \
-    \   }\n            case 1: {\n                cin >> i;\n                arr.erase_at(i);\n\
+    \   };\n};\n\n/*\nAVLArray<A>::Node *nodes =\n    (AVLArray<A>::Node *)malloc(sizeof(AVLArray<A>::Node)\
+    \ * 1'000'001);\nvoid *operator new(size_t) {\n    auto ret = nodes;\n    nodes++;\n\
+    \    return ret;\n}\nvoid operator delete(void *) { return; }\n*/\n\nint main()\
+    \ {\n    AVLArray<A> arr;\n\n    int n, q;\n    scanf(\"%d %d\", &n, &q);\n  \
+    \  rep(i, n) {\n        int a;\n        scanf(\"%d\", &a);\n        arr.insert_at(i,\
+    \ {a, 1});\n    }\n\n    int com, i, l, r, a, b, c;\n    rep(_, q) {\n       \
+    \ // cout << _ << endl;\n        scanf(\"%d\", &com);\n\n        switch (com)\
+    \ {\n            case 0: {\n                scanf(\"%d %d\", &i, &a);\n      \
+    \          arr.insert_at(i, {a, 1});\n                break;\n            }\n\
+    \            case 1: {\n                scanf(\"%d\", &i);\n                arr.erase_at(i);\n\
     \                break;\n            }\n            case 2: {\n              \
-    \  cin >> l >> r;\n                arr.reverse(l, r);\n                break;\n\
-    \            }\n            case 3: {\n                cin >> l >> r >> b >> c;\n\
-    \                arr.update(l, r, {b, c});\n                break;\n         \
-    \   }\n            case 4: {\n                cin >> l >> r;\n               \
-    \ cout << arr.fold(l, r).first << '\\n';\n                break;\n           \
-    \ }\n        }\n    }\n\n    return 0;\n}"
+    \  scanf(\"%d %d\", &l, &r);\n                arr.reverse(l, r);\n           \
+    \     break;\n            }\n            case 3: {\n                scanf(\"%d\
+    \ %d %d %d\", &l, &r, &b, &c);\n                arr.update(l, r, {b, c});\n  \
+    \              break;\n            }\n            case 4: {\n                scanf(\"\
+    %d %d\", &l, &r);\n                printf(\"%d\\n\", arr.fold(l, r).first);\n\
+    \                break;\n            }\n        }\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - bbst/avl_array.hpp
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-03 21:22:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-07 13:23:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document

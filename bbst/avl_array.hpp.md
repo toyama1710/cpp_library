@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -60,15 +60,15 @@ data:
     \        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
     \ height(u->ch[1])) + 1;\n        return calc_sum(u);\n    };\n\n    template\
     \ <int d>\n    static Node *rotate(Node *u) {\n        assert(u != nullptr &&\
-    \ u->ch[d] != nullptr);\n        Node *v = u->ch[d];\n        push_down(u);\n\
-    \        push_down(v);\n        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1]\
-    \ = u;\n        recalc(u);\n        recalc(v);\n        return v;\n    };\n  \
-    \  static Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
-    \        if (balance_factor(u) == 2) {\n            if (balance_factor(u->ch[0])\
-    \ == -1) u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n    \
-    \    } else if (balance_factor(u) == -2) {\n            if (balance_factor(u->ch[1])\
-    \ == 1) u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n     \
-    \   }\n        return u;\n    };\n    static std::pair<Node *, Node *> split_rightest_node(Node\
+    \ u->ch[d] != nullptr);\n        Node *v = push_down(u->ch[d]);\n        u->ch[d]\
+    \ = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n\
+    \        return v;\n    };\n    static Node *balance(Node *u) {\n        if (u\
+    \ == nullptr) return nullptr;\n        push_down(u);\n        if (balance_factor(u)\
+    \ == 2) {\n            if (balance_factor(push_down(u->ch[0])) == -1)\n      \
+    \          u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n  \
+    \      } else if (balance_factor(u) == -2) {\n            if (balance_factor(push_down(u->ch[1]))\
+    \ == 1)\n                u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n\
+    \        }\n        return u;\n    };\n    static std::pair<Node *, Node *> split_rightest_node(Node\
     \ *u) {\n        push_down(u);\n        if (u->ch[1] != nullptr) {\n         \
     \   auto [l, ret] = split_rightest_node(u->ch[1]);\n            u->ch[1] = l;\n\
     \            return {balance(recalc(u)), ret};\n        } else {\n           \
@@ -100,7 +100,7 @@ data:
     \        root = merge(merge(left, mid), right);\n        return ret;\n    };\n\
     \    T fold_rev(int l, int r) {\n        if (r <= l) return M::identity();\n \
     \       reverse(l, r);\n        T ret = fold(l, r);\n        reverse(l, r);\n\
-    \        return ret;\n    }\n    AVLArray &reverse(int l, int r) {\n        if\
+    \        return ret;\n    };\n    AVLArray &reverse(int l, int r) {\n        if\
     \ (r <= l) return *this;\n        auto [tmp, right] = split(root, r);\n      \
     \  auto [left, mid] = split(tmp, l);\n        mid->rev_flag ^= 1;\n        root\
     \ = merge(merge(left, mid), right);\n        return *this;\n    };\n\n    AVLArray\
@@ -173,15 +173,15 @@ data:
     \        u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
     \ height(u->ch[1])) + 1;\n        return calc_sum(u);\n    };\n\n    template\
     \ <int d>\n    static Node *rotate(Node *u) {\n        assert(u != nullptr &&\
-    \ u->ch[d] != nullptr);\n        Node *v = u->ch[d];\n        push_down(u);\n\
-    \        push_down(v);\n        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d ^ 1]\
-    \ = u;\n        recalc(u);\n        recalc(v);\n        return v;\n    };\n  \
-    \  static Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
-    \        if (balance_factor(u) == 2) {\n            if (balance_factor(u->ch[0])\
-    \ == -1) u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n    \
-    \    } else if (balance_factor(u) == -2) {\n            if (balance_factor(u->ch[1])\
-    \ == 1) u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n     \
-    \   }\n        return u;\n    };\n    static std::pair<Node *, Node *> split_rightest_node(Node\
+    \ u->ch[d] != nullptr);\n        Node *v = push_down(u->ch[d]);\n        u->ch[d]\
+    \ = v->ch[d ^ 1];\n        v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n\
+    \        return v;\n    };\n    static Node *balance(Node *u) {\n        if (u\
+    \ == nullptr) return nullptr;\n        push_down(u);\n        if (balance_factor(u)\
+    \ == 2) {\n            if (balance_factor(push_down(u->ch[0])) == -1)\n      \
+    \          u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n  \
+    \      } else if (balance_factor(u) == -2) {\n            if (balance_factor(push_down(u->ch[1]))\
+    \ == 1)\n                u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n\
+    \        }\n        return u;\n    };\n    static std::pair<Node *, Node *> split_rightest_node(Node\
     \ *u) {\n        push_down(u);\n        if (u->ch[1] != nullptr) {\n         \
     \   auto [l, ret] = split_rightest_node(u->ch[1]);\n            u->ch[1] = l;\n\
     \            return {balance(recalc(u)), ret};\n        } else {\n           \
@@ -213,7 +213,7 @@ data:
     \        root = merge(merge(left, mid), right);\n        return ret;\n    };\n\
     \    T fold_rev(int l, int r) {\n        if (r <= l) return M::identity();\n \
     \       reverse(l, r);\n        T ret = fold(l, r);\n        reverse(l, r);\n\
-    \        return ret;\n    }\n    AVLArray &reverse(int l, int r) {\n        if\
+    \        return ret;\n    };\n    AVLArray &reverse(int l, int r) {\n        if\
     \ (r <= l) return *this;\n        auto [tmp, right] = split(root, r);\n      \
     \  auto [left, mid] = split(tmp, l);\n        mid->rev_flag ^= 1;\n        root\
     \ = merge(merge(left, mid), right);\n        return *this;\n    };\n\n    AVLArray\
@@ -247,8 +247,8 @@ data:
   isVerificationFile: false
   path: bbst/avl_array.hpp
   requiredBy: []
-  timestamp: '2021-09-03 21:22:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-09-07 13:23:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
