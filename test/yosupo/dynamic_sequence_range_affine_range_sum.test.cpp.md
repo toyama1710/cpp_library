@@ -145,16 +145,13 @@ data:
     \ % mod};\n        };\n    };\n\n    using value_structure = M;\n    using operator_structure\
     \ = O;\n    static M::T operation(M::T v, O::T o) {\n        return {((i64)v.first\
     \ * o.first + (i64)v.second * o.second) % mod,\n                v.second};\n \
-    \   };\n};\n\n/*\nAVLArray<A>::Node *nodes =\n    (AVLArray<A>::Node *)malloc(sizeof(AVLArray<A>::Node)\
-    \ * 1'000'001);\nvoid *operator new(size_t) {\n    auto ret = nodes;\n    nodes++;\n\
-    \    return ret;\n}\nvoid operator delete(void *) { return; }\n*/\n\nint main()\
-    \ {\n    AVLArray<A> arr;\n\n    int n, q;\n    scanf(\"%d %d\", &n, &q);\n  \
-    \  rep(i, n) {\n        int a;\n        scanf(\"%d\", &a);\n        arr.insert_at(i,\
-    \ {a, 1});\n    }\n\n    int com, i, l, r, a, b, c;\n    rep(_, q) {\n       \
-    \ // cout << _ << endl;\n        scanf(\"%d\", &com);\n\n        switch (com)\
-    \ {\n            case 0: {\n                scanf(\"%d %d\", &i, &a);\n      \
-    \          arr.insert_at(i, {a, 1});\n                break;\n            }\n\
-    \            case 1: {\n                scanf(\"%d\", &i);\n                arr.erase_at(i);\n\
+    \   };\n};\n\nint main() {\n    AVLArray<A> arr;\n\n    int n, q;\n    scanf(\"\
+    %d %d\", &n, &q);\n    rep(i, n) {\n        int a;\n        scanf(\"%d\", &a);\n\
+    \        arr.insert_at(i, {a, 1});\n    }\n\n    int com, i, l, r, a, b, c;\n\
+    \    rep(_, q) {\n        scanf(\"%d\", &com);\n\n        switch (com) {\n   \
+    \         case 0: {\n                scanf(\"%d %d\", &i, &a);\n             \
+    \   arr.insert_at(i, {a, 1});\n                break;\n            }\n       \
+    \     case 1: {\n                scanf(\"%d\", &i);\n                arr.erase_at(i);\n\
     \                break;\n            }\n            case 2: {\n              \
     \  scanf(\"%d %d\", &l, &r);\n                arr.reverse(l, r);\n           \
     \     break;\n            }\n            case 3: {\n                scanf(\"%d\
@@ -180,16 +177,13 @@ data:
     \ % mod};\n        };\n    };\n\n    using value_structure = M;\n    using operator_structure\
     \ = O;\n    static M::T operation(M::T v, O::T o) {\n        return {((i64)v.first\
     \ * o.first + (i64)v.second * o.second) % mod,\n                v.second};\n \
-    \   };\n};\n\n/*\nAVLArray<A>::Node *nodes =\n    (AVLArray<A>::Node *)malloc(sizeof(AVLArray<A>::Node)\
-    \ * 1'000'001);\nvoid *operator new(size_t) {\n    auto ret = nodes;\n    nodes++;\n\
-    \    return ret;\n}\nvoid operator delete(void *) { return; }\n*/\n\nint main()\
-    \ {\n    AVLArray<A> arr;\n\n    int n, q;\n    scanf(\"%d %d\", &n, &q);\n  \
-    \  rep(i, n) {\n        int a;\n        scanf(\"%d\", &a);\n        arr.insert_at(i,\
-    \ {a, 1});\n    }\n\n    int com, i, l, r, a, b, c;\n    rep(_, q) {\n       \
-    \ // cout << _ << endl;\n        scanf(\"%d\", &com);\n\n        switch (com)\
-    \ {\n            case 0: {\n                scanf(\"%d %d\", &i, &a);\n      \
-    \          arr.insert_at(i, {a, 1});\n                break;\n            }\n\
-    \            case 1: {\n                scanf(\"%d\", &i);\n                arr.erase_at(i);\n\
+    \   };\n};\n\nint main() {\n    AVLArray<A> arr;\n\n    int n, q;\n    scanf(\"\
+    %d %d\", &n, &q);\n    rep(i, n) {\n        int a;\n        scanf(\"%d\", &a);\n\
+    \        arr.insert_at(i, {a, 1});\n    }\n\n    int com, i, l, r, a, b, c;\n\
+    \    rep(_, q) {\n        scanf(\"%d\", &com);\n\n        switch (com) {\n   \
+    \         case 0: {\n                scanf(\"%d %d\", &i, &a);\n             \
+    \   arr.insert_at(i, {a, 1});\n                break;\n            }\n       \
+    \     case 1: {\n                scanf(\"%d\", &i);\n                arr.erase_at(i);\n\
     \                break;\n            }\n            case 2: {\n              \
     \  scanf(\"%d %d\", &l, &r);\n                arr.reverse(l, r);\n           \
     \     break;\n            }\n            case 3: {\n                scanf(\"%d\
@@ -202,7 +196,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-07 13:23:10+09:00'
+  timestamp: '2021-09-07 13:40:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
