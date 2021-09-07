@@ -45,17 +45,6 @@ struct A {
     };
 };
 
-/*
-AVLArray<A>::Node *nodes =
-    (AVLArray<A>::Node *)malloc(sizeof(AVLArray<A>::Node) * 1'000'001);
-void *operator new(size_t) {
-    auto ret = nodes;
-    nodes++;
-    return ret;
-}
-void operator delete(void *) { return; }
-*/
-
 int main() {
     AVLArray<A> arr;
 
@@ -69,7 +58,6 @@ int main() {
 
     int com, i, l, r, a, b, c;
     rep(_, q) {
-        // cout << _ << endl;
         scanf("%d", &com);
 
         switch (com) {
