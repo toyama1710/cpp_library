@@ -120,9 +120,7 @@ struct AVLArray {
     template <int d>
     static Node *rotate(Node *u) {
         assert(u != nullptr && u->ch[d] != nullptr);
-        Node *v = u->ch[d];
-        push_down(u);
-        push_down(v);
+        Node *v = push_down(u->ch[d]);
         u->ch[d] = v->ch[d ^ 1];
         v->ch[d ^ 1] = u;
         recalc(u);
@@ -131,11 +129,14 @@ struct AVLArray {
     };
     static Node *balance(Node *u) {
         if (u == nullptr) return nullptr;
+        push_down(u);
         if (balance_factor(u) == 2) {
-            if (balance_factor(u->ch[0]) == -1) u->ch[0] = rotate<1>(u->ch[0]);
+            if (balance_factor(push_down(u->ch[0])) == -1)
+                u->ch[0] = rotate<1>(u->ch[0]);
             u = rotate<0>(u);
         } else if (balance_factor(u) == -2) {
-            if (balance_factor(u->ch[1]) == 1) u->ch[1] = rotate<0>(u->ch[1]);
+            if (balance_factor(push_down(u->ch[1])) == 1)
+                u->ch[1] = rotate<0>(u->ch[1]);
             u = rotate<1>(u);
         }
         return u;
@@ -221,7 +222,7 @@ struct AVLArray {
         T ret = fold(l, r);
         reverse(l, r);
         return ret;
-    }
+    };
     AVLArray &reverse(int l, int r) {
         if (r <= l) return *this;
         auto [tmp, right] = split(root, r);

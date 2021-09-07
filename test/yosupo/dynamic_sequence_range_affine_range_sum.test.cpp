@@ -1,8 +1,6 @@
-#define IGNORE
 #define PROBLEM \
     "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 #include <iostream>
-#include <valarray>
 
 #include "../../bbst/avl_array.hpp"
 
@@ -47,48 +45,57 @@ struct A {
     };
 };
 
-int main() {
-    cin.tie(nullptr);
-    ios::sync_with_stdio(false);
+/*
+AVLArray<A>::Node *nodes =
+    (AVLArray<A>::Node *)malloc(sizeof(AVLArray<A>::Node) * 1'000'001);
+void *operator new(size_t) {
+    auto ret = nodes;
+    nodes++;
+    return ret;
+}
+void operator delete(void *) { return; }
+*/
 
+int main() {
     AVLArray<A> arr;
 
-    i64 n, q;
-    cin >> n >> q;
+    int n, q;
+    scanf("%d %d", &n, &q);
     rep(i, n) {
-        i64 a;
-        cin >> a;
+        int a;
+        scanf("%d", &a);
         arr.insert_at(i, {a, 1});
     }
 
-    i64 com, i, l, r, a, b, c;
+    int com, i, l, r, a, b, c;
     rep(_, q) {
-        cin >> com;
+        // cout << _ << endl;
+        scanf("%d", &com);
 
         switch (com) {
             case 0: {
-                cin >> i >> a;
+                scanf("%d %d", &i, &a);
                 arr.insert_at(i, {a, 1});
                 break;
             }
             case 1: {
-                cin >> i;
+                scanf("%d", &i);
                 arr.erase_at(i);
                 break;
             }
             case 2: {
-                cin >> l >> r;
+                scanf("%d %d", &l, &r);
                 arr.reverse(l, r);
                 break;
             }
             case 3: {
-                cin >> l >> r >> b >> c;
+                scanf("%d %d %d %d", &l, &r, &b, &c);
                 arr.update(l, r, {b, c});
                 break;
             }
             case 4: {
-                cin >> l >> r;
-                cout << arr.fold(l, r).first << '\n';
+                scanf("%d %d", &l, &r);
+                printf("%d\n", arr.fold(l, r).first);
                 break;
             }
         }
