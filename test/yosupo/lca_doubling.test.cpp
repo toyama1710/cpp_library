@@ -35,7 +35,7 @@ int main() {
     rep(i, q) {
         i64 u, v;
         cin >> u >> v;
-        cout << lca.lca(u, v) << endl;
+        cout << lca.lca(u, v) << '\n';
     }
 
     return 0;
