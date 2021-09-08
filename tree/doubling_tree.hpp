@@ -88,4 +88,25 @@ struct DoublingTree {
     };
 };
 
+struct DoublingTreeBuilder {
+    std::vector<std::vector<int>> g;
+    DoublingTreeBuilder(int n) : g(n){};
+    void add_edge(int a, int b) {
+        g[a].push_back(b);
+        g[b].push_back(a);
+    };
+    DoublingTree build(const std::vector<int> &root = {0}) {
+        vector<std::optional<int>> parent(g.size(), std::nullopt);
+        auto dfs = [&](int u, int p, auto &&f) {
+            for (auto v : g[u]) {
+                if (v == p) continue;
+                parent[v] = u;
+                f(v, u, f);
+            }
+        };
+        for (auto v : root) dfs(v, -1, dfs);
+        return DoublingTree(parent.begin(), parent.end());
+    };
+};
+
 #endif
