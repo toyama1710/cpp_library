@@ -155,9 +155,9 @@ data:
       title: string/rolling_hash.hpp
   - name: tree
     pages:
-    - icon: ':warning:'
-      path: tree/doubling_tree.cpp
-      title: tree/doubling_tree.cpp
+    - icon: ':heavy_check_mark:'
+      path: tree/doubling_tree.hpp
+      title: tree/doubling_tree.hpp
     - icon: ':warning:'
       path: tree/euler_tour_vertex.cpp
       title: tree/euler_tour_vertex.cpp
@@ -243,6 +243,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/lca_doubling.test.cpp
+      title: test/yosupo/lca_doubling.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
