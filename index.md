@@ -233,6 +233,9 @@ data:
       path: test/aoj/DSL2I.test.cpp
       title: test/aoj/DSL2I.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL5C_doubling.test.cpp
+      title: test/aoj/GRL5C_doubling.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D.test.cpp
       title: test/aoj/ITP2_7_D.test.cpp
   - name: test/yosupo

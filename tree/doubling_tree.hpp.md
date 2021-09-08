@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL5C_doubling.test.cpp
+    title: test/aoj/GRL5C_doubling.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/lca_doubling.test.cpp
     title: test/yosupo/lca_doubling.test.cpp
   _isVerificationFailed: false
@@ -44,7 +47,15 @@ data:
     \ != parent[k][v]) {\n                u = parent[k][u].value();\n            \
     \    v = parent[k][v].value();\n            }\n        }\n        return parent[0][u].value();\n\
     \    };\n    inline int distance(int u, int v) {\n        return depth[u] + depth[v]\
-    \ - depth[lca(u, v)] * 2;\n    };\n};\n\n\n"
+    \ - depth[lca(u, v)] * 2;\n    };\n};\n\nstruct DoublingTreeBuilder {\n    std::vector<std::vector<int>>\
+    \ g;\n    DoublingTreeBuilder(int n) : g(n){};\n    void add_edge(int a, int b)\
+    \ {\n        g[a].push_back(b);\n        g[b].push_back(a);\n    };\n    DoublingTree\
+    \ build(const std::vector<int> &root = {0}) {\n        std::vector<std::optional<int>>\
+    \ parent(g.size(), std::nullopt);\n        auto dfs = [&](int u, int p, auto &&f)\
+    \ -> void {\n            for (auto v : g[u]) {\n                if (v == p) continue;\n\
+    \                parent[v] = u;\n                f(v, u, f);\n            }\n\
+    \            return;\n        };\n        for (auto v : root) dfs(v, -1, dfs);\n\
+    \        return DoublingTree(parent.begin(), parent.end());\n    };\n};\n\n\n"
   code: "#ifndef DOUBLING_TREE_HPP\n#define DOUBLING_TREE_HPP\n#include <iterator>\n\
     #include <optional>\n#include <vector>\n\n// 0-indexed\n// climb(u, d): climb\
     \ d steps towards root\n// fold(u, v):\nstruct DoublingTree {\n    std::vector<std::vector<std::optional<int>>>\
@@ -78,15 +89,24 @@ data:
     \ != parent[k][v]) {\n                u = parent[k][u].value();\n            \
     \    v = parent[k][v].value();\n            }\n        }\n        return parent[0][u].value();\n\
     \    };\n    inline int distance(int u, int v) {\n        return depth[u] + depth[v]\
-    \ - depth[lca(u, v)] * 2;\n    };\n};\n\n#endif\n"
+    \ - depth[lca(u, v)] * 2;\n    };\n};\n\nstruct DoublingTreeBuilder {\n    std::vector<std::vector<int>>\
+    \ g;\n    DoublingTreeBuilder(int n) : g(n){};\n    void add_edge(int a, int b)\
+    \ {\n        g[a].push_back(b);\n        g[b].push_back(a);\n    };\n    DoublingTree\
+    \ build(const std::vector<int> &root = {0}) {\n        std::vector<std::optional<int>>\
+    \ parent(g.size(), std::nullopt);\n        auto dfs = [&](int u, int p, auto &&f)\
+    \ -> void {\n            for (auto v : g[u]) {\n                if (v == p) continue;\n\
+    \                parent[v] = u;\n                f(v, u, f);\n            }\n\
+    \            return;\n        };\n        for (auto v : root) dfs(v, -1, dfs);\n\
+    \        return DoublingTree(parent.begin(), parent.end());\n    };\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: tree/doubling_tree.hpp
   requiredBy: []
-  timestamp: '2021-09-08 21:34:20+09:00'
+  timestamp: '2021-09-08 22:35:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lca_doubling.test.cpp
+  - test/aoj/GRL5C_doubling.test.cpp
 documentation_of: tree/doubling_tree.hpp
 layout: document
 redirect_from:
