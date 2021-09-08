@@ -96,13 +96,14 @@ struct DoublingTreeBuilder {
         g[b].push_back(a);
     };
     DoublingTree build(const std::vector<int> &root = {0}) {
-        vector<std::optional<int>> parent(g.size(), std::nullopt);
-        auto dfs = [&](int u, int p, auto &&f) {
+        std::vector<std::optional<int>> parent(g.size(), std::nullopt);
+        auto dfs = [&](int u, int p, auto &&f) -> void {
             for (auto v : g[u]) {
                 if (v == p) continue;
                 parent[v] = u;
                 f(v, u, f);
             }
+            return;
         };
         for (auto v : root) dfs(v, -1, dfs);
         return DoublingTree(parent.begin(), parent.end());
