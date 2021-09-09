@@ -13,7 +13,7 @@
 #include <map>
 #include <queue>
 #include <stack>
-#include "../../disjoint_set/persistent_union_find.hpp"
+#include "../../union_find/persistent_union_find.hpp"
 
 using namespace std;
 using llong = long long;

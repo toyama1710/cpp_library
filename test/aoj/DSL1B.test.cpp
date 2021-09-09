@@ -13,7 +13,7 @@
 #include <functional>
 #include <numeric>
 #include <algorithm>
-#include "../../disjoint_set/weighted_union_find.hpp"
+#include "../../union_find/weighted_union_find.hpp"
 
 using namespace std;
 using llong = long long;
