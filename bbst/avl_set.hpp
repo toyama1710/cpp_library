@@ -30,15 +30,15 @@ struct AVLSet {
         return *this;
     };
 
-    int size(Node *u) {
+    int size() { return size(root); };
+    static int size(Node *u) {
         if (u != nullptr)
             return u->sz;
         else
             return 0;
     };
-    int size() { return size(root); };
 
-    int height(Node *u) {
+    static int height(Node *u) {
         if (u != nullptr)
             return u->hi;
         else
@@ -46,7 +46,7 @@ struct AVLSet {
     };
 
     template <int d>  // 0: left, 1: right
-    Node *rotate(Node *u) {
+    static Node *rotate(Node *u) {
         assert(u != nullptr && u->ch[d] != nullptr);
         Node *v = u->ch[d];
         u->ch[d] = v->ch[d ^ 1];
@@ -55,11 +55,11 @@ struct AVLSet {
         recalc(v);
         return v;
     };
-    int balance_factor(Node *u) {
+    static int balance_factor(Node *u) {
         if (u == nullptr) return 0;
         return height(u->ch[0]) - height(u->ch[1]);
     };
-    Node *balance(Node *u) {
+    static Node *balance(Node *u) {
         if (u == nullptr) return nullptr;
         assert(-2 <= balance_factor(u) && balance_factor(u) <= 2);
         if (balance_factor(u) == 2) {
@@ -71,16 +71,17 @@ struct AVLSet {
         }
         return u;
     };
-    Node *recalc(Node *u) {
+    static Node *recalc(Node *u) {
         if (u == nullptr) return nullptr;
         u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;
         u->hi = std::max(height(u->ch[0]), height(u->ch[1])) + 1;
         return u;
     };
 
-    void insert(const T &dat) {
+    AVLSet &insert(const T &dat) {
         Node *u = new Node(dat);
         root = insert(root, u);
+        return *this;
     };
     Node *insert(Node *u, Node *nv) {
         if (u == nullptr) return nv;
@@ -92,7 +93,10 @@ struct AVLSet {
         return balance(recalc(u));
     };
 
-    void erase(const T &dat) { root = erase(root, dat); };
+    AVLSet &erase(const T &dat) {
+        root = erase(root, dat);
+        return *this;
+    };
     Node *erase(Node *u, const T &dat) {
         if (u == nullptr) return nullptr;
         if (u->dat < dat) {
