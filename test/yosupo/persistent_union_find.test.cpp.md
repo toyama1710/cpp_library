@@ -5,8 +5,8 @@ data:
     path: array/persistent_array.hpp
     title: array/persistent_array.hpp
   - icon: ':heavy_check_mark:'
-    path: disjoint_set/persistent_union_find.hpp
-    title: disjoint_set/persistent_union_find.hpp
+    path: union_find/persistent_union_find.hpp
+    title: union_find/persistent_union_find.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,7 +22,7 @@ data:
     #include <cstdio>\n#include <cstdlib>\n#include <cmath>\n#include <cassert>\n\
     #include <functional>\n#include <algorithm>\n#include <string>\n#include <vector>\n\
     #include <set>\n#include <map>\n#include <queue>\n#include <stack>\n#line 1 \"\
-    disjoint_set/persistent_union_find.hpp\"\n\n\n\n#line 1 \"array/persistent_array.hpp\"\
+    union_find/persistent_union_find.hpp\"\n\n\n\n#line 1 \"array/persistent_array.hpp\"\
     \n\n\n\n#include <memory>\n#include <cstring>\n#line 7 \"array/persistent_array.hpp\"\
     \n\n//===\n// LIBRARY SECTION\n\n// #include <memory>\n// #include <cstring>\n\
     // #include <algorithm>\n// K-ary tree\ntemplate<class T, int K = 2>\nstruct PersistentArray\
@@ -52,7 +52,7 @@ data:
     \ % K]);\n    };\n\n    int size() {\n        return arr_size;\n    };\n    PersistentArray\
     \ get_array() {\n        return *this;\n    };\n    \n    const T operator []\
     \ (int idx) const {\n        return get(idx, root);\n    };\n};\n//===\n\n\n#line\
-    \ 5 \"disjoint_set/persistent_union_find.hpp\"\n\n//===\n// LIBRARY SECTION\n\n\
+    \ 5 \"union_find/persistent_union_find.hpp\"\n\n//===\n// LIBRARY SECTION\n\n\
     // 0-indexed\ntemplate<int K = 2>\nstruct PersistentUnionFind {\n    PersistentArray<int,\
     \ K> par;\n\n    PersistentUnionFind() = default;\n    PersistentUnionFind(int\
     \ n): par(n, -1) {};\n    PersistentUnionFind(PersistentArray<int, K> arr):par(arr)\
@@ -79,9 +79,9 @@ data:
     \n#include <iostream>\n#include <cstdio>\n#include <cstdlib>\n#include <cmath>\n\
     #include <cassert>\n#include <functional>\n#include <algorithm>\n#include <string>\n\
     #include <vector>\n#include <set>\n#include <map>\n#include <queue>\n#include\
-    \ <stack>\n#include \"../../disjoint_set/persistent_union_find.hpp\"\n\nusing\
-    \ namespace std;\nusing llong = long long;\nusing UF = PersistentUnionFind<32>;\n\
-    \nllong n, q;\nllong t, k, u, v;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
+    \ <stack>\n#include \"../../union_find/persistent_union_find.hpp\"\n\nusing namespace\
+    \ std;\nusing llong = long long;\nusing UF = PersistentUnionFind<32>;\n\nllong\
+    \ n, q;\nllong t, k, u, v;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
     \    \n    cin >> n >> q;\n\n    vector<UF> uf(q);\n    uf[0] = UF(n);\n    \n\
     \    for (int i = 1; i <= q; i++) {\n        cin >> t >> k >> u >> v;\n      \
     \  k++;\n\n        if (t == 0) {\n            uf[i] = uf[k].unite(u, v);\n   \
@@ -90,12 +90,12 @@ data:
     \         cout << 0 << '\\n';\n            }\n        }\n    }\n     \n    return\
     \ 0;\n}\n"
   dependsOn:
-  - disjoint_set/persistent_union_find.hpp
+  - union_find/persistent_union_find.hpp
   - array/persistent_array.hpp
   isVerificationFile: true
   path: test/yosupo/persistent_union_find.test.cpp
   requiredBy: []
-  timestamp: '2020-06-11 21:13:37+09:00'
+  timestamp: '2021-09-09 19:48:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_union_find.test.cpp

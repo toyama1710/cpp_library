@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: disjoint_set/union_find.hpp
-    title: disjoint_set/union_find.hpp
+    path: union_find/union_find.hpp
+    title: union_find/union_find.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     \n// header file section\n#include <iostream>\n#include <cstdio>\n#include <cfloat>\n\
     #include <vector>\n#include <queue>\n#include <stack>\n#include <map>\n#include\
     \ <set>\n#include <bitset>\n#include <functional>\n#include <numeric>\n#include\
-    \ <algorithm>\n#line 1 \"disjoint_set/union_find.hpp\"\n\n\n\n#line 5 \"disjoint_set/union_find.hpp\"\
+    \ <algorithm>\n#line 1 \"union_find/union_find.hpp\"\n\n\n\n#line 5 \"union_find/union_find.hpp\"\
     \n#include <utility>\n\n//===\nstruct UnionFind {\n    std::vector<int> parent;\n\
     \n    UnionFind() = default;\n    UnionFind(int nmemb) {\n        init(nmemb);\n\
     \    };\n\n    void init(int nmemb) {\n        parent.clear();\n        parent.resize(nmemb,\
@@ -39,18 +39,18 @@ data:
     \ file section\n#include <iostream>\n#include <cstdio>\n#include <cfloat>\n#include\
     \ <vector>\n#include <queue>\n#include <stack>\n#include <map>\n#include <set>\n\
     #include <bitset>\n#include <functional>\n#include <numeric>\n#include <algorithm>\n\
-    #include \"../../disjoint_set/union_find.hpp\"\n\nusing namespace std;\nusing\
-    \ llong = long long;\n\nllong n, q;\nllong com, u, v;\nUnionFind uf;\n\nint main()\
-    \ {\n    cin >> n >> q;\n    uf.init(n);\n\n    while (q--) {\n        cin >>\
-    \ com >> u >> v;\n\n        if (com == 0) {\n            uf.unite(u, v);\n   \
-    \     }\n        else {\n            cout << (uf.same(u, v) ? 1 : 0) << endl;\n\
-    \        }\n    }\n\n    return 0;\n};\n\n"
+    #include \"../../union_find/union_find.hpp\"\n\nusing namespace std;\nusing llong\
+    \ = long long;\n\nllong n, q;\nllong com, u, v;\nUnionFind uf;\n\nint main() {\n\
+    \    cin >> n >> q;\n    uf.init(n);\n\n    while (q--) {\n        cin >> com\
+    \ >> u >> v;\n\n        if (com == 0) {\n            uf.unite(u, v);\n       \
+    \ }\n        else {\n            cout << (uf.same(u, v) ? 1 : 0) << endl;\n  \
+    \      }\n    }\n\n    return 0;\n};\n\n"
   dependsOn:
-  - disjoint_set/union_find.hpp
+  - union_find/union_find.hpp
   isVerificationFile: true
   path: test/yosupo/union_find.test.cpp
   requiredBy: []
-  timestamp: '2020-11-06 11:35:43+09:00'
+  timestamp: '2021-09-09 19:48:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/union_find.test.cpp

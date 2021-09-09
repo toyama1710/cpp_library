@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"disjoint_set/union_find.hpp\"\n\n\n\n#include <vector>\n\
-    #include <utility>\n\n//===\nstruct UnionFind {\n    std::vector<int> parent;\n\
-    \n    UnionFind() = default;\n    UnionFind(int nmemb) {\n        init(nmemb);\n\
-    \    };\n\n    void init(int nmemb) {\n        parent.clear();\n        parent.resize(nmemb,\
+  bundledCode: "#line 1 \"union_find/union_find.hpp\"\n\n\n\n#include <vector>\n#include\
+    \ <utility>\n\n//===\nstruct UnionFind {\n    std::vector<int> parent;\n\n   \
+    \ UnionFind() = default;\n    UnionFind(int nmemb) {\n        init(nmemb);\n \
+    \   };\n\n    void init(int nmemb) {\n        parent.clear();\n        parent.resize(nmemb,\
     \ -1);\n    };\n\n    int represent(int x) {\n        if (parent[x] < 0) return\
     \ x;\n        return parent[x] = represent(parent[x]);\n    };\n\n    void unite(int\
     \ x, int y) {\n        x = represent(x);\n        y = represent(y);\n\n      \
@@ -37,16 +37,16 @@ data:
     };\n//===\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: disjoint_set/union_find.hpp
+  path: union_find/union_find.hpp
   requiredBy: []
-  timestamp: '2020-11-06 11:35:43+09:00'
+  timestamp: '2021-09-09 19:48:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/union_find.test.cpp
-documentation_of: disjoint_set/union_find.hpp
+documentation_of: union_find/union_find.hpp
 layout: document
 redirect_from:
-- /library/disjoint_set/union_find.hpp
-- /library/disjoint_set/union_find.hpp.html
-title: disjoint_set/union_find.hpp
+- /library/union_find/union_find.hpp
+- /library/union_find/union_find.hpp.html
+title: union_find/union_find.hpp
 ---

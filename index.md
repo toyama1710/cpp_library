@@ -60,20 +60,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: deque/sliding_window.hpp
       title: deque/sliding_window.hpp
-  - name: disjoint_set
-    pages:
-    - icon: ':warning:'
-      path: disjoint_set/partially_persitent_union_find.cpp
-      title: disjoint_set/partially_persitent_union_find.cpp
-    - icon: ':heavy_check_mark:'
-      path: disjoint_set/persistent_union_find.hpp
-      title: disjoint_set/persistent_union_find.hpp
-    - icon: ':heavy_check_mark:'
-      path: disjoint_set/union_find.hpp
-      title: disjoint_set/union_find.hpp
-    - icon: ':heavy_check_mark:'
-      path: disjoint_set/weighted_union_find.hpp
-      title: disjoint_set/weighted_union_find.hpp
   - name: graph
     pages:
     - icon: ':warning:'
@@ -161,6 +147,20 @@ data:
     - icon: ':warning:'
       path: tree/euler_tour_vertex.cpp
       title: tree/euler_tour_vertex.cpp
+  - name: union_find
+    pages:
+    - icon: ':warning:'
+      path: union_find/partially_persistent_union_find.cpp
+      title: union_find/partially_persistent_union_find.cpp
+    - icon: ':heavy_check_mark:'
+      path: union_find/persistent_union_find.hpp
+      title: union_find/persistent_union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: union_find/union_find.hpp
+      title: union_find/union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: union_find/weighted_union_find.hpp
+      title: union_find/weighted_union_find.hpp
   - name: util
     pages:
     - icon: ':heavy_check_mark:'

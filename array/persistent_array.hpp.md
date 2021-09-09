@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: disjoint_set/persistent_union_find.hpp
-    title: disjoint_set/persistent_union_find.hpp
+    path: union_find/persistent_union_find.hpp
+    title: union_find/persistent_union_find.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_union_find.test.cpp
@@ -78,7 +78,7 @@ data:
   isVerificationFile: false
   path: array/persistent_array.hpp
   requiredBy:
-  - disjoint_set/persistent_union_find.hpp
+  - union_find/persistent_union_find.hpp
   timestamp: '2020-06-11 21:13:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

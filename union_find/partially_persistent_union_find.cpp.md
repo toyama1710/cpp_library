@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"disjoint_set/partially_persitent_union_find.cpp\"\n#include\
+  bundledCode: "#line 1 \"union_find/partially_persistent_union_find.cpp\"\n#include\
     \ <iostream>\n#include <cstdio>\n#include <cstdlib>\n#include <cmath>\n#include\
     \ <cstring>\n#include <functional>\n#include <algorithm>\n#include <vector>\n\
     #include <string>\n#include <queue>\n#include <stack>\n#include <map>\n#include\
@@ -99,15 +99,15 @@ data:
     \    return AGC002D();\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: disjoint_set/partially_persitent_union_find.cpp
+  path: union_find/partially_persistent_union_find.cpp
   requiredBy: []
-  timestamp: '2019-09-22 01:10:27+09:00'
+  timestamp: '2021-09-09 19:48:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: disjoint_set/partially_persitent_union_find.cpp
+documentation_of: union_find/partially_persistent_union_find.cpp
 layout: document
 redirect_from:
-- /library/disjoint_set/partially_persitent_union_find.cpp
-- /library/disjoint_set/partially_persitent_union_find.cpp.html
-title: disjoint_set/partially_persitent_union_find.cpp
+- /library/union_find/partially_persistent_union_find.cpp
+- /library/union_find/partially_persistent_union_find.cpp.html
+title: union_find/partially_persistent_union_find.cpp
 ---

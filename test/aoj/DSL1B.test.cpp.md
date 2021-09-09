@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: disjoint_set/weighted_union_find.hpp
-    title: disjoint_set/weighted_union_find.hpp
+    path: union_find/weighted_union_find.hpp
+    title: union_find/weighted_union_find.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,10 +18,10 @@ data:
     \n\n// header file section\n#include <iostream>\n#include <cstdio>\n#include <cfloat>\n\
     #include <vector>\n#include <queue>\n#include <stack>\n#include <map>\n#include\
     \ <set>\n#include <bitset>\n#include <functional>\n#include <numeric>\n#include\
-    \ <algorithm>\n#line 1 \"disjoint_set/weighted_union_find.hpp\"\n\n\n#line 4 \"\
-    disjoint_set/weighted_union_find.hpp\"\n\n//===\ntemplate<class Abel>\nstruct\
-    \ WeightedUnionFind {\n    using T = typename Abel::value_type;\n\n    std::vector<int>\
-    \ parent; // [i] = i-th node's parent. if [i] < 0, i-th node is root.\n    std::vector<T>\
+    \ <algorithm>\n#line 1 \"union_find/weighted_union_find.hpp\"\n\n\n#line 4 \"\
+    union_find/weighted_union_find.hpp\"\n\n//===\ntemplate<class Abel>\nstruct WeightedUnionFind\
+    \ {\n    using T = typename Abel::value_type;\n\n    std::vector<int> parent;\
+    \ // [i] = i-th node's parent. if [i] < 0, i-th node is root.\n    std::vector<T>\
     \ diff_weight; // distance from parent\n    \n    WeightedUnionFind() = default;\n\
     \    WeightedUnionFind(int nmemb) {\n        init(nmemb);\n    };\n\n    void\
     \ init(int nmemb) {\n        parent.resize(nmemb, -1);\n        diff_weight.resize(nmemb,\
@@ -55,7 +55,7 @@ data:
     \n\n// header file section\n#include <iostream>\n#include <cstdio>\n#include <cfloat>\n\
     #include <vector>\n#include <queue>\n#include <stack>\n#include <map>\n#include\
     \ <set>\n#include <bitset>\n#include <functional>\n#include <numeric>\n#include\
-    \ <algorithm>\n#include \"../../disjoint_set/weighted_union_find.hpp\"\n\nusing\
+    \ <algorithm>\n#include \"../../union_find/weighted_union_find.hpp\"\n\nusing\
     \ namespace std;\nusing llong = long long;\n\nstruct A {\n    using T = llong;\n\
     \    using value_type = T;\n\n    static inline T identity() {\n        return\
     \ 0;\n    };\n\n    static inline T operation(T x, T y) {\n        return x +\
@@ -68,11 +68,11 @@ data:
     \         }\n            else {\n                cout << \"?\\n\";\n         \
     \   }\n        }\n    }\n\n    return 0;\n};\n\n"
   dependsOn:
-  - disjoint_set/weighted_union_find.hpp
+  - union_find/weighted_union_find.hpp
   isVerificationFile: true
   path: test/aoj/DSL1B.test.cpp
   requiredBy: []
-  timestamp: '2020-06-04 02:44:42+00:00'
+  timestamp: '2021-09-09 19:48:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL1B.test.cpp

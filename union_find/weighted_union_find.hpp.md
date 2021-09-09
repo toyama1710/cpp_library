@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"disjoint_set/weighted_union_find.hpp\"\n\n\n#include <vector>\n\
+  bundledCode: "#line 1 \"union_find/weighted_union_find.hpp\"\n\n\n#include <vector>\n\
     \n//===\ntemplate<class Abel>\nstruct WeightedUnionFind {\n    using T = typename\
     \ Abel::value_type;\n\n    std::vector<int> parent; // [i] = i-th node's parent.\
     \ if [i] < 0, i-th node is root.\n    std::vector<T> diff_weight; // distance\
@@ -55,16 +55,16 @@ data:
     \        return -parent[root(x)];\n    };\n};\n//===\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: disjoint_set/weighted_union_find.hpp
+  path: union_find/weighted_union_find.hpp
   requiredBy: []
-  timestamp: '2020-06-04 02:44:42+00:00'
+  timestamp: '2021-09-09 19:48:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL1B.test.cpp
-documentation_of: disjoint_set/weighted_union_find.hpp
+documentation_of: union_find/weighted_union_find.hpp
 layout: document
 redirect_from:
-- /library/disjoint_set/weighted_union_find.hpp
-- /library/disjoint_set/weighted_union_find.hpp.html
-title: disjoint_set/weighted_union_find.hpp
+- /library/union_find/weighted_union_find.hpp
+- /library/union_find/weighted_union_find.hpp.html
+title: union_find/weighted_union_find.hpp
 ---
