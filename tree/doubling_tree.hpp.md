@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2270.test.cpp
+    title: test/aoj/2270.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL5C_doubling.test.cpp
     title: test/aoj/GRL5C_doubling.test.cpp
   - icon: ':heavy_check_mark:'
@@ -107,6 +110,7 @@ data:
   verifiedWith:
   - test/yosupo/lca_doubling.test.cpp
   - test/aoj/GRL5C_doubling.test.cpp
+  - test/aoj/2270.test.cpp
 documentation_of: tree/doubling_tree.hpp
 layout: document
 redirect_from:

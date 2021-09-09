@@ -17,6 +17,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: bbst/avl_set.hpp
       title: bbst/avl_set.hpp
+    - icon: ':heavy_check_mark:'
+      path: bbst/persistent_avl_set.hpp
+      title: bbst/persistent_avl_set.hpp
   - name: bit
     pages:
     - icon: ':warning:'
@@ -184,6 +187,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.test.cpp
       title: test/aoj/1508.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/2270.test.cpp
+      title: test/aoj/2270.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/2444_1.test.cpp
       title: test/aoj/2444_1.test.cpp

@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: bbst/persistent_avl_set.hpp
+    title: bbst/persistent_avl_set.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0343.test.cpp
     title: test/aoj/0343.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2270.test.cpp
+    title: test/aoj/2270.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_9_C.test.cpp
     title: test/aoj/ALDS1_9_C.test.cpp
@@ -239,13 +245,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: bbst/avl_set.hpp
-  requiredBy: []
+  requiredBy:
+  - bbst/persistent_avl_set.hpp
   timestamp: '2021-09-09 22:26:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/associative_array.test.cpp
   - test/aoj/0343.test.cpp
   - test/aoj/ITP2_7_D.test.cpp
+  - test/aoj/2270.test.cpp
   - test/aoj/ALDS1_9_C.test.cpp
 documentation_of: bbst/avl_set.hpp
 layout: document
