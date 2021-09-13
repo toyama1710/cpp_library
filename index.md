@@ -90,9 +90,9 @@ data:
     - icon: ':warning:'
       path: math/combination.cpp
       title: math/combination.cpp
-    - icon: ':warning:'
-      path: math/modint.cpp
-      title: math/modint.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/modint.hpp
+      title: math/modint.hpp
   - name: queue
     pages:
     - icon: ':heavy_check_mark:'
@@ -199,6 +199,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2842.test.cpp
       title: test/aoj/2842.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/3209.test.cpp
+      title: test/aoj/3209.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C.test.cpp
       title: test/aoj/ALDS1_9_C.test.cpp
