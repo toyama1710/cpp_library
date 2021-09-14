@@ -14,10 +14,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: bbst/avl_array.hpp
       title: bbst/avl_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_set.hpp
       title: bbst/avl_set.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/persistent_avl_set.hpp
       title: bbst/persistent_avl_set.hpp
   - name: bit
@@ -247,7 +247,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D.test.cpp
       title: test/aoj/ITP2_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D_persistent.test.cpp
       title: test/aoj/ITP2_7_D_persistent.test.cpp
   - name: test/yosupo
