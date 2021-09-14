@@ -26,11 +26,11 @@ struct PersistentAVLSet : public AVLSet<T> {
         return u;
     };
 
-    PersistentAVLSet insert(const T &dat) {
+    PersistentAVLSet insert(const T &dat) const {
         Node *nv = new Node(dat);
         return PersistentAVLSet(insert(this->root, nv));
     };
-    Node *insert(Node *u, Node *nv) {
+    Node *insert(Node *u, Node *nv) const {
         if (u == nullptr) return nv;
         u = new Node(u);
         if (u->dat < nv->dat)
@@ -38,13 +38,13 @@ struct PersistentAVLSet : public AVLSet<T> {
         else
             u->ch[0] = insert(u->ch[0], nv);
 
-        return Set::balance(copy(Set::recalc(u)));
+        return Set::balance(Set::recalc(u));
     };
 
-    PersistentAVLSet erase(const T &dat) {
+    PersistentAVLSet erase(const T &dat) const {
         return PersistentAVLSet(erase(this->root, dat));
     };
-    Node *erase(Node *u, const T &dat) {
+    Node *erase(Node *u, const T &dat) const {
         if (u == nullptr) return nullptr;
         u = new Node(u);
         if (u->dat < dat) {
@@ -56,25 +56,25 @@ struct PersistentAVLSet : public AVLSet<T> {
         }
         return Set::balance(copy(Set::recalc(u)));
     };
-    Node *isolate_node(Node *u) {
+    Node *isolate_node(Node *u) const {
         if (u->ch[0] == nullptr || u->ch[1] == nullptr) {
             return u->ch[0] != nullptr ? u->ch[0] : u->ch[1];
         } else {
-            auto [l, nv] = Set::split_rightest_node(u->ch[0]);
+            auto [l, nv] = split_rightest_node(u->ch[0]);
             nv = new Node(nv);
             nv->ch[0] = l;
             nv->ch[1] = u->ch[1];
             return Set::balance(copy(Set::recalc(nv)));
         }
     };
-    std::pair<Node *, Node *> split_rightest_node(Node *v) {
+    std::pair<Node *, Node *> split_rightest_node(Node *v) const {
         if (v->ch[1] != nullptr) {
             v = new Node(v);
             auto [l, ret] = split_rightest_node(v->ch[1]);
             v->ch[1] = l;
             return {Set::balance(copy(Set::recalc(v))), ret};
         } else {
-            return {Set::isolate_node(v), v};
+            return {isolate_node(v), v};
         }
     };
 };

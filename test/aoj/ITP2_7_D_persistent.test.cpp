@@ -48,7 +48,6 @@ int main() {
             while (st[i].count(x) > 0) st[i] = st[i].erase(x);
         }
     }
-
     rep(i, q) {
         if (query[i].com == 0) {
             cout << st[i].size() << '\n';

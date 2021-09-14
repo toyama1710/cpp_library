@@ -30,7 +30,7 @@ struct AVLSet {
         return *this;
     };
 
-    int size() { return size(root); };
+    int size() const { return size(root); };
     static int size(Node *u) {
         if (u != nullptr)
             return u->sz;
@@ -131,7 +131,7 @@ struct AVLSet {
         }
     };
 
-    bool contains(const T &dat) {
+    bool contains(const T &dat) const {
         Node *u = root;
         while (u != nullptr) {
             if (dat < u->dat) {
@@ -145,8 +145,10 @@ struct AVLSet {
         return false;
     };
 
-    std::optional<T> lower_bound(const T &x) { return lower_bound(root, x); };
-    std::optional<T> lower_bound(Node *u, const T &x) {
+    std::optional<T> lower_bound(const T &x) const {
+        return lower_bound(root, x);
+    };
+    std::optional<T> lower_bound(Node *u, const T &x) const {
         if (u == nullptr) return std::nullopt;
         if (u->dat < x) {
             return lower_bound(u->ch[1], x);
@@ -158,8 +160,10 @@ struct AVLSet {
                 return u->dat;
         }
     };
-    std::optional<T> upper_bound(const T &x) { return upper_bound(root, x); };
-    std::optional<T> upper_bound(Node *u, const T &x) {
+    std::optional<T> upper_bound(const T &x) const {
+        return upper_bound(root, x);
+    };
+    std::optional<T> upper_bound(Node *u, const T &x) const {
         if (u == nullptr) return std::nullopt;
         if (x < u->dat) {
             auto ret = upper_bound(u->ch[0], x);
@@ -173,13 +177,13 @@ struct AVLSet {
     };
 
     // 0-indexed
-    std::optional<T> find_Kth(int k) {
+    std::optional<T> find_Kth(int k) const {
         if (size() <= k || k < 0)
             return std::nullopt;
         else
             return find_Kth(root, k)->dat;
     };
-    Node *find_Kth(Node *u, int k) {
+    Node *find_Kth(Node *u, int k) const {
         if (size(u->ch[0]) == k)
             return u;
         else if (size(u->ch[0]) > k)
@@ -188,17 +192,19 @@ struct AVLSet {
             return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);
     };
 
-    int count(const T &x) { return size() - count_upper(x) - count_lower(x); };
-    int count_lower(const T &x) { return count_lower(x, root); };
-    int count_lower(const T &x, Node *u) {
+    int count(const T &x) const {
+        return size() - count_upper(x) - count_lower(x);
+    };
+    int count_lower(const T &x) const { return count_lower(x, root); };
+    int count_lower(const T &x, Node *u) const {
         if (u == nullptr) return 0;
         if (u->dat < x)
             return count_lower(x, u->ch[1]) + size(u->ch[0]) + 1;
         else
             return count_lower(x, u->ch[0]);
     };
-    int count_upper(const T &x) { return count_upper(x, root); };
-    int count_upper(const T &x, Node *u) {
+    int count_upper(const T &x) const { return count_upper(x, root); };
+    int count_upper(const T &x, Node *u) const {
         if (u == nullptr) return 0;
         if (x < u->dat)
             return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;
@@ -255,7 +261,7 @@ struct AVLSet {
         }
     };
 
-    std::vector<T> list() {
+    std::vector<T> list() const {
         std::vector<T> ret;
         ret.reserve(size());
         auto dfs = [&](Node *u, auto &&f) {
@@ -267,7 +273,7 @@ struct AVLSet {
         dfs(root, dfs);
         return ret;
     };
-    void dump() {
+    void dump() const {
         auto f = [](auto &&f, int d, Node *u) -> void {
             if (u == nullptr) return;
             f(f, d + 1, u->ch[1]);
