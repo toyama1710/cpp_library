@@ -2,5 +2,4 @@
 
 [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://toyama1710.github.io/cpp_library/)
 
-競技プログラミングで使っているライブラリです<br>
-未テストのモジュールが紛れていたりするので自己責任で使ってください
+[ドキュメントをブログに書きがち](https://blog.toyama1710.net/tags/%e3%83%a9%e3%82%a4%e3%83%96%e3%83%a9%e3%83%aa/)
