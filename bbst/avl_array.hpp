@@ -185,7 +185,7 @@ struct AVLArray {
     // first: [0, k), second: [k, n)
     std::pair<AVLArray, AVLArray> split_at(int k) {
         assert(0 <= k && k <= size());
-        auto [l, r] = split();
+        auto [l, r] = split(root, k);
         root = nullptr;
         return {AVLArray(l), AVLArray(r)};
     };
