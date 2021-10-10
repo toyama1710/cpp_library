@@ -84,51 +84,52 @@ data:
     \        } else {\n            push_down(r);\n            r->ch[0] = merge(mid,\
     \ l, r->ch[0]);\n            return balance(recalc(r));\n        }\n    };\n\n\
     \    // first: [0, k), second: [k, n)\n    std::pair<AVLArray, AVLArray> split_at(int\
-    \ k) {\n        assert(0 <= k && k <= size());\n        auto [l, r] = split();\n\
-    \        root = nullptr;\n        return {AVLArray(l), AVLArray(r)};\n    };\n\
-    \    static std::pair<Node *, Node *> split(Node *u, int k) {\n        if (u ==\
-    \ nullptr) return {nullptr, nullptr};\n        push_down(u);\n        Node *l\
-    \ = u->ch[0];\n        Node *r = u->ch[1];\n        u->ch[0] = u->ch[1] = nullptr;\n\
-    \        int lsize = size(l);\n        if (lsize == k) {\n            return {l,\
-    \ merge(u, nullptr, r)};\n        } else if (k < lsize) {\n            auto [x,\
-    \ y] = split(l, k);\n            return {x, merge(u, y, r)};\n        } else {\n\
-    \            auto [x, y] = split(r, k - lsize - 1);\n            return {merge(u,\
-    \ l, x), y};\n        }\n    };\n\n    // sum [l, r)\n    T fold(int l, int r)\
-    \ {\n        if (r <= l) return M::identity();\n        auto [tmp, right] = split(root,\
-    \ r);\n        auto [left, mid] = split(tmp, l);\n        T ret = sum(mid);\n\
-    \        root = merge(merge(left, mid), right);\n        return ret;\n    };\n\
-    \    T fold_rev(int l, int r) {\n        if (r <= l) return M::identity();\n \
-    \       reverse(l, r);\n        T ret = fold(l, r);\n        reverse(l, r);\n\
-    \        return ret;\n    };\n    AVLArray &reverse(int l, int r) {\n        if\
-    \ (r <= l) return *this;\n        auto [tmp, right] = split(root, r);\n      \
-    \  auto [left, mid] = split(tmp, l);\n        mid->rev_flag ^= 1;\n        root\
-    \ = merge(merge(left, mid), right);\n        return *this;\n    };\n\n    AVLArray\
-    \ &insert_at(int k, const T &dat) {\n        assert(0 <= k && k <= size());\n\
-    \        Node *nv = new Node(dat);\n        auto [l, r] = split(root, k);\n  \
-    \      root = merge(nv, l, r);\n        return *this;\n    };\n    AVLArray &set(int\
-    \ k, const T &dat) { return update(k, dat); };\n    AVLArray &update(int k, const\
-    \ T &dat) {\n        assert(0 <= k && k < size());\n        auto [tmp, r] = split(root,\
-    \ k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n        mid->val\
-    \ = dat;\n        root = merge(mid, l, r);\n        return *this;\n    };\n  \
-    \  AVLArray &update(int l, int r, const E &op) {\n        if (r <= l) return *this;\n\
-    \        auto [tmp, right] = split(root, r);\n        auto [left, mid] = split(tmp,\
-    \ l);\n        mid->op = O::operation(mid->op, op);\n        root = merge(merge(left,\
-    \ mid), right);\n        return *this;\n    };\n    AVLArray &erase_at(int k)\
-    \ {\n        assert(0 <= k && k < size());\n        auto [tmp, r] = split(root,\
-    \ k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n        delete mid;\n\
-    \        root = merge(l, r);\n        return *this;\n    };\n\n    AVLArray &rotate(int\
-    \ l, int mid, int r) {\n        auto [tmp1, right] = split(root, r);\n       \
-    \ auto [tmp2, m2] = split(tmp1, mid);\n        auto [left, m1] = split(tmp2, l);\n\
-    \        root = merge(left, merge(m2, merge(m1, right)));\n        return *this;\n\
-    \    };\n\n    std::vector<T> list() {\n        std::vector<T> ret;\n        ret.reserve(size());\n\
-    \        auto dfs = [&](auto &&f, Node *u) {\n            f(f, u->ch[0]);\n  \
-    \          ret.push_back(u->dat);\n            f(f, u->ch[1]);\n        };\n \
-    \       dfs(dfs, root);\n        return ret;\n    };\n\n    const T operator[](int\
-    \ k) { return at(root, k); };\n    const T at(Node *u, int k) {\n        assert(0\
-    \ <= k && k < size(u));\n        push_down(u);\n        if (size(u->ch[0]) ==\
-    \ k)\n            return u->val;\n        else if (k < size(u->ch[0]))\n     \
-    \       return at(u->ch[0], k);\n        else\n            return at(u->ch[1],\
-    \ k - size(u->ch[0]) - 1);\n    };\n};\n\n\n#line 6 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \ k) {\n        assert(0 <= k && k <= size());\n        auto [l, r] = split(root,\
+    \ k);\n        root = nullptr;\n        return {AVLArray(l), AVLArray(r)};\n \
+    \   };\n    static std::pair<Node *, Node *> split(Node *u, int k) {\n       \
+    \ if (u == nullptr) return {nullptr, nullptr};\n        push_down(u);\n      \
+    \  Node *l = u->ch[0];\n        Node *r = u->ch[1];\n        u->ch[0] = u->ch[1]\
+    \ = nullptr;\n        int lsize = size(l);\n        if (lsize == k) {\n      \
+    \      return {l, merge(u, nullptr, r)};\n        } else if (k < lsize) {\n  \
+    \          auto [x, y] = split(l, k);\n            return {x, merge(u, y, r)};\n\
+    \        } else {\n            auto [x, y] = split(r, k - lsize - 1);\n      \
+    \      return {merge(u, l, x), y};\n        }\n    };\n\n    // sum [l, r)\n \
+    \   T fold(int l, int r) {\n        if (r <= l) return M::identity();\n      \
+    \  auto [tmp, right] = split(root, r);\n        auto [left, mid] = split(tmp,\
+    \ l);\n        T ret = sum(mid);\n        root = merge(merge(left, mid), right);\n\
+    \        return ret;\n    };\n    T fold_rev(int l, int r) {\n        if (r <=\
+    \ l) return M::identity();\n        reverse(l, r);\n        T ret = fold(l, r);\n\
+    \        reverse(l, r);\n        return ret;\n    };\n    AVLArray &reverse(int\
+    \ l, int r) {\n        if (r <= l) return *this;\n        auto [tmp, right] =\
+    \ split(root, r);\n        auto [left, mid] = split(tmp, l);\n        mid->rev_flag\
+    \ ^= 1;\n        root = merge(merge(left, mid), right);\n        return *this;\n\
+    \    };\n\n    AVLArray &insert_at(int k, const T &dat) {\n        assert(0 <=\
+    \ k && k <= size());\n        Node *nv = new Node(dat);\n        auto [l, r] =\
+    \ split(root, k);\n        root = merge(nv, l, r);\n        return *this;\n  \
+    \  };\n    AVLArray &set(int k, const T &dat) { return update(k, dat); };\n  \
+    \  AVLArray &update(int k, const T &dat) {\n        assert(0 <= k && k < size());\n\
+    \        auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
+    \        mid->val = dat;\n        root = merge(mid, l, r);\n        return *this;\n\
+    \    };\n    AVLArray &update(int l, int r, const E &op) {\n        if (r <= l)\
+    \ return *this;\n        auto [tmp, right] = split(root, r);\n        auto [left,\
+    \ mid] = split(tmp, l);\n        mid->op = O::operation(mid->op, op);\n      \
+    \  root = merge(merge(left, mid), right);\n        return *this;\n    };\n   \
+    \ AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n       \
+    \ auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
+    \        delete mid;\n        root = merge(l, r);\n        return *this;\n   \
+    \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
+    \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
+    \ [left, m1] = split(tmp2, l);\n        root = merge(left, merge(m2, merge(m1,\
+    \ right)));\n        return *this;\n    };\n\n    std::vector<T> list() {\n  \
+    \      std::vector<T> ret;\n        ret.reserve(size());\n        auto dfs = [&](auto\
+    \ &&f, Node *u) {\n            f(f, u->ch[0]);\n            ret.push_back(u->dat);\n\
+    \            f(f, u->ch[1]);\n        };\n        dfs(dfs, root);\n        return\
+    \ ret;\n    };\n\n    const T operator[](int k) { return at(root, k); };\n   \
+    \ const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n     \
+    \   push_down(u);\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
+    \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
+    \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
+    };\n\n\n#line 6 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
     \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
     \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
@@ -196,7 +197,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-07 13:40:39+09:00'
+  timestamp: '2021-10-10 17:25:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp

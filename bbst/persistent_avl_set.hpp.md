@@ -201,8 +201,8 @@ data:
   timestamp: '2021-09-14 11:02:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ITP2_7_D_persistent.test.cpp
   - test/aoj/2270.test.cpp
+  - test/aoj/ITP2_7_D_persistent.test.cpp
 documentation_of: bbst/persistent_avl_set.hpp
 layout: document
 redirect_from:
