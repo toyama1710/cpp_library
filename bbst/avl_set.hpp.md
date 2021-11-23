@@ -13,9 +13,6 @@ data:
     path: test/aoj/2270.test.cpp
     title: test/aoj/2270.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_9_C.test.cpp
-    title: test/aoj/ALDS1_9_C.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_9_C_AVLset.test.cpp
     title: test/aoj/ALDS1_9_C_AVLset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,7 +258,6 @@ data:
   - test/aoj/ALDS1_9_C_AVLset.test.cpp
   - test/aoj/2270.test.cpp
   - test/aoj/0343.test.cpp
-  - test/aoj/ALDS1_9_C.test.cpp
   - test/aoj/ITP2_7_D.test.cpp
   - test/aoj/ITP2_7_D_persistent.test.cpp
   - test/yosupo/associative_array.test.cpp

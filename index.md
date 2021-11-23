@@ -197,9 +197,6 @@ data:
       path: test/aoj/3209.test.cpp
       title: test/aoj/3209.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_9_C.test.cpp
-      title: test/aoj/ALDS1_9_C.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C_AVLset.test.cpp
       title: test/aoj/ALDS1_9_C_AVLset.test.cpp
     - icon: ':heavy_check_mark:'
