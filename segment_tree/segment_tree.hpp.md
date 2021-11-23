@@ -105,8 +105,8 @@ data:
   verifiedWith:
   - test/aoj/DSL2A_2.test.cpp
   - test/aoj/2444_1.test.cpp
-  - test/aoj/DSL2B.test.cpp
   - test/aoj/DSL2A_1.test.cpp
+  - test/aoj/DSL2B.test.cpp
 documentation_of: segment_tree/segment_tree.hpp
 layout: document
 redirect_from:

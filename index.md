@@ -49,12 +49,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_type/min_monoid.hpp
       title: data_type/min_monoid.hpp
-    - icon: ':warning:'
-      path: data_type/monoid_snippet.hpp
-      title: data_type/monoid_snippet.hpp
-    - icon: ':warning:'
-      path: data_type/semi_group_snippet.hpp
-      title: data_type/semi_group_snippet.hpp
     - icon: ':heavy_check_mark:'
       path: data_type/sum_monoid.hpp
       title: data_type/sum_monoid.hpp
@@ -80,11 +74,8 @@ data:
       path: heap/find_kth.cpp
       title: heap/find_kth.cpp
     - icon: ':warning:'
-      path: heap/meldable_heap.cpp
-      title: heap/meldable_heap.cpp
-    - icon: ':warning:'
-      path: heap/skew_heap.cpp
-      title: heap/skew_heap.cpp
+      path: heap/leftist_heap.hpp
+      title: heap/leftist_heap.hpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -205,6 +196,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C.test.cpp
       title: test/aoj/ALDS1_9_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_9_C_AVLset.test.cpp
+      title: test/aoj/ALDS1_9_C_AVLset.test.cpp
+    - icon: ':x:'
+      path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+      title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL1B.test.cpp
       title: test/aoj/DSL1B.test.cpp

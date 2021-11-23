@@ -253,8 +253,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508.test.cpp
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: bbst/avl_array.hpp
 layout: document
 redirect_from:
