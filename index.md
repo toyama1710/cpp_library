@@ -78,9 +78,9 @@ data:
       title: heap/leftist_heap.hpp
   - name: math
     pages:
-    - icon: ':warning:'
-      path: math/combination.cpp
-      title: math/combination.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/mod_binomial.hpp
+      title: math/mod_binomial.hpp
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: math/modint.hpp
@@ -178,6 +178,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1068.test.cpp
       title: test/aoj/1068.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1501.test.cpp
+      title: test/aoj/1501.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.test.cpp
       title: test/aoj/1508.test.cpp

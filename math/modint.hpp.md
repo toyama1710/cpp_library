@@ -1,8 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/mod_binomial.hpp
+    title: math/mod_binomial.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1501.test.cpp
+    title: test/aoj/1501.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1501.test.cpp
+    title: test/aoj/1501.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/3209.test.cpp
     title: test/aoj/3209.test.cpp
@@ -83,11 +92,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/modint.hpp
-  requiredBy: []
+  requiredBy:
+  - math/mod_binomial.hpp
   timestamp: '2021-11-23 21:40:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/3209.test.cpp
+  - test/aoj/1501.test.cpp
+  - test/aoj/1501.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 redirect_from:
