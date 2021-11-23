@@ -76,6 +76,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: heap/leftist_heap.hpp
       title: heap/leftist_heap.hpp
+    - icon: ':heavy_check_mark:'
+      path: heap/persistent_leftist_heap.hpp
+      title: heap/persistent_leftist_heap.hpp
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -203,8 +206,11 @@ data:
       path: test/aoj/ALDS1_9_C_AVLset.test.cpp
       title: test/aoj/ALDS1_9_C_AVLset.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
-      title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+      path: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+      title: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
+      title: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL1B.test.cpp
       title: test/aoj/DSL1B.test.cpp

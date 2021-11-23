@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
-    title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+    path: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+    title: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
   timestamp: '2021-11-23 20:12:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+  - test/aoj/ALDS1_9_C_leftist_heap.test.cpp
 documentation_of: heap/leftist_heap.hpp
 layout: document
 redirect_from:

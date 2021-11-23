@@ -4,8 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
-    title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+    path: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+    title: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
+    title: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -40,7 +43,8 @@ data:
   timestamp: '2021-11-23 20:15:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+  - test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+  - test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
 documentation_of: util/reverse_cmp.hpp
 layout: document
 redirect_from:

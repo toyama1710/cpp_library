@@ -17,7 +17,7 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_9_C_leftistHeap.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/aoj/ALDS1_9_C_leftist_heap.test.cpp\"\n#define PROBLEM\
     \ \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C\"\
     \n\n#include <iostream>\n#include <queue>\n#include <string>\n#include <tuple>\n\
     \n#line 1 \"heap/leftist_heap.hpp\"\n\n\n\n#include <cassert>\n#include <utility>\n\
@@ -50,7 +50,7 @@ data:
     \ *this == rhs;\n    };\n    bool operator>=(const RevCmp &rhs) const {\n    \
     \    return *this > rhs || *this == rhs;\n    };\n\n    RevCmp &operator=(const\
     \ RevCmp &rhs) {\n        val = rhs.val;\n        return *this;\n    };\n\n  \
-    \  T value() const { return val; };\n};\n\n\n#line 11 \"test/aoj/ALDS1_9_C_leftistHeap.test.cpp\"\
+    \  T value() const { return val; };\n};\n\n\n#line 11 \"test/aoj/ALDS1_9_C_leftist_heap.test.cpp\"\
     \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
     \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
     \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
@@ -82,15 +82,15 @@ data:
   - heap/leftist_heap.hpp
   - util/reverse_cmp.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+  path: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 20:15:55+09:00'
+  timestamp: '2021-11-23 23:43:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+documentation_of: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_9_C_leftistHeap.test.cpp
-- /verify/test/aoj/ALDS1_9_C_leftistHeap.test.cpp.html
-title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+- /verify/test/aoj/ALDS1_9_C_leftist_heap.test.cpp
+- /verify/test/aoj/ALDS1_9_C_leftist_heap.test.cpp.html
+title: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
 ---
