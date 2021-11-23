@@ -73,7 +73,7 @@ data:
     - icon: ':warning:'
       path: heap/find_kth.cpp
       title: heap/find_kth.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: heap/leftist_heap.hpp
       title: heap/leftist_heap.hpp
   - name: math
@@ -163,6 +163,9 @@ data:
     - icon: ':warning:'
       path: util/memory_pool_allocator.hpp
       title: util/memory_pool_allocator.hpp
+    - icon: ':heavy_check_mark:'
+      path: util/reverse_cmp.hpp
+      title: util/reverse_cmp.hpp
     - icon: ':warning:'
       path: util/xorshift.hpp
       title: util/xorshift.hpp
@@ -199,7 +202,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C_AVLset.test.cpp
       title: test/aoj/ALDS1_9_C_AVLset.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
       title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
     - icon: ':heavy_check_mark:'

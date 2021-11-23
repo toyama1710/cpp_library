@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
+    title: test/aoj/ALDS1_9_C_leftistHeap.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"heap/leftist_heap.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -55,8 +58,9 @@ data:
   path: heap/leftist_heap.hpp
   requiredBy: []
   timestamp: '2021-11-23 20:12:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/ALDS1_9_C_leftistHeap.test.cpp
 documentation_of: heap/leftist_heap.hpp
 layout: document
 redirect_from:
