@@ -25,17 +25,18 @@ struct ModInt {
             return ModInt(d - x.d);
     };
     ModInt operator*(ModInt x) const { return ModInt(d * x.d); }
-    ModInt operator/(ModInt x) const {
-        ModInt inv = 1;
-        u64 exp = p - 2;
-        while (exp) {
-            if (exp & 1) inv *= x;
-            x *= x;
-            exp >>= 1;
-        }
+    ModInt operator/(ModInt x) const { return ModInt(*this * x.inv()); }
 
-        return ModInt(d * inv.d);
-    }
+    static ModInt pow(ModInt x, uint64_t a) {
+        ModInt ret = 1;
+        while (a) {
+            if (a & 1) ret *= x;
+            x *= x;
+            a >>= 1;
+        }
+        return ret;
+    };
+    ModInt inv() { return pow(*this, p - 2); };
 
     ModInt operator+() { return *this; };
     ModInt operator-() { return ModInt(-d); };
