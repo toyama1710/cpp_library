@@ -45,7 +45,7 @@ int main() {
 
     rep(i, (i64)query.size()) {
         if (query[i] == 0) {
-            cout << -que[i].top() << '\n';
+            cout << -que[i].peek() << '\n';
         }
     }
 

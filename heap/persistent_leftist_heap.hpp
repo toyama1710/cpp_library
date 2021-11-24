@@ -43,7 +43,7 @@ struct PersistentLeftistHeap {
     };
     Self merge_with(const Self h) const { return Self(root, h.root); };
     Self push(const T &v) const { return Self(meld(root, new Node(v))); };
-    T top() const {
+    T peek() const {
         assert(!empty());
         return root->val;
     };

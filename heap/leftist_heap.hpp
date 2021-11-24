@@ -45,7 +45,7 @@ struct LeftistHeap {
         root = meld(root, new Node(val));
         return *this;
     };
-    T top() const {
+    T peek() const {
         assert(root != nullptr);
         return root->val;
     };

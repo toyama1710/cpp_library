@@ -33,11 +33,11 @@ int main() {
         if (s == "insert") {
             i64 k;
             cin >> k;
-            if (!que.empty() && que.top().value() == k)
+            if (!que.empty() && que.peek().value() == k)
                 que.push(k).pop().push(k).pop();
             que.push(k);
         } else {
-            cout << que.top().value() << '\n';
+            cout << que.peek().value() << '\n';
             que.pop();
         }
         // cout << que.size() << endl;
