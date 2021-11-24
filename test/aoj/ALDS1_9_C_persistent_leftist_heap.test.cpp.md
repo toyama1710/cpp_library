@@ -38,7 +38,7 @@ data:
     \ h2);\n            auto v = new Node(h1);\n            v->ch[1] = meld(v->ch[1],\
     \ h2);\n            return Node::update(v);\n        }\n    };\n    Self merge_with(const\
     \ Self h) const { return Self(root, h.root); };\n    Self push(const T &v) const\
-    \ { return Self(meld(root, new Node(v))); };\n    T top() const {\n        assert(!empty());\n\
+    \ { return Self(meld(root, new Node(v))); };\n    T peek() const {\n        assert(!empty());\n\
     \        return root->val;\n    };\n    Self pop() const {\n        assert(!empty());\n\
     \        return Self(meld(root->ch[0], root->ch[1]));\n    };\n};\n\n\n#line 1\
     \ \"util/reverse_cmp.hpp\"\n\n\n\ntemplate <class T>\nstruct RevCmp {\n    T val;\n\
@@ -64,8 +64,8 @@ data:
     \ i64 k;\n            cin >> k;\n            que.push_back(que.back().push(-k));\n\
     \        } else {\n            query.push_back(0);\n            que.push_back(que.back().pop());\n\
     \        }\n    }\n\n    rep(i, (i64)query.size()) {\n        if (query[i] ==\
-    \ 0) {\n            cout << -que[i].top() << '\\n';\n        }\n    }\n\n    return\
-    \ 0;\n}\n"
+    \ 0) {\n            cout << -que[i].peek() << '\\n';\n        }\n    }\n\n   \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C\"\
     \n\n#include <iostream>\n#include <queue>\n#include <string>\n#include <tuple>\n\
     \n#include \"../../heap/persistent_leftist_heap.hpp\"\n#include \"../../util/reverse_cmp.hpp\"\
@@ -81,15 +81,15 @@ data:
     \ i64 k;\n            cin >> k;\n            que.push_back(que.back().push(-k));\n\
     \        } else {\n            query.push_back(0);\n            que.push_back(que.back().pop());\n\
     \        }\n    }\n\n    rep(i, (i64)query.size()) {\n        if (query[i] ==\
-    \ 0) {\n            cout << -que[i].top() << '\\n';\n        }\n    }\n\n    return\
-    \ 0;\n}"
+    \ 0) {\n            cout << -que[i].peek() << '\\n';\n        }\n    }\n\n   \
+    \ return 0;\n}\n"
   dependsOn:
   - heap/persistent_leftist_heap.hpp
   - util/reverse_cmp.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
   requiredBy: []
-  timestamp: '2021-11-24 11:17:57+09:00'
+  timestamp: '2021-11-24 11:32:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp

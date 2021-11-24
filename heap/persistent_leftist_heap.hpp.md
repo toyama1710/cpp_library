@@ -29,7 +29,7 @@ data:
     \ h2);\n            auto v = new Node(h1);\n            v->ch[1] = meld(v->ch[1],\
     \ h2);\n            return Node::update(v);\n        }\n    };\n    Self merge_with(const\
     \ Self h) const { return Self(root, h.root); };\n    Self push(const T &v) const\
-    \ { return Self(meld(root, new Node(v))); };\n    T top() const {\n        assert(!empty());\n\
+    \ { return Self(meld(root, new Node(v))); };\n    T peek() const {\n        assert(!empty());\n\
     \        return root->val;\n    };\n    Self pop() const {\n        assert(!empty());\n\
     \        return Self(meld(root->ch[0], root->ch[1]));\n    };\n};\n\n\n"
   code: "#ifndef PERSISTENT_LEFTIST_HEAP_HPP\n#define PERSISTENT_LEFTIST_HEAP_HPP\n\
@@ -51,14 +51,14 @@ data:
     \ = meld(v->ch[1], h2);\n            return Node::update(v);\n        }\n    };\n\
     \    Self merge_with(const Self h) const { return Self(root, h.root); };\n   \
     \ Self push(const T &v) const { return Self(meld(root, new Node(v))); };\n   \
-    \ T top() const {\n        assert(!empty());\n        return root->val;\n    };\n\
-    \    Self pop() const {\n        assert(!empty());\n        return Self(meld(root->ch[0],\
-    \ root->ch[1]));\n    };\n};\n\n#endif"
+    \ T peek() const {\n        assert(!empty());\n        return root->val;\n   \
+    \ };\n    Self pop() const {\n        assert(!empty());\n        return Self(meld(root->ch[0],\
+    \ root->ch[1]));\n    };\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: heap/persistent_leftist_heap.hpp
   requiredBy: []
-  timestamp: '2021-11-24 11:17:57+09:00'
+  timestamp: '2021-11-24 11:32:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp

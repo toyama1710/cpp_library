@@ -26,8 +26,8 @@ data:
     \   return Node::update(h1);\n        }\n    };\n    LeftistHeap &merge_with(LeftistHeap\
     \ &h) {\n        root = meld(root, h.root);\n        h.root = nullptr;\n     \
     \   return *this;\n    };\n\n    LeftistHeap &push(T val) {\n        root = meld(root,\
-    \ new Node(val));\n        return *this;\n    };\n    T top() const {\n      \
-    \  assert(root != nullptr);\n        return root->val;\n    };\n    LeftistHeap\
+    \ new Node(val));\n        return *this;\n    };\n    T peek() const {\n     \
+    \   assert(root != nullptr);\n        return root->val;\n    };\n    LeftistHeap\
     \ &pop() {\n        assert(root != nullptr);\n        auto [l, r] = root->ch;\n\
     \        delete root;\n        root = meld(l, r);\n        return *this;\n   \
     \ };\n    int size() { return Node::size(root); };\n    bool empty() { return\
@@ -47,17 +47,17 @@ data:
     \   return Node::update(h1);\n        }\n    };\n    LeftistHeap &merge_with(LeftistHeap\
     \ &h) {\n        root = meld(root, h.root);\n        h.root = nullptr;\n     \
     \   return *this;\n    };\n\n    LeftistHeap &push(T val) {\n        root = meld(root,\
-    \ new Node(val));\n        return *this;\n    };\n    T top() const {\n      \
-    \  assert(root != nullptr);\n        return root->val;\n    };\n    LeftistHeap\
+    \ new Node(val));\n        return *this;\n    };\n    T peek() const {\n     \
+    \   assert(root != nullptr);\n        return root->val;\n    };\n    LeftistHeap\
     \ &pop() {\n        assert(root != nullptr);\n        auto [l, r] = root->ch;\n\
     \        delete root;\n        root = meld(l, r);\n        return *this;\n   \
     \ };\n    int size() { return Node::size(root); };\n    bool empty() { return\
-    \ size() == 0; };\n};\n\n#endif"
+    \ size() == 0; };\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: heap/leftist_heap.hpp
   requiredBy: []
-  timestamp: '2021-11-23 20:12:12+09:00'
+  timestamp: '2021-11-24 11:32:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_9_C_leftist_heap.test.cpp

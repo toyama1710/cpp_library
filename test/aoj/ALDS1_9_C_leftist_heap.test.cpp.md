@@ -35,7 +35,7 @@ data:
     \        }\n    };\n    LeftistHeap &merge_with(LeftistHeap &h) {\n        root\
     \ = meld(root, h.root);\n        h.root = nullptr;\n        return *this;\n  \
     \  };\n\n    LeftistHeap &push(T val) {\n        root = meld(root, new Node(val));\n\
-    \        return *this;\n    };\n    T top() const {\n        assert(root != nullptr);\n\
+    \        return *this;\n    };\n    T peek() const {\n        assert(root != nullptr);\n\
     \        return root->val;\n    };\n    LeftistHeap &pop() {\n        assert(root\
     \ != nullptr);\n        auto [l, r] = root->ch;\n        delete root;\n      \
     \  root = meld(l, r);\n        return *this;\n    };\n    int size() { return\
@@ -59,9 +59,9 @@ data:
     using u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
     \n    LeftistHeap<RevCmp<i64>> que;\n\n    string s;\n    while (cin >> s, s !=\
     \ \"end\") {\n        if (s == \"insert\") {\n            i64 k;\n           \
-    \ cin >> k;\n            if (!que.empty() && que.top().value() == k)\n       \
-    \         que.push(k).pop().push(k).pop();\n            que.push(k);\n       \
-    \ } else {\n            cout << que.top().value() << '\\n';\n            que.pop();\n\
+    \ cin >> k;\n            if (!que.empty() && que.peek().value() == k)\n      \
+    \          que.push(k).pop().push(k).pop();\n            que.push(k);\n      \
+    \  } else {\n            cout << que.peek().value() << '\\n';\n            que.pop();\n\
     \        }\n        // cout << que.size() << endl;\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C\"\
     \n\n#include <iostream>\n#include <queue>\n#include <string>\n#include <tuple>\n\
@@ -74,17 +74,17 @@ data:
     using u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
     \n    LeftistHeap<RevCmp<i64>> que;\n\n    string s;\n    while (cin >> s, s !=\
     \ \"end\") {\n        if (s == \"insert\") {\n            i64 k;\n           \
-    \ cin >> k;\n            if (!que.empty() && que.top().value() == k)\n       \
-    \         que.push(k).pop().push(k).pop();\n            que.push(k);\n       \
-    \ } else {\n            cout << que.top().value() << '\\n';\n            que.pop();\n\
-    \        }\n        // cout << que.size() << endl;\n    }\n\n    return 0;\n}"
+    \ cin >> k;\n            if (!que.empty() && que.peek().value() == k)\n      \
+    \          que.push(k).pop().push(k).pop();\n            que.push(k);\n      \
+    \  } else {\n            cout << que.peek().value() << '\\n';\n            que.pop();\n\
+    \        }\n        // cout << que.size() << endl;\n    }\n\n    return 0;\n}\n"
   dependsOn:
   - heap/leftist_heap.hpp
   - util/reverse_cmp.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 23:43:43+09:00'
+  timestamp: '2021-11-24 11:32:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
