@@ -163,6 +163,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: util/coordinate_compression.hpp
       title: util/coordinate_compression.hpp
+    - icon: ':heavy_check_mark:'
+      path: util/make_vector.hpp
+      title: util/make_vector.hpp
     - icon: ':warning:'
       path: util/memory_pool_allocator.hpp
       title: util/memory_pool_allocator.hpp
@@ -178,6 +181,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/0343.test.cpp
       title: test/aoj/0343.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/0407.test.cpp
+      title: test/aoj/0407.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1068.test.cpp
       title: test/aoj/1068.test.cpp
@@ -250,6 +256,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL5C_doubling.test.cpp
       title: test/aoj/GRL5C_doubling.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/IPT1_6_C.test.cpp
+      title: test/aoj/IPT1_6_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D.test.cpp
       title: test/aoj/ITP2_7_D.test.cpp

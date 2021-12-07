@@ -72,8 +72,8 @@ data:
   timestamp: '2020-07-07 02:44:06+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1068.test.cpp
   - test/aoj/2842.test.cpp
+  - test/aoj/1068.test.cpp
 documentation_of: segment_tree/segment_tree2d.hpp
 layout: document
 redirect_from:
