@@ -2,6 +2,7 @@
 #define MAKE_VECTOR_HPP
 
 #include <cassert>
+#include <cstdint>
 #include <initializer_list>
 #include <vector>
 
