@@ -1,5 +1,6 @@
 {
 "test/aoj/0343.test.cpp": "2021-09-14 11:02:46 +0900",
+"test/aoj/0407.test.cpp": "2021-12-07 20:07:00 +0900",
 "test/aoj/1068.test.cpp": "2020-07-07 02:57:28 +0000",
 "test/aoj/1501.test.cpp": "2021-11-23 23:13:24 +0900",
 "test/aoj/1508.test.cpp": "2021-10-10 17:25:53 +0900",
@@ -24,6 +25,7 @@
 "test/aoj/DSL2H.test.cpp": "2020-06-08 23:36:52 +0900",
 "test/aoj/DSL2I.test.cpp": "2020-06-08 23:33:10 +0900",
 "test/aoj/GRL5C_doubling.test.cpp": "2021-09-08 22:35:14 +0900",
+"test/aoj/IPT1_6_C.test.cpp": "2021-12-07 20:20:54 +0900",
 "test/aoj/ITP2_7_D.test.cpp": "2021-09-14 11:02:46 +0900",
 "test/aoj/ITP2_7_D_persistent.test.cpp": "2021-09-14 11:02:46 +0900",
 "test/yosupo/associative_array.test.cpp": "2021-09-14 11:02:46 +0900",
