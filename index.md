@@ -22,9 +22,12 @@ data:
       title: bbst/persistent_avl_set.hpp
   - name: bit
     pages:
+    - icon: ':heavy_check_mark:'
+      path: bit/ctz.hpp
+      title: bit/ctz.hpp
     - icon: ':warning:'
-      path: bit/lsb.cpp
-      title: bit/lsb.cpp
+      path: bit/lsb.hpp
+      title: bit/lsb.hpp
     - icon: ':heavy_check_mark:'
       path: bit/msb.hpp
       title: bit/msb.hpp
