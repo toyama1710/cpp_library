@@ -24,8 +24,7 @@ int main() {
 
     i64 n;
     cin >> n;
-    auto v = make_vector({(size_t)n}, 0ll);
-    // auto v = make_vector({n}, 0ll);  // warning
+    auto v = make_vector({u64(n)}, 0ll);
     for (auto &vs : v) cin >> vs;
 
     i64 ans = 1ll << 60;
