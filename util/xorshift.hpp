@@ -1,16 +1,32 @@
-#include <iostream>
-#include <cstdint>
-#include <ctime>
+#ifndef XORSHIFT_HPP
+#define XORSHIFT_HPP
 
-//===
-static uint32_t __seed__ = 1710;
-uint32_t xorshift32() {
-    __seed__ = __seed__ ^ (__seed__ << 13);
-    __seed__ = __seed__ ^ (__seed__ >> 17);
-    __seed__ = __seed__ ^ (__seed__ << 5);
-    return __seed__;
-}
-void set_seed(uint32_t s) {
-    __seed__ = s;
+#include <cstdint>
+
+struct xorshift32 {
+    uint32_t seed = 1710;
+    xorshift32(uint32_t seed) : seed(seed){};
+    void set_seed(uint32_t s) { seed = s; };
+    uint32_t gen() {
+        seed = seed ^ (seed << 13);
+        seed = seed ^ (seed >> 17);
+        seed = seed ^ (seed << 5);
+        return seed;
+    };
+    uint32_t operator()() { return gen(); };
 };
-//===
+
+struct xorshift64 {
+    uint64_t seed = 1710;
+    xorshift64(uint64_t seed) : seed(seed){};
+    void set_seed(uint64_t s) { seed = s; };
+    uint64_t gen() {
+        seed = seed ^ (seed << 13);
+        seed = seed ^ (seed >> 7);
+        seed = seed ^ (seed << 17);
+        return seed;
+    };
+    uint64_t operator()() { return gen(); };
+};
+
+#endif
