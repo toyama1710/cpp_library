@@ -1,12 +1,14 @@
 #ifndef LAZY_SEGMENT_TREE_HPP
 #define LAZY_SEGMENT_TREE_HPP
 
-#include <vector>
 #include <cstdint>
+#include <vector>
+
+#include "../bit/ctz.hpp"
 #include "../bit/msb.hpp"
 
 //===
-template<class MonoidwithOperator>
+template <class MonoidwithOperator>
 struct LazySegmentTree {
     using M = MonoidwithOperator;
     using V = typename M::value_structure;
@@ -21,19 +23,17 @@ struct LazySegmentTree {
     struct Node {
         T dat;
         E lazy;
-        Node (T dat, E lazy): dat(dat), lazy(lazy) {};
+        Node(T dat, E lazy) : dat(dat), lazy(lazy){};
     };
 
     std::vector<Node> tree;
 
     LazySegmentTree() = default;
-    explicit LazySegmentTree(uint32_t n):
-        tree(n * 2 + 2, Node(V::identity(), O::identity())) {};
+    explicit LazySegmentTree(uint32_t n)
+        : tree(n * 2 + 2, Node(V::identity(), O::identity())){};
 
-    int size() {
-        return tree.size() >> 1;
-    };
-    
+    int size() { return tree.size() >> 1; };
+
     void propagation(uint32_t k) {
         const uint32_t l = (k << 1) | 0;
         const uint32_t r = (k << 1) | 1;
@@ -45,17 +45,17 @@ struct LazySegmentTree {
     };
     void push_down(uint32_t k) {
         if (k == 0) return;
-        uint32_t w = msb32(k);
+        uint32_t w = ctz32(msb32(k));
         for (int i = w; i > 0; i--) propagation(k >> i);
     };
     void recalc(uint32_t k) {
         while (k > 1) {
             k >>= 1;
-            tree[k].dat = V::operation(tree[(k << 1) | 0].dat,
-                                       tree[(k << 1) | 1].dat);
+            tree[k].dat =
+                V::operation(tree[(k << 1) | 0].dat, tree[(k << 1) | 1].dat);
         }
     };
-    
+
     // [l, r) += op
     void update(uint32_t l, uint32_t r, E op) {
         l += size();
@@ -91,9 +91,7 @@ struct LazySegmentTree {
         tree[idx].dat = x;
         recalc(idx);
     };
-    void set(uint32_t idx, T x) {
-        update(idx, x);
-    };
+    void set(uint32_t idx, T x) { update(idx, x); };
 
     // foldl[l, r)
     T fold(uint32_t l, uint32_t r) {
@@ -116,7 +114,7 @@ struct LazySegmentTree {
         return V::operation(lv, rv);
     };
 
-    T operator [](const uint32_t &k) {
+    T operator[](const uint32_t &k) {
         push_down(k + size());
         return tree[k + size()].dat;
     };

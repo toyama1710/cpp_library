@@ -3,7 +3,8 @@
 
 #include <cassert>
 #include <vector>
-#include <cassert>
+
+#include "../bit/ctz.hpp"
 #include "../bit/msb.hpp"
 
 //===
@@ -15,12 +16,12 @@ struct DisjointSparseTable {
     std::vector<std::vector<T>> table;
 
     DisjointSparseTable() = default;
-    template<class InputItr>
+    template <class InputItr>
     DisjointSparseTable(InputItr first, InputItr last) {
         build(first, last);
     };
 
-    template<class InputItr>
+    template <class InputItr>
     void build(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         int logn = 1;
@@ -51,20 +52,19 @@ struct DisjointSparseTable {
         r--;
         int x = l ^ r;
 
-        if (x == 0) return table[0][l];
-        else return G::operation(table[msb32(x)][l], table[msb32(x)][r]);
+        if (x == 0)
+            return table[0][l];
+        else
+            return G::operation(table[ctz32(msb32(x))][l],
+                                table[ctz32(msb32(x))][r]);
     };
     T fold(int l, int r, SemiGroup e) {
         if (l >= r) return e;
         return fold(l, r);
     };
 
-    int size() {
-        return table[0].size();
-    };
-    const T operator [] (int k) {
-        return fold(k, k + 1);
-    };
+    int size() { return table[0].size(); };
+    const T operator[](int k) { return fold(k, k + 1); };
 };
 //===
 #endif
