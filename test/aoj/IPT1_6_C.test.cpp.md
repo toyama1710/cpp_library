@@ -17,23 +17,19 @@ data:
   bundledCode: "#line 1 \"test/aoj/IPT1_6_C.test.cpp\"\n#define PROBLEM \\\n    \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_6_C\"\n\n#include\
     \ <iostream>\n\n#line 1 \"util/make_vector.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <initializer_list>\n#include <vector>\n\ntemplate <class T, std::size_t N>\n\
-    auto make_vector_(const std::size_t *dim, T e) {\n    if constexpr (N == 1) {\n\
-    \        return std::vector<T>(*dim, e);\n    } else {\n        auto v = make_vector_<T,\
+    \ <initializer_list>\n#include <vector>\n\ntemplate <class T, uint64_t N>\nauto\
+    \ make_vector_(const uint64_t *dim, T e) {\n    if constexpr (N == 1) {\n    \
+    \    return std::vector<T>(*dim, e);\n    } else {\n        auto v = make_vector_<T,\
     \ N - 1>(dim + 1, e);\n        return std::vector<decltype(v)>(*dim, v);\n   \
-    \ }\n};\ntemplate <class T, std::size_t N>\nauto make_vector(const std::size_t\
-    \ (&dim)[N], const T &e) {\n    assert(N > 0);\n    return make_vector_<T, N>(dim,\
-    \ e);\n};\n\n    /*\n    template <class... Args>\n    auto make_vector(std::size_t\
-    \ k, Args... args) {\n        auto v = make_vector(k, make_vector(args...));\n\
-    \        return std::vector<decltype(v)>(k, v);\n    };\n\n    template <class\
-    \ T>\n    std::vector<T> make_vector(std::size_t k, T x) {\n        return std::vector<T>(k,\
-    \ x);\n    };\n    */\n\n\n#line 7 \"test/aoj/IPT1_6_C.test.cpp\"\n\n#define _overload(_1,\
-    \ _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define\
-    \ _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64\
-    \ Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3,\
-    \ _rep2, _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define\
-    \ ALL(X) begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing\
-    \ u64 = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
+    \ }\n};\ntemplate <class T, uint64_t N>\nauto make_vector(const uint64_t (&dim)[N],\
+    \ const T &e) {\n    assert(N > 0);\n    return make_vector_<T, N>(dim, e);\n\
+    };\n\n\n#line 7 \"test/aoj/IPT1_6_C.test.cpp\"\n\n#define _overload(_1, _2, _3,\
+    \ _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr, 0, N, 1)\n#define _rep2(Itr,\
+    \ a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a, b, step) for (i64 Itr = a;\
+    \ Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__, _rep3, _rep2,\
+    \ _rep1)(__VA_ARGS__)\n#define rep(...) repeat(__VA_ARGS__)\n\n#define ALL(X)\
+    \ begin(X), end(X)\n\nusing namespace std;\nusing i64 = long long;\nusing u64\
+    \ = unsigned long long;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
     \    auto room = make_vector({4, 3, 10}, 0);\n\n    i64 n;\n    cin >> n;\n  \
     \  rep(_, n) {\n        i64 b, f, r, v;\n        cin >> b >> f >> r >> v;\n  \
     \      --b, --f, --r;\n        room[b][f][r] += v;\n    }\n\n    rep(i, 4) {\n\
@@ -61,7 +57,7 @@ data:
   isVerificationFile: true
   path: test/aoj/IPT1_6_C.test.cpp
   requiredBy: []
-  timestamp: '2021-12-07 20:20:54+09:00'
+  timestamp: '2021-12-07 20:27:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/IPT1_6_C.test.cpp
