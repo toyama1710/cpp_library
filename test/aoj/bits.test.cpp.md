@@ -93,10 +93,12 @@ data:
     \ - __builtin_clz(bit32)));\n        assert(msb64_(bit64) == 1ull << (63 - __builtin_clzll(bit64)));\n\
     \    }\n\n    rep(i, 32) {\n        assert(msb32_(rnd32() | (1u << i)) >= 1u <<\
     \ i);\n        assert(msb64_(rnd64() | (1ull << i)) >= 1ull << i);\n        assert(ctz32_(1u\
+    \ << i) == i);\n        assert(ctz32_(3u << i) == i);\n        assert(ctz32_(21u\
     \ << i) == i);\n    }\n    rep(i, 64) {\n        assert(msb64_(rnd32() | (1ull\
     \ << i)) >= 1ull << i);\n        assert(msb64_(rnd64() | (1ull << i)) >= 1ull\
-    \ << i);\n        assert(ctz64_(1ull << i) == i);\n    }\n\n    cout << \"Hello\
-    \ World\" << endl;\n    return 0;\n}\n"
+    \ << i);\n        assert(ctz64_(1ull << i) == i);\n        assert(ctz64_(3ull\
+    \ << i) == i);\n        assert(ctz64_(21ull << i) == i);\n    }\n\n    cout <<\
+    \ \"Hello World\" << endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \\\n    \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include <bits/stdc++.h>\n\n#include \"../../bit/ctz.hpp\"\n#include \"../../bit/lsb.hpp\"\
     \n#include \"../../bit/msb.hpp\"\n#include \"../../bit/pop_count.hpp\"\n#include\
@@ -115,10 +117,12 @@ data:
     \ assert(msb64_(bit64) == 1ull << (63 - __builtin_clzll(bit64)));\n    }\n\n \
     \   rep(i, 32) {\n        assert(msb32_(rnd32() | (1u << i)) >= 1u << i);\n  \
     \      assert(msb64_(rnd64() | (1ull << i)) >= 1ull << i);\n        assert(ctz32_(1u\
+    \ << i) == i);\n        assert(ctz32_(3u << i) == i);\n        assert(ctz32_(21u\
     \ << i) == i);\n    }\n    rep(i, 64) {\n        assert(msb64_(rnd32() | (1ull\
     \ << i)) >= 1ull << i);\n        assert(msb64_(rnd64() | (1ull << i)) >= 1ull\
-    \ << i);\n        assert(ctz64_(1ull << i) == i);\n    }\n\n    cout << \"Hello\
-    \ World\" << endl;\n    return 0;\n}"
+    \ << i);\n        assert(ctz64_(1ull << i) == i);\n        assert(ctz64_(3ull\
+    \ << i) == i);\n        assert(ctz64_(21ull << i) == i);\n    }\n\n    cout <<\
+    \ \"Hello World\" << endl;\n    return 0;\n}"
   dependsOn:
   - bit/ctz.hpp
   - bit/lsb.hpp
@@ -128,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/aoj/bits.test.cpp
   requiredBy: []
-  timestamp: '2021-12-07 23:48:45+09:00'
+  timestamp: '2021-12-07 23:57:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/bits.test.cpp
