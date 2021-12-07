@@ -8,21 +8,33 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"util/xorshift.hpp\"\n#include <iostream>\n#include <cstdint>\n\
-    #include <ctime>\n\n//===\nstatic uint32_t __seed__ = 1710;\nuint32_t xorshift32()\
-    \ {\n    __seed__ = __seed__ ^ (__seed__ << 13);\n    __seed__ = __seed__ ^ (__seed__\
-    \ >> 17);\n    __seed__ = __seed__ ^ (__seed__ << 5);\n    return __seed__;\n\
-    }\nvoid set_seed(uint32_t s) {\n    __seed__ = s;\n};\n//===\n"
-  code: "#include <iostream>\n#include <cstdint>\n#include <ctime>\n\n//===\nstatic\
-    \ uint32_t __seed__ = 1710;\nuint32_t xorshift32() {\n    __seed__ = __seed__\
-    \ ^ (__seed__ << 13);\n    __seed__ = __seed__ ^ (__seed__ >> 17);\n    __seed__\
-    \ = __seed__ ^ (__seed__ << 5);\n    return __seed__;\n}\nvoid set_seed(uint32_t\
-    \ s) {\n    __seed__ = s;\n};\n//==="
+  bundledCode: "#line 1 \"util/xorshift.hpp\"\n\n\n\n#include <cstdint>\n\nstruct\
+    \ xorshift32 {\n    uint32_t seed = 1710;\n    xorshift32(uint32_t seed) : seed(seed){};\n\
+    \    void set_seed(uint32_t s) { seed = s; };\n    uint32_t gen() {\n        seed\
+    \ = seed ^ (seed << 13);\n        seed = seed ^ (seed >> 17);\n        seed =\
+    \ seed ^ (seed << 5);\n        return seed;\n    };\n    uint32_t operator()()\
+    \ { return gen(); };\n};\n\nstruct xorshift64 {\n    uint64_t seed = 1710;\n \
+    \   xorshift64(uint64_t seed) : seed(seed){};\n    void set_seed(uint64_t s) {\
+    \ seed = s; };\n    uint64_t gen() {\n        seed = seed ^ (seed << 13);\n  \
+    \      seed = seed ^ (seed >> 7);\n        seed = seed ^ (seed << 17);\n     \
+    \   return seed;\n    };\n    uint64_t operator()() { return gen(); };\n};\n\n\
+    \n"
+  code: "#ifndef XORSHIFT_HPP\n#define XORSHIFT_HPP\n\n#include <cstdint>\n\nstruct\
+    \ xorshift32 {\n    uint32_t seed = 1710;\n    xorshift32(uint32_t seed) : seed(seed){};\n\
+    \    void set_seed(uint32_t s) { seed = s; };\n    uint32_t gen() {\n        seed\
+    \ = seed ^ (seed << 13);\n        seed = seed ^ (seed >> 17);\n        seed =\
+    \ seed ^ (seed << 5);\n        return seed;\n    };\n    uint32_t operator()()\
+    \ { return gen(); };\n};\n\nstruct xorshift64 {\n    uint64_t seed = 1710;\n \
+    \   xorshift64(uint64_t seed) : seed(seed){};\n    void set_seed(uint64_t s) {\
+    \ seed = s; };\n    uint64_t gen() {\n        seed = seed ^ (seed << 13);\n  \
+    \      seed = seed ^ (seed >> 7);\n        seed = seed ^ (seed << 17);\n     \
+    \   return seed;\n    };\n    uint64_t operator()() { return gen(); };\n};\n\n\
+    #endif"
   dependsOn: []
   isVerificationFile: false
   path: util/xorshift.hpp
   requiredBy: []
-  timestamp: '2020-07-25 00:09:57+09:00'
+  timestamp: '2021-12-07 23:05:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: util/xorshift.hpp
