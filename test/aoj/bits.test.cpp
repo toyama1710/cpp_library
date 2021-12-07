@@ -44,11 +44,15 @@ int main() {
         assert(msb32_(rnd32() | (1u << i)) >= 1u << i);
         assert(msb64_(rnd64() | (1ull << i)) >= 1ull << i);
         assert(ctz32_(1u << i) == i);
+        assert(ctz32_(3u << i) == i);
+        assert(ctz32_(21u << i) == i);
     }
     rep(i, 64) {
         assert(msb64_(rnd32() | (1ull << i)) >= 1ull << i);
         assert(msb64_(rnd64() | (1ull << i)) >= 1ull << i);
         assert(ctz64_(1ull << i) == i);
+        assert(ctz64_(3ull << i) == i);
+        assert(ctz64_(21ull << i) == i);
     }
 
     cout << "Hello World" << endl;
