@@ -3,7 +3,6 @@
 
 #include <cassert>
 #include <cstdint>
-#include <initializer_list>
 #include <vector>
 
 template <class T, uint64_t N>
