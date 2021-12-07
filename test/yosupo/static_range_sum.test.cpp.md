@@ -24,29 +24,31 @@ data:
     \ \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include <iostream>\n\
     #line 1 \"sparse_table/disjoint_sparse_table.hpp\"\n\n\n\n#include <cassert>\n\
     #include <vector>\n\n#line 1 \"bit/ctz.hpp\"\n\n\n\n#include <cstdint>\n\ninline\
-    \ int ctz32(uint32_t x) {\n#ifdef __has_builtin\n    if (x == 0)\n        return\
-    \ 32;\n    else\n        return __builtin_ctz(x);\n#else\n    int r = 0;\n   \
-    \ if (!(x & 0x0000ffff)) x >>= 16, r |= 16;\n    if (!(x & 0x00ff)) x >>= 8, r\
-    \ |= 8;\n    if (!(x & 0x0f)) x >>= 4, r |= 4;\n    if (!(x & 0x3)) x >>= 2, r\
-    \ |= 2;\n    if (!(x & 1)) x >>= 1, r |= 1;\n    return r + ((x & 1) ^ 1);\n#endif\n\
-    };\ninline int ctz64(uint64_t x) {\n#ifdef __has_builtin\n    if (x == 0)\n  \
-    \      return 64;\n    else\n        return __builtin_ctzll(x);\n#else\n    int\
-    \ r = 0;\n    if (!(x & 0x00000000ffffffff)) x >>= 32, r |= 32;\n    if (!(x &\
-    \ 0x0000ffff)) x >>= 16, r |= 16;\n    if (!(x & 0x00ff)) x >>= 8, r |= 8;\n \
-    \   if (!(x & 0x0f)) x >>= 4, r |= 4;\n    if (!(x & 0x3)) x >>= 2, r |= 2;\n\
-    \    if (!(x & 1)) x >>= 1, r |= 1;\n    return r + ((x & 1) ^ 1);\n#endif\n};\n\
-    \n\n#line 1 \"bit/msb.hpp\"\n\n\n\n#line 5 \"bit/msb.hpp\"\n\ninline uint32_t\
-    \ msb32(uint32_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n    return\
-    \ 1 << (31 - __builtin_clz(x));\n#else\n    int r = 0;\n    if (x >> 16) x >>=\
-    \ 16, r |= 16;\n    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |=\
-    \ 4;\n    if (x >> 2) x >>= 2, r |= 2;\n    return 1 << (r | (x >> 1));\n#endif\n\
-    };\n\ninline uint64_t msb64(uint64_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n\
-    \    return 1 << (63 - __builtin_clzll(x));\n#else\n    int r = 0;\n    if (x\
-    \ >> 32) x >>= 32, r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >>\
-    \ 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>=\
-    \ 2, r |= 2;\n    return 1 << (r | (x >> 1));\n#endif\n};\n\n\n#line 9 \"sparse_table/disjoint_sparse_table.hpp\"\
-    \n\n//===\ntemplate <class SemiGroup>\nstruct DisjointSparseTable {\n    using\
-    \ T = typename SemiGroup::value_type;\n    using G = SemiGroup;\n\n    std::vector<std::vector<T>>\
+    \ int ctz32_(uint64_t x) {\n    int r = 0;\n    if (!(x & 0x0000ffff)) x >>= 16,\
+    \ r |= 16;\n    if (!(x & 0x00ff)) x >>= 8, r |= 8;\n    if (!(x & 0x0f)) x >>=\
+    \ 4, r |= 4;\n    if (!(x & 0x3)) x >>= 2, r |= 2;\n    return r | ((x & 1) ^\
+    \ 1);\n};\ninline int ctz32(uint32_t x) {\n    if (x == 0) return 32;\n#ifdef\
+    \ __has_builtin\n    return __builtin_ctz(x);\n#else\n    return ctz32_(x);\n\
+    #endif\n};\n\ninline int ctz64_(uint64_t x) {\n    int r = 0;\n    if (!(x & 0x00000000ffffffff))\
+    \ x >>= 32, r |= 32;\n    if (!(x & 0x0000ffff)) x >>= 16, r |= 16;\n    if (!(x\
+    \ & 0x00ff)) x >>= 8, r |= 8;\n    if (!(x & 0x0f)) x >>= 4, r |= 4;\n    if (!(x\
+    \ & 0x3)) x >>= 2, r |= 2;\n    return r | ((x & 1) ^ 1);\n};\ninline int ctz64(uint64_t\
+    \ x) {\n    if (x == 0) return 64;\n#ifdef __has_builtin\n    return __builtin_ctzll(x);\n\
+    #else\n    return ctz64_(x);\n#endif\n};\n\n\n#line 1 \"bit/msb.hpp\"\n\n\n\n\
+    #line 5 \"bit/msb.hpp\"\n\ninline uint64_t msb32_(uint64_t x) {\n    int r = 0;\n\
+    \    if (x >> 16) x >>= 16, r |= 16;\n    if (x >> 8) x >>= 8, r |= 8;\n    if\
+    \ (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>= 2, r |= 2;\n    return 1u <<\
+    \ (r | (x >> 1));\n};\ninline uint32_t msb32(uint32_t x) {\n    if (x == 0) return\
+    \ 0;\n#ifdef __has_builtin\n    return 1u << (31 - __builtin_clz(x));\n#else\n\
+    \    return msb32_(x);\n#endif\n};\n\ninline uint64_t msb64_(uint64_t x) {\n \
+    \   int r = 0;\n    if (x >> 32) x >>= 32, r |= 32;\n    if (x >> 16) x >>= 16,\
+    \ r |= 16;\n    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n\
+    \    if (x >> 2) x >>= 2, r |= 2;\n    return 1ull << (r | (x >> 1));\n};\ninline\
+    \ uint64_t msb64(uint64_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n\
+    \    return 1ull << (63 - __builtin_clzll(x));\n#else\n    return msb64_(x);\n\
+    #endif\n};\n\n\n#line 9 \"sparse_table/disjoint_sparse_table.hpp\"\n\n//===\n\
+    template <class SemiGroup>\nstruct DisjointSparseTable {\n    using T = typename\
+    \ SemiGroup::value_type;\n    using G = SemiGroup;\n\n    std::vector<std::vector<T>>\
     \ table;\n\n    DisjointSparseTable() = default;\n    template <class InputItr>\n\
     \    DisjointSparseTable(InputItr first, InputItr last) {\n        build(first,\
     \ last);\n    };\n\n    template <class InputItr>\n    void build(InputItr first,\
@@ -89,7 +91,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-12-07 22:49:51+09:00'
+  timestamp: '2021-12-07 23:48:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum.test.cpp

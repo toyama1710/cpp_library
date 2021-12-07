@@ -22,6 +22,9 @@ data:
     path: test/aoj/DSL2I.test.cpp
     title: test/aoj/DSL2I.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/bits.test.cpp
+    title: test/aoj/bits.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -32,39 +35,44 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"bit/msb.hpp\"\n\n\n\n#include <cstdint>\n\ninline uint32_t\
+  bundledCode: "#line 1 \"bit/msb.hpp\"\n\n\n\n#include <cstdint>\n\ninline uint64_t\
+    \ msb32_(uint64_t x) {\n    int r = 0;\n    if (x >> 16) x >>= 16, r |= 16;\n\
+    \    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x\
+    \ >> 2) x >>= 2, r |= 2;\n    return 1u << (r | (x >> 1));\n};\ninline uint32_t\
     \ msb32(uint32_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n    return\
-    \ 1 << (31 - __builtin_clz(x));\n#else\n    int r = 0;\n    if (x >> 16) x >>=\
-    \ 16, r |= 16;\n    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |=\
-    \ 4;\n    if (x >> 2) x >>= 2, r |= 2;\n    return 1 << (r | (x >> 1));\n#endif\n\
-    };\n\ninline uint64_t msb64(uint64_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n\
-    \    return 1 << (63 - __builtin_clzll(x));\n#else\n    int r = 0;\n    if (x\
-    \ >> 32) x >>= 32, r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >>\
-    \ 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>=\
-    \ 2, r |= 2;\n    return 1 << (r | (x >> 1));\n#endif\n};\n\n\n"
-  code: "#ifndef MSB_HPP\n#define MSB_HPP\n\n#include <cstdint>\n\ninline uint32_t\
+    \ 1u << (31 - __builtin_clz(x));\n#else\n    return msb32_(x);\n#endif\n};\n\n\
+    inline uint64_t msb64_(uint64_t x) {\n    int r = 0;\n    if (x >> 32) x >>= 32,\
+    \ r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >> 8) x >>= 8, r |=\
+    \ 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>= 2, r |= 2;\n   \
+    \ return 1ull << (r | (x >> 1));\n};\ninline uint64_t msb64(uint64_t x) {\n  \
+    \  if (x == 0) return 0;\n#ifdef __has_builtin\n    return 1ull << (63 - __builtin_clzll(x));\n\
+    #else\n    return msb64_(x);\n#endif\n};\n\n\n"
+  code: "#ifndef MSB_HPP\n#define MSB_HPP\n\n#include <cstdint>\n\ninline uint64_t\
+    \ msb32_(uint64_t x) {\n    int r = 0;\n    if (x >> 16) x >>= 16, r |= 16;\n\
+    \    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x\
+    \ >> 2) x >>= 2, r |= 2;\n    return 1u << (r | (x >> 1));\n};\ninline uint32_t\
     \ msb32(uint32_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n    return\
-    \ 1 << (31 - __builtin_clz(x));\n#else\n    int r = 0;\n    if (x >> 16) x >>=\
-    \ 16, r |= 16;\n    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |=\
-    \ 4;\n    if (x >> 2) x >>= 2, r |= 2;\n    return 1 << (r | (x >> 1));\n#endif\n\
-    };\n\ninline uint64_t msb64(uint64_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n\
-    \    return 1 << (63 - __builtin_clzll(x));\n#else\n    int r = 0;\n    if (x\
-    \ >> 32) x >>= 32, r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >>\
-    \ 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>=\
-    \ 2, r |= 2;\n    return 1 << (r | (x >> 1));\n#endif\n};\n\n#endif"
+    \ 1u << (31 - __builtin_clz(x));\n#else\n    return msb32_(x);\n#endif\n};\n\n\
+    inline uint64_t msb64_(uint64_t x) {\n    int r = 0;\n    if (x >> 32) x >>= 32,\
+    \ r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >> 8) x >>= 8, r |=\
+    \ 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>= 2, r |= 2;\n   \
+    \ return 1ull << (r | (x >> 1));\n};\ninline uint64_t msb64(uint64_t x) {\n  \
+    \  if (x == 0) return 0;\n#ifdef __has_builtin\n    return 1ull << (63 - __builtin_clzll(x));\n\
+    #else\n    return msb64_(x);\n#endif\n};\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: bit/msb.hpp
   requiredBy:
   - segment_tree/lazy_segment_tree.hpp
   - sparse_table/disjoint_sparse_table.hpp
-  timestamp: '2021-12-07 22:49:51+09:00'
+  timestamp: '2021-12-07 23:48:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/static_range_sum.test.cpp
   - test/aoj/DSL2G.test.cpp
   - test/aoj/DSL2F_1.test.cpp
+  - test/aoj/bits.test.cpp
   - test/aoj/DSL2H.test.cpp
   - test/aoj/DSL2I.test.cpp
 documentation_of: bit/msb.hpp
