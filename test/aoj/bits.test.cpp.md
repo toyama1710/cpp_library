@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/clz.hpp
     title: bit/clz.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/lsb.hpp
     title: bit/lsb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/pop_count.hpp
     title: bit/pop_count.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: util/xorshift.hpp
     title: util/xorshift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -38,7 +38,7 @@ data:
     \ >> 2;\n    bit |= bit >> 4;\n    bit |= bit >> 8;\n    bit |= bit >> 16;\n \
     \   bit ^= bit >> 1;\n    return table[(bit * de_bruijn) >> 27];\n};\ninline int\
     \ clz32(uint32_t bit) {\n    if (bit == 0) return 32;\n#ifdef __has_builtin\n\
-    \    return __builtin_clz(bit);\n#else\n    return ctz32_(bit);\n#endif\n};\n\n\
+    \    return __builtin_clz(bit);\n#else\n    return clz32_(bit);\n#endif\n};\n\n\
     inline int clz64_(uint64_t bit) {\n    static const int table[] = {\n        63,\
     \ 62, 61, 56, 60, 50, 55, 44, 59, 38, 49, 35, 54, 29, 43, 23,\n        58, 46,\
     \ 37, 25, 48, 17, 34, 15, 53, 32, 28, 9,  42, 13, 22, 6,\n        0,  57, 51,\
@@ -48,7 +48,7 @@ data:
     \ 2;\n    bit |= bit >> 4;\n    bit |= bit >> 8;\n    bit |= bit >> 16;\n    bit\
     \ |= bit >> 32;\n    bit ^= bit >> 1;\n    return table[(bit * de_bruijn) >> 58];\n\
     };\ninline int clz64(uint64_t bit) {\n    if (bit == 0) return 64;\n#ifdef __has_builtin\n\
-    \    return __builtin_clzll(bit);\n#else\n    return ctz64_(bit);\n#endif\n};\n\
+    \    return __builtin_clzll(bit);\n#else\n    return clz64_(bit);\n#endif\n};\n\
     \n\n#line 1 \"bit/ctz.hpp\"\n\n\n\n#line 5 \"bit/ctz.hpp\"\n\ninline int ctz32_(uint32_t\
     \ bit) {\n    static const int table[] = {\n        0,  1, 2,  6,  3,  11, 7,\
     \  16, 4,  14, 12, 21, 8,  23, 17, 26,\n        31, 5, 10, 15, 13, 20, 22, 25,\
@@ -164,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/aoj/bits.test.cpp
   requiredBy: []
-  timestamp: '2021-12-09 20:34:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-09 21:00:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/bits.test.cpp
 layout: document

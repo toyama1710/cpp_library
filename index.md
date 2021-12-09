@@ -22,19 +22,19 @@ data:
       title: bbst/persistent_avl_set.hpp
   - name: bit
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/clz.hpp
       title: bit/clz.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ctz.hpp
       title: bit/ctz.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/lsb.hpp
       title: bit/lsb.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/msb.hpp
       title: bit/msb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/pop_count.hpp
       title: bit/pop_count.hpp
   - name: cht
@@ -178,7 +178,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: util/reverse_cmp.hpp
       title: util/reverse_cmp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: util/xorshift.hpp
       title: util/xorshift.hpp
   verificationCategories:
@@ -271,7 +271,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D_persistent.test.cpp
       title: test/aoj/ITP2_7_D_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/bits.test.cpp
       title: test/aoj/bits.test.cpp
   - name: test/yosupo

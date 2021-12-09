@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/msb.hpp
     title: bit/msb.hpp
   _extendedRequiredBy: []
