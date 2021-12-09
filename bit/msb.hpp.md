@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2I.test.cpp
     title: test/aoj/DSL2I.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/bits.test.cpp
     title: test/aoj/bits.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,43 +30,41 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum.test.cpp
     title: test/yosupo/static_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"bit/msb.hpp\"\n\n\n\n#include <cstdint>\n\ninline uint64_t\
-    \ msb32_(uint64_t x) {\n    int r = 0;\n    if (x >> 16) x >>= 16, r |= 16;\n\
-    \    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x\
-    \ >> 2) x >>= 2, r |= 2;\n    return 1u << (r | (x >> 1));\n};\ninline uint32_t\
-    \ msb32(uint32_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n    return\
-    \ 1u << (31 - __builtin_clz(x));\n#else\n    return msb32_(x);\n#endif\n};\n\n\
-    inline uint64_t msb64_(uint64_t x) {\n    int r = 0;\n    if (x >> 32) x >>= 32,\
-    \ r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >> 8) x >>= 8, r |=\
-    \ 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>= 2, r |= 2;\n   \
-    \ return 1ull << (r | (x >> 1));\n};\ninline uint64_t msb64(uint64_t x) {\n  \
-    \  if (x == 0) return 0;\n#ifdef __has_builtin\n    return 1ull << (63 - __builtin_clzll(x));\n\
-    #else\n    return msb64_(x);\n#endif\n};\n\n\n"
-  code: "#ifndef MSB_HPP\n#define MSB_HPP\n\n#include <cstdint>\n\ninline uint64_t\
-    \ msb32_(uint64_t x) {\n    int r = 0;\n    if (x >> 16) x >>= 16, r |= 16;\n\
-    \    if (x >> 8) x >>= 8, r |= 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x\
-    \ >> 2) x >>= 2, r |= 2;\n    return 1u << (r | (x >> 1));\n};\ninline uint32_t\
-    \ msb32(uint32_t x) {\n    if (x == 0) return 0;\n#ifdef __has_builtin\n    return\
-    \ 1u << (31 - __builtin_clz(x));\n#else\n    return msb32_(x);\n#endif\n};\n\n\
-    inline uint64_t msb64_(uint64_t x) {\n    int r = 0;\n    if (x >> 32) x >>= 32,\
-    \ r |= 32;\n    if (x >> 16) x >>= 16, r |= 16;\n    if (x >> 8) x >>= 8, r |=\
-    \ 8;\n    if (x >> 4) x >>= 4, r |= 4;\n    if (x >> 2) x >>= 2, r |= 2;\n   \
-    \ return 1ull << (r | (x >> 1));\n};\ninline uint64_t msb64(uint64_t x) {\n  \
-    \  if (x == 0) return 0;\n#ifdef __has_builtin\n    return 1ull << (63 - __builtin_clzll(x));\n\
-    #else\n    return msb64_(x);\n#endif\n};\n\n#endif"
+  bundledCode: "#line 1 \"bit/msb.hpp\"\n\n\n\n#include <cstdint>\n\ninline uint32_t\
+    \ msb32_(uint32_t bit) {\n    bit |= bit >> 1;\n    bit |= bit >> 2;\n    bit\
+    \ |= bit >> 4;\n    bit |= bit >> 8;\n    bit |= bit >> 16;\n    return bit ^\
+    \ (bit >> 1);\n};\ninline uint32_t msb32(uint32_t x) {\n    if (x == 0) return\
+    \ 0;\n#ifdef __has_builtin\n    return 1u << (31 - __builtin_clz(x));\n#else\n\
+    \    return msb32_(x);\n#endif\n};\n\ninline uint64_t msb64_(uint64_t bit) {\n\
+    \    bit |= bit >> 1;\n    bit |= bit >> 2;\n    bit |= bit >> 4;\n    bit |=\
+    \ bit >> 8;\n    bit |= bit >> 16;\n    bit |= bit >> 32;\n    return bit ^ (bit\
+    \ >> 1);\n};\ninline uint64_t msb64(uint64_t x) {\n    if (x == 0) return 0;\n\
+    #ifdef __has_builtin\n    return 1ull << (63 - __builtin_clzll(x));\n#else\n \
+    \   return msb64_(x);\n#endif\n};\n\n\n"
+  code: "#ifndef MSB_HPP\n#define MSB_HPP\n\n#include <cstdint>\n\ninline uint32_t\
+    \ msb32_(uint32_t bit) {\n    bit |= bit >> 1;\n    bit |= bit >> 2;\n    bit\
+    \ |= bit >> 4;\n    bit |= bit >> 8;\n    bit |= bit >> 16;\n    return bit ^\
+    \ (bit >> 1);\n};\ninline uint32_t msb32(uint32_t x) {\n    if (x == 0) return\
+    \ 0;\n#ifdef __has_builtin\n    return 1u << (31 - __builtin_clz(x));\n#else\n\
+    \    return msb32_(x);\n#endif\n};\n\ninline uint64_t msb64_(uint64_t bit) {\n\
+    \    bit |= bit >> 1;\n    bit |= bit >> 2;\n    bit |= bit >> 4;\n    bit |=\
+    \ bit >> 8;\n    bit |= bit >> 16;\n    bit |= bit >> 32;\n    return bit ^ (bit\
+    \ >> 1);\n};\ninline uint64_t msb64(uint64_t x) {\n    if (x == 0) return 0;\n\
+    #ifdef __has_builtin\n    return 1ull << (63 - __builtin_clzll(x));\n#else\n \
+    \   return msb64_(x);\n#endif\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: bit/msb.hpp
   requiredBy:
   - segment_tree/lazy_segment_tree.hpp
   - sparse_table/disjoint_sparse_table.hpp
-  timestamp: '2021-12-07 23:48:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-09 20:34:48+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/static_range_sum.test.cpp
