@@ -3,6 +3,7 @@
 
 #include <bits/stdc++.h>
 
+#include "../../bit/clz.hpp"
 #include "../../bit/ctz.hpp"
 #include "../../bit/lsb.hpp"
 #include "../../bit/msb.hpp"
@@ -32,10 +33,16 @@ int main() {
     rep(i, 1 << 25) {
         u64 bit64 = rnd64();
         unsigned bit32 = rnd32();
+
         assert(ctz32_(bit32) == __builtin_ctz(bit32));
         assert(ctz64(bit64) == __builtin_ctzll(bit64));
+
+        assert(clz32_(bit32) == __builtin_clz(bit32));
+        assert(clz64(bit64) == __builtin_clzll(bit64));
+
         assert(popcnt32_(bit32) == __builtin_popcount(bit32));
         assert(popcnt64_(bit64) == __builtin_popcountll(bit64));
+
         assert(msb32_(bit32) == 1u << (31 - __builtin_clz(bit32)));
         assert(msb64_(bit64) == 1ull << (63 - __builtin_clzll(bit64)));
     }
@@ -43,16 +50,22 @@ int main() {
     rep(i, 32) {
         assert(msb32_(rnd32() | (1u << i)) >= 1u << i);
         assert(msb64_(rnd64() | (1ull << i)) >= 1ull << i);
+
         assert(ctz32_(1u << i) == i);
         assert(ctz32_(3u << i) == i);
+
         assert(ctz32_(21u << i) == i);
+        assert(clz32_(1u << i) == 31 - i);
     }
     rep(i, 64) {
         assert(msb64_(rnd32() | (1ull << i)) >= 1ull << i);
         assert(msb64_(rnd64() | (1ull << i)) >= 1ull << i);
+
         assert(ctz64_(1ull << i) == i);
         assert(ctz64_(3ull << i) == i);
+
         assert(ctz64_(21ull << i) == i);
+        assert(clz64_(1ull << i) == 63 - i);
     }
 
     cout << "Hello World" << endl;
