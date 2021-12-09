@@ -28,6 +28,7 @@
 "test/aoj/IPT1_6_C.test.cpp": "2021-12-07 20:36:57 +0900",
 "test/aoj/ITP2_7_D.test.cpp": "2021-09-14 11:02:46 +0900",
 "test/aoj/ITP2_7_D_persistent.test.cpp": "2021-09-14 11:02:46 +0900",
+"test/aoj/bits.test.cpp": "2021-12-09 21:00:36 +0900",
 "test/yosupo/associative_array.test.cpp": "2021-09-14 11:02:46 +0900",
 "test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp": "2021-10-10 17:25:53 +0900",
 "test/yosupo/lca_doubling.test.cpp": "2021-09-08 22:35:14 +0900",
