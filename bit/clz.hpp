@@ -23,7 +23,7 @@ inline int clz32(uint32_t bit) {
 #ifdef __has_builtin
     return __builtin_clz(bit);
 #else
-    return ctz32_(bit);
+    return clz32_(bit);
 #endif
 };
 
@@ -49,7 +49,7 @@ inline int clz64(uint64_t bit) {
 #ifdef __has_builtin
     return __builtin_clzll(bit);
 #else
-    return ctz64_(bit);
+    return clz64_(bit);
 #endif
 };
 
