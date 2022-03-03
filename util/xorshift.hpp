@@ -4,8 +4,8 @@
 #include <cstdint>
 
 struct xorshift32 {
-    uint32_t seed = 1710;
-    xorshift32(uint32_t seed) : seed(seed){};
+    uint32_t seed;
+    xorshift32(uint32_t seed = 1710) : seed(seed){};
     void set_seed(uint32_t s) { seed = s; };
     uint32_t gen() {
         seed = seed ^ (seed << 13);
@@ -17,8 +17,8 @@ struct xorshift32 {
 };
 
 struct xorshift64 {
-    uint64_t seed = 1710;
-    xorshift64(uint64_t seed) : seed(seed){};
+    uint64_t seed;
+    xorshift64(uint64_t seed = 1710) : seed(seed){};
     void set_seed(uint64_t s) { seed = s; };
     uint64_t gen() {
         seed = seed ^ (seed << 13);
