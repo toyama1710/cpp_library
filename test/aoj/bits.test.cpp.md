@@ -94,12 +94,12 @@ data:
     \ (bits >> 16 & 0x0000ffff);\n    return bits;\n};\ninline int popcnt32(uint32_t\
     \ bits) {\n#ifdef __has_builtin\n    return __builtin_popcount(bits);\n#else\n\
     \    return popcnt32_(bits);\n#endif\n};\n\n\n#line 1 \"util/xorshift.hpp\"\n\n\
-    \n\n#line 5 \"util/xorshift.hpp\"\n\nstruct xorshift32 {\n    uint32_t seed =\
-    \ 1710;\n    xorshift32(uint32_t seed) : seed(seed){};\n    void set_seed(uint32_t\
+    \n\n#line 5 \"util/xorshift.hpp\"\n\nstruct xorshift32 {\n    uint32_t seed;\n\
+    \    xorshift32(uint32_t seed = 1710) : seed(seed){};\n    void set_seed(uint32_t\
     \ s) { seed = s; };\n    uint32_t gen() {\n        seed = seed ^ (seed << 13);\n\
     \        seed = seed ^ (seed >> 17);\n        seed = seed ^ (seed << 5);\n   \
     \     return seed;\n    };\n    uint32_t operator()() { return gen(); };\n};\n\
-    \nstruct xorshift64 {\n    uint64_t seed = 1710;\n    xorshift64(uint64_t seed)\
+    \nstruct xorshift64 {\n    uint64_t seed;\n    xorshift64(uint64_t seed = 1710)\
     \ : seed(seed){};\n    void set_seed(uint64_t s) { seed = s; };\n    uint64_t\
     \ gen() {\n        seed = seed ^ (seed << 13);\n        seed = seed ^ (seed >>\
     \ 7);\n        seed = seed ^ (seed << 17);\n        return seed;\n    };\n   \
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/aoj/bits.test.cpp
   requiredBy: []
-  timestamp: '2021-12-09 21:00:36+09:00'
+  timestamp: '2022-03-04 02:20:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/bits.test.cpp

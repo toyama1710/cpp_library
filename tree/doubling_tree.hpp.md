@@ -109,8 +109,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/lca_doubling.test.cpp
-  - test/aoj/2270.test.cpp
   - test/aoj/GRL5C_doubling.test.cpp
+  - test/aoj/2270.test.cpp
 documentation_of: tree/doubling_tree.hpp
 layout: document
 redirect_from:

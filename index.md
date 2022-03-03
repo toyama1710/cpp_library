@@ -74,6 +74,11 @@ data:
     - icon: ':warning:'
       path: graph/dijkstra.cpp
       title: graph/dijkstra.cpp
+  - name: hash_map
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: hash_map/array_mapped_trie.hpp
+      title: hash_map/array_mapped_trie.hpp
   - name: heap
     pages:
     - icon: ':warning:'
@@ -279,6 +284,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/associative_array.test.cpp
       title: test/yosupo/associative_array.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/associative_array_amt.test.cpp
+      title: test/yosupo/associative_array_amt.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp

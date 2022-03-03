@@ -256,11 +256,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/associative_array.test.cpp
-  - test/aoj/0343.test.cpp
-  - test/aoj/2270.test.cpp
-  - test/aoj/ALDS1_9_C_AVLset.test.cpp
-  - test/aoj/ITP2_7_D.test.cpp
   - test/aoj/ITP2_7_D_persistent.test.cpp
+  - test/aoj/ALDS1_9_C_AVLset.test.cpp
+  - test/aoj/0343.test.cpp
+  - test/aoj/ITP2_7_D.test.cpp
+  - test/aoj/2270.test.cpp
 documentation_of: bbst/avl_set.hpp
 layout: document
 redirect_from:
