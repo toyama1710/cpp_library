@@ -1,4 +1,5 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=3209"
+#include <cassert>
 #include <iostream>
 
 #include "../../math/modint.hpp"
@@ -22,6 +23,9 @@ int main() {
 
     constexpr int mod = int(1e9) + 7;
     int n;
+
+    assert((ModInt<mod>(0) - 1).d == mod - 1);
+    assert(ModInt<mod>(-1).d == mod - 1);
 
     while (cin >> n, n > 0) {
         ModInt<mod> a, b, c, d;

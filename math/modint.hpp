@@ -9,7 +9,7 @@ struct ModInt {
     using i64 = long long;
     u64 d;
 
-    ModInt(const i64 x = 0) : d((x % p + p) % p){};
+    ModInt(const i64 x = 0) : d((x % i64(p) + p) % p){};
     ModInt(const ModInt &) = default;
 
     ModInt operator+(ModInt x) const {
@@ -19,10 +19,10 @@ struct ModInt {
             return ModInt(d + x.d);
     };
     ModInt operator-(ModInt x) const {
-        if (d - x.d < 0)
-            return ModInt(d - x.d + p);
-        else
+        if (d >= x.d)
             return ModInt(d - x.d);
+        else
+            return ModInt(d + p - x.d);
     };
     ModInt operator*(ModInt x) const { return ModInt(d * x.d); }
     ModInt operator/(ModInt x) const { return ModInt(*this * x.inv()); }
