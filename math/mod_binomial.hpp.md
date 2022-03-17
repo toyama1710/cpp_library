@@ -17,12 +17,12 @@ data:
   bundledCode: "#line 1 \"math/mod_binomial.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <cstdint>\n\n#line 1 \"math/modint.hpp\"\n\n\n\n#include <iostream>\n\ntemplate\
     \ <uint64_t p>\nstruct ModInt {\n    using u64 = unsigned long long;\n    using\
-    \ i64 = long long;\n    u64 d;\n\n    ModInt(const i64 x = 0) : d((x % p + p)\
-    \ % p){};\n    ModInt(const ModInt &) = default;\n\n    ModInt operator+(ModInt\
+    \ i64 = long long;\n    u64 d;\n\n    ModInt(const i64 x = 0) : d((x % i64(p)\
+    \ + p) % p){};\n    ModInt(const ModInt &) = default;\n\n    ModInt operator+(ModInt\
     \ x) const {\n        if (d + x.d >= p)\n            return ModInt(d + x.d - p);\n\
     \        else\n            return ModInt(d + x.d);\n    };\n    ModInt operator-(ModInt\
-    \ x) const {\n        if (d - x.d < 0)\n            return ModInt(d - x.d + p);\n\
-    \        else\n            return ModInt(d - x.d);\n    };\n    ModInt operator*(ModInt\
+    \ x) const {\n        if (d >= x.d)\n            return ModInt(d - x.d);\n   \
+    \     else\n            return ModInt(d + p - x.d);\n    };\n    ModInt operator*(ModInt\
     \ x) const { return ModInt(d * x.d); }\n    ModInt operator/(ModInt x) const {\
     \ return ModInt(*this * x.inv()); }\n\n    static ModInt pow(ModInt x, uint64_t\
     \ a) {\n        ModInt ret = 1;\n        while (a) {\n            if (a & 1) ret\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: math/mod_binomial.hpp
   requiredBy: []
-  timestamp: '2021-11-23 23:13:24+09:00'
+  timestamp: '2022-03-17 22:00:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1501.test.cpp
