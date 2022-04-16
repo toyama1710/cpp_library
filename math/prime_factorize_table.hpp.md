@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1418.test.cpp
     title: test/aoj/1418.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1418_2.test.cpp
+    title: test/aoj/1418_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -41,6 +44,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1418.test.cpp
+  - test/aoj/1418_2.test.cpp
 documentation_of: math/prime_factorize_table.hpp
 layout: document
 redirect_from:
