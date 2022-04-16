@@ -98,6 +98,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: math/modint.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/prime_factorize_table.hpp
+      title: math/prime_factorize_table.hpp
   - name: queue
     pages:
     - icon: ':heavy_check_mark:'
@@ -198,6 +201,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1068.test.cpp
       title: test/aoj/1068.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1418.test.cpp
+      title: test/aoj/1418.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1501.test.cpp
       title: test/aoj/1501.test.cpp

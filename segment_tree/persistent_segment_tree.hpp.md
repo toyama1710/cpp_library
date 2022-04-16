@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1418.test.cpp
+    title: test/aoj/1418.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rectangle_sum1.test.cpp
     title: test/yosupo/rectangle_sum1.test.cpp
   _isVerificationFailed: false
@@ -84,6 +87,7 @@ data:
   timestamp: '2020-07-09 16:11:51+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/1418.test.cpp
   - test/yosupo/rectangle_sum1.test.cpp
 documentation_of: segment_tree/persistent_segment_tree.hpp
 layout: document

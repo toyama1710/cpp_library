@@ -252,9 +252,9 @@ data:
   timestamp: '2021-10-10 17:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/1508.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
-  - test/aoj/1508.test.cpp
 documentation_of: bbst/avl_array.hpp
 layout: document
 redirect_from:
