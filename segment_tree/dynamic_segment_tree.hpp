@@ -1,5 +1,7 @@
-//===
-template<class Monoid>
+#ifndef DYNAMIC_SEGMENT_TREE_HPP
+#define DYNAMIC_SEGMENT_TREE_HPP
+
+template <class Monoid>
 struct DynamicSegmentTree {
     using T = typename Monoid::value_type;
     using llong = long long;
@@ -7,7 +9,7 @@ struct DynamicSegmentTree {
     struct Node {
         T v;
         Node *left, *right;
-        Node(T v):v(v), left(nullptr), right(nullptr) {};
+        Node(T v) : v(v), left(nullptr), right(nullptr){};
     };
 
     Node *root = nullptr;
@@ -28,8 +30,7 @@ struct DynamicSegmentTree {
             while (i >= R) R += R - L;
             while (i < L) L -= R - L;
             root = new Node(Monoid::identity());
-        }
-        else {
+        } else {
             Node *tmp;
             while (i >= R) {
                 R += R - L;
@@ -61,8 +62,7 @@ struct DynamicSegmentTree {
         if (k < mid) {
             if (!node->left) node->left = new Node(Monoid::identity());
             update(node->left, nl, (nl + nr) / 2, k, v);
-        }
-        else {
+        } else {
             if (!node->right) node->right = new Node(Monoid::identity());
             update(node->right, (nl + nr) / 2, nr, k, v);
         }
@@ -82,18 +82,15 @@ struct DynamicSegmentTree {
 
         T lv = Monoid::identity(), rv = Monoid::identity();
         llong mid = (nl + nr) / 2;
-        if (node->left && ql < mid && nl < qr) {
+        if (node->left && ql < mid && nl < qr)
             lv = fold(node->left, nl, mid, ql, qr);
-        }
-        if (node->right && ql < nr && mid < qr) {
+        if (node->right && ql < nr && mid < qr)
             rv = fold(node->right, mid, nr, ql, qr);
-        }
 
         return Monoid::operation(lv, rv);
     };
-    
-    T operator[] (const llong k) {
-        return fold(k, k + 1);
-    };
+
+    T operator[](const llong k) { return fold(k, k + 1); };
 };
-//===
+
+#endif

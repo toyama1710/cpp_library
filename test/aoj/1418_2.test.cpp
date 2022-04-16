@@ -6,7 +6,7 @@
 #include <set>
 
 #include "../../math/prime_factorize_table.hpp"
-#include "../../segment_tree/persistent_segment_tree.hpp"
+#include "../../segment_tree/dynamic_segment_tree.hpp"
 
 #define _overload(_1, _2, _3, _4, name, ...) name
 #define _rep1(Itr, N) _rep3(Itr, 0, N, 1)
@@ -20,12 +20,13 @@
 using namespace std;
 using i64 = int64_t;
 using u64 = uint64_t;
+using u8 = unsigned char;
 
 struct M {
-    using T = array<i64, 3>;
+    using T = array<int, 4>;
     using value_type = T;
-    const static i64 inf = 1ll << 60;
-    static T identity() { return {inf, inf, inf}; };
+    const static u8 inf = 100;
+    static T identity() { return {inf, inf, inf, 0}; };
     static T operation(T lhs, T rhs) {
         T ret;
         int li = 0, ri = 0;
@@ -38,8 +39,16 @@ struct M {
                 ri++;
             }
         }
+        ret[3] = lhs[3] + rhs[3];
         return ret;
     };
+};
+
+struct SUM {
+    using T = int;
+    using value_type = T;
+    static T identity() { return 0; };
+    static T operation(T lhs, T rhs) { return lhs + rhs; };
 };
 
 int main() {
@@ -48,15 +57,10 @@ int main() {
 
     i64 n, q;
     cin >> n >> q;
-    vector<i64> a(n);
+    vector<int> a(n);
     for (auto &vs : a) cin >> vs;
 
-    vector<PersistentSegmentTree<M>> seg;
-    {
-        PersistentSegmentTree<M> sg(n);
-        rep(i, n) sg = sg.update(i, {0, M::inf, M::inf});
-        seg.assign(1'000'000 + 1, sg);
-    }
+    vector<DynamicSegmentTree<M>> seg(1'000'000 + 1);
 
     PrimeFactorizeTable fact(1'000'000 + 1);
 
@@ -64,7 +68,7 @@ int main() {
         if (a[i] > 1) {
             for (auto e : fact.factorize(a[i])) {
                 auto [p, cnt] = e;
-                seg[p] = seg[p].update(i, {cnt, M::inf, M::inf});
+                seg[p].update(i, {u8(cnt), M::inf, M::inf, 1});
             }
         }
     }
@@ -81,7 +85,7 @@ int main() {
         return ret;
     };
     auto enumerate = [&](i64 l, i64 k) {
-        set<i64> st;
+        set<int> st;
         rep(i, l, l + k + 1) {
             if (a[i] > 1) {
                 for (auto e : fact.factorize(a[i])) {
@@ -102,13 +106,13 @@ int main() {
             if (a[i] > 1) {
                 for (auto e : fact.factorize(a[i])) {
                     auto [p, cnt] = e;
-                    seg[p] = seg[p].update(i, {0, M::inf, M::inf});
+                    seg[p].update(i, M::identity());
                 }
             }
             if (x > 1) {
                 for (auto e : fact.factorize(x)) {
                     auto [p, cnt] = e;
-                    seg[p] = seg[p].update(i, {cnt, M::inf, M::inf});
+                    seg[p].update(i, {u8(cnt), M::inf, M::inf, 1});
                 }
             }
             a[i] = x;
@@ -118,7 +122,13 @@ int main() {
             --l;
             i64 ans = 1;
             for (auto p : enumerate(l, k)) {
-                i64 x = seg[p].fold(l, r)[k];
+                i64 z = (r - l) - seg[p].fold(l, r)[3];
+                i64 x;
+                if (z > k)
+                    x = 0;
+                else
+                    x = seg[p].fold(l, r)[k - z];
+
                 if (x == M::inf) x = 0;
                 ans *= power(p, x);
             }
