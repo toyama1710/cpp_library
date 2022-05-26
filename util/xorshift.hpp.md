@@ -41,8 +41,8 @@ data:
   timestamp: '2022-03-04 02:20:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/bits.test.cpp
   - test/yosupo/associative_array_amt.test.cpp
+  - test/aoj/bits.test.cpp
 documentation_of: util/xorshift.hpp
 layout: document
 redirect_from:

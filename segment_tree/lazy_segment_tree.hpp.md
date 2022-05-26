@@ -148,11 +148,11 @@ data:
   timestamp: '2021-12-09 20:34:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2F_1.test.cpp
-  - test/aoj/DSL2G.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL2H.test.cpp
   - test/aoj/DSL2I.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/aoj/DSL2F_1.test.cpp
+  - test/aoj/DSL2G.test.cpp
 documentation_of: segment_tree/lazy_segment_tree.hpp
 layout: document
 redirect_from:
