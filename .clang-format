@@ -1,0 +1,12 @@
+---
+Language: 'Cpp'
+BasedOnStyle: Google
+AlignAfterOpenBracket: 'Align'
+AlignEscapedNewlines: 'Left'
+AlignOperands: 'Align'
+AlignTrailingComments: true
+TabWidth: 4
+IndentWidth: 4
+UseCRLF: false
+UseTab: 'Never'
+BreakBeforeBraces: 'Custom'
