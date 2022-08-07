@@ -1,66 +1,42 @@
 #ifndef COORDINATE_COMPRESSION_HPP
 #define COORDINATE_COMPRESSION_HPP
-// header file section
-#include <vector>
-#include <iterator>
 #include <algorithm>
-#include <cassert>
+#include <vector>
 
-//===
-// library section
-// <iterator>
+template <class T>
 struct CoordinateCompression {
-    using llong = long long;
-    std::vector<llong> p;
+    std::vector<T> p;
 
-#ifndef NDEBUG
-    bool builded = false;
-#endif
-
-    CoordinateCompression () {};
     template <class InputItr>
-    CoordinateCompression (InputItr first, InputItr last) {
-        p.reserve(std::distance(first, last));
-        for (auto itr = first; itr != last; itr++) {
-            p.push_back(*itr);
-        }
-        build();
-    };
-
-    void build() {
+    CoordinateCompression(InputItr first, InputItr last) : p(first, last) {
         std::sort(p.begin(), p.end());
         p.erase(unique(p.begin(), p.end()), p.end());
-#ifndef NDEBUG
-        builded = true;
-#endif
     };
-
-    void add(llong a) {
-        p.push_back(a);
-#ifndef NDEBUG
-        builded = false;
-#endif
-    };
-    void push(llong a) {
-        add(a);
-    }
-
-    llong zip(llong x) {
-#ifndef NDEBUG
-        assert(builded);
-#endif
+    int zip(T x) {
         return std::lower_bound(p.begin(), p.end(), x) - p.begin();
     };
-    llong unzip(llong x) {
-#ifndef NDEBUG
-        assert(builded);
-#endif
+    T unzip(int x) {
         return p[x];
     };
-
-    llong size() {
+    int size() {
         return p.size();
     };
 };
-//===
+
+template <class T>
+struct CoordinateCompressionBuilder {
+    std::vector<T> p;
+
+    CoordinateCompressionBuilder() = default;
+    template <class InputItr>
+    CoordinateCompressionBuilder(InputItr first, InputItr last)
+        : p(first, last){};
+    void push(T x) {
+        p.push_back(x);
+    };
+    CoordinateCompression<T> build() {
+        return CoordinateCompression<T>(p.begin(), p.end());
+    };
+};
+
 #endif
