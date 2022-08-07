@@ -19,10 +19,10 @@ data:
     - https://judge.yosupo.jp/problem/rectangle_sum
   bundledCode: "#line 1 \"test/yosupo/rectangle_sum1.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/rectangle_sum\"\n// header file section\n#include\
-    \ <iostream>\n#include <cstdio>\n#include <cfloat>\n#include <vector>\n#include\
-    \ <queue>\n#include <stack>\n#include <map>\n#include <set>\n#include <bitset>\n\
-    #include <functional>\n#include <numeric>\n#include <algorithm>\n#include <tuple>\n\
-    #line 1 \"segment_tree/persistent_segment_tree.hpp\"\n\n\n\n#include <cstddef>\n\
+    \ <algorithm>\n#include <bitset>\n#include <cfloat>\n#include <cstdio>\n#include\
+    \ <functional>\n#include <iostream>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <tuple>\n#include <vector>\n\
+    \n#line 1 \"segment_tree/persistent_segment_tree.hpp\"\n\n\n\n#include <cstddef>\n\
     #include <cstdint>\n#line 7 \"segment_tree/persistent_segment_tree.hpp\"\n#include\
     \ <iterator>\n#line 9 \"segment_tree/persistent_segment_tree.hpp\"\n\ntemplate\
     \ <class Monoid>\nstruct PersistentSegmentTree {\n    using uint = size_t;\n \
@@ -57,74 +57,74 @@ data:
     \                              update((nl + nr) / 2, nr, idx, d, np->r));\n  \
     \  };\n\n    PersistentSegmentTree get_tree() { return *this; };\n\n    T operator[](uint\
     \ idx) { return fold(idx, idx + 1, 0, n, root); };\n};\n\n\n#line 1 \"util/coordinate_compression.hpp\"\
-    \n\n\n// header file section\n#line 7 \"util/coordinate_compression.hpp\"\n#include\
-    \ <cassert>\n\n//===\n// library section\n// <iterator>\nstruct CoordinateCompression\
-    \ {\n    using llong = long long;\n    std::vector<llong> p;\n\n#ifndef NDEBUG\n\
-    \    bool builded = false;\n#endif\n\n    CoordinateCompression () {};\n    template\
-    \ <class InputItr>\n    CoordinateCompression (InputItr first, InputItr last)\
-    \ {\n        p.reserve(std::distance(first, last));\n        for (auto itr = first;\
-    \ itr != last; itr++) {\n            p.push_back(*itr);\n        }\n        build();\n\
-    \    };\n\n    void build() {\n        std::sort(p.begin(), p.end());\n      \
-    \  p.erase(unique(p.begin(), p.end()), p.end());\n#ifndef NDEBUG\n        builded\
-    \ = true;\n#endif\n    };\n\n    void add(llong a) {\n        p.push_back(a);\n\
-    #ifndef NDEBUG\n        builded = false;\n#endif\n    };\n    void push(llong\
-    \ a) {\n        add(a);\n    }\n\n    llong zip(llong x) {\n#ifndef NDEBUG\n \
-    \       assert(builded);\n#endif\n        return std::lower_bound(p.begin(), p.end(),\
-    \ x) - p.begin();\n    };\n    llong unzip(llong x) {\n#ifndef NDEBUG\n      \
-    \  assert(builded);\n#endif\n        return p[x];\n    };\n\n    llong size()\
-    \ {\n        return p.size();\n    };\n};\n//===\n\n#line 18 \"test/yosupo/rectangle_sum1.test.cpp\"\
-    \n\nusing namespace std;\nusing llong = long long;\n\nstruct Monoid {\n    using\
-    \ value_type = llong;\n    static llong operation(llong a, llong b) {\n      \
-    \  return a + b;\n    };\n    static llong identity() {\n        return 0;\n \
-    \   }\n};\n\nllong n, q;\nvector<PersistentSegmentTree<Monoid>> v;\nvector<tuple<llong,\
-    \ llong, llong>> p;\nCoordinateCompression x_axis;\nCoordinateCompression y_axis;\n\
-    \nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n    cin\
-    \ >> n >> q;\n\n    for (int i = 0; i < n; i++) {\n        llong x, y, w;\n  \
-    \      cin >> x >> y >> w;\n        p.push_back(tie(y, x, w));\n        x_axis.add(x);\n\
-    \        y_axis.add(y);\n    }\n\n    sort(p.begin(), p.end());\n    x_axis.build();\n\
-    \    y_axis.build();\n\n    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));\n\
-    \n    for (int i = 0; i < p.size(); i++) {\n        llong x, y, w;\n        tie(y,\
-    \ x, w) = p[i];\n        x = x_axis.zip(x);\n        y = y_axis.zip(y);\n\n  \
-    \      if (v.size() <= y) {\n            v.push_back(v[y - 1]);\n        }\n\n\
-    \        v[y] = v[y].update(x, v[y][x] + w);\n    }\n\n    for (int i = 0; i <\
-    \ q; i++) {\n        llong l, d, r, u;\n        cin >> l >> d >> r >> u;\n\n \
-    \       l = x_axis.zip(l);\n        r = x_axis.zip(r);\n        d = y_axis.zip(d)\
-    \ - 1;\n        u = y_axis.zip(u) - 1;\n\n        if (d >= 0) \n            cout\
-    \ << v[u].fold(l, r) - v[d].fold(l, r) << '\\n';\n        else if (u >= 0)\n \
-    \           cout << v[u].fold(l, r) << '\\n';\n        else\n            cout\
-    \ << 0 << '\\n';\n    }\n\n    return 0;\n};\n\n"
+    \n\n\n#line 5 \"util/coordinate_compression.hpp\"\n\ntemplate <class T>\nstruct\
+    \ CoordinateCompression {\n    std::vector<T> p;\n\n    template <class InputItr>\n\
+    \    CoordinateCompression(InputItr first, InputItr last) : p(first, last) {\n\
+    \        std::sort(p.begin(), p.end());\n        p.erase(unique(p.begin(), p.end()),\
+    \ p.end());\n    };\n    int zip(T x) {\n        return std::lower_bound(p.begin(),\
+    \ p.end(), x) - p.begin();\n    };\n    T unzip(int x) {\n        return p[x];\n\
+    \    };\n    int size() {\n        return p.size();\n    };\n};\n\ntemplate <class\
+    \ T>\nstruct CoordinateCompressionBuilder {\n    std::vector<T> p;\n\n    CoordinateCompressionBuilder()\
+    \ = default;\n    template <class InputItr>\n    CoordinateCompressionBuilder(InputItr\
+    \ first, InputItr last)\n        : p(first, last){};\n    void push(T x) {\n \
+    \       p.push_back(x);\n    };\n    CoordinateCompression<T> build() {\n    \
+    \    return CoordinateCompression<T>(p.begin(), p.end());\n    };\n};\n\n\n#line\
+    \ 19 \"test/yosupo/rectangle_sum1.test.cpp\"\n\nusing namespace std;\nusing llong\
+    \ = long long;\n\nstruct Monoid {\n    using value_type = llong;\n    static llong\
+    \ operation(llong a, llong b) {\n        return a + b;\n    };\n    static llong\
+    \ identity() {\n        return 0;\n    }\n};\n\nllong n, q;\nvector<PersistentSegmentTree<Monoid>>\
+    \ v;\nvector<tuple<llong, llong, llong>> p;\nCoordinateCompressionBuilder<llong>\
+    \ x_axis_builder;\nCoordinateCompressionBuilder<llong> y_axis_builder;\n\nint\
+    \ main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n    cin >>\
+    \ n >> q;\n\n    for (int i = 0; i < n; i++) {\n        llong x, y, w;\n     \
+    \   cin >> x >> y >> w;\n        p.push_back(tie(y, x, w));\n        x_axis_builder.push(x);\n\
+    \        y_axis_builder.push(y);\n    }\n\n    sort(p.begin(), p.end());\n   \
+    \ auto x_axis = x_axis_builder.build();\n    auto y_axis = y_axis_builder.build();\n\
+    \n    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));\n\n    for (int\
+    \ i = 0; i < p.size(); i++) {\n        llong x, y, w;\n        tie(y, x, w) =\
+    \ p[i];\n        x = x_axis.zip(x);\n        y = y_axis.zip(y);\n\n        if\
+    \ (v.size() <= y) {\n            v.push_back(v[y - 1]);\n        }\n\n       \
+    \ v[y] = v[y].update(x, v[y][x] + w);\n    }\n\n    for (int i = 0; i < q; i++)\
+    \ {\n        llong l, d, r, u;\n        cin >> l >> d >> r >> u;\n\n        l\
+    \ = x_axis.zip(l);\n        r = x_axis.zip(r);\n        d = y_axis.zip(d) - 1;\n\
+    \        u = y_axis.zip(u) - 1;\n\n        if (d >= 0)\n            cout << v[u].fold(l,\
+    \ r) - v[d].fold(l, r) << '\\n';\n        else if (u >= 0)\n            cout <<\
+    \ v[u].fold(l, r) << '\\n';\n        else\n            cout << 0 << '\\n';\n \
+    \   }\n\n    return 0;\n};\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n// header\
-    \ file section\n#include <iostream>\n#include <cstdio>\n#include <cfloat>\n#include\
-    \ <vector>\n#include <queue>\n#include <stack>\n#include <map>\n#include <set>\n\
-    #include <bitset>\n#include <functional>\n#include <numeric>\n#include <algorithm>\n\
-    #include <tuple>\n#include \"../../segment_tree/persistent_segment_tree.hpp\"\n\
-    #include \"../../util/coordinate_compression.hpp\"\n\nusing namespace std;\nusing\
-    \ llong = long long;\n\nstruct Monoid {\n    using value_type = llong;\n    static\
-    \ llong operation(llong a, llong b) {\n        return a + b;\n    };\n    static\
-    \ llong identity() {\n        return 0;\n    }\n};\n\nllong n, q;\nvector<PersistentSegmentTree<Monoid>>\
-    \ v;\nvector<tuple<llong, llong, llong>> p;\nCoordinateCompression x_axis;\nCoordinateCompression\
-    \ y_axis;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
+    \ file section\n#include <algorithm>\n#include <bitset>\n#include <cfloat>\n#include\
+    \ <cstdio>\n#include <functional>\n#include <iostream>\n#include <map>\n#include\
+    \ <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include <tuple>\n\
+    #include <vector>\n\n#include \"../../segment_tree/persistent_segment_tree.hpp\"\
+    \n#include \"../../util/coordinate_compression.hpp\"\n\nusing namespace std;\n\
+    using llong = long long;\n\nstruct Monoid {\n    using value_type = llong;\n \
+    \   static llong operation(llong a, llong b) {\n        return a + b;\n    };\n\
+    \    static llong identity() {\n        return 0;\n    }\n};\n\nllong n, q;\n\
+    vector<PersistentSegmentTree<Monoid>> v;\nvector<tuple<llong, llong, llong>> p;\n\
+    CoordinateCompressionBuilder<llong> x_axis_builder;\nCoordinateCompressionBuilder<llong>\
+    \ y_axis_builder;\n\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
     \    cin >> n >> q;\n\n    for (int i = 0; i < n; i++) {\n        llong x, y,\
     \ w;\n        cin >> x >> y >> w;\n        p.push_back(tie(y, x, w));\n      \
-    \  x_axis.add(x);\n        y_axis.add(y);\n    }\n\n    sort(p.begin(), p.end());\n\
-    \    x_axis.build();\n    y_axis.build();\n\n    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));\n\
-    \n    for (int i = 0; i < p.size(); i++) {\n        llong x, y, w;\n        tie(y,\
-    \ x, w) = p[i];\n        x = x_axis.zip(x);\n        y = y_axis.zip(y);\n\n  \
-    \      if (v.size() <= y) {\n            v.push_back(v[y - 1]);\n        }\n\n\
-    \        v[y] = v[y].update(x, v[y][x] + w);\n    }\n\n    for (int i = 0; i <\
-    \ q; i++) {\n        llong l, d, r, u;\n        cin >> l >> d >> r >> u;\n\n \
-    \       l = x_axis.zip(l);\n        r = x_axis.zip(r);\n        d = y_axis.zip(d)\
-    \ - 1;\n        u = y_axis.zip(u) - 1;\n\n        if (d >= 0) \n            cout\
-    \ << v[u].fold(l, r) - v[d].fold(l, r) << '\\n';\n        else if (u >= 0)\n \
-    \           cout << v[u].fold(l, r) << '\\n';\n        else\n            cout\
-    \ << 0 << '\\n';\n    }\n\n    return 0;\n};\n\n"
+    \  x_axis_builder.push(x);\n        y_axis_builder.push(y);\n    }\n\n    sort(p.begin(),\
+    \ p.end());\n    auto x_axis = x_axis_builder.build();\n    auto y_axis = y_axis_builder.build();\n\
+    \n    v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));\n\n    for (int\
+    \ i = 0; i < p.size(); i++) {\n        llong x, y, w;\n        tie(y, x, w) =\
+    \ p[i];\n        x = x_axis.zip(x);\n        y = y_axis.zip(y);\n\n        if\
+    \ (v.size() <= y) {\n            v.push_back(v[y - 1]);\n        }\n\n       \
+    \ v[y] = v[y].update(x, v[y][x] + w);\n    }\n\n    for (int i = 0; i < q; i++)\
+    \ {\n        llong l, d, r, u;\n        cin >> l >> d >> r >> u;\n\n        l\
+    \ = x_axis.zip(l);\n        r = x_axis.zip(r);\n        d = y_axis.zip(d) - 1;\n\
+    \        u = y_axis.zip(u) - 1;\n\n        if (d >= 0)\n            cout << v[u].fold(l,\
+    \ r) - v[d].fold(l, r) << '\\n';\n        else if (u >= 0)\n            cout <<\
+    \ v[u].fold(l, r) << '\\n';\n        else\n            cout << 0 << '\\n';\n \
+    \   }\n\n    return 0;\n};\n"
   dependsOn:
   - segment_tree/persistent_segment_tree.hpp
   - util/coordinate_compression.hpp
   isVerificationFile: true
   path: test/yosupo/rectangle_sum1.test.cpp
   requiredBy: []
-  timestamp: '2022-04-17 00:51:30+09:00'
+  timestamp: '2022-08-07 21:32:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum1.test.cpp

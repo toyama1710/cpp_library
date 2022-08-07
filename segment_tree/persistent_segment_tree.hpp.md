@@ -89,8 +89,8 @@ data:
   timestamp: '2022-04-17 00:51:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/rectangle_sum1.test.cpp
   - test/aoj/1418.test.cpp
+  - test/yosupo/rectangle_sum1.test.cpp
 documentation_of: segment_tree/persistent_segment_tree.hpp
 layout: document
 redirect_from:

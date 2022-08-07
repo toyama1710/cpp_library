@@ -71,18 +71,18 @@ data:
   isVerificationFile: false
   path: bit/ctz.hpp
   requiredBy:
-  - sparse_table/disjoint_sparse_table.hpp
   - segment_tree/lazy_segment_tree.hpp
+  - sparse_table/disjoint_sparse_table.hpp
   timestamp: '2021-12-09 20:34:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/static_range_sum.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/aoj/DSL2H.test.cpp
   - test/aoj/DSL2I.test.cpp
   - test/aoj/DSL2F_1.test.cpp
   - test/aoj/bits.test.cpp
   - test/aoj/DSL2G.test.cpp
+  - test/aoj/DSL2H.test.cpp
+  - test/yosupo/static_range_sum.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: bit/ctz.hpp
 layout: document
 redirect_from:

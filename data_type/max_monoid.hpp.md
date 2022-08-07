@@ -31,8 +31,8 @@ data:
   timestamp: '2021-08-19 23:45:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2A_3.test.cpp
   - test/aoj/DSL2A_2.test.cpp
+  - test/aoj/DSL2A_3.test.cpp
 documentation_of: data_type/max_monoid.hpp
 layout: document
 redirect_from:
