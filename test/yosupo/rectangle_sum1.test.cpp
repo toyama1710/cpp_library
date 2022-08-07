@@ -1,18 +1,19 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 // header file section
-#include <iostream>
-#include <cstdio>
-#include <cfloat>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <functional>
-#include <numeric>
 #include <algorithm>
+#include <bitset>
+#include <cfloat>
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
 #include <tuple>
+#include <vector>
+
 #include "../../segment_tree/persistent_segment_tree.hpp"
 #include "../../util/coordinate_compression.hpp"
 
@@ -32,8 +33,8 @@ struct Monoid {
 llong n, q;
 vector<PersistentSegmentTree<Monoid>> v;
 vector<tuple<llong, llong, llong>> p;
-CoordinateCompression x_axis;
-CoordinateCompression y_axis;
+CoordinateCompressionBuilder<llong> x_axis_builder;
+CoordinateCompressionBuilder<llong> y_axis_builder;
 
 int main() {
     cin.tie(nullptr);
@@ -44,13 +45,13 @@ int main() {
         llong x, y, w;
         cin >> x >> y >> w;
         p.push_back(tie(y, x, w));
-        x_axis.add(x);
-        y_axis.add(y);
+        x_axis_builder.push(x);
+        y_axis_builder.push(y);
     }
 
     sort(p.begin(), p.end());
-    x_axis.build();
-    y_axis.build();
+    auto x_axis = x_axis_builder.build();
+    auto y_axis = y_axis_builder.build();
 
     v.push_back(PersistentSegmentTree<Monoid>(x_axis.size()));
 
@@ -76,7 +77,7 @@ int main() {
         d = y_axis.zip(d) - 1;
         u = y_axis.zip(u) - 1;
 
-        if (d >= 0) 
+        if (d >= 0)
             cout << v[u].fold(l, r) - v[d].fold(l, r) << '\n';
         else if (u >= 0)
             cout << v[u].fold(l, r) << '\n';
@@ -86,4 +87,3 @@ int main() {
 
     return 0;
 };
-
