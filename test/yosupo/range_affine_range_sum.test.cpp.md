@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -22,7 +22,7 @@ data:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#line 1 \"test/yosupo/range_affine_range_sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n#include <iostream>\n\
-    #include <utility>\n#line 1 \"segment_tree/lazy_segment_tree.hpp\"\n\n\n\n#include\
+    #include <utility>\n\n#line 1 \"segment_tree/lazy_segment_tree.hpp\"\n\n\n\n#include\
     \ <cstdint>\n#include <vector>\n\n#line 1 \"bit/ctz.hpp\"\n\n\n\n#line 5 \"bit/ctz.hpp\"\
     \n\ninline int ctz32_(uint32_t bit) {\n    static const int table[] = {\n    \
     \    0,  1, 2,  6,  3,  11, 7,  16, 4,  14, 12, 21, 8,  23, 17, 26,\n        31,\
@@ -58,61 +58,61 @@ data:
     \ Node {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
     \ lazy(lazy){};\n    };\n\n    std::vector<Node> tree;\n\n    LazySegmentTree()\
     \ = default;\n    explicit LazySegmentTree(uint32_t n)\n        : tree(n * 2 +\
-    \ 2, Node(V::identity(), O::identity())){};\n\n    int size() { return tree.size()\
-    \ >> 1; };\n\n    void propagation(uint32_t k) {\n        const uint32_t l = (k\
-    \ << 1) | 0;\n        const uint32_t r = (k << 1) | 1;\n        tree[l].lazy =\
-    \ O::operation(tree[l].lazy, tree[k].lazy);\n        tree[r].lazy = O::operation(tree[r].lazy,\
-    \ tree[k].lazy);\n        tree[l].dat = M::operation(tree[l].dat, tree[k].lazy);\n\
-    \        tree[r].dat = M::operation(tree[r].dat, tree[k].lazy);\n        tree[k].lazy\
-    \ = O::identity();\n    };\n    void push_down(uint32_t k) {\n        if (k ==\
-    \ 0) return;\n        uint32_t w = ctz32(msb32(k));\n        for (int i = w; i\
-    \ > 0; i--) propagation(k >> i);\n    };\n    void recalc(uint32_t k) {\n    \
-    \    while (k > 1) {\n            k >>= 1;\n            tree[k].dat =\n      \
-    \          V::operation(tree[(k << 1) | 0].dat, tree[(k << 1) | 1].dat);\n   \
-    \     }\n    };\n\n    // [l, r) += op\n    void update(uint32_t l, uint32_t r,\
-    \ E op) {\n        l += size();\n        r += size();\n        uint32_t tmpl =\
-    \ l;\n        uint32_t tmpr = r;\n        push_down(l);\n        push_down(r -\
-    \ 1);\n\n        while (l < r) {\n            if (l & 1) {\n                tree[l].lazy\
-    \ = O::operation(tree[l].lazy, op);\n                tree[l].dat = M::operation(tree[l].dat,\
-    \ op);\n                l++;\n            }\n            if (r & 1) {\n      \
-    \          --r;\n                tree[r].lazy = O::operation(tree[r].lazy, op);\n\
-    \                tree[r].dat = M::operation(tree[r].dat, op);\n            }\n\
-    \            l >>= 1;\n            r >>= 1;\n        }\n\n        push_down(tmpl);\n\
+    \ 2, Node(V::identity(), O::identity())){};\n\n    int size() {\n        return\
+    \ tree.size() >> 1;\n    };\n\n    void propagation(uint32_t k) {\n        const\
+    \ uint32_t l = (k << 1) | 0;\n        const uint32_t r = (k << 1) | 1;\n     \
+    \   tree[l].lazy = O::operation(tree[l].lazy, tree[k].lazy);\n        tree[r].lazy\
+    \ = O::operation(tree[r].lazy, tree[k].lazy);\n        tree[l].dat = M::operation(tree[l].dat,\
+    \ tree[k].lazy);\n        tree[r].dat = M::operation(tree[r].dat, tree[k].lazy);\n\
+    \        tree[k].lazy = O::identity();\n    };\n    void push_down(uint32_t k)\
+    \ {\n        if (k == 0) return;\n        uint32_t w = ctz32(msb32(k));\n    \
+    \    for (int i = w; i > 0; i--) propagation(k >> i);\n    };\n    void recalc(uint32_t\
+    \ k) {\n        while (k > 1) {\n            k >>= 1;\n            tree[k].dat\
+    \ =\n                V::operation(tree[(k << 1) | 0].dat, tree[(k << 1) | 1].dat);\n\
+    \        }\n    };\n\n    // [l, r) += op\n    void update(uint32_t l, uint32_t\
+    \ r, E op) {\n        l += size();\n        r += size();\n        uint32_t tmpl\
+    \ = l;\n        uint32_t tmpr = r;\n        push_down(l);\n        push_down(r\
+    \ - 1);\n\n        while (l < r) {\n            if (l & 1) {\n               \
+    \ tree[l].lazy = O::operation(tree[l].lazy, op);\n                tree[l].dat\
+    \ = M::operation(tree[l].dat, op);\n                l++;\n            }\n    \
+    \        if (r & 1) {\n                --r;\n                tree[r].lazy = O::operation(tree[r].lazy,\
+    \ op);\n                tree[r].dat = M::operation(tree[r].dat, op);\n       \
+    \     }\n            l >>= 1;\n            r >>= 1;\n        }\n\n        push_down(tmpl);\n\
     \        push_down(tmpr - 1);\n        recalc(tmpl);\n        recalc(tmpr - 1);\n\
     \    };\n    void update(uint32_t idx, T x) {\n        idx += size();\n      \
     \  push_down(idx);\n        tree[idx].dat = x;\n        recalc(idx);\n    };\n\
-    \    void set(uint32_t idx, T x) { update(idx, x); };\n\n    // foldl[l, r)\n\
-    \    T fold(uint32_t l, uint32_t r) {\n        l += size();\n        r += size();\n\
-    \        push_down(l);\n        push_down(r - 1);\n\n        T lv = V::identity();\n\
-    \        T rv = V::identity();\n\n        while (l < r) {\n            if (l &\
-    \ 1) lv = V::operation(lv, tree[l].dat), l++;\n            if (r & 1) --r, rv\
-    \ = V::operation(tree[r].dat, rv);\n\n            l >>= 1;\n            r >>=\
-    \ 1;\n        }\n\n        return V::operation(lv, rv);\n    };\n\n    T operator[](const\
-    \ uint32_t &k) {\n        push_down(k + size());\n        return tree[k + size()].dat;\n\
-    \    };\n};\n//===\n\n\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\
-    \nusing llong = long long;\nusing namespace std;\n\nstruct A {\n    struct M {\n\
-    \        using value_type = pair<llong, llong>;\n        inline static value_type\
-    \ identity() {\n            return {0, 0};\n        };\n        inline static\
-    \ value_type operation(value_type a, value_type b) {\n            return {(a.first\
-    \ + b.first) % 998244353, a.second + b.second};\n        };\n    };\n    struct\
-    \ O {\n        using value_type = pair<llong, llong>;\n        inline static value_type\
-    \ identity() {\n            return {1ll, 0ll};\n        };\n        inline static\
-    \ value_type operation(value_type x, value_type y) {\n            auto ret = identity();\n\
-    \            ret.first = (x.first * y.first) % 998244353;\n            ret.second\
-    \ = (y.first * x.second + y.second) % 998244353;\n            return ret;\n  \
-    \      };\n    };\n    using value_structure = M;\n    using operator_structure\
-    \ = O;\n    inline static M::value_type operation(M::value_type a, O::value_type\
-    \ b) {\n        return {(b.first * a.first + b.second * a.second) % 998244353,\
-    \ a.second};\n    };\n};\n\nllong n, q;\nllong a;\nllong com, s, t, b, c;\nint\
-    \ main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\n    cin\
-    \ >> n >> q;\n    LazySegmentTree<A> seg(n);\n    for (int i = 0; i < n; i++)\
-    \ {\n        cin >> a;\n        seg.set(i, {a, 1});\n    }\n\n    while (q--)\
-    \ {\n        cin >> com;\n\n        if (com == 0) {\n            cin >> s >> t\
-    \ >> b >> c;\n            seg.update(s, t, {b, c});\n        }\n        else {\n\
-    \            cin >> s >> t;\n            cout << seg.fold(s, t).first << '\\n';\n\
-    \        }\n    }\n}\n"
+    \    void set(uint32_t idx, T x) {\n        update(idx, x);\n    };\n\n    //\
+    \ foldl[l, r)\n    T fold(uint32_t l, uint32_t r) {\n        l += size();\n  \
+    \      r += size();\n        push_down(l);\n        push_down(r - 1);\n\n    \
+    \    T lv = V::identity();\n        T rv = V::identity();\n\n        while (l\
+    \ < r) {\n            if (l & 1) lv = V::operation(lv, tree[l].dat), l++;\n  \
+    \          if (r & 1) --r, rv = V::operation(tree[r].dat, rv);\n\n           \
+    \ l >>= 1;\n            r >>= 1;\n        }\n\n        return V::operation(lv,\
+    \ rv);\n    };\n\n    T operator[](const uint32_t &k) {\n        push_down(k +\
+    \ size());\n        return tree[k + size()].dat;\n    };\n};\n//===\n\n\n#line\
+    \ 6 \"test/yosupo/range_affine_range_sum.test.cpp\"\nusing llong = long long;\n\
+    using namespace std;\n\nstruct A {\n    struct M {\n        using value_type =\
+    \ pair<llong, llong>;\n        inline static value_type identity() {\n       \
+    \     return {0, 0};\n        };\n        inline static value_type operation(value_type\
+    \ a, value_type b) {\n            return {(a.first + b.first) % 998244353, a.second\
+    \ + b.second};\n        };\n    };\n    struct O {\n        using value_type =\
+    \ pair<llong, llong>;\n        inline static value_type identity() {\n       \
+    \     return {1ll, 0ll};\n        };\n        inline static value_type operation(value_type\
+    \ x, value_type y) {\n            auto ret = identity();\n            ret.first\
+    \ = (x.first * y.first) % 998244353;\n            ret.second = (y.first * x.second\
+    \ + y.second) % 998244353;\n            return ret;\n        };\n    };\n    using\
+    \ value_structure = M;\n    using operator_structure = O;\n    inline static M::value_type\
+    \ operation(M::value_type a, O::value_type b) {\n        return {(b.first * a.first\
+    \ + b.second * a.second) % 998244353,\n                a.second};\n    };\n};\n\
+    \nllong n, q;\nllong a;\nllong com, s, t, b, c;\nint main() {\n    cin.tie(nullptr);\n\
+    \    ios::sync_with_stdio(false);\n\n    cin >> n >> q;\n    LazySegmentTree<A>\
+    \ seg(n);\n    for (int i = 0; i < n; i++) {\n        cin >> a;\n        seg.set(i,\
+    \ {a, 1});\n    }\n\n    while (q--) {\n        cin >> com;\n\n        if (com\
+    \ == 0) {\n            cin >> s >> t >> b >> c;\n            seg.update(s, t,\
+    \ {b, c});\n        } else {\n            cin >> s >> t;\n            cout <<\
+    \ seg.fold(s, t).first << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include <iostream>\n#include <utility>\n#include \"../../segment_tree/lazy_segment_tree.hpp\"\
+    \n#include <iostream>\n#include <utility>\n\n#include \"../../segment_tree/lazy_segment_tree.hpp\"\
     \nusing llong = long long;\nusing namespace std;\n\nstruct A {\n    struct M {\n\
     \        using value_type = pair<llong, llong>;\n        inline static value_type\
     \ identity() {\n            return {0, 0};\n        };\n        inline static\
@@ -125,13 +125,13 @@ data:
     \ = (y.first * x.second + y.second) % 998244353;\n            return ret;\n  \
     \      };\n    };\n    using value_structure = M;\n    using operator_structure\
     \ = O;\n    inline static M::value_type operation(M::value_type a, O::value_type\
-    \ b) {\n        return {(b.first * a.first + b.second * a.second) % 998244353,\
-    \ a.second};\n    };\n};\n\nllong n, q;\nllong a;\nllong com, s, t, b, c;\nint\
-    \ main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\n    cin\
-    \ >> n >> q;\n    LazySegmentTree<A> seg(n);\n    for (int i = 0; i < n; i++)\
-    \ {\n        cin >> a;\n        seg.set(i, {a, 1});\n    }\n\n    while (q--)\
-    \ {\n        cin >> com;\n\n        if (com == 0) {\n            cin >> s >> t\
-    \ >> b >> c;\n            seg.update(s, t, {b, c});\n        }\n        else {\n\
+    \ b) {\n        return {(b.first * a.first + b.second * a.second) % 998244353,\n\
+    \                a.second};\n    };\n};\n\nllong n, q;\nllong a;\nllong com, s,\
+    \ t, b, c;\nint main() {\n    cin.tie(nullptr);\n    ios::sync_with_stdio(false);\n\
+    \n    cin >> n >> q;\n    LazySegmentTree<A> seg(n);\n    for (int i = 0; i <\
+    \ n; i++) {\n        cin >> a;\n        seg.set(i, {a, 1});\n    }\n\n    while\
+    \ (q--) {\n        cin >> com;\n\n        if (com == 0) {\n            cin >>\
+    \ s >> t >> b >> c;\n            seg.update(s, t, {b, c});\n        } else {\n\
     \            cin >> s >> t;\n            cout << seg.fold(s, t).first << '\\n';\n\
     \        }\n    }\n}"
   dependsOn:
@@ -141,8 +141,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-12-09 20:34:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document

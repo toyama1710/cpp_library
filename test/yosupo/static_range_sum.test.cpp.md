@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: sparse_table/disjoint_sparse_table.hpp
     title: sparse_table/disjoint_sparse_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
     links:
     - https://judge.yosupo.jp/problem/static_range_sum
   bundledCode: "#line 1 \"test/yosupo/static_range_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include <iostream>\n\
+    \ \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include <iostream>\n\n\
     #line 1 \"sparse_table/disjoint_sparse_table.hpp\"\n\n\n\n#include <cassert>\n\
     #include <vector>\n\n#line 1 \"bit/ctz.hpp\"\n\n\n\n#include <cstdint>\n\ninline\
     \ int ctz32_(uint32_t bit) {\n    static const int table[] = {\n        0,  1,\
@@ -69,24 +69,25 @@ data:
     \ == 0)\n            return table[0][l];\n        else\n            return G::operation(table[ctz32(msb32(x))][l],\n\
     \                                table[ctz32(msb32(x))][r]);\n    };\n    T fold(int\
     \ l, int r, SemiGroup e) {\n        if (l >= r) return e;\n        return fold(l,\
-    \ r);\n    };\n\n    int size() { return table[0].size(); };\n    const T operator[](int\
-    \ k) { return fold(k, k + 1); };\n};\n//===\n\n#line 4 \"test/yosupo/static_range_sum.test.cpp\"\
-    \nusing namespace std;\nusing llong = long long;\n\nstruct Sum {\n    using T\
-    \ = llong;\n    using value_type = T;\n\n    inline static T operation(T x, T\
-    \ y) {\n        return x + y;\n    };\n};\n\nllong n, q;\nvector<llong> a;\nDisjointSparseTable<Sum>\
-    \ dst;\n\nint main() {\n    cin >> n >> q;\n    a.resize(n);\n    for (auto &v:a)\
-    \ cin >> v;\n\n    dst.build(a.begin(), a.end());\n\n    while (q--) {\n     \
-    \   llong l, r;\n        cin >> l >> r;\n        cout << dst.fold(l, r) << '\\\
-    n';\n    }\n}\n"
+    \ r);\n    };\n\n    int size() {\n        return table[0].size();\n    };\n \
+    \   const T operator[](int k) {\n        return fold(k, k + 1);\n    };\n};\n\
+    //===\n\n#line 5 \"test/yosupo/static_range_sum.test.cpp\"\nusing namespace std;\n\
+    using llong = long long;\n\nstruct Sum {\n    using T = llong;\n    using value_type\
+    \ = T;\n\n    inline static T operation(T x, T y) {\n        return x + y;\n \
+    \   };\n};\n\nllong n, q;\nvector<llong> a;\nDisjointSparseTable<Sum> dst;\n\n\
+    int main() {\n    cin >> n >> q;\n    a.resize(n);\n    for (auto &v : a) cin\
+    \ >> v;\n\n    dst.build(a.begin(), a.end());\n\n    while (q--) {\n        llong\
+    \ l, r;\n        cin >> l >> r;\n        cout << dst.fold(l, r) << '\\n';\n  \
+    \  }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
-    \ <iostream>\n#include \"../../sparse_table/disjoint_sparse_table.hpp\"\nusing\
+    \ <iostream>\n\n#include \"../../sparse_table/disjoint_sparse_table.hpp\"\nusing\
     \ namespace std;\nusing llong = long long;\n\nstruct Sum {\n    using T = llong;\n\
     \    using value_type = T;\n\n    inline static T operation(T x, T y) {\n    \
     \    return x + y;\n    };\n};\n\nllong n, q;\nvector<llong> a;\nDisjointSparseTable<Sum>\
-    \ dst;\n\nint main() {\n    cin >> n >> q;\n    a.resize(n);\n    for (auto &v:a)\
-    \ cin >> v;\n\n    dst.build(a.begin(), a.end());\n\n    while (q--) {\n     \
-    \   llong l, r;\n        cin >> l >> r;\n        cout << dst.fold(l, r) << '\\\
-    n';\n    }\n}"
+    \ dst;\n\nint main() {\n    cin >> n >> q;\n    a.resize(n);\n    for (auto &v\
+    \ : a) cin >> v;\n\n    dst.build(a.begin(), a.end());\n\n    while (q--) {\n\
+    \        llong l, r;\n        cin >> l >> r;\n        cout << dst.fold(l, r) <<\
+    \ '\\n';\n    }\n}"
   dependsOn:
   - sparse_table/disjoint_sparse_table.hpp
   - bit/ctz.hpp
@@ -94,8 +95,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-12-09 20:34:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum.test.cpp
 layout: document

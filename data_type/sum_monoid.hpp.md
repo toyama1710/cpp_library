@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL2B.test.cpp
     title: test/aoj/DSL2B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"data_type/sum_monoid.hpp\"\n\n\n\ntemplate<class T>\nstruct\
+  bundledCode: "#line 1 \"data_type/sum_monoid.hpp\"\n\n\n\ntemplate <class T>\nstruct\
     \ SumMonoid {\n    using value_type = T;\n    inline static T identity() {\n \
     \       return (T)0;\n    };\n    inline static T operation(const T a, const T\
     \ b) {\n        return a + b;\n    };\n};\n\n\n"
-  code: "#ifndef SUM_MONOID_HPP\n#define SUM_MONOID_HPP\n\ntemplate<class T>\nstruct\
+  code: "#ifndef SUM_MONOID_HPP\n#define SUM_MONOID_HPP\n\ntemplate <class T>\nstruct\
     \ SumMonoid {\n    using value_type = T;\n    inline static T identity() {\n \
     \       return (T)0;\n    };\n    inline static T operation(const T a, const T\
     \ b) {\n        return a + b;\n    };\n};\n\n#endif\n"
@@ -23,8 +23,8 @@ data:
   isVerificationFile: false
   path: data_type/sum_monoid.hpp
   requiredBy: []
-  timestamp: '2020-05-07 13:37:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL2B.test.cpp
 documentation_of: data_type/sum_monoid.hpp

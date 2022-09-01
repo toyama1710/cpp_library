@@ -8,26 +8,26 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"util/memory_pool_allocator.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <array>\n#include <numeric>\n#include <cstdint>\n\n//===\n\n// for use:\
-    \ speed up (ex. persistent data structure)\ntemplate<class T, size_t sz>\nstruct\
-    \ MemoryPoolAllocator {\n    using value_type = T;\n    std::array<T *, sz> addr;\n\
-    \    std::array<char, sizeof(T) * sz> mem;\n    size_t ptr;\n\n    MemoryPoolAllocator()\
+  bundledCode: "#line 1 \"util/memory_pool_allocator.hpp\"\n\n\n\n#include <array>\n\
+    #include <cassert>\n#include <cstdint>\n#include <numeric>\n\n//===\n\n// for\
+    \ use: speed up (ex. persistent data structure)\ntemplate <class T, size_t sz>\n\
+    struct MemoryPoolAllocator {\n    using value_type = T;\n    std::array<T *, sz>\
+    \ addr;\n    std::array<char, sizeof(T) * sz> mem;\n    size_t ptr;\n\n    MemoryPoolAllocator()\
     \ {\n        ptr = 0;\n\n        for (int i = 0; i < sz; i++) {\n            addr[i]\
-    \ = (T *)(&(mem[i * sizeof(T)]));\n        }\n    };\n\n    template<class U>\n\
+    \ = (T *)(&(mem[i * sizeof(T)]));\n        }\n    };\n\n    template <class U>\n\
     \    struct rebind {\n        using other = MemoryPoolAllocator<U, sz>;\n    };\n\
     \n    T *allocate(size_t n) {\n        assert(n == 1);\n        return addr[ptr++];\n\
     \    };\n\n    void deallocate(T *p, size_t n) {\n        assert(n == 1);\n  \
     \      addr[--ptr] = p;\n    };\n\n    int max_size() {\n        return 1;\n \
     \   };\n};\n\n//===\n\n"
   code: "#ifndef MEMORY_POOL_ALLOCATOR_HPP\n#define MEMORY_POOL_ALLOCATOR_HPP\n\n\
-    #include <cassert>\n#include <array>\n#include <numeric>\n#include <cstdint>\n\
-    \n//===\n\n// for use: speed up (ex. persistent data structure)\ntemplate<class\
+    #include <array>\n#include <cassert>\n#include <cstdint>\n#include <numeric>\n\
+    \n//===\n\n// for use: speed up (ex. persistent data structure)\ntemplate <class\
     \ T, size_t sz>\nstruct MemoryPoolAllocator {\n    using value_type = T;\n   \
     \ std::array<T *, sz> addr;\n    std::array<char, sizeof(T) * sz> mem;\n    size_t\
     \ ptr;\n\n    MemoryPoolAllocator() {\n        ptr = 0;\n\n        for (int i\
     \ = 0; i < sz; i++) {\n            addr[i] = (T *)(&(mem[i * sizeof(T)]));\n \
-    \       }\n    };\n\n    template<class U>\n    struct rebind {\n        using\
+    \       }\n    };\n\n    template <class U>\n    struct rebind {\n        using\
     \ other = MemoryPoolAllocator<U, sz>;\n    };\n\n    T *allocate(size_t n) {\n\
     \        assert(n == 1);\n        return addr[ptr++];\n    };\n\n    void deallocate(T\
     \ *p, size_t n) {\n        assert(n == 1);\n        addr[--ptr] = p;\n    };\n\
@@ -36,7 +36,7 @@ data:
   isVerificationFile: false
   path: util/memory_pool_allocator.hpp
   requiredBy: []
-  timestamp: '2020-06-11 07:49:55+00:00'
+  timestamp: '2022-09-01 14:18:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: util/memory_pool_allocator.hpp

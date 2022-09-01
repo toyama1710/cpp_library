@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/msb.hpp
     title: bit/msb.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum.test.cpp
     title: test/yosupo/static_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"sparse_table/disjoint_sparse_table.hpp\"\n\n\n\n#include\
@@ -64,8 +64,9 @@ data:
     \ == 0)\n            return table[0][l];\n        else\n            return G::operation(table[ctz32(msb32(x))][l],\n\
     \                                table[ctz32(msb32(x))][r]);\n    };\n    T fold(int\
     \ l, int r, SemiGroup e) {\n        if (l >= r) return e;\n        return fold(l,\
-    \ r);\n    };\n\n    int size() { return table[0].size(); };\n    const T operator[](int\
-    \ k) { return fold(k, k + 1); };\n};\n//===\n\n"
+    \ r);\n    };\n\n    int size() {\n        return table[0].size();\n    };\n \
+    \   const T operator[](int k) {\n        return fold(k, k + 1);\n    };\n};\n\
+    //===\n\n"
   code: "#ifndef DISJOINT_SPARSE_TABLE_HPP\n#define DISJOINT_SPARSE_TABLE_HPP\n\n\
     #include <cassert>\n#include <vector>\n\n#include \"../bit/ctz.hpp\"\n#include\
     \ \"../bit/msb.hpp\"\n\n//===\ntemplate <class SemiGroup>\nstruct DisjointSparseTable\
@@ -88,16 +89,17 @@ data:
     \            return table[0][l];\n        else\n            return G::operation(table[ctz32(msb32(x))][l],\n\
     \                                table[ctz32(msb32(x))][r]);\n    };\n    T fold(int\
     \ l, int r, SemiGroup e) {\n        if (l >= r) return e;\n        return fold(l,\
-    \ r);\n    };\n\n    int size() { return table[0].size(); };\n    const T operator[](int\
-    \ k) { return fold(k, k + 1); };\n};\n//===\n#endif"
+    \ r);\n    };\n\n    int size() {\n        return table[0].size();\n    };\n \
+    \   const T operator[](int k) {\n        return fold(k, k + 1);\n    };\n};\n\
+    //===\n#endif"
   dependsOn:
   - bit/ctz.hpp
   - bit/msb.hpp
   isVerificationFile: false
   path: sparse_table/disjoint_sparse_table.hpp
   requiredBy: []
-  timestamp: '2021-12-09 20:34:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/static_range_sum.test.cpp
 documentation_of: sparse_table/disjoint_sparse_table.hpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL2F_2.test.cpp
     title: test/aoj/DSL2F_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/persistent_lazy_segment_tree.hpp\"\n\n\n\n\
@@ -58,11 +58,11 @@ data:
     \ op, nl, mid, ql, qr);\n            ret->right = update(ret->right, op, mid,\
     \ nr, ql, qr);\n        }\n        ret->v = M::operation(A::operation(ret->left->v,\
     \ ret->left->op),\n                              A::operation(ret->right->v, ret->right->op));\n\
-    \        return ret;\n    };\n\n    void dump() { dump(root, 0); };\n    void\
-    \ dump(Node *u, int d) {\n        if (u == nullptr) return;\n        dump(u->right,\
-    \ d + 1);\n        for (int i = 0; i < d; i++) std::cout << \"\\t\\t\";\n    \
-    \    std::cout << \"(\" << u->v << \", \" << u->op << \")\" << std::endl;\n  \
-    \      dump(u->left, d + 1);\n    };\n};\n\n\n"
+    \        return ret;\n    };\n\n    void dump() {\n        dump(root, 0);\n  \
+    \  };\n    void dump(Node *u, int d) {\n        if (u == nullptr) return;\n  \
+    \      dump(u->right, d + 1);\n        for (int i = 0; i < d; i++) std::cout <<\
+    \ \"\\t\\t\";\n        std::cout << \"(\" << u->v << \", \" << u->op << \")\"\
+    \ << std::endl;\n        dump(u->left, d + 1);\n    };\n};\n\n\n"
   code: "#ifndef PERSISTENT_LAZY_SEGMENT_TREE_HPP\n#define PERSISTENT_LAZY_SEGMENT_TREE_HPP\n\
     \n#include <iostream>\ntemplate <class MonoidwithOperator>\nstruct PersistentLazySegmentTree\
     \ {\n    using A = MonoidwithOperator;\n    using M = typename A::value_structure;\n\
@@ -110,17 +110,17 @@ data:
     \ op, nl, mid, ql, qr);\n            ret->right = update(ret->right, op, mid,\
     \ nr, ql, qr);\n        }\n        ret->v = M::operation(A::operation(ret->left->v,\
     \ ret->left->op),\n                              A::operation(ret->right->v, ret->right->op));\n\
-    \        return ret;\n    };\n\n    void dump() { dump(root, 0); };\n    void\
-    \ dump(Node *u, int d) {\n        if (u == nullptr) return;\n        dump(u->right,\
-    \ d + 1);\n        for (int i = 0; i < d; i++) std::cout << \"\\t\\t\";\n    \
-    \    std::cout << \"(\" << u->v << \", \" << u->op << \")\" << std::endl;\n  \
-    \      dump(u->left, d + 1);\n    };\n};\n\n#endif\n"
+    \        return ret;\n    };\n\n    void dump() {\n        dump(root, 0);\n  \
+    \  };\n    void dump(Node *u, int d) {\n        if (u == nullptr) return;\n  \
+    \      dump(u->right, d + 1);\n        for (int i = 0; i < d; i++) std::cout <<\
+    \ \"\\t\\t\";\n        std::cout << \"(\" << u->v << \", \" << u->op << \")\"\
+    \ << std::endl;\n        dump(u->left, d + 1);\n    };\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/persistent_lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2021-05-02 17:23:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL2F_2.test.cpp
 documentation_of: segment_tree/persistent_lazy_segment_tree.hpp

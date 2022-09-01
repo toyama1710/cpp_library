@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/bits.test.cpp
     title: test/aoj/bits.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bit/clz.hpp\"\n\n\n\n#include <cstdint>\n\ninline int clz32_(uint32_t\
@@ -54,7 +54,7 @@ data:
   path: bit/clz.hpp
   requiredBy: []
   timestamp: '2021-12-09 21:00:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/bits.test.cpp
 documentation_of: bit/clz.hpp

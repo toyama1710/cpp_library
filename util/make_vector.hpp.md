@@ -36,8 +36,8 @@ data:
   timestamp: '2021-12-07 20:36:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/IPT1_6_C.test.cpp
   - test/aoj/0407.test.cpp
+  - test/aoj/IPT1_6_C.test.cpp
 documentation_of: util/make_vector.hpp
 layout: document
 redirect_from:

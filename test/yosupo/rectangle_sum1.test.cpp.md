@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment_tree/persistent_segment_tree.hpp
     title: segment_tree/persistent_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: util/coordinate_compression.hpp
     title: util/coordinate_compression.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -42,21 +42,22 @@ data:
     \ std::vector<T> &v) {\n        if (nr - nl <= 1)\n            return new Node(v[nl]);\n\
     \        else\n            return merge_node(alloc(nl, (nl + nr) / 2, v),\n  \
     \                            alloc((nl + nr) / 2, nr, v));\n    };\n\n    const\
-    \ T fold(uint l, uint r) const { return fold(l, r, 0, n, root); };\n    const\
-    \ T fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const {\n       \
-    \ if (np == nullptr || qr <= nl || nr <= ql)\n            return Monoid::identity();\n\
+    \ T fold(uint l, uint r) const {\n        return fold(l, r, 0, n, root);\n   \
+    \ };\n    const T fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const\
+    \ {\n        if (np == nullptr || qr <= nl || nr <= ql)\n            return Monoid::identity();\n\
     \        else if (ql <= nl && nr <= qr)\n            return np->dat;\n       \
     \ else\n            return Monoid::operation(fold(ql, qr, nl, (nl + nr) / 2, np->l),\n\
     \                                     fold(ql, qr, (nl + nr) / 2, nr, np->r));\n\
-    \    };\n\n    PersistentSegmentTree update(uint idx, T d) { return set(idx, d);\
-    \ };\n    PersistentSegmentTree set(uint idx, T d) {\n        return PersistentSegmentTree(n,\
-    \ update(0, n, idx, d, root));\n    };\n    Node *update(uint nl, uint nr, uint\
-    \ idx, T d, Node *np) {\n        if (idx < nl || nr <= idx)\n            return\
-    \ np;\n        else if (nr - nl == 1)\n            return new Node(d);\n     \
-    \   else\n            return merge_node(update(nl, (nl + nr) / 2, idx, d, np->l),\n\
-    \                              update((nl + nr) / 2, nr, idx, d, np->r));\n  \
-    \  };\n\n    PersistentSegmentTree get_tree() { return *this; };\n\n    T operator[](uint\
-    \ idx) { return fold(idx, idx + 1, 0, n, root); };\n};\n\n\n#line 1 \"util/coordinate_compression.hpp\"\
+    \    };\n\n    PersistentSegmentTree update(uint idx, T d) {\n        return set(idx,\
+    \ d);\n    };\n    PersistentSegmentTree set(uint idx, T d) {\n        return\
+    \ PersistentSegmentTree(n, update(0, n, idx, d, root));\n    };\n    Node *update(uint\
+    \ nl, uint nr, uint idx, T d, Node *np) {\n        if (idx < nl || nr <= idx)\n\
+    \            return np;\n        else if (nr - nl == 1)\n            return new\
+    \ Node(d);\n        else\n            return merge_node(update(nl, (nl + nr) /\
+    \ 2, idx, d, np->l),\n                              update((nl + nr) / 2, nr,\
+    \ idx, d, np->r));\n    };\n\n    PersistentSegmentTree get_tree() {\n       \
+    \ return *this;\n    };\n\n    T operator[](uint idx) {\n        return fold(idx,\
+    \ idx + 1, 0, n, root);\n    };\n};\n\n\n#line 1 \"util/coordinate_compression.hpp\"\
     \n\n\n#line 5 \"util/coordinate_compression.hpp\"\n\ntemplate <class T>\nstruct\
     \ CoordinateCompression {\n    std::vector<T> p;\n\n    template <class InputItr>\n\
     \    CoordinateCompression(InputItr first, InputItr last) : p(first, last) {\n\
@@ -124,8 +125,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/rectangle_sum1.test.cpp
   requiredBy: []
-  timestamp: '2022-08-07 21:32:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/rectangle_sum1.test.cpp
 layout: document

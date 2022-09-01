@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/avl_set.hpp
     title: bbst/avl_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C
@@ -26,39 +26,40 @@ data:
     \ dat(dat), ch{nullptr, nullptr} {};\n    };\n\n    Node *root;\n\n    AVLSet(Node\
     \ *r = nullptr) : root(r){};\n    AVLSet(const AVLSet &x) : root(x.root){};\n\
     \    AVLSet &operator=(const AVLSet &x) {\n        root = x.root;\n        return\
-    \ *this;\n    };\n\n    int size() const { return size(root); };\n    static int\
-    \ size(Node *u) {\n        if (u != nullptr)\n            return u->sz;\n    \
-    \    else\n            return 0;\n    };\n\n    static int height(Node *u) {\n\
-    \        if (u != nullptr)\n            return u->hi;\n        else\n        \
-    \    return 0;\n    };\n\n    template <int d>  // 0: left, 1: right\n    static\
-    \ Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d] != nullptr);\n\
-    \        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n        v->ch[d\
-    \ ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return v;\n    };\n\
-    \    static int balance_factor(Node *u) {\n        if (u == nullptr) return 0;\n\
-    \        return height(u->ch[0]) - height(u->ch[1]);\n    };\n    static Node\
-    \ *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n        assert(-2\
-    \ <= balance_factor(u) && balance_factor(u) <= 2);\n        if (balance_factor(u)\
-    \ == 2) {\n            if (balance_factor(u->ch[0]) == -1) u->ch[0] = rotate<1>(u->ch[0]);\n\
-    \            u = rotate<0>(u);\n        } else if (balance_factor(u) == -2) {\n\
-    \            if (balance_factor(u->ch[1]) == 1) u->ch[1] = rotate<0>(u->ch[1]);\n\
-    \            u = rotate<1>(u);\n        }\n        return u;\n    };\n    static\
-    \ Node *recalc(Node *u) {\n        if (u == nullptr) return nullptr;\n       \
-    \ u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n        u->hi = std::max(height(u->ch[0]),\
-    \ height(u->ch[1])) + 1;\n        return u;\n    };\n\n    AVLSet &insert(const\
-    \ T &dat) {\n        Node *u = new Node(dat);\n        root = insert(root, u);\n\
-    \        return *this;\n    };\n    Node *insert(Node *u, Node *nv) {\n      \
-    \  if (u == nullptr) return nv;\n        if (u->dat < nv->dat)\n            u->ch[1]\
-    \ = insert(u->ch[1], nv);\n        else\n            u->ch[0] = insert(u->ch[0],\
-    \ nv);\n\n        return balance(recalc(u));\n    };\n\n    AVLSet &erase(const\
-    \ T &dat) {\n        root = erase(root, dat);\n        return *this;\n    };\n\
-    \    Node *erase(Node *u, const T &dat) {\n        if (u == nullptr) return nullptr;\n\
-    \        if (u->dat < dat) {\n            u->ch[1] = erase(u->ch[1], dat);\n \
-    \       } else if (dat < u->dat) {\n            u->ch[0] = erase(u->ch[0], dat);\n\
-    \        } else {\n            Node *del = u;\n            u = isolate_node(u);\n\
-    \            delete del;\n        }\n        return balance(recalc(u));\n    };\n\
-    \    Node *isolate_node(Node *u) {\n        if (u->ch[0] == nullptr || u->ch[1]\
-    \ == nullptr) {\n            Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n\
-    \            return ret;\n        } else {\n            auto [l, nv] = split_rightest_node(u->ch[0]);\n\
+    \ *this;\n    };\n\n    int size() const {\n        return size(root);\n    };\n\
+    \    static int size(Node *u) {\n        if (u != nullptr)\n            return\
+    \ u->sz;\n        else\n            return 0;\n    };\n\n    static int height(Node\
+    \ *u) {\n        if (u != nullptr)\n            return u->hi;\n        else\n\
+    \            return 0;\n    };\n\n    template <int d>  // 0: left, 1: right\n\
+    \    static Node *rotate(Node *u) {\n        assert(u != nullptr && u->ch[d] !=\
+    \ nullptr);\n        Node *v = u->ch[d];\n        u->ch[d] = v->ch[d ^ 1];\n \
+    \       v->ch[d ^ 1] = u;\n        recalc(u);\n        recalc(v);\n        return\
+    \ v;\n    };\n    static int balance_factor(Node *u) {\n        if (u == nullptr)\
+    \ return 0;\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n   \
+    \ static Node *balance(Node *u) {\n        if (u == nullptr) return nullptr;\n\
+    \        assert(-2 <= balance_factor(u) && balance_factor(u) <= 2);\n        if\
+    \ (balance_factor(u) == 2) {\n            if (balance_factor(u->ch[0]) == -1)\
+    \ u->ch[0] = rotate<1>(u->ch[0]);\n            u = rotate<0>(u);\n        } else\
+    \ if (balance_factor(u) == -2) {\n            if (balance_factor(u->ch[1]) ==\
+    \ 1) u->ch[1] = rotate<0>(u->ch[1]);\n            u = rotate<1>(u);\n        }\n\
+    \        return u;\n    };\n    static Node *recalc(Node *u) {\n        if (u\
+    \ == nullptr) return nullptr;\n        u->sz = size(u->ch[0]) + size(u->ch[1])\
+    \ + 1;\n        u->hi = std::max(height(u->ch[0]), height(u->ch[1])) + 1;\n  \
+    \      return u;\n    };\n\n    AVLSet &insert(const T &dat) {\n        Node *u\
+    \ = new Node(dat);\n        root = insert(root, u);\n        return *this;\n \
+    \   };\n    Node *insert(Node *u, Node *nv) {\n        if (u == nullptr) return\
+    \ nv;\n        if (u->dat < nv->dat)\n            u->ch[1] = insert(u->ch[1],\
+    \ nv);\n        else\n            u->ch[0] = insert(u->ch[0], nv);\n\n       \
+    \ return balance(recalc(u));\n    };\n\n    AVLSet &erase(const T &dat) {\n  \
+    \      root = erase(root, dat);\n        return *this;\n    };\n    Node *erase(Node\
+    \ *u, const T &dat) {\n        if (u == nullptr) return nullptr;\n        if (u->dat\
+    \ < dat) {\n            u->ch[1] = erase(u->ch[1], dat);\n        } else if (dat\
+    \ < u->dat) {\n            u->ch[0] = erase(u->ch[0], dat);\n        } else {\n\
+    \            Node *del = u;\n            u = isolate_node(u);\n            delete\
+    \ del;\n        }\n        return balance(recalc(u));\n    };\n    Node *isolate_node(Node\
+    \ *u) {\n        if (u->ch[0] == nullptr || u->ch[1] == nullptr) {\n         \
+    \   Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];\n            return\
+    \ ret;\n        } else {\n            auto [l, nv] = split_rightest_node(u->ch[0]);\n\
     \            nv->ch[0] = l;\n            nv->ch[1] = u->ch[1];\n            return\
     \ balance(recalc(nv));\n        }\n    };\n    std::pair<Node *, Node *> split_rightest_node(Node\
     \ *v) {\n        if (v->ch[1] != nullptr) {\n            auto [l, ret] = split_rightest_node(v->ch[1]);\n\
@@ -87,25 +88,26 @@ data:
     \        else if (size(u->ch[0]) > k)\n            return find_Kth(u->ch[0], k);\n\
     \        else\n            return find_Kth(u->ch[1], k - size(u->ch[0]) - 1);\n\
     \    };\n\n    int count(const T &x) const {\n        return size() - count_upper(x)\
-    \ - count_lower(x);\n    };\n    int count_lower(const T &x) const { return count_lower(x,\
-    \ root); };\n    int count_lower(const T &x, Node *u) const {\n        if (u ==\
-    \ nullptr) return 0;\n        if (u->dat < x)\n            return count_lower(x,\
-    \ u->ch[1]) + size(u->ch[0]) + 1;\n        else\n            return count_lower(x,\
-    \ u->ch[0]);\n    };\n    int count_upper(const T &x) const { return count_upper(x,\
-    \ root); };\n    int count_upper(const T &x, Node *u) const {\n        if (u ==\
-    \ nullptr) return 0;\n        if (x < u->dat)\n            return count_upper(x,\
-    \ u->ch[0]) + size(u->ch[1]) + 1;\n        else\n            return count_upper(x,\
-    \ u->ch[1]);\n    };\n\n    AVLSet &merge_with(AVLSet &r) {\n        if (r.size()\
-    \ == 0) {\n            return *this;\n        } else if (size() == 0) {\n    \
-    \        root = r.root;\n        } else {\n            auto [l, tmp] = split_rightest_node(root);\n\
-    \            root = merge(tmp, l, r.root);\n            r.root = nullptr;\n  \
-    \      }\n        return *this;\n    };\n    Node *merge(Node *root, Node *l,\
-    \ Node *r) {\n        if (abs(height(l) - height(r)) <= 2) {\n            root->ch[0]\
-    \ = l;\n            root->ch[1] = r;\n            return balance(recalc(root));\n\
-    \        } else if (height(l) > height(r)) {\n            l->ch[1] = merge(root,\
-    \ l->ch[1], r);\n            return balance(recalc(l));\n        } else {\n  \
-    \          r->ch[0] = merge(root, l, r->ch[0]);\n            return balance(recalc(r));\n\
-    \        }\n    };\n\n    std::pair<AVLSet, AVLSet> split(int k) {\n        assert(k\
+    \ - count_lower(x);\n    };\n    int count_lower(const T &x) const {\n       \
+    \ return count_lower(x, root);\n    };\n    int count_lower(const T &x, Node *u)\
+    \ const {\n        if (u == nullptr) return 0;\n        if (u->dat < x)\n    \
+    \        return count_lower(x, u->ch[1]) + size(u->ch[0]) + 1;\n        else\n\
+    \            return count_lower(x, u->ch[0]);\n    };\n    int count_upper(const\
+    \ T &x) const {\n        return count_upper(x, root);\n    };\n    int count_upper(const\
+    \ T &x, Node *u) const {\n        if (u == nullptr) return 0;\n        if (x <\
+    \ u->dat)\n            return count_upper(x, u->ch[0]) + size(u->ch[1]) + 1;\n\
+    \        else\n            return count_upper(x, u->ch[1]);\n    };\n\n    AVLSet\
+    \ &merge_with(AVLSet &r) {\n        if (r.size() == 0) {\n            return *this;\n\
+    \        } else if (size() == 0) {\n            root = r.root;\n        } else\
+    \ {\n            auto [l, tmp] = split_rightest_node(root);\n            root\
+    \ = merge(tmp, l, r.root);\n            r.root = nullptr;\n        }\n       \
+    \ return *this;\n    };\n    Node *merge(Node *root, Node *l, Node *r) {\n   \
+    \     if (abs(height(l) - height(r)) <= 2) {\n            root->ch[0] = l;\n \
+    \           root->ch[1] = r;\n            return balance(recalc(root));\n    \
+    \    } else if (height(l) > height(r)) {\n            l->ch[1] = merge(root, l->ch[1],\
+    \ r);\n            return balance(recalc(l));\n        } else {\n            r->ch[0]\
+    \ = merge(root, l, r->ch[0]);\n            return balance(recalc(r));\n      \
+    \  }\n    };\n\n    std::pair<AVLSet, AVLSet> split(int k) {\n        assert(k\
     \ >= 0 && k <= size());\n        auto [l, r] = split(root, k);\n        root =\
     \ nullptr;\n        return {AVLSet(l), AVLSet(r)};\n    };\n    std::pair<Node\
     \ *, Node *> split(Node *u, int k) {\n        if (u == nullptr) return {nullptr,\
@@ -164,8 +166,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_9_C_AVLset.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 20:12:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C_AVLset.test.cpp
 layout: document

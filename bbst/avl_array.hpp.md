@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -34,12 +34,12 @@ data:
     \ Node *u) {\n        if (u == nullptr)\n            return 0;\n        else\n\
     \            return u->hi;\n    };\n    static int balance_factor(const Node *u)\
     \ {\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n\n    int size()\
-    \ { return size(root); };\n    static int size(const Node *u) {\n        if (u\
-    \ == nullptr)\n            return 0;\n        else\n            return u->sz;\n\
-    \    };\n\n    static T sum(const Node *u) {\n        if (u == nullptr) {\n  \
-    \          return M::identity();\n        } else if (u->rev_flag) {\n        \
-    \    return A::operation(u->rev_sum, u->op);\n        } else {\n            return\
-    \ A::operation(u->sum, u->op);\n        }\n    };\n    static T rev_sum(const\
+    \ {\n        return size(root);\n    };\n    static int size(const Node *u) {\n\
+    \        if (u == nullptr)\n            return 0;\n        else\n            return\
+    \ u->sz;\n    };\n\n    static T sum(const Node *u) {\n        if (u == nullptr)\
+    \ {\n            return M::identity();\n        } else if (u->rev_flag) {\n  \
+    \          return A::operation(u->rev_sum, u->op);\n        } else {\n       \
+    \     return A::operation(u->sum, u->op);\n        }\n    };\n    static T rev_sum(const\
     \ Node *u) {\n        if (u == nullptr) {\n            return M::identity();\n\
     \        } else if (u->rev_flag) {\n            return A::operation(u->sum, u->op);\n\
     \        } else {\n            return A::operation(u->rev_sum, u->op);\n     \
@@ -107,16 +107,16 @@ data:
     \    };\n\n    AVLArray &insert_at(int k, const T &dat) {\n        assert(0 <=\
     \ k && k <= size());\n        Node *nv = new Node(dat);\n        auto [l, r] =\
     \ split(root, k);\n        root = merge(nv, l, r);\n        return *this;\n  \
-    \  };\n    AVLArray &set(int k, const T &dat) { return update(k, dat); };\n  \
-    \  AVLArray &update(int k, const T &dat) {\n        assert(0 <= k && k < size());\n\
+    \  };\n    AVLArray &set(int k, const T &dat) {\n        return update(k, dat);\n\
+    \    };\n    AVLArray &update(int k, const T &dat) {\n        assert(0 <= k &&\
+    \ k < size());\n        auto [tmp, r] = split(root, k + 1);\n        auto [l,\
+    \ mid] = split_rightest_node(tmp);\n        mid->val = dat;\n        root = merge(mid,\
+    \ l, r);\n        return *this;\n    };\n    AVLArray &update(int l, int r, const\
+    \ E &op) {\n        if (r <= l) return *this;\n        auto [tmp, right] = split(root,\
+    \ r);\n        auto [left, mid] = split(tmp, l);\n        mid->op = O::operation(mid->op,\
+    \ op);\n        root = merge(merge(left, mid), right);\n        return *this;\n\
+    \    };\n    AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n\
     \        auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
-    \        mid->val = dat;\n        root = merge(mid, l, r);\n        return *this;\n\
-    \    };\n    AVLArray &update(int l, int r, const E &op) {\n        if (r <= l)\
-    \ return *this;\n        auto [tmp, right] = split(root, r);\n        auto [left,\
-    \ mid] = split(tmp, l);\n        mid->op = O::operation(mid->op, op);\n      \
-    \  root = merge(merge(left, mid), right);\n        return *this;\n    };\n   \
-    \ AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n       \
-    \ auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
     \        delete mid;\n        root = merge(l, r);\n        return *this;\n   \
     \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
     \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
@@ -125,9 +125,9 @@ data:
     \      std::vector<T> ret;\n        ret.reserve(size());\n        auto dfs = [&](auto\
     \ &&f, Node *u) {\n            f(f, u->ch[0]);\n            ret.push_back(u->dat);\n\
     \            f(f, u->ch[1]);\n        };\n        dfs(dfs, root);\n        return\
-    \ ret;\n    };\n\n    const T operator[](int k) { return at(root, k); };\n   \
-    \ const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n     \
-    \   push_down(u);\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
+    \ ret;\n    };\n\n    const T operator[](int k) {\n        return at(root, k);\n\
+    \    };\n    const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n\
+    \        push_down(u);\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
     \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
     \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
     };\n\n\n"
@@ -148,12 +148,12 @@ data:
     \ Node *u) {\n        if (u == nullptr)\n            return 0;\n        else\n\
     \            return u->hi;\n    };\n    static int balance_factor(const Node *u)\
     \ {\n        return height(u->ch[0]) - height(u->ch[1]);\n    };\n\n    int size()\
-    \ { return size(root); };\n    static int size(const Node *u) {\n        if (u\
-    \ == nullptr)\n            return 0;\n        else\n            return u->sz;\n\
-    \    };\n\n    static T sum(const Node *u) {\n        if (u == nullptr) {\n  \
-    \          return M::identity();\n        } else if (u->rev_flag) {\n        \
-    \    return A::operation(u->rev_sum, u->op);\n        } else {\n            return\
-    \ A::operation(u->sum, u->op);\n        }\n    };\n    static T rev_sum(const\
+    \ {\n        return size(root);\n    };\n    static int size(const Node *u) {\n\
+    \        if (u == nullptr)\n            return 0;\n        else\n            return\
+    \ u->sz;\n    };\n\n    static T sum(const Node *u) {\n        if (u == nullptr)\
+    \ {\n            return M::identity();\n        } else if (u->rev_flag) {\n  \
+    \          return A::operation(u->rev_sum, u->op);\n        } else {\n       \
+    \     return A::operation(u->sum, u->op);\n        }\n    };\n    static T rev_sum(const\
     \ Node *u) {\n        if (u == nullptr) {\n            return M::identity();\n\
     \        } else if (u->rev_flag) {\n            return A::operation(u->sum, u->op);\n\
     \        } else {\n            return A::operation(u->rev_sum, u->op);\n     \
@@ -221,16 +221,16 @@ data:
     \    };\n\n    AVLArray &insert_at(int k, const T &dat) {\n        assert(0 <=\
     \ k && k <= size());\n        Node *nv = new Node(dat);\n        auto [l, r] =\
     \ split(root, k);\n        root = merge(nv, l, r);\n        return *this;\n  \
-    \  };\n    AVLArray &set(int k, const T &dat) { return update(k, dat); };\n  \
-    \  AVLArray &update(int k, const T &dat) {\n        assert(0 <= k && k < size());\n\
+    \  };\n    AVLArray &set(int k, const T &dat) {\n        return update(k, dat);\n\
+    \    };\n    AVLArray &update(int k, const T &dat) {\n        assert(0 <= k &&\
+    \ k < size());\n        auto [tmp, r] = split(root, k + 1);\n        auto [l,\
+    \ mid] = split_rightest_node(tmp);\n        mid->val = dat;\n        root = merge(mid,\
+    \ l, r);\n        return *this;\n    };\n    AVLArray &update(int l, int r, const\
+    \ E &op) {\n        if (r <= l) return *this;\n        auto [tmp, right] = split(root,\
+    \ r);\n        auto [left, mid] = split(tmp, l);\n        mid->op = O::operation(mid->op,\
+    \ op);\n        root = merge(merge(left, mid), right);\n        return *this;\n\
+    \    };\n    AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n\
     \        auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
-    \        mid->val = dat;\n        root = merge(mid, l, r);\n        return *this;\n\
-    \    };\n    AVLArray &update(int l, int r, const E &op) {\n        if (r <= l)\
-    \ return *this;\n        auto [tmp, right] = split(root, r);\n        auto [left,\
-    \ mid] = split(tmp, l);\n        mid->op = O::operation(mid->op, op);\n      \
-    \  root = merge(merge(left, mid), right);\n        return *this;\n    };\n   \
-    \ AVLArray &erase_at(int k) {\n        assert(0 <= k && k < size());\n       \
-    \ auto [tmp, r] = split(root, k + 1);\n        auto [l, mid] = split_rightest_node(tmp);\n\
     \        delete mid;\n        root = merge(l, r);\n        return *this;\n   \
     \ };\n\n    AVLArray &rotate(int l, int mid, int r) {\n        auto [tmp1, right]\
     \ = split(root, r);\n        auto [tmp2, m2] = split(tmp1, mid);\n        auto\
@@ -239,9 +239,9 @@ data:
     \      std::vector<T> ret;\n        ret.reserve(size());\n        auto dfs = [&](auto\
     \ &&f, Node *u) {\n            f(f, u->ch[0]);\n            ret.push_back(u->dat);\n\
     \            f(f, u->ch[1]);\n        };\n        dfs(dfs, root);\n        return\
-    \ ret;\n    };\n\n    const T operator[](int k) { return at(root, k); };\n   \
-    \ const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n     \
-    \   push_down(u);\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
+    \ ret;\n    };\n\n    const T operator[](int k) {\n        return at(root, k);\n\
+    \    };\n    const T at(Node *u, int k) {\n        assert(0 <= k && k < size(u));\n\
+    \        push_down(u);\n        if (size(u->ch[0]) == k)\n            return u->val;\n\
     \        else if (k < size(u->ch[0]))\n            return at(u->ch[0], k);\n \
     \       else\n            return at(u->ch[1], k - size(u->ch[0]) - 1);\n    };\n\
     };\n\n#endif"
@@ -249,12 +249,12 @@ data:
   isVerificationFile: false
   path: bbst/avl_array.hpp
   requiredBy: []
-  timestamp: '2021-10-10 17:25:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/1508.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: bbst/avl_array.hpp
 layout: document
 redirect_from:

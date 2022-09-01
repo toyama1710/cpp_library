@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1418_2.test.cpp
     title: test/aoj/1418_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL2A_3.test.cpp
     title: test/aoj/DSL2A_3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/dynamic_segment_tree.hpp\"\n\n\n\ntemplate\
@@ -47,7 +47,7 @@ data:
     \ qr)\n            lv = fold(node->left, nl, mid, ql, qr);\n        if (node->right\
     \ && ql < nr && mid < qr)\n            rv = fold(node->right, mid, nr, ql, qr);\n\
     \n        return Monoid::operation(lv, rv);\n    };\n\n    T operator[](const\
-    \ llong k) { return fold(k, k + 1); };\n};\n\n\n"
+    \ llong k) {\n        return fold(k, k + 1);\n    };\n};\n\n\n"
   code: "#ifndef DYNAMIC_SEGMENT_TREE_HPP\n#define DYNAMIC_SEGMENT_TREE_HPP\n\ntemplate\
     \ <class Monoid>\nstruct DynamicSegmentTree {\n    using T = typename Monoid::value_type;\n\
     \    using llong = long long;\n\n    struct Node {\n        T v;\n        Node\
@@ -81,16 +81,16 @@ data:
     \ qr)\n            lv = fold(node->left, nl, mid, ql, qr);\n        if (node->right\
     \ && ql < nr && mid < qr)\n            rv = fold(node->right, mid, nr, ql, qr);\n\
     \n        return Monoid::operation(lv, rv);\n    };\n\n    T operator[](const\
-    \ llong k) { return fold(k, k + 1); };\n};\n\n#endif"
+    \ llong k) {\n        return fold(k, k + 1);\n    };\n};\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/dynamic_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-04-17 03:45:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-01 14:18:35+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/1418_2.test.cpp
   - test/aoj/DSL2A_3.test.cpp
+  - test/aoj/1418_2.test.cpp
 documentation_of: segment_tree/dynamic_segment_tree.hpp
 layout: document
 redirect_from:
