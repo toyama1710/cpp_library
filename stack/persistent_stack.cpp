@@ -1,12 +1,12 @@
-#include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 #include <memory>
 using namespace std;
 using llong = long long;
 
 //===
-template<class T, template<class> class Alloc = allocator>
+template <class T, template <class> class Alloc = allocator>
 struct PersistentStack {
     struct Node {
         T d;
@@ -47,6 +47,5 @@ struct PersistentStack {
 //===
 
 int main() {
-
     return 0;
 }

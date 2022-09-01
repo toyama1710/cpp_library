@@ -24,8 +24,12 @@ struct ModInt {
         else
             return ModInt(d + p - x.d);
     };
-    ModInt operator*(ModInt x) const { return ModInt(d * x.d); }
-    ModInt operator/(ModInt x) const { return ModInt(*this * x.inv()); }
+    ModInt operator*(ModInt x) const {
+        return ModInt(d * x.d);
+    }
+    ModInt operator/(ModInt x) const {
+        return ModInt(*this * x.inv());
+    }
 
     static ModInt pow(ModInt x, uint64_t a) {
         ModInt ret = 1;
@@ -36,25 +40,55 @@ struct ModInt {
         }
         return ret;
     };
-    ModInt inv() { return pow(*this, p - 2); };
+    ModInt inv() {
+        return pow(*this, p - 2);
+    };
 
-    ModInt operator+() { return *this; };
-    ModInt operator-() { return ModInt(-d); };
+    ModInt operator+() {
+        return *this;
+    };
+    ModInt operator-() {
+        return ModInt(-d);
+    };
 
-    ModInt &operator+=(ModInt x) { return *this = *this + x; };
-    ModInt &operator-=(ModInt x) { return *this = *this - x; };
-    ModInt &operator*=(ModInt x) { return *this = *this * x; };
-    ModInt &operator/=(ModInt x) { return *this = *this / x; };
+    ModInt &operator+=(ModInt x) {
+        return *this = *this + x;
+    };
+    ModInt &operator-=(ModInt x) {
+        return *this = *this - x;
+    };
+    ModInt &operator*=(ModInt x) {
+        return *this = *this * x;
+    };
+    ModInt &operator/=(ModInt x) {
+        return *this = *this / x;
+    };
 
-    ModInt operator+(const i64 x) const { return *this + ModInt(x); };
-    ModInt operator-(const i64 x) const { return *this - ModInt(x); };
-    ModInt operator*(const i64 x) const { return *this * ModInt(x); };
-    ModInt operator/(const i64 x) const { return *this / ModInt(x); };
+    ModInt operator+(const i64 x) const {
+        return *this + ModInt(x);
+    };
+    ModInt operator-(const i64 x) const {
+        return *this - ModInt(x);
+    };
+    ModInt operator*(const i64 x) const {
+        return *this * ModInt(x);
+    };
+    ModInt operator/(const i64 x) const {
+        return *this / ModInt(x);
+    };
 
-    ModInt operator+=(const i64 x) { return *this = *this + x; };
-    ModInt operator-=(const i64 x) { return *this = *this - x; };
-    ModInt operator*=(const i64 x) { return *this = *this * x; };
-    ModInt operator/=(const i64 x) { return *this = *this / x; };
+    ModInt operator+=(const i64 x) {
+        return *this = *this + x;
+    };
+    ModInt operator-=(const i64 x) {
+        return *this = *this - x;
+    };
+    ModInt operator*=(const i64 x) {
+        return *this = *this * x;
+    };
+    ModInt operator/=(const i64 x) {
+        return *this = *this / x;
+    };
 };
 
 template <uint64_t p>

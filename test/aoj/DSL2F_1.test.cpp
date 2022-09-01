@@ -1,6 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
-#include <iostream>
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include <algorithm>
+#include <iostream>
+
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -25,9 +27,12 @@ struct M {
             return (1ll << 31) - 1;
         };
         inline static E operation(E a, E b) {
-            if (a == identity()) return b;
-            else if (b == identity()) return a;
-            else return b;
+            if (a == identity())
+                return b;
+            else if (b == identity())
+                return a;
+            else
+                return b;
         };
     };
 
@@ -37,15 +42,17 @@ struct M {
     using E = typename Operator::E;
 
     inline static T operation(T dat, E op) {
-        if (op == operator_structure::identity()) return dat;
-        else return op;
+        if (op == operator_structure::identity())
+            return dat;
+        else
+            return op;
     };
 };
 
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
+
     llong n, q;
     llong com, s, t, x;
 
@@ -54,18 +61,15 @@ int main() {
     LazySegmentTree<M> seg(n);
 
     for (int i = 0; i < q; i++) {
-
         cin >> com;
 
         if (com == 0) {
             cin >> s >> t >> x;
             seg.update(s, t + 1, x);
-        }
-        else if (com == 1) {
+        } else if (com == 1) {
             cin >> s >> t;
             cout << seg.fold(s, t + 1) << endl;
         }
-
     }
 
     return 0;

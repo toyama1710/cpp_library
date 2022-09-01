@@ -1,18 +1,17 @@
 #ifndef LI_CHAO_TREE_HPP
 #define LI_CHAO_TREE_HPP
 
-#include <vector>
 #include <algorithm>
+#include <iterator>
 #include <limits>
 #include <numeric>
-#include <iterator>
+#include <vector>
 
 template <class T = long long>
 struct LiChaoTree {
     struct Line {
         T a, b;
-        Line (T a, T b):
-            a(a), b(b) {};
+        Line(T a, T b) : a(a), b(b){};
         T get(T x) {
             return a * x + b;
         };
@@ -30,9 +29,9 @@ struct LiChaoTree {
         while (n_ < n) n_ *= 2;
         seg.resize(n_ * 2, Line::identity());
         pos.resize(n_);
-        std::iota(pos.begin(), pos.end(), T(0)); 
+        std::iota(pos.begin(), pos.end(), T(0));
     };
-    template<class InputItr>
+    template <class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
         init(first, last);
     };
@@ -42,7 +41,7 @@ struct LiChaoTree {
         init(p.begin(), p.end());
     }
 
-    template<class InputItr>
+    template <class InputItr>
     void init(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         int n_ = 1;
@@ -56,7 +55,7 @@ struct LiChaoTree {
     }
 
     int size() {
-        return  seg.size() >> 1;
+        return seg.size() >> 1;
     };
 
     void add_line(T a, T b) {
@@ -106,12 +105,15 @@ struct LiChaoTree {
         }
 
         if (x.get(pm) < seg[k].get(pm)) std::swap(x, seg[k]);
-        if (x.get(pl) <= seg[k].get(pl)) update(x, k << 1, l, (l + r) / 2);
-        else update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
+        if (x.get(pl) <= seg[k].get(pl))
+            update(x, k << 1, l, (l + r) / 2);
+        else
+            update(x, (k << 1) | 1, (l + r) / 2 + 1, r);
     };
 
     T get(T x) {
-        int k = std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
+        int k =
+            std::lower_bound(pos.begin(), pos.end(), x) - pos.begin() + size();
 
         T ret = seg[k].get(x);
         while (k > 0) {

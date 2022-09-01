@@ -4,14 +4,14 @@
 //===
 // memory: O(HW)
 // time: O(logH * logW)
-template<class CommutativeMonoid>
+template <class CommutativeMonoid>
 struct SegmentTree2D {
     using M = CommutativeMonoid;
     using T = typename M::value_type;
     const std::size_t H, W;
     std::vector<std::vector<T>> tree;
 
-    SegmentTree2D(size_t H, size_t W):H(H), W(W) {
+    SegmentTree2D(size_t H, size_t W) : H(H), W(W) {
         tree.assign(H << 1, std::vector<T>(W << 1, M::identity()));
     };
 
@@ -23,20 +23,20 @@ struct SegmentTree2D {
         tx = sx;
         while (tx > 1) {
             tx >>= 1;
-            tree[sy][tx] = M::operation(tree[sy][(tx << 1)],
-                    tree[sy][(tx << 1) | 1]);
+            tree[sy][tx] =
+                M::operation(tree[sy][(tx << 1)], tree[sy][(tx << 1) | 1]);
         }
 
         ty = sy;
         while (ty > 1) {
             ty >>= 1;
             tx = sx;
-            tree[ty][tx] = M::operation(tree[(ty << 1)][tx],
-                    tree[(ty << 1) | 1][tx]);
+            tree[ty][tx] =
+                M::operation(tree[(ty << 1)][tx], tree[(ty << 1) | 1][tx]);
             while (tx > 1) {
                 tx >>= 1;
-                tree[ty][tx] = M::operation(tree[(ty << 1)][tx],
-                        tree[(ty << 1) | 1][tx]);
+                tree[ty][tx] =
+                    M::operation(tree[(ty << 1)][tx], tree[(ty << 1) | 1][tx]);
             }
         }
     };

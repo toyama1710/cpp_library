@@ -63,8 +63,12 @@ struct DisjointSparseTable {
         return fold(l, r);
     };
 
-    int size() { return table[0].size(); };
-    const T operator[](int k) { return fold(k, k + 1); };
+    int size() {
+        return table[0].size();
+    };
+    const T operator[](int k) {
+        return fold(k, k + 1);
+    };
 };
 //===
 #endif

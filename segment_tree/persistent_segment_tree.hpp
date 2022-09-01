@@ -50,7 +50,9 @@ struct PersistentSegmentTree {
                               alloc((nl + nr) / 2, nr, v));
     };
 
-    const T fold(uint l, uint r) const { return fold(l, r, 0, n, root); };
+    const T fold(uint l, uint r) const {
+        return fold(l, r, 0, n, root);
+    };
     const T fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const {
         if (np == nullptr || qr <= nl || nr <= ql)
             return Monoid::identity();
@@ -61,7 +63,9 @@ struct PersistentSegmentTree {
                                      fold(ql, qr, (nl + nr) / 2, nr, np->r));
     };
 
-    PersistentSegmentTree update(uint idx, T d) { return set(idx, d); };
+    PersistentSegmentTree update(uint idx, T d) {
+        return set(idx, d);
+    };
     PersistentSegmentTree set(uint idx, T d) {
         return PersistentSegmentTree(n, update(0, n, idx, d, root));
     };
@@ -75,9 +79,13 @@ struct PersistentSegmentTree {
                               update((nl + nr) / 2, nr, idx, d, np->r));
     };
 
-    PersistentSegmentTree get_tree() { return *this; };
+    PersistentSegmentTree get_tree() {
+        return *this;
+    };
 
-    T operator[](uint idx) { return fold(idx, idx + 1, 0, n, root); };
+    T operator[](uint idx) {
+        return fold(idx, idx + 1, 0, n, root);
+    };
 };
 
 #endif

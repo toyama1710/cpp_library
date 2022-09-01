@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 #include <iostream>
 #include <utility>
+
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using llong = long long;
 using namespace std;
@@ -30,7 +31,8 @@ struct A {
     using value_structure = M;
     using operator_structure = O;
     inline static M::value_type operation(M::value_type a, O::value_type b) {
-        return {(b.first * a.first + b.second * a.second) % 998244353, a.second};
+        return {(b.first * a.first + b.second * a.second) % 998244353,
+                a.second};
     };
 };
 
@@ -54,8 +56,7 @@ int main() {
         if (com == 0) {
             cin >> s >> t >> b >> c;
             seg.update(s, t, {b, c});
-        }
-        else {
+        } else {
             cin >> s >> t;
             cout << seg.fold(s, t).first << '\n';
         }

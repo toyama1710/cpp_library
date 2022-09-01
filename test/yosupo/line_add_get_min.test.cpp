@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
-#include <iostream>
-#include <vector>
-#include <tuple>
 #include <algorithm>
+#include <iostream>
+#include <tuple>
+#include <vector>
+
 #include "../../cht/li_chao_tree.hpp"
 
 using namespace std;
@@ -29,8 +30,7 @@ int main() {
         cin >> com;
         if (com == 0) {
             cin >> x >> y;
-        }
-        else {
+        } else {
             cin >> x;
             p.push_back(x);
         }
@@ -48,12 +48,10 @@ int main() {
 
         if (com == 0) {
             cht.add_line(x, y);
-        }
-        else {
+        } else {
             cout << cht.get(x) << endl;
         }
     }
 
     return 0;
 };
-

@@ -22,7 +22,9 @@ struct A {
     struct M {
         using T = pair<int, int>;
         using value_type = T;
-        static T identity() { return {0, 0}; };
+        static T identity() {
+            return {0, 0};
+        };
         static T operation(T lhs, T rhs) {
             return {(lhs.first + rhs.first) % mod, lhs.second + rhs.second};
         };
@@ -30,7 +32,9 @@ struct A {
     struct O {
         using T = pair<int, int>;
         using value_type = T;
-        static T identity() { return {1, 0}; };
+        static T identity() {
+            return {1, 0};
+        };
         static T operation(T lhs, T rhs) {
             return {((i64)lhs.first * rhs.first) % mod,
                     ((i64)lhs.second * rhs.first + rhs.second) % mod};

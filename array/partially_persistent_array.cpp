@@ -1,7 +1,7 @@
-#include <iostream>
 #include <cstdio>
-#include <vector>
+#include <iostream>
 #include <iterator>
+#include <vector>
 using namespace std;
 using llong = long long;
 
@@ -12,15 +12,14 @@ struct PartiallyPersistentArray {
     vector<vector<pair<int, T>>> arr;
     const size_t sz;
 
-    PartiallyPersistentArray(size_t nmemb, T v): sz(nmemb) {
+    PartiallyPersistentArray(size_t nmemb, T v) : sz(nmemb) {
         turn = 0;
-        arr.resize(sz, vector<pair<int, T> >(1, {0, v}));
+        arr.resize(sz, vector<pair<int, T>>(1, {0, v}));
     };
 
-    template<class InputIterator>
-    PartiallyPersistentArray(InputIterator first, InputIterator last):
-        sz(distance(first, last))
-    {
+    template <class InputIterator>
+    PartiallyPersistentArray(InputIterator first, InputIterator last)
+        : sz(distance(first, last)) {
         turn = 0;
         arr.reserve(sz);
         for (InputIterator i = first; i != last; i++) {
@@ -40,8 +39,10 @@ struct PartiallyPersistentArray {
         while (invalid - valid > 1) {
             mid = (valid + invalid) / 2;
 
-            if (t <= arr[k][mid].first) valid = mid;
-            else invalid = mid;
+            if (t <= arr[k][mid].first)
+                valid = mid;
+            else
+                invalid = mid;
         }
 
         return arr[k][valid];
@@ -49,8 +50,6 @@ struct PartiallyPersistentArray {
 };
 //===
 
-
 int main() {
-
     return 0;
 }

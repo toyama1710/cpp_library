@@ -30,7 +30,9 @@ struct AVLSet {
         return *this;
     };
 
-    int size() const { return size(root); };
+    int size() const {
+        return size(root);
+    };
     static int size(Node *u) {
         if (u != nullptr)
             return u->sz;
@@ -195,7 +197,9 @@ struct AVLSet {
     int count(const T &x) const {
         return size() - count_upper(x) - count_lower(x);
     };
-    int count_lower(const T &x) const { return count_lower(x, root); };
+    int count_lower(const T &x) const {
+        return count_lower(x, root);
+    };
     int count_lower(const T &x, Node *u) const {
         if (u == nullptr) return 0;
         if (u->dat < x)
@@ -203,7 +207,9 @@ struct AVLSet {
         else
             return count_lower(x, u->ch[0]);
     };
-    int count_upper(const T &x) const { return count_upper(x, root); };
+    int count_upper(const T &x) const {
+        return count_upper(x, root);
+    };
     int count_upper(const T &x, Node *u) const {
         if (u == nullptr) return 0;
         if (x < u->dat)

@@ -1,20 +1,21 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2444"
 
 // header file section
-#include <iostream>
-#include <cstdio>
-#include <cfloat>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <functional>
-#include <numeric>
 #include <algorithm>
+#include <bitset>
+#include <cfloat>
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
 #include <tuple>
 #include <utility>
+#include <vector>
+
 #include "../../string/rolling_hash.hpp"
 
 using namespace std;
@@ -41,12 +42,15 @@ int main() {
         cin >> com >> op;
 
         if (com == 'L') {
-            if (op == "++") l++;
-            else l--;
-        }
-        else if (com == 'R') {
-            if (op == "++") r++;
-            else r--;
+            if (op == "++")
+                l++;
+            else
+                l--;
+        } else if (com == 'R') {
+            if (op == "++")
+                r++;
+            else
+                r--;
         }
 
         st.insert(make_tuple(rh.get_hash(l, r + 1), h.get_hash(l, r + 1)));

@@ -107,7 +107,9 @@ struct PersistentLazySegmentTree {
         return ret;
     };
 
-    void dump() { dump(root, 0); };
+    void dump() {
+        dump(root, 0);
+    };
     void dump(Node *u, int d) {
         if (u == nullptr) return;
         dump(u->right, d + 1);

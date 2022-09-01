@@ -1,6 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 #include <iostream>
 #include <utility>
+
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -52,8 +54,7 @@ int main() {
         if (com == 0) {
             cin >> s >> t >> x;
             seg.update(s - 1, t, x);
-        }
-        else {
+        } else {
             cin >> s >> t;
             cout << seg.fold(s - 1, t).first << '\n';
         }

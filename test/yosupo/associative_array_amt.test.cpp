@@ -20,7 +20,9 @@ using u64 = unsigned long long;
 
 u64 h(i64 k) {
     xorshift64 rnd(k);
-    rnd(); rnd(); rnd();
+    rnd();
+    rnd();
+    rnd();
     return rnd();
 };
 

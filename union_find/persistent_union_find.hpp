@@ -7,13 +7,13 @@
 // LIBRARY SECTION
 
 // 0-indexed
-template<int K = 2>
+template <int K = 2>
 struct PersistentUnionFind {
     PersistentArray<int, K> par;
 
     PersistentUnionFind() = default;
-    PersistentUnionFind(int n): par(n, -1) {};
-    PersistentUnionFind(PersistentArray<int, K> arr):par(arr) {};
+    PersistentUnionFind(int n) : par(n, -1){};
+    PersistentUnionFind(PersistentArray<int, K> arr) : par(arr){};
 
     PersistentUnionFind unite(int x, int y) {
         x = root(x);
@@ -24,8 +24,7 @@ struct PersistentUnionFind {
         if (size(x) > size(y)) {
             auto tmp = par.set(x, par[x] + par[y]);
             return tmp.set(y, x);
-        }
-        else {
+        } else {
             auto tmp = par.set(y, par[y] + par[x]);
             return tmp.set(x, y);
         }

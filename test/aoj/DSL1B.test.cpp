@@ -1,18 +1,20 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B"
 
 // header file section
-#include <iostream>
-#include <cstdio>
-#include <cfloat>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <functional>
-#include <numeric>
 #include <algorithm>
+#include <bitset>
+#include <cfloat>
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <vector>
+
 #include "../../union_find/weighted_union_find.hpp"
 
 using namespace std;
@@ -48,14 +50,12 @@ int main() {
         if (com == 0) {
             cin >> x >> y >> w;
             uf.unite(x, y, w);
-        }
-        else {
+        } else {
             cin >> x >> y;
 
             if (uf.same(x, y)) {
                 cout << uf.diff(x, y) << '\n';
-            }
-            else {
+            } else {
                 cout << "?\n";
             }
         }
@@ -63,4 +63,3 @@ int main() {
 
     return 0;
 };
-

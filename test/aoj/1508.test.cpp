@@ -21,19 +21,29 @@ struct A {
     struct M {
         using T = i64;
         using value_type = T;
-        static T identity() { return inf; };
-        static T operation(T lhs, T rhs) { return min(lhs, rhs); };
+        static T identity() {
+            return inf;
+        };
+        static T operation(T lhs, T rhs) {
+            return min(lhs, rhs);
+        };
     };
     struct O {
         using T = int;
         using value_type = T;
-        static T identity() { return 0; };
-        static T operation(T lhs, T rhs) { return 0; };
+        static T identity() {
+            return 0;
+        };
+        static T operation(T lhs, T rhs) {
+            return 0;
+        };
     };
 
     using value_structure = M;
     using operator_structure = O;
-    static M::T operation(M::T v, O::T o) { return v; };
+    static M::T operation(M::T v, O::T o) {
+        return v;
+    };
 };
 
 int main() {

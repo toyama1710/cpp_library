@@ -1,7 +1,7 @@
-#include <iostream>
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
 #include <functional>
+#include <iostream>
 #include <stack>
 
 //===
@@ -9,7 +9,8 @@
 
 // #include <stack>
 // #include <cassert>
-template<class SemiGroup, class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >
+template <class SemiGroup,
+          class OP = std::function<SemiGroup(SemiGroup, SemiGroup)> >
 struct SlidingWindow {
     // first:original data, second:sum
     using Stack = std::stack<std::pair<SemiGroup, SemiGroup> >;
@@ -17,23 +18,30 @@ struct SlidingWindow {
 
     Stack front_st, back_st;
 
-    SlidingWindow(const OP &f):merge(f) {};
+    SlidingWindow(const OP &f) : merge(f){};
 
     inline SemiGroup fold() {
         assert(!empty());
-        
-        if (front_st.empty()) return back_st.top().second;
-        else if (back_st.empty()) return front_st.top().second;
-        else return merge(front_st.top().second, back_st.top().second);
+
+        if (front_st.empty())
+            return back_st.top().second;
+        else if (back_st.empty())
+            return front_st.top().second;
+        else
+            return merge(front_st.top().second, back_st.top().second);
     };
 
     inline void push_front(SemiGroup d) {
-        if (front_st.empty()) front_st.emplace(d, d);
-        else front_st.emplace(d, merge(d, front_st.top().second));
+        if (front_st.empty())
+            front_st.emplace(d, d);
+        else
+            front_st.emplace(d, merge(d, front_st.top().second));
     };
     inline void push_back(SemiGroup d) {
-        if (back_st.empty()) back_st.emplace(d, d);
-        else back_st.emplace(d, merge(back_st.top().second, d));
+        if (back_st.empty())
+            back_st.emplace(d, d);
+        else
+            back_st.emplace(d, merge(back_st.top().second, d));
     };
 
     void pop_front() {
@@ -76,7 +84,7 @@ struct SlidingWindow {
         }
         back_st.pop();
     };
-    
+
     inline bool empty() {
         return size() == 0;
     };

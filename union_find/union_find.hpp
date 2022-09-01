@@ -1,8 +1,8 @@
 #ifndef UNION_FIND_HPP
 #define UNION_FIND_HPP
 
-#include <vector>
 #include <utility>
+#include <vector>
 
 //===
 struct UnionFind {
@@ -33,10 +33,10 @@ struct UnionFind {
 
         parent[x] += parent[y];
         parent[y] = x;
-        
+
         return;
     };
-    
+
     bool same(int x, int y) {
         return represent(x) == represent(y);
     };

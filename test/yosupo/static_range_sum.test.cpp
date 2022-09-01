@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include <iostream>
+
 #include "../../sparse_table/disjoint_sparse_table.hpp"
 using namespace std;
 using llong = long long;
@@ -20,7 +21,7 @@ DisjointSparseTable<Sum> dst;
 int main() {
     cin >> n >> q;
     a.resize(n);
-    for (auto &v:a) cin >> v;
+    for (auto &v : a) cin >> v;
 
     dst.build(a.begin(), a.end());
 

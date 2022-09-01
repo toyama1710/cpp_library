@@ -1,6 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I"
 #include <iostream>
 #include <utility>
+
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -22,8 +24,10 @@ struct Operator {
         return -1024;
     };
     inline static E operation(E &a, E &b) {
-        if (b == identity()) return a;
-        else return b;
+        if (b == identity())
+            return a;
+        else
+            return b;
     };
 };
 struct A {
@@ -54,8 +58,7 @@ int main() {
         if (com == 0) {
             cin >> s >> t >> x;
             seg.update(s, t + 1, x);
-        }
-        else {
+        } else {
             cin >> s >> t;
             cout << seg.fold(s, t + 1).first << '\n';
         }

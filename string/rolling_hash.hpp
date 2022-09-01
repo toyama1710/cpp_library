@@ -11,7 +11,7 @@ struct RollingHash {
     const int len;
     std::vector<uint64_t> hashed, power;
 
-    RollingHash (const std::string &s):s(s), len(s.size()) {
+    RollingHash(const std::string &s) : s(s), len(s.size()) {
         hashed.assign(len + 1, 0);
         power.assign(len + 1, 1);
 
@@ -29,7 +29,7 @@ struct RollingHash {
     };
 };
 
-template<uint64_t base>
+template <uint64_t base>
 struct RollingHash<base, (1ull << 61ull) - 1ull> {
     const std::string s;
     const int len;
@@ -38,7 +38,7 @@ struct RollingHash<base, (1ull << 61ull) - 1ull> {
     const uint64_t mod = (1ull << 61ull) - 1ull;
     std::vector<uint64_t> hashed, power;
 
-    RollingHash (const std::string &s):s(s), len(s.size()) {
+    RollingHash(const std::string &s) : s(s), len(s.size()) {
         hashed.assign(len + 1, 0);
         power.assign(len + 1, 1);
 
@@ -62,9 +62,8 @@ struct RollingHash<base, (1ull << 61ull) - 1ull> {
         uint64_t rd = r & mask31;
         uint64_t mid = ld * ru + lu * rd;
 
-        return ((lu * ru) << 1) +
-            (mid >> 30) + ((mid & mask30) << 31)
-            + ld * rd;
+        return ((lu * ru) << 1) + (mid >> 30) + ((mid & mask30) << 31) +
+               ld * rd;
     };
 
     inline uint64_t calc_mod(uint64_t v) {
@@ -74,7 +73,7 @@ struct RollingHash<base, (1ull << 61ull) - 1ull> {
     };
 };
 
-template<uint64_t base>
+template <uint64_t base>
 using MRollingHash = RollingHash<base, (1ull << 61ull) - 1ull>;
 //===
 

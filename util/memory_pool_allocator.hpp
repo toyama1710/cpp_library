@@ -1,15 +1,15 @@
 #ifndef MEMORY_POOL_ALLOCATOR_HPP
 #define MEMORY_POOL_ALLOCATOR_HPP
 
-#include <cassert>
 #include <array>
-#include <numeric>
+#include <cassert>
 #include <cstdint>
+#include <numeric>
 
 //===
 
 // for use: speed up (ex. persistent data structure)
-template<class T, size_t sz>
+template <class T, size_t sz>
 struct MemoryPoolAllocator {
     using value_type = T;
     std::array<T *, sz> addr;
@@ -24,7 +24,7 @@ struct MemoryPoolAllocator {
         }
     };
 
-    template<class U>
+    template <class U>
     struct rebind {
         using other = MemoryPoolAllocator<U, sz>;
     };

@@ -2,8 +2,9 @@
 #define BIT_VECTOR_HPP
 
 #include <cstdint>
-#include <vector>
 #include <string>
+#include <vector>
+
 #include "../bit/pop_count.hpp"
 
 struct BitVector {
@@ -15,19 +16,22 @@ struct BitVector {
     std::vector<u32> chunk;
 
     BitVector() = default;
-    explicit BitVector(int len) : bit((len + 31) / 32, 0), chunk((len + 31) / 32, 0){};
-    BitVector(std::vector<bool> v) : bit((v.size() + 31) / 32, 0), chunk((v.size() + 31) / 32, 0) {
+    explicit BitVector(int len)
+        : bit((len + 31) / 32, 0), chunk((len + 31) / 32, 0){};
+    BitVector(std::vector<bool> v)
+        : bit((v.size() + 31) / 32, 0), chunk((v.size() + 31) / 32, 0) {
         for (int i = 0; i < v.size(); i++) {
             if (v[i]) set(i);
         }
     };
-    BitVector(std::string s) : bit((s.size() + 31) / 32, 0), chunk((s.size() + 31) / 32, 0) {
+    BitVector(std::string s)
+        : bit((s.size() + 31) / 32, 0), chunk((s.size() + 31) / 32, 0) {
         for (int i = 0; i < s.size(); i++) {
             if (s[i] == '1') set(i);
         }
     };
 
-    bool operator[] (int k) {
+    bool operator[](int k) {
         return bool((bit[k / 32] >> (k & 31)) & 1);
     };
 
@@ -46,8 +50,7 @@ struct BitVector {
 
     // count number of 1 in [0, k)
     int rank1(int k) {
-        return chunk[k / 32] +
-        popcnt32(bit[k / 32] & ~((~0u) << (k & 31)));
+        return chunk[k / 32] + popcnt32(bit[k / 32] & ~((~0u) << (k & 31)));
     };
     // count number of 0 in [0, k)
     int rank0(int k) {
@@ -59,8 +62,10 @@ struct BitVector {
         int m;
         while (r - l > 1) {
             m = (l + r) >> 1;
-            if (rank1(m) >= k) r = m;
-            else l = m;
+            if (rank1(m) >= k)
+                r = m;
+            else
+                l = m;
         }
         return r - 1;
     };
@@ -70,8 +75,10 @@ struct BitVector {
         int m;
         while (r - l > 1) {
             m = (l + r) >> 1;
-            if (rank0(m) >= k) r = m;
-            else l = m;
+            if (rank0(m) >= k)
+                r = m;
+            else
+                l = m;
         }
         return r - 1;
     };

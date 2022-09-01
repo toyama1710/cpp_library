@@ -3,13 +3,14 @@
 #include <vector>
 
 //===
-template<class Abel>
+template <class Abel>
 struct WeightedUnionFind {
     using T = typename Abel::value_type;
 
-    std::vector<int> parent; // [i] = i-th node's parent. if [i] < 0, i-th node is root.
-    std::vector<T> diff_weight; // distance from parent
-    
+    std::vector<int>
+        parent;  // [i] = i-th node's parent. if [i] < 0, i-th node is root.
+    std::vector<T> diff_weight;  // distance from parent
+
     WeightedUnionFind() = default;
     WeightedUnionFind(int nmemb) {
         init(nmemb);
@@ -22,9 +23,10 @@ struct WeightedUnionFind {
 
     int root(int x) {
         if (parent[x] < 0) return x;
-        
+
         int p = root(parent[x]);
-        diff_weight[x] = Abel::operation(diff_weight[x], diff_weight[parent[x]]);
+        diff_weight[x] =
+            Abel::operation(diff_weight[x], diff_weight[parent[x]]);
         parent[x] = p;
 
         return p;
@@ -45,10 +47,10 @@ struct WeightedUnionFind {
         parent[x] += parent[y];
         parent[y] = x;
         diff_weight[y] = w;
-        
+
         return true;
     };
-    
+
     bool same(int x, int y) {
         return root(x) == root(y);
     };
@@ -59,8 +61,7 @@ struct WeightedUnionFind {
     };
 
     T diff(int x, int y) {
-        return Abel::operation(weight(y),
-                Abel::inverse(weight(x)));
+        return Abel::operation(weight(y), Abel::inverse(weight(x)));
     };
 
     int size(int x) {

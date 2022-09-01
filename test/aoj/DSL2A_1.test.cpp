@@ -1,10 +1,12 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A"
 
 // header file section
 #include <iostream>
 #include <vector>
-#include "../../segment_tree/segment_tree.hpp"
+
 #include "../../data_type/min_monoid.hpp"
+#include "../../segment_tree/segment_tree.hpp"
 
 using namespace std;
 using llong = long long;
@@ -23,12 +25,10 @@ int main() {
 
         if (com == 0) {
             seg.update(x, y);
-        }
-        else {
+        } else {
             cout << seg.fold(x, y + 1) << '\n';
         }
     }
 
     return 0;
 };
-

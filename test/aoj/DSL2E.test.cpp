@@ -1,5 +1,7 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E"
 #include <iostream>
+
 #include "../../segment_tree/dual_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -31,8 +33,7 @@ int main() {
             cin >> s >> t >> x;
             s--;
             seg.update(s, t, x);
-        }
-        else if (com == 1) {
+        } else if (com == 1) {
             cin >> idx;
             idx--;
             cout << seg[idx] << '\n';

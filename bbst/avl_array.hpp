@@ -54,7 +54,9 @@ struct AVLArray {
         return height(u->ch[0]) - height(u->ch[1]);
     };
 
-    int size() { return size(root); };
+    int size() {
+        return size(root);
+    };
     static int size(const Node *u) {
         if (u == nullptr)
             return 0;
@@ -239,7 +241,9 @@ struct AVLArray {
         root = merge(nv, l, r);
         return *this;
     };
-    AVLArray &set(int k, const T &dat) { return update(k, dat); };
+    AVLArray &set(int k, const T &dat) {
+        return update(k, dat);
+    };
     AVLArray &update(int k, const T &dat) {
         assert(0 <= k && k < size());
         auto [tmp, r] = split(root, k + 1);
@@ -285,7 +289,9 @@ struct AVLArray {
         return ret;
     };
 
-    const T operator[](int k) { return at(root, k); };
+    const T operator[](int k) {
+        return at(root, k);
+    };
     const T at(Node *u, int k) {
         assert(0 <= k && k < size(u));
         push_down(u);

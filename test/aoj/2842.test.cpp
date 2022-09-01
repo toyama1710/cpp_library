@@ -1,15 +1,20 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
 #include <iostream>
-#include <tuple>
 #include <queue>
+#include <tuple>
+
 #include "../../segment_tree/segment_tree2d.hpp"
 using namespace std;
 using llong = long long;
 
 struct Monoid {
     using value_type = llong;
-    static llong operation(llong a, llong b){return a + b;};
-    static llong identity(){return 0ll;};
+    static llong operation(llong a, llong b) {
+        return a + b;
+    };
+    static llong identity() {
+        return 0ll;
+    };
 };
 
 int main() {
@@ -34,23 +39,23 @@ int main() {
             que.pop();
         }
 
-        switch(c) {
-        case 0:
-            invalid.update(sy, sx, 1);
-            que.push(make_tuple(t, sy, sx));
-            break;
-        case 1:
-            if (valid.at(sy, sx) == 1) {
-                valid.update(sy, sx, 0);
-            }
-            break;
-        case 2:
-            cin >> ty >> tx;
-            ty++, tx++;
+        switch (c) {
+            case 0:
+                invalid.update(sy, sx, 1);
+                que.push(make_tuple(t, sy, sx));
+                break;
+            case 1:
+                if (valid.at(sy, sx) == 1) {
+                    valid.update(sy, sx, 0);
+                }
+                break;
+            case 2:
+                cin >> ty >> tx;
+                ty++, tx++;
 
-            cout << valid.fold(sy, sx, ty, tx) << ' ';
-            cout << invalid.fold(sy, sx, ty, tx) << '\n';
-            break;
+                cout << valid.fold(sy, sx, ty, tx) << ' ';
+                cout << invalid.fold(sy, sx, ty, tx) << '\n';
+                break;
         }
     }
 

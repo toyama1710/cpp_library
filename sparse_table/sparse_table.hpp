@@ -2,11 +2,11 @@
 #define SPARSE_TABLE_HPP
 
 #include <functional>
-#include <vector>
 #include <iterator>
+#include <vector>
 
 //===
-template<class SemiLattice>
+template <class SemiLattice>
 struct SparseTable {
     using S = SemiLattice;
     using T = typename SemiLattice::value_type;
@@ -16,12 +16,12 @@ struct SparseTable {
 
     SparseTable() = default;
 
-    template<class InputItr>
+    template <class InputItr>
     SparseTable(InputItr first, InputItr last) {
         int n = std::distance(first, last);
         log2.assign(n + 1, 0);
         for (int i = 2; i <= n; i++) log2[i] = log2[i / 2] + 1;
-        
+
         table.reserve(log2[n] + 1);
         table.emplace_back(first, last);
 
@@ -30,7 +30,8 @@ struct SparseTable {
             table.emplace_back();
             table.back().reserve(n - (1 << i) + 1);
             for (int j = 0; j + (1 << i) <= n; j++) {
-                table[i].emplace_back(S::operation(table[i - 1][j], table[i - 1][j + w]));
+                table[i].emplace_back(
+                    S::operation(table[i - 1][j], table[i - 1][j + w]));
             }
         }
     };
@@ -45,7 +46,7 @@ struct SparseTable {
         return table[0].size();
     };
 
-    T operator[] (const int k) {
+    T operator[](const int k) {
         return table[0][k];
     };
 };

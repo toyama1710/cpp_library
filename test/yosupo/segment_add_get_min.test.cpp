@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
-#include <iostream>
-#include <vector>
-#include <tuple>
 #include <algorithm>
+#include <iostream>
+#include <tuple>
+#include <vector>
+
 #include "../../cht/li_chao_tree.hpp"
 
 using namespace std;
@@ -36,8 +37,7 @@ int main() {
             cin >> l >> r >> a >> b;
             p.push_back(l);
             p.push_back(r);
-        }
-        else {
+        } else {
             cin >> l;
             p.push_back(l);
         }
@@ -55,14 +55,12 @@ int main() {
 
         if (com == 0) {
             cht.add_segment(a, b, l, r);
-        }
-        else {
+        } else {
             auto out = cht.get(l);
 
             if (out >= llong(1e18) * 3) {
                 cout << "INFINITY" << '\n';
-            }
-            else {
+            } else {
                 cout << out << '\n';
             }
         }
@@ -70,4 +68,3 @@ int main() {
 
     return 0;
 };
-

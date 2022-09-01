@@ -90,7 +90,9 @@ struct DynamicSegmentTree {
         return Monoid::operation(lv, rv);
     };
 
-    T operator[](const llong k) { return fold(k, k + 1); };
+    T operator[](const llong k) {
+        return fold(k, k + 1);
+    };
 };
 
 #endif

@@ -1,35 +1,32 @@
 #define NODEBUG
-#include <iostream>
+#include <algorithm>
+#include <cassert>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
-#include <cmath>
 #include <functional>
-#include <algorithm>
-#include <string>
-#include <vector>
-#include <set>
+#include <iostream>
 #include <map>
 #include <queue>
+#include <set>
 #include <stack>
-#include <cassert>
+#include <string>
+#include <vector>
 using namespace std;
 using llong = long long;
 
 //===
 //#include <cassert>
-template<class T, class Compare = function<bool(T, T)>,
-         class Heap = priority_queue<T, vector<T>, Compare> >
+template <class T, class Compare = function<bool(T, T)>,
+          class Heap = priority_queue<T, vector<T>, Compare> >
 struct FindKth {
     const int K;
     Heap maxh;
     Heap minh;
 
-    FindKth (const int K, const Compare &cmp = less<T>()):
-        K(K),
-        maxh(cmp),
-        minh([cmp](auto l, auto r){ return cmp(r, l); })
-    {};
-    
+    FindKth(const int K, const Compare &cmp = less<T>())
+        : K(K), maxh(cmp), minh([cmp](auto l, auto r) { return cmp(r, l); }){};
+
     size_t size() {
         return maxh.size() + minh.size();
     };
@@ -37,23 +34,23 @@ struct FindKth {
         return size() <= 0;
     };
 
-    void push(T d){
+    void push(T d) {
         maxh.push(d);
         if (maxh.size() > K) {
             minh.push(maxh.top());
             maxh.pop();
         }
     };
-    
-    T find(){
+
+    T find() {
         assert(maxh.size() == K);
         return maxh.top();
     };
-    T find_lower(){
+    T find_lower() {
         assert(!empty());
         return maxh.top();
     };
-    
+
     void pop() {
         assert(!empty());
 
@@ -67,7 +64,6 @@ struct FindKth {
 //===
 
 int yc649() {
-    
     llong q, k;
     llong com, v;
 
@@ -80,18 +76,16 @@ int yc649() {
         if (com == 1) {
             cin >> v;
             st.push(v);
-        }
-        else {
+        } else {
             if (st.size() < k) {
                 cout << -1 << endl;
-            }
-            else {
+            } else {
                 cout << st.find() << endl;
                 st.pop();
             }
         }
     }
-    
+
     return 0;
 }
 

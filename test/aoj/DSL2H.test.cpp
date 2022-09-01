@@ -1,6 +1,8 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H"
-#include <iostream>
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H"
 #include <algorithm>
+#include <iostream>
+
 #include "../../segment_tree/lazy_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -27,7 +29,7 @@ struct Operator {
     };
 };
 
-template<class Monoid, class Op>
+template <class Monoid, class Op>
 struct MO {
     using value_structure = Monoid;
     using operator_structure = Op;
@@ -55,8 +57,7 @@ int main() {
         if (com == 0) {
             cin >> s >> t >> x;
             seg.update(s, t + 1, x);
-        }
-        else {
+        } else {
             cin >> s >> t;
             cout << seg.fold(s, t + 1) << '\n';
         }

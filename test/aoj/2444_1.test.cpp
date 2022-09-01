@@ -1,20 +1,21 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2444"
 
 // header file section
-#include <iostream>
-#include <cstdio>
-#include <cfloat>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <functional>
-#include <numeric>
 #include <algorithm>
+#include <bitset>
+#include <cfloat>
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
 #include <tuple>
 #include <utility>
+#include <vector>
+
 #include "../../segment_tree/segment_tree.hpp"
 
 using namespace std;
@@ -27,11 +28,11 @@ char com;
 string op;
 set<tuple<ull, ull, ull>> st;
 
-template<ull base>
+template <ull base>
 struct RollingHash {
     using value_type = pair<ull, ull>;
     using T = value_type;
-    
+
     static std::vector<ull> pow_table;
     inline static T identity() {
         return {0ull, 0ull};
@@ -44,11 +45,12 @@ struct RollingHash {
     };
 
     inline static ull power(ull n) {
-        while (pow_table.size() <= n) pow_table.push_back(pow_table.back() * base);
+        while (pow_table.size() <= n)
+            pow_table.push_back(pow_table.back() * base);
         return pow_table[n];
     };
 };
-template<ull base>
+template <ull base>
 vector<ull> RollingHash<base>::pow_table(1, 1);
 
 int main() {
@@ -71,17 +73,20 @@ int main() {
         cin >> com >> op;
 
         if (com == 'L') {
-            if (op == "++") l++;
-            else l--;
-        }
-        else if (com == 'R') {
-            if (op == "++") r++;
-            else r--;
+            if (op == "++")
+                l++;
+            else
+                l--;
+        } else if (com == 'R') {
+            if (op == "++")
+                r++;
+            else
+                r--;
         }
 
-        auto key = make_tuple(seg1.fold(l, r + 1).first,
-                              seg2.fold(l, r + 1).first,
-                              seg3.fold(l, r + 1).first);
+        auto key =
+            make_tuple(seg1.fold(l, r + 1).first, seg2.fold(l, r + 1).first,
+                       seg3.fold(l, r + 1).first);
 
         st.insert(key);
     }

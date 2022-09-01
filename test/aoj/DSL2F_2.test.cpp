@@ -1,7 +1,9 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
+
+#include <bits/stdc++.h>
 
 #include "../../segment_tree/persistent_lazy_segment_tree.hpp"
-#include <bits/stdc++.h>
 
 #define _overload(_1, _2, _3, _4, name, ...) name
 #define _rep1(Itr, N) _rep3(Itr, 0, N, 1)
@@ -18,13 +20,19 @@ struct M {
     struct Monoid {
         using T = uint;
         using value_type = T;
-        inline static T identity() { return (1ll << 31) - 1; };
-        inline static T operation(T a, T b) { return min(a, b); };
+        inline static T identity() {
+            return (1ll << 31) - 1;
+        };
+        inline static T operation(T a, T b) {
+            return min(a, b);
+        };
     };
     struct Operator {
         using E = uint;
         using value_type = E;
-        inline static E identity() { return (1ll << 31) - 1; };
+        inline static E identity() {
+            return (1ll << 31) - 1;
+        };
         inline static E operation(E a, E b) {
             if (b == identity())
                 return a;

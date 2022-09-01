@@ -1,21 +1,21 @@
-#include <iostream>
+#include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
-#include <cmath>
 #include <cstring>
 #include <functional>
-#include <algorithm>
-#include <vector>
-#include <string>
-#include <queue>
-#include <stack>
+#include <iostream>
 #include <map>
+#include <queue>
 #include <set>
+#include <stack>
+#include <string>
+#include <vector>
 using namespace std;
 
-template<class T, class Compare = greater<T> >
+template <class T, class Compare = greater<T> >
 using MinHeap = priority_queue<T, vector<T>, Compare>;
-template<class T, class Compare = less<T> >
+template <class T, class Compare = less<T> >
 using MaxHeap = priority_queue<T, vector<T>, Compare>;
 using llong = long long;
 
@@ -26,12 +26,11 @@ struct PartiallyPersistentUnionFind {
     vector<int> par;
     vector<vector<pair<int, int> > > sz;
 
-    PartiallyPersistentUnionFind(int n):
-        turn(0),
-        t(n, -1),
-        par(n, -1),
-        sz(n, vector<pair<int, int> >(1, make_pair(0, 1)))
-    {};
+    PartiallyPersistentUnionFind(int n)
+        : turn(0),
+          t(n, -1),
+          par(n, -1),
+          sz(n, vector<pair<int, int> >(1, make_pair(0, 1))){};
 
     bool unite(int x, int y) {
         x = find(turn, x);
@@ -39,18 +38,18 @@ struct PartiallyPersistentUnionFind {
         turn++;
 
         if (x == y) return false;
-                        
+
         if (par[y] < par[x]) swap(x, y);
         par[x] += par[y];
         par[y] = x;
-        
+
         t[y] = turn;
         sz[x].push_back(make_pair(turn, -par[x]));
 
         return true;
     };
 
-    int find (int time, int x) {
+    int find(int time, int x) {
         if (par[x] < 0 || t[x] > time) return x;
         return find(time, par[x]);
     };
@@ -61,7 +60,10 @@ struct PartiallyPersistentUnionFind {
 
     int size(int time, int x) {
         x = find(time, x);
-        return (upper_bound(sz[x].begin(), sz[x].end(), make_pair(time, 1<<30)) - 1)->second;
+        return (upper_bound(sz[x].begin(), sz[x].end(),
+                            make_pair(time, 1 << 30)) -
+                1)
+            ->second;
     };
 };
 //===
@@ -95,16 +97,14 @@ int CodeThanksFes2017H() {
 
             if (uf.same(mid, x, y)) {
                 valid = mid;
-            }
-            else {
+            } else {
                 invalid = mid;
             }
         }
 
         if (invalid == m) {
             cout << -1 << endl;
-        }
-        else {
+        } else {
             cout << valid << endl;
         }
     }
@@ -124,17 +124,19 @@ int AGC002D() {
     for (int i = 0; i < m; i++) {
         cin >> a >> b;
         a--, b--;
-        
+
         uf.unite(a, b);
     }
 
     auto f = [&](int t) {
-                 llong xs = uf.size(t, x);
-                 llong ys = uf.size(t, y);
+        llong xs = uf.size(t, x);
+        llong ys = uf.size(t, y);
 
-                 if (uf.same(t, x, y)) return xs;
-                 else return xs + ys;
-             };
+        if (uf.same(t, x, y))
+            return xs;
+        else
+            return xs + ys;
+    };
 
     cin >> q;
     for (int i = 0; i < q; i++) {
@@ -149,10 +151,12 @@ int AGC002D() {
         while (valid - invalid > 1) {
             mid = (valid + invalid) / 2;
 
-            if (f(mid) >= z) valid = mid;
-            else invalid = mid;
+            if (f(mid) >= z)
+                valid = mid;
+            else
+                invalid = mid;
         }
-        
+
         cout << valid << endl;
     }
 
@@ -160,6 +164,6 @@ int AGC002D() {
 }
 
 int main() {
-    //return CodeThanksFes2017H();
+    // return CodeThanksFes2017H();
     return AGC002D();
 }

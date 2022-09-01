@@ -1,12 +1,12 @@
 #ifndef MAX_MONOID_HPP
 #define MAX_MONOID_HPP
 
-#include <numeric>
 #include <algorithm>
 #include <limits>
+#include <numeric>
 
 //===
-template<class T>
+template <class T>
 struct MinMonoid {
     using value_type = T;
     inline static T identity() {

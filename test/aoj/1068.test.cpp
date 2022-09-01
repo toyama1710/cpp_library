@@ -1,6 +1,7 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1068"
 
 #include <iostream>
+
 #include "../../segment_tree/segment_tree2d.hpp"
 
 using llong = long long;
@@ -21,7 +22,7 @@ struct Monoid {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+
     llong r, c, q;
     llong gr;
     llong sy, sx, ty, tx;
@@ -29,7 +30,7 @@ int main() {
     cin >> r >> c >> q;
     while (r != 0 && c != 0 && q != 0) {
         SegmentTree2D<Monoid> seg(r, c);
-        
+
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
                 cin >> gr;
@@ -40,7 +41,7 @@ int main() {
         for (int i = 0; i < q; i++) {
             cin >> sy >> sx >> ty >> tx;
 
-            cout << seg.fold(sy, sx, ty + 1,  tx + 1) << '\n';
+            cout << seg.fold(sy, sx, ty + 1, tx + 1) << '\n';
         }
 
         /*
@@ -51,7 +52,7 @@ int main() {
             cout << endl;
         }
         */
-        
+
         cin >> r >> c >> q;
     }
 

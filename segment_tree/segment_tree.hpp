@@ -1,22 +1,21 @@
 #ifndef SEGMENT_TREE_HPP
 #define SEGMENT_TREE_HPP
 
-#include <vector>
 #include <functional>
 #include <iterator>
+#include <vector>
 
 //===
-template<class Monoid>
+template <class Monoid>
 struct SegmentTree {
     using T = typename Monoid::value_type;
 
     std::vector<T> tree;
 
     SegmentTree() = default;
-    explicit SegmentTree(int n)
-        :tree(n << 1, Monoid::identity()) {};
+    explicit SegmentTree(int n) : tree(n << 1, Monoid::identity()){};
 
-    template<class InputIterator>
+    template <class InputIterator>
     SegmentTree(InputIterator first, InputIterator last) {
         tree.assign(distance(first, last) << 1, Monoid::identity());
 
@@ -34,15 +33,15 @@ struct SegmentTree {
         return tree.size() >> 1;
     };
 
-    inline T operator[] (int k) {
+    inline T operator[](int k) {
         return tree[k + size()];
     };
 
     void update(int k, const T dat) {
         k += size();
         tree[k] = dat;
-        
-        while(k > 1) {
+
+        while (k > 1) {
             k >>= 1;
             tree[k] = Monoid::operation(tree[(k << 1)], tree[(k << 1) | 1]);
         }
@@ -50,7 +49,7 @@ struct SegmentTree {
 
     // [l, r)
     T fold(int l, int r) {
-        l += size(); //points leaf
+        l += size();  // points leaf
         r += size();
 
         T lv = Monoid::identity();
@@ -65,25 +64,24 @@ struct SegmentTree {
         return Monoid::operation(lv, rv);
     };
 
-    template<class F>
+    template <class F>
     inline int sub_tree_search(int i, T sum, F f) {
         while (i < size()) {
             T x = Monoid::operation(sum, tree[i << 1]);
             if (f(x)) {
                 i = i << 1;
-            }
-            else {
+            } else {
                 sum = x;
                 i = (i << 1) | 1;
             }
         }
-        return i - size();
+        return i - size() + 1;
     }
 
-    template<class F>
-    int search(int l, F f) {
+    template <class F>
+    int find_first(int l, F f) {
         l += size();
-        int r = size() * 2; //r = n;
+        int r = size() * 2;  // r = n;
         int tmpr = r;
         int shift = 0;
 

@@ -26,7 +26,9 @@ struct M {
     using T = array<int, 4>;
     using value_type = T;
     const static u8 inf = 100;
-    static T identity() { return {inf, inf, inf, 0}; };
+    static T identity() {
+        return {inf, inf, inf, 0};
+    };
     static T operation(T lhs, T rhs) {
         T ret;
         int li = 0, ri = 0;
@@ -47,8 +49,12 @@ struct M {
 struct SUM {
     using T = int;
     using value_type = T;
-    static T identity() { return 0; };
-    static T operation(T lhs, T rhs) { return lhs + rhs; };
+    static T identity() {
+        return 0;
+    };
+    static T operation(T lhs, T rhs) {
+        return lhs + rhs;
+    };
 };
 
 int main() {

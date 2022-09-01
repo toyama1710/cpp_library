@@ -32,7 +32,9 @@ struct LazySegmentTree {
     explicit LazySegmentTree(uint32_t n)
         : tree(n * 2 + 2, Node(V::identity(), O::identity())){};
 
-    int size() { return tree.size() >> 1; };
+    int size() {
+        return tree.size() >> 1;
+    };
 
     void propagation(uint32_t k) {
         const uint32_t l = (k << 1) | 0;
@@ -91,7 +93,9 @@ struct LazySegmentTree {
         tree[idx].dat = x;
         recalc(idx);
     };
-    void set(uint32_t idx, T x) { update(idx, x); };
+    void set(uint32_t idx, T x) {
+        update(idx, x);
+    };
 
     // foldl[l, r)
     T fold(uint32_t l, uint32_t r) {

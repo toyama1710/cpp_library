@@ -13,7 +13,9 @@ struct LeftistHeap {
         int sz;
         Node *ch[2];
         Node(T &val) : val(val), sz(1), ch{nullptr, nullptr} {};
-        static int size(Node *u) { return u == nullptr ? 0 : u->sz; };
+        static int size(Node *u) {
+            return u == nullptr ? 0 : u->sz;
+        };
         static Node *update(Node *u) {
             u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;
             if (size(u->ch[0]) < size(u->ch[1])) std::swap(u->ch[0], u->ch[1]);
@@ -56,8 +58,12 @@ struct LeftistHeap {
         root = meld(l, r);
         return *this;
     };
-    int size() { return Node::size(root); };
-    bool empty() { return size() == 0; };
+    int size() {
+        return Node::size(root);
+    };
+    bool empty() {
+        return size() == 0;
+    };
 };
 
 #endif

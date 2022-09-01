@@ -21,7 +21,9 @@ struct Sum {
     struct M {
         using T = pair<i64, i64>;
         using value_type = T;
-        static T identity() { return {0, 0}; };
+        static T identity() {
+            return {0, 0};
+        };
         static T operation(T lhs, T rhs) {
             return {lhs.first + rhs.first, lhs.second + rhs.second};
         };
@@ -29,8 +31,12 @@ struct Sum {
     struct O {
         using T = i64;
         using value_type = T;
-        static T identity() { return 0; };
-        static T operation(T lhs, T rhs) { return lhs + rhs; };
+        static T identity() {
+            return 0;
+        };
+        static T operation(T lhs, T rhs) {
+            return lhs + rhs;
+        };
     };
 
     using value_structure = M;

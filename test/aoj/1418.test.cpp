@@ -25,7 +25,9 @@ struct M {
     using T = array<i64, 3>;
     using value_type = T;
     const static i64 inf = 1ll << 60;
-    static T identity() { return {inf, inf, inf}; };
+    static T identity() {
+        return {inf, inf, inf};
+    };
     static T operation(T lhs, T rhs) {
         T ret;
         int li = 0, ri = 0;

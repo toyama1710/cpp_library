@@ -1,7 +1,7 @@
 #ifndef SUM_MONOID_HPP
 #define SUM_MONOID_HPP
 
-template<class T>
+template <class T>
 struct SumMonoid {
     using value_type = T;
     inline static T identity() {

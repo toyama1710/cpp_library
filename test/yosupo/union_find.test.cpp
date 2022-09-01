@@ -1,17 +1,18 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 // header file section
-#include <iostream>
-#include <cstdio>
-#include <cfloat>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <bitset>
-#include <functional>
-#include <numeric>
 #include <algorithm>
+#include <bitset>
+#include <cfloat>
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <vector>
+
 #include "../../union_find/union_find.hpp"
 
 using namespace std;
@@ -30,12 +31,10 @@ int main() {
 
         if (com == 0) {
             uf.unite(u, v);
-        }
-        else {
+        } else {
             cout << (uf.same(u, v) ? 1 : 0) << endl;
         }
     }
 
     return 0;
 };
-

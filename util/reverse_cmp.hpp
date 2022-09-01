@@ -7,8 +7,12 @@ struct RevCmp {
 
     RevCmp(T val) : val(val){};
 
-    bool operator<(const RevCmp &rhs) const { return rhs.val < val; };
-    bool operator>(const RevCmp &rhs) const { return val < rhs.val; };
+    bool operator<(const RevCmp &rhs) const {
+        return rhs.val < val;
+    };
+    bool operator>(const RevCmp &rhs) const {
+        return val < rhs.val;
+    };
     bool operator==(const RevCmp &rhs) const {
         return !(val < rhs.val || rhs.val < val);
     };
@@ -27,7 +31,9 @@ struct RevCmp {
         return *this;
     };
 
-    T value() const { return val; };
+    T value() const {
+        return val;
+    };
 };
 
 #endif

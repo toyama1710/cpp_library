@@ -1,5 +1,7 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D"
+#define PROBLEM \
+    "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D"
 #include <iostream>
+
 #include "../../segment_tree/dual_segment_tree.hpp"
 using namespace std;
 using llong = long long;
@@ -12,9 +14,12 @@ struct RUQ {
         return (1ll << 31) - 1;
     };
     inline static T operation(T a, T b) {
-        if (a == identity()) return b;
-        else if (b == identity()) return a;
-        else return b;
+        if (a == identity())
+            return b;
+        else if (b == identity())
+            return a;
+        else
+            return b;
     };
 };
 
@@ -32,8 +37,7 @@ int main() {
         if (com == 0) {
             cin >> s >> t >> x;
             seg.update(s, t + 1, x);
-        }
-        else if (com == 1) {
+        } else if (com == 1) {
             cin >> idx;
             cout << seg[idx] << '\n';
         }
