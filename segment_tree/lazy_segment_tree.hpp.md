@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/msb.hpp
     title: bit/msb.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2F_1.test.cpp
     title: test/aoj/DSL2F_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2G.test.cpp
     title: test/aoj/DSL2G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2H.test.cpp
     title: test/aoj/DSL2H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2I.test.cpp
     title: test/aoj/DSL2I.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yosupo/range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/lazy_segment_tree.hpp\"\n\n\n\n#include <cstdint>\n\
@@ -60,9 +60,9 @@ data:
     \n\n//===\ntemplate <class MonoidwithOperator>\nstruct LazySegmentTree {\n   \
     \ using M = MonoidwithOperator;\n    using V = typename M::value_structure;\n\
     \    using T = typename V::value_type;\n    using O = typename M::operator_structure;\n\
-    \    using E = typename O::value_type;\n\n    // mergeMonoid V::operation\n  \
-    \  // applyOperator M::operation\n    // mergeOperator O::operation\n\n    struct\
-    \ Node {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
+    \    using E = typename O::value_type;\n\n    // T + T      V::operation\n   \
+    \ // E + E      O::operation\n    // T + E -> T M::operation\n\n    struct Node\
+    \ {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
     \ lazy(lazy){};\n    };\n\n    std::vector<Node> tree;\n\n    LazySegmentTree()\
     \ = default;\n    explicit LazySegmentTree(uint32_t n)\n        : tree(n * 2 +\
     \ 2, Node(V::identity(), O::identity())){};\n\n    int size() {\n        return\
@@ -102,9 +102,9 @@ data:
     \n\n//===\ntemplate <class MonoidwithOperator>\nstruct LazySegmentTree {\n   \
     \ using M = MonoidwithOperator;\n    using V = typename M::value_structure;\n\
     \    using T = typename V::value_type;\n    using O = typename M::operator_structure;\n\
-    \    using E = typename O::value_type;\n\n    // mergeMonoid V::operation\n  \
-    \  // applyOperator M::operation\n    // mergeOperator O::operation\n\n    struct\
-    \ Node {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
+    \    using E = typename O::value_type;\n\n    // T + T      V::operation\n   \
+    \ // E + E      O::operation\n    // T + E -> T M::operation\n\n    struct Node\
+    \ {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
     \ lazy(lazy){};\n    };\n\n    std::vector<Node> tree;\n\n    LazySegmentTree()\
     \ = default;\n    explicit LazySegmentTree(uint32_t n)\n        : tree(n * 2 +\
     \ 2, Node(V::identity(), O::identity())){};\n\n    int size() {\n        return\
@@ -145,8 +145,8 @@ data:
   isVerificationFile: false
   path: segment_tree/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-10 18:36:54+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL2G.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data_type/min_monoid.hpp
     title: data_type/min_monoid.hpp
   - icon: ':x:'

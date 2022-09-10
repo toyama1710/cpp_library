@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: heap/persistent_leftist_heap.hpp
     title: heap/persistent_leftist_heap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: util/reverse_cmp.hpp
     title: util/reverse_cmp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_9_C
@@ -92,7 +92,7 @@ data:
   path: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
   requiredBy: []
   timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
 layout: document

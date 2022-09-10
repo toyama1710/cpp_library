@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/clz.hpp
     title: bit/clz.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/lsb.hpp
     title: bit/lsb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/pop_count.hpp
     title: bit/pop_count.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: util/xorshift.hpp
     title: util/xorshift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -166,7 +166,7 @@ data:
   path: test/aoj/bits.test.cpp
   requiredBy: []
   timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/bits.test.cpp
 layout: document

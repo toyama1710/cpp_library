@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/msb.hpp
     title: bit/msb.hpp
   - icon: ':x:'

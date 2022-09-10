@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: cht/li_chao_tree.hpp
     title: cht/li_chao_tree.hpp
   _extendedRequiredBy: []

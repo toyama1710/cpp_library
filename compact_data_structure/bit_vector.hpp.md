@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/pop_count.hpp
     title: bit/pop_count.hpp
   _extendedRequiredBy: []

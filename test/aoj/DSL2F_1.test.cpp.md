@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -53,9 +53,9 @@ data:
     \n\n//===\ntemplate <class MonoidwithOperator>\nstruct LazySegmentTree {\n   \
     \ using M = MonoidwithOperator;\n    using V = typename M::value_structure;\n\
     \    using T = typename V::value_type;\n    using O = typename M::operator_structure;\n\
-    \    using E = typename O::value_type;\n\n    // mergeMonoid V::operation\n  \
-    \  // applyOperator M::operation\n    // mergeOperator O::operation\n\n    struct\
-    \ Node {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
+    \    using E = typename O::value_type;\n\n    // T + T      V::operation\n   \
+    \ // E + E      O::operation\n    // T + E -> T M::operation\n\n    struct Node\
+    \ {\n        T dat;\n        E lazy;\n        Node(T dat, E lazy) : dat(dat),\
     \ lazy(lazy){};\n    };\n\n    std::vector<Node> tree;\n\n    LazySegmentTree()\
     \ = default;\n    explicit LazySegmentTree(uint32_t n)\n        : tree(n * 2 +\
     \ 2, Node(V::identity(), O::identity())){};\n\n    int size() {\n        return\
@@ -139,8 +139,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL2F_1.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-10 18:36:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL2F_1.test.cpp
 layout: document

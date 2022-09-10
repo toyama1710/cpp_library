@@ -6,40 +6,40 @@ data:
     - icon: ':warning:'
       path: array/partially_persistent_array.cpp
       title: array/partially_persistent_array.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: array/persistent_array.hpp
       title: array/persistent_array.hpp
   - name: bbst
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_array.hpp
       title: bbst/avl_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_set.hpp
       title: bbst/avl_set.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/persistent_avl_set.hpp
       title: bbst/persistent_avl_set.hpp
   - name: bit
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/clz.hpp
       title: bit/clz.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: bit/ctz.hpp
       title: bit/ctz.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/lsb.hpp
       title: bit/lsb.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: bit/msb.hpp
       title: bit/msb.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/pop_count.hpp
       title: bit/pop_count.hpp
   - name: cht
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: cht/li_chao_tree.hpp
       title: cht/li_chao_tree.hpp
   - name: compact_data_structure
@@ -49,13 +49,13 @@ data:
       title: compact_data_structure/bit_vector.hpp
   - name: data_type
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_type/max_monoid.hpp
       title: data_type/max_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: data_type/min_monoid.hpp
       title: data_type/min_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_type/sum_monoid.hpp
       title: data_type/sum_monoid.hpp
   - name: deque
@@ -76,7 +76,7 @@ data:
       title: graph/dijkstra.cpp
   - name: hash_map
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: hash_map/array_mapped_trie.hpp
       title: hash_map/array_mapped_trie.hpp
   - name: heap
@@ -84,10 +84,10 @@ data:
     - icon: ':warning:'
       path: heap/find_kth.cpp
       title: heap/find_kth.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: heap/leftist_heap.hpp
       title: heap/leftist_heap.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: heap/persistent_leftist_heap.hpp
       title: heap/persistent_leftist_heap.hpp
   - name: math
@@ -108,25 +108,25 @@ data:
       title: queue/queue_aggregation.hpp
   - name: segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/dual_segment_tree.hpp
       title: segment_tree/dual_segment_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/dynamic_segment_tree.hpp
       title: segment_tree/dynamic_segment_tree.hpp
     - icon: ':warning:'
       path: segment_tree/fenwick_tree.cpp
       title: segment_tree/fenwick_tree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: segment_tree/lazy_segment_tree.hpp
       title: segment_tree/lazy_segment_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_lazy_segment_tree.hpp
       title: segment_tree/persistent_lazy_segment_tree.hpp
     - icon: ':question:'
       path: segment_tree/persistent_segment_tree.hpp
       title: segment_tree/persistent_segment_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/segment_tree.hpp
       title: segment_tree/segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -163,13 +163,13 @@ data:
     - icon: ':warning:'
       path: union_find/partially_persistent_union_find.cpp
       title: union_find/partially_persistent_union_find.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: union_find/persistent_union_find.hpp
       title: union_find/persistent_union_find.hpp
     - icon: ':x:'
       path: union_find/union_find.hpp
       title: union_find/union_find.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: union_find/weighted_union_find.hpp
       title: union_find/weighted_union_find.hpp
   - name: util
@@ -183,10 +183,10 @@ data:
     - icon: ':warning:'
       path: util/memory_pool_allocator.hpp
       title: util/memory_pool_allocator.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: util/reverse_cmp.hpp
       title: util/reverse_cmp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: util/xorshift.hpp
       title: util/xorshift.hpp
   verificationCategories:
@@ -231,49 +231,49 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/3209.test.cpp
       title: test/aoj/3209.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C_AVLset.test.cpp
       title: test/aoj/ALDS1_9_C_AVLset.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
       title: test/aoj/ALDS1_9_C_leftist_heap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
       title: test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL1B.test.cpp
       title: test/aoj/DSL1B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2A_1.test.cpp
       title: test/aoj/DSL2A_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2A_2.test.cpp
       title: test/aoj/DSL2A_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2A_3.test.cpp
       title: test/aoj/DSL2A_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2B.test.cpp
       title: test/aoj/DSL2B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2D.test.cpp
       title: test/aoj/DSL2D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2E.test.cpp
       title: test/aoj/DSL2E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2F_1.test.cpp
       title: test/aoj/DSL2F_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2F_2.test.cpp
       title: test/aoj/DSL2F_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2G.test.cpp
       title: test/aoj/DSL2G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2H.test.cpp
       title: test/aoj/DSL2H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2I.test.cpp
       title: test/aoj/DSL2I.test.cpp
     - icon: ':heavy_check_mark:'
@@ -282,36 +282,36 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/IPT1_6_C.test.cpp
       title: test/aoj/IPT1_6_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D.test.cpp
       title: test/aoj/ITP2_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D_persistent.test.cpp
       title: test/aoj/ITP2_7_D_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/bits.test.cpp
       title: test/aoj/bits.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/associative_array.test.cpp
       title: test/yosupo/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/associative_array_amt.test.cpp
       title: test/yosupo/associative_array_amt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca_doubling.test.cpp
       title: test/yosupo/lca_doubling.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_union_find.test.cpp
       title: test/yosupo/persistent_union_find.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':x:'

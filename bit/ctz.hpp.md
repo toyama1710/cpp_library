@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
   - icon: ':x:'
     path: sparse_table/disjoint_sparse_table.hpp
     title: sparse_table/disjoint_sparse_table.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2F_1.test.cpp
     title: test/aoj/DSL2F_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2G.test.cpp
     title: test/aoj/DSL2G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2H.test.cpp
     title: test/aoj/DSL2H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2I.test.cpp
     title: test/aoj/DSL2I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/bits.test.cpp
     title: test/aoj/bits.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/yosupo/static_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bit/ctz.hpp\"\n\n\n\n#include <cstdint>\n\ninline int ctz32_(uint32_t\
@@ -74,7 +74,7 @@ data:
   - segment_tree/lazy_segment_tree.hpp
   - sparse_table/disjoint_sparse_table.hpp
   timestamp: '2021-12-09 20:34:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/static_range_sum.test.cpp
