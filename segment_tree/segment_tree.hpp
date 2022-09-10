@@ -37,7 +37,7 @@ struct SegmentTree {
         return tree[k + size()];
     };
 
-    void update(int k, const T dat) {
+    void set(int k, const T dat) {
         k += size();
         tree[k] = dat;
 
@@ -45,6 +45,9 @@ struct SegmentTree {
             k >>= 1;
             tree[k] = Monoid::operation(tree[(k << 1)], tree[(k << 1) | 1]);
         }
+    }
+    void update(int k, const T dat) {
+        set(k, dat);
     };
 
     // [l, r)

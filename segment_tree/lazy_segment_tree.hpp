@@ -16,9 +16,9 @@ struct LazySegmentTree {
     using O = typename M::operator_structure;
     using E = typename O::value_type;
 
-    // mergeMonoid V::operation
-    // applyOperator M::operation
-    // mergeOperator O::operation
+    // T + T      V::operation
+    // E + E      O::operation
+    // T + E -> T M::operation
 
     struct Node {
         T dat;

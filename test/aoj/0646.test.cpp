@@ -53,6 +53,8 @@ int main() {
             i64 r = seg.find_first(i, f);
             if (r >= 0) {
                 cnt += n - r + 1;
+                assert(f(seg.fold(i, r)));
+                assert(r == 0 || !f(seg.fold(i, r - 1)));
             }
         }
 
