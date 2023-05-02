@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
   _extendedRequiredBy: []

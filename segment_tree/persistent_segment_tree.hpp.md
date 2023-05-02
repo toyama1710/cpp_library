@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1418.test.cpp
     title: test/aoj/1418.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/rectangle_sum1.test.cpp
     title: test/yosupo/rectangle_sum1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/persistent_segment_tree.hpp\"\n\n\n\n#include\
@@ -89,7 +89,7 @@ data:
   path: segment_tree/persistent_segment_tree.hpp
   requiredBy: []
   timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/rectangle_sum1.test.cpp
   - test/aoj/1418.test.cpp

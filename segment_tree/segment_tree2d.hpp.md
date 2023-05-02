@@ -71,8 +71,8 @@ data:
   timestamp: '2022-09-01 14:18:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1068.test.cpp
   - test/aoj/2842.test.cpp
+  - test/aoj/1068.test.cpp
 documentation_of: segment_tree/segment_tree2d.hpp
 layout: document
 redirect_from:

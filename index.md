@@ -25,13 +25,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/clz.hpp
       title: bit/clz.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ctz.hpp
       title: bit/ctz.hpp
     - icon: ':heavy_check_mark:'
       path: bit/lsb.hpp
       title: bit/lsb.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/msb.hpp
       title: bit/msb.hpp
     - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
       title: bit/pop_count.hpp
   - name: cht
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: cht/li_chao_tree.hpp
       title: cht/li_chao_tree.hpp
   - name: compact_data_structure
@@ -52,7 +52,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_type/max_monoid.hpp
       title: data_type/max_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_type/min_monoid.hpp
       title: data_type/min_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
       title: data_type/sum_monoid.hpp
   - name: deque
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: deque/sliding_window.hpp
       title: deque/sliding_window.hpp
   - name: graph
@@ -103,7 +103,7 @@ data:
       title: math/prime_factorize_table.hpp
   - name: queue
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: queue/queue_aggregation.hpp
       title: queue/queue_aggregation.hpp
   - name: segment_tree
@@ -117,13 +117,13 @@ data:
     - icon: ':warning:'
       path: segment_tree/fenwick_tree.cpp
       title: segment_tree/fenwick_tree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/lazy_segment_tree.hpp
       title: segment_tree/lazy_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_lazy_segment_tree.hpp
       title: segment_tree/persistent_lazy_segment_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_segment_tree.hpp
       title: segment_tree/persistent_segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -134,10 +134,10 @@ data:
       title: segment_tree/segment_tree2d.hpp
   - name: sparse_table
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: sparse_table/disjoint_sparse_table.hpp
       title: sparse_table/disjoint_sparse_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: sparse_table/sparse_table.hpp
       title: sparse_table/sparse_table.hpp
   - name: stack
@@ -166,7 +166,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: union_find/persistent_union_find.hpp
       title: union_find/persistent_union_find.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: union_find/union_find.hpp
       title: union_find/union_find.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
       title: union_find/weighted_union_find.hpp
   - name: util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: util/coordinate_compression.hpp
       title: util/coordinate_compression.hpp
     - icon: ':heavy_check_mark:'
@@ -314,28 +314,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_aggregation.test.cpp
       title: test/yosupo/queue_aggregation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum1.test.cpp
       title: test/yosupo/rectangle_sum1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum.test.cpp
       title: test/yosupo/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_rmq.test.cpp
       title: test/yosupo/static_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/swag.test.cpp
       title: test/yosupo/swag.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/union_find.test.cpp
       title: test/yosupo/union_find.test.cpp
 layout: toppage

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_type/min_monoid.hpp
     title: data_type/min_monoid.hpp
   - icon: ':heavy_check_mark:'

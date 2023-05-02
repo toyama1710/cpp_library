@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_type/min_monoid.hpp
     title: data_type/min_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: sparse_table/sparse_table.hpp
     title: sparse_table/sparse_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -61,7 +61,7 @@ data:
   path: test/yosupo/static_rmq.test.cpp
   requiredBy: []
   timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_rmq.test.cpp
 layout: document

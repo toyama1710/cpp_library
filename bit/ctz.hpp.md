@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: sparse_table/disjoint_sparse_table.hpp
     title: sparse_table/disjoint_sparse_table.hpp
   _extendedVerifiedWith:
@@ -24,15 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/bits.test.cpp
     title: test/aoj/bits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum.test.cpp
     title: test/yosupo/static_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bit/ctz.hpp\"\n\n\n\n#include <cstdint>\n\ninline int ctz32_(uint32_t\
@@ -71,18 +71,18 @@ data:
   isVerificationFile: false
   path: bit/ctz.hpp
   requiredBy:
-  - segment_tree/lazy_segment_tree.hpp
   - sparse_table/disjoint_sparse_table.hpp
+  - segment_tree/lazy_segment_tree.hpp
   timestamp: '2021-12-09 20:34:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/static_range_sum.test.cpp
-  - test/aoj/DSL2G.test.cpp
+  - test/aoj/DSL2H.test.cpp
+  - test/aoj/bits.test.cpp
   - test/aoj/DSL2I.test.cpp
   - test/aoj/DSL2F_1.test.cpp
-  - test/aoj/bits.test.cpp
-  - test/aoj/DSL2H.test.cpp
+  - test/aoj/DSL2G.test.cpp
 documentation_of: bit/ctz.hpp
 layout: document
 redirect_from:

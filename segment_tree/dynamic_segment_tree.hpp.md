@@ -89,8 +89,8 @@ data:
   timestamp: '2022-09-01 14:18:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2A_3.test.cpp
   - test/aoj/1418_2.test.cpp
+  - test/aoj/DSL2A_3.test.cpp
 documentation_of: segment_tree/dynamic_segment_tree.hpp
 layout: document
 redirect_from:

@@ -99,8 +99,8 @@ data:
   timestamp: '2022-09-01 14:18:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/3209.test.cpp
   - test/aoj/1501.test.cpp
+  - test/aoj/3209.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 redirect_from:

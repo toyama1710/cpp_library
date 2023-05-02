@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2A_1.test.cpp
     title: test/aoj/DSL2A_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_rmq.test.cpp
     title: test/yosupo/static_rmq.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_type/min_monoid.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -29,7 +29,7 @@ data:
   path: data_type/min_monoid.hpp
   requiredBy: []
   timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_rmq.test.cpp
   - test/aoj/DSL2A_1.test.cpp
