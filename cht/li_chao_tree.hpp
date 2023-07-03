@@ -31,15 +31,17 @@ struct LiChaoTree {
         pos.resize(n_);
         std::iota(pos.begin(), pos.end(), T(0));
     };
+
     template <class InputItr>
     LiChaoTree(InputItr first, InputItr last) {
         init(first, last);
     };
+
     LiChaoTree(std::vector<T> p) {
         std::sort(p.begin(), p.end());
         p.erase(std::unique(p.begin(), p.end()), p.end());
         init(p.begin(), p.end());
-    }
+    };
 
     template <class InputItr>
     void init(InputItr first, InputItr last) {
