@@ -32,12 +32,14 @@ struct DynamicSegmentTree {
             root = new Node(Monoid::identity());
         } else {
             Node *tmp;
+
             while (i >= R) {
                 R += R - L;
                 tmp = new Node(root->v);
                 tmp->left = root;
                 root = tmp;
             }
+
             while (i < L) {
                 L -= R - L;
                 tmp = new Node(root->v);
@@ -61,9 +63,11 @@ struct DynamicSegmentTree {
         llong mid = (nl + nr) / 2;
         if (k < mid) {
             if (!node->left) node->left = new Node(Monoid::identity());
+
             update(node->left, nl, (nl + nr) / 2, k, v);
         } else {
             if (!node->right) node->right = new Node(Monoid::identity());
+
             update(node->right, (nl + nr) / 2, nr, k, v);
         }
 
@@ -77,13 +81,16 @@ struct DynamicSegmentTree {
         if (r > R) expand(r);
         return fold(root, L, R, l, r);
     };
+
     T fold(Node *node, llong nl, llong nr, llong ql, llong qr) {
         if (ql <= nl && nr <= qr) return node->v;
 
         T lv = Monoid::identity(), rv = Monoid::identity();
         llong mid = (nl + nr) / 2;
+
         if (node->left && ql < mid && nl < qr)
             lv = fold(node->left, nl, mid, ql, qr);
+
         if (node->right && ql < nr && mid < qr)
             rv = fold(node->right, mid, nr, ql, qr);
 
