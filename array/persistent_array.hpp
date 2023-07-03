@@ -33,10 +33,12 @@ struct PersistentArray {
     PersistentArray() = default;
     PersistentArray(Node *root, int arr_size)
         : root(root), arr_size(arr_size){};
+
     PersistentArray(int size, const T &d = T()) : arr_size(size) {
         root = new Node();
         init(root, size, d);
     };
+
     Node *init(Node *np, int size, T d) {
         np->dat = d;
 
@@ -50,6 +52,7 @@ struct PersistentArray {
     const T get(int idx) const {
         return get(idx, root);
     };
+
     const T get(int idx, Node *np) const {
         if (idx == 0) return np->dat;
         return get((idx - 1) / K, np->ch[idx % K]);
@@ -58,14 +61,17 @@ struct PersistentArray {
     PersistentArray set(int idx, const T &val) {
         return {set(idx, val, root), arr_size};
     };
+
     Node *set(int idx, const T &val, Node *np) {
         if (idx == 0) {
             Node *node = new Node(np);
             node->dat = val;
+
             return node;
         } else {
             Node *node = new Node(np);
             node->ch[idx % K] = set((idx - 1) / K, val, np->ch[idx % K]);
+
             return node;
         }
     };
@@ -73,6 +79,7 @@ struct PersistentArray {
     void destructive_set(int idx, const T &val) {
         destructive_set(idx, val, root);
     };
+
     void destructive_set(int idx, const T &val, Node *np) {
         if (idx == 0)
             np->dat = val;
@@ -83,6 +90,7 @@ struct PersistentArray {
     int size() {
         return arr_size;
     };
+
     PersistentArray get_array() {
         return *this;
     };
