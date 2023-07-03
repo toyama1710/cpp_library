@@ -40,6 +40,7 @@ struct UnionFind {
     bool same(int x, int y) {
         return represent(x) == represent(y);
     };
+
     int size(int x) {
         return -(parent[represent(x)]);
     };
