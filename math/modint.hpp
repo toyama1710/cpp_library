@@ -18,15 +18,18 @@ struct ModInt {
         else
             return ModInt(d + x.d);
     };
+
     ModInt operator-(ModInt x) const {
         if (d >= x.d)
             return ModInt(d - x.d);
         else
             return ModInt(d + p - x.d);
     };
+
     ModInt operator*(ModInt x) const {
         return ModInt(d * x.d);
     }
+
     ModInt operator/(ModInt x) const {
         return ModInt(*this * x.inv());
     }
@@ -40,6 +43,7 @@ struct ModInt {
         }
         return ret;
     };
+
     ModInt inv() {
         return pow(*this, p - 2);
     };
@@ -47,6 +51,7 @@ struct ModInt {
     ModInt operator+() {
         return *this;
     };
+
     ModInt operator-() {
         return ModInt(-d);
     };
@@ -95,14 +100,17 @@ template <uint64_t p>
 ModInt<p> operator+(const long long x, const ModInt<p> y) {
     return ModInt<p>(x) + y;
 };
+
 template <uint64_t p>
 ModInt<p> operator-(const long long x, const ModInt<p> y) {
     return ModInt<p>(x) - y;
 };
+
 template <uint64_t p>
 ModInt<p> operator*(const long long x, const ModInt<p> y) {
     return ModInt<p>(x) * y;
 };
+
 template <uint64_t p>
 ModInt<p> operator/(const long long x, const ModInt<p> y) {
     return ModInt<p>(x) / y;
@@ -112,6 +120,7 @@ template <uint64_t p>
 std::ostream &operator<<(std::ostream &stream, const ModInt<p> mi) {
     return stream << mi.d;
 };
+
 template <uint64_t p>
 std::istream &operator>>(std::istream &stream, ModInt<p> &mi) {
     long long a;
