@@ -40,7 +40,7 @@ data:
     \        return tree[k + size()];\n    };\n\n    void set(int k, const T dat)\
     \ {\n        k += size();\n        tree[k] = dat;\n\n        while (k > 1) {\n\
     \            k >>= 1;\n            tree[k] = Monoid::operation(tree[(k << 1)],\
-    \ tree[(k << 1) | 1]);\n        }\n    }\n    void update(int k, const T dat)\
+    \ tree[(k << 1) | 1]);\n        }\n    };\n\n    void update(int k, const T dat)\
     \ {\n        set(k, dat);\n    };\n\n    // [l, r)\n    T fold(int l, int r) {\n\
     \        l += size();  // points leaf\n        r += size();\n\n        T lv =\
     \ Monoid::identity();\n        T rv = Monoid::identity();\n        while (l <\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL2B.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 18:36:54+09:00'
+  timestamp: '2023-07-03 22:10:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL2B.test.cpp

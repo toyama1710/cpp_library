@@ -22,7 +22,7 @@ data:
     \    inline void propagate(uint32_t k) {\n        if (k >= size()) return;\n \
     \       lazy[(k << 1) | 0] = Monoid::operation(lazy[(k << 1) | 0], lazy[k]);\n\
     \        lazy[(k << 1) | 1] = Monoid::operation(lazy[(k << 1) | 1], lazy[k]);\n\
-    \        lazy[k] = Monoid::identity();\n    };\n    inline void push_down(uint32_t\
+    \        lazy[k] = Monoid::identity();\n    };\n\n    inline void push_down(uint32_t\
     \ k) {\n        for (uint32_t i = 31; i > 0; i--) propagate(k >> i);\n    };\n\
     \n    // [l, r)\n    void update(uint32_t l, uint32_t r, T op) {\n        l +=\
     \ size();\n        r += size();\n        push_down(l);\n        push_down(r -\
@@ -40,25 +40,25 @@ data:
     \ (int)(lazy.size() >> 1);\n    };\n\n    inline void propagate(uint32_t k) {\n\
     \        if (k >= size()) return;\n        lazy[(k << 1) | 0] = Monoid::operation(lazy[(k\
     \ << 1) | 0], lazy[k]);\n        lazy[(k << 1) | 1] = Monoid::operation(lazy[(k\
-    \ << 1) | 1], lazy[k]);\n        lazy[k] = Monoid::identity();\n    };\n    inline\
-    \ void push_down(uint32_t k) {\n        for (uint32_t i = 31; i > 0; i--) propagate(k\
-    \ >> i);\n    };\n\n    // [l, r)\n    void update(uint32_t l, uint32_t r, T op)\
-    \ {\n        l += size();\n        r += size();\n        push_down(l);\n     \
-    \   push_down(r - 1);\n\n        while (l < r) {\n            if (l & 1) lazy[l]\
-    \ = Monoid::operation(lazy[l], op), l++;\n            if (r & 1) --r, lazy[r]\
-    \ = Monoid::operation(lazy[r], op);\n\n            l >>= 1;\n            r >>=\
-    \ 1;\n        }\n    };\n\n    T get(uint32_t k) {\n        k += size();\n   \
-    \     push_down(k);\n        return lazy[k];\n    };\n\n    T operator[](uint32_t\
+    \ << 1) | 1], lazy[k]);\n        lazy[k] = Monoid::identity();\n    };\n\n   \
+    \ inline void push_down(uint32_t k) {\n        for (uint32_t i = 31; i > 0; i--)\
+    \ propagate(k >> i);\n    };\n\n    // [l, r)\n    void update(uint32_t l, uint32_t\
+    \ r, T op) {\n        l += size();\n        r += size();\n        push_down(l);\n\
+    \        push_down(r - 1);\n\n        while (l < r) {\n            if (l & 1)\
+    \ lazy[l] = Monoid::operation(lazy[l], op), l++;\n            if (r & 1) --r,\
+    \ lazy[r] = Monoid::operation(lazy[r], op);\n\n            l >>= 1;\n        \
+    \    r >>= 1;\n        }\n    };\n\n    T get(uint32_t k) {\n        k += size();\n\
+    \        push_down(k);\n        return lazy[k];\n    };\n\n    T operator[](uint32_t\
     \ k) {\n        return get(k);\n    };\n};\n//===\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: segment_tree/dual_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
+  timestamp: '2023-07-03 22:10:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2E.test.cpp
   - test/aoj/DSL2D.test.cpp
+  - test/aoj/DSL2E.test.cpp
 documentation_of: segment_tree/dual_segment_tree.hpp
 layout: document
 redirect_from:

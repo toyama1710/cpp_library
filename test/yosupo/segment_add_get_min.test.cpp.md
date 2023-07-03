@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: cht/li_chao_tree.hpp
     title: cht/li_chao_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -26,10 +26,10 @@ data:
     \ seg;\n    std::vector<T> pos;\n\n    LiChaoTree() = default;\n    explicit LiChaoTree(int\
     \ n) {\n        int n_ = 1;\n        while (n_ < n) n_ *= 2;\n        seg.resize(n_\
     \ * 2, Line::identity());\n        pos.resize(n_);\n        std::iota(pos.begin(),\
-    \ pos.end(), T(0));\n    };\n    template <class InputItr>\n    LiChaoTree(InputItr\
-    \ first, InputItr last) {\n        init(first, last);\n    };\n    LiChaoTree(std::vector<T>\
+    \ pos.end(), T(0));\n    };\n\n    template <class InputItr>\n    LiChaoTree(InputItr\
+    \ first, InputItr last) {\n        init(first, last);\n    };\n\n    LiChaoTree(std::vector<T>\
     \ p) {\n        std::sort(p.begin(), p.end());\n        p.erase(std::unique(p.begin(),\
-    \ p.end()), p.end());\n        init(p.begin(), p.end());\n    }\n\n    template\
+    \ p.end()), p.end());\n        init(p.begin(), p.end());\n    };\n\n    template\
     \ <class InputItr>\n    void init(InputItr first, InputItr last) {\n        int\
     \ n = std::distance(first, last);\n        int n_ = 1;\n\n        while (n_ <\
     \ n) n_ *= 2;\n\n        seg.resize(n_ * 2, Line::identity());\n        pos.reserve(n_);\n\
@@ -104,8 +104,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-03 22:02:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/segment_add_get_min.test.cpp
 layout: document

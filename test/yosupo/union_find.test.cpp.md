@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: union_find/union_find.hpp
     title: union_find/union_find.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -28,8 +28,8 @@ data:
     \  if (x == y) return;\n\n        if (parent[y] < parent[x]) std::swap(x, y);\n\
     \n        parent[x] += parent[y];\n        parent[y] = x;\n\n        return;\n\
     \    };\n\n    bool same(int x, int y) {\n        return represent(x) == represent(y);\n\
-    \    };\n    int size(int x) {\n        return -(parent[represent(x)]);\n    };\n\
-    };\n//===\n\n\n#line 17 \"test/yosupo/union_find.test.cpp\"\n\nusing namespace\
+    \    };\n\n    int size(int x) {\n        return -(parent[represent(x)]);\n  \
+    \  };\n};\n//===\n\n\n#line 17 \"test/yosupo/union_find.test.cpp\"\n\nusing namespace\
     \ std;\nusing llong = long long;\n\nllong n, q;\nllong com, u, v;\nUnionFind uf;\n\
     \nint main() {\n    cin >> n >> q;\n    uf.init(n);\n\n    while (q--) {\n   \
     \     cin >> com >> u >> v;\n\n        if (com == 0) {\n            uf.unite(u,\
@@ -50,8 +50,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/union_find.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-03 22:11:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/union_find.test.cpp
 layout: document

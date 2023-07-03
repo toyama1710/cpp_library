@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/clz.hpp
     title: bit/clz.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
   - icon: ':heavy_check_mark:'
     path: bit/lsb.hpp
     title: bit/lsb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/msb.hpp
     title: bit/msb.hpp
   - icon: ':heavy_check_mark:'
     path: bit/pop_count.hpp
     title: bit/pop_count.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: util/xorshift.hpp
     title: util/xorshift.hpp
   _extendedRequiredBy: []

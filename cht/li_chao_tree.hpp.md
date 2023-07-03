@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/line_add_get_min.test.cpp
     title: test/yosupo/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/segment_add_get_min.test.cpp
     title: test/yosupo/segment_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"cht/li_chao_tree.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -23,11 +23,11 @@ data:
     \n    std::vector<Line> seg;\n    std::vector<T> pos;\n\n    LiChaoTree() = default;\n\
     \    explicit LiChaoTree(int n) {\n        int n_ = 1;\n        while (n_ < n)\
     \ n_ *= 2;\n        seg.resize(n_ * 2, Line::identity());\n        pos.resize(n_);\n\
-    \        std::iota(pos.begin(), pos.end(), T(0));\n    };\n    template <class\
+    \        std::iota(pos.begin(), pos.end(), T(0));\n    };\n\n    template <class\
     \ InputItr>\n    LiChaoTree(InputItr first, InputItr last) {\n        init(first,\
-    \ last);\n    };\n    LiChaoTree(std::vector<T> p) {\n        std::sort(p.begin(),\
+    \ last);\n    };\n\n    LiChaoTree(std::vector<T> p) {\n        std::sort(p.begin(),\
     \ p.end());\n        p.erase(std::unique(p.begin(), p.end()), p.end());\n    \
-    \    init(p.begin(), p.end());\n    }\n\n    template <class InputItr>\n    void\
+    \    init(p.begin(), p.end());\n    };\n\n    template <class InputItr>\n    void\
     \ init(InputItr first, InputItr last) {\n        int n = std::distance(first,\
     \ last);\n        int n_ = 1;\n\n        while (n_ < n) n_ *= 2;\n\n        seg.resize(n_\
     \ * 2, Line::identity());\n        pos.reserve(n_);\n        for (; first != last;\
@@ -65,11 +65,11 @@ data:
     \    };\n\n    std::vector<Line> seg;\n    std::vector<T> pos;\n\n    LiChaoTree()\
     \ = default;\n    explicit LiChaoTree(int n) {\n        int n_ = 1;\n        while\
     \ (n_ < n) n_ *= 2;\n        seg.resize(n_ * 2, Line::identity());\n        pos.resize(n_);\n\
-    \        std::iota(pos.begin(), pos.end(), T(0));\n    };\n    template <class\
+    \        std::iota(pos.begin(), pos.end(), T(0));\n    };\n\n    template <class\
     \ InputItr>\n    LiChaoTree(InputItr first, InputItr last) {\n        init(first,\
-    \ last);\n    };\n    LiChaoTree(std::vector<T> p) {\n        std::sort(p.begin(),\
+    \ last);\n    };\n\n    LiChaoTree(std::vector<T> p) {\n        std::sort(p.begin(),\
     \ p.end());\n        p.erase(std::unique(p.begin(), p.end()), p.end());\n    \
-    \    init(p.begin(), p.end());\n    }\n\n    template <class InputItr>\n    void\
+    \    init(p.begin(), p.end());\n    };\n\n    template <class InputItr>\n    void\
     \ init(InputItr first, InputItr last) {\n        int n = std::distance(first,\
     \ last);\n        int n_ = 1;\n\n        while (n_ < n) n_ *= 2;\n\n        seg.resize(n_\
     \ * 2, Line::identity());\n        pos.reserve(n_);\n        for (; first != last;\
@@ -102,8 +102,8 @@ data:
   isVerificationFile: false
   path: cht/li_chao_tree.hpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-03 22:02:12+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/segment_add_get_min.test.cpp
   - test/yosupo/line_add_get_min.test.cpp

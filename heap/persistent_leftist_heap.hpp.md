@@ -16,52 +16,52 @@ data:
     \ struct Node {\n        T val;\n        int sz;\n        Node *ch[2];\n     \
     \   Node(const T &val) : val(val), sz(1), ch{nullptr, nullptr} {};\n        Node(Node\
     \ *ptr)\n            : val(ptr->val), sz(ptr->sz), ch{ptr->ch[0], ptr->ch[1]}\
-    \ {};\n        static int size(const Node *u) {\n            return u == nullptr\
-    \ ? 0 : u->sz;\n        };\n        static Node *update(Node *u) {\n         \
-    \   u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n            if (size(u->ch[0])\
+    \ {};\n\n        static int size(const Node *u) {\n            return u == nullptr\
+    \ ? 0 : u->sz;\n        };\n\n        static Node *update(Node *u) {\n       \
+    \     u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n            if (size(u->ch[0])\
     \ < size(u->ch[1])) std::swap(u->ch[0], u->ch[1]);\n            return u;\n  \
     \      }\n    };\n\n    Node *root;\n    using Self = PersistentLeftistHeap;\n\
-    \    PersistentLeftistHeap() = default;\n    PersistentLeftistHeap(Node *root)\
+    \n    PersistentLeftistHeap() = default;\n    PersistentLeftistHeap(Node *root)\
     \ : root(root){};\n\n    int size() const {\n        return Node::size(root);\n\
-    \    };\n    bool empty() const {\n        return size() == 0;\n    };\n\n   \
-    \ Node *meld(Node *h1, Node *h2) const {\n        if (h1 == nullptr) {\n     \
-    \       return h2;\n        } else if (h2 == nullptr) {\n            return h1;\n\
-    \        } else {\n            if (h1->val > h2->val) std::swap(h1, h2);\n   \
-    \         auto v = new Node(h1);\n            v->ch[1] = meld(v->ch[1], h2);\n\
-    \            return Node::update(v);\n        }\n    };\n    Self merge_with(const\
-    \ Self h) const {\n        return Self(root, h.root);\n    };\n    Self push(const\
-    \ T &v) const {\n        return Self(meld(root, new Node(v)));\n    };\n    T\
-    \ peek() const {\n        assert(!empty());\n        return root->val;\n    };\n\
-    \    Self pop() const {\n        assert(!empty());\n        return Self(meld(root->ch[0],\
+    \    };\n\n    bool empty() const {\n        return size() == 0;\n    };\n\n \
+    \   Node *meld(Node *h1, Node *h2) const {\n        if (h1 == nullptr) {\n   \
+    \         return h2;\n        } else if (h2 == nullptr) {\n            return\
+    \ h1;\n        } else {\n            if (h1->val > h2->val) std::swap(h1, h2);\n\
+    \            auto v = new Node(h1);\n            v->ch[1] = meld(v->ch[1], h2);\n\
+    \            return Node::update(v);\n        }\n    };\n\n    Self merge_with(const\
+    \ Self h) const {\n        return Self(root, h.root);\n    };\n\n    Self push(const\
+    \ T &v) const {\n        return Self(meld(root, new Node(v)));\n    };\n\n   \
+    \ T peek() const {\n        assert(!empty());\n        return root->val;\n   \
+    \ };\n\n    Self pop() const {\n        assert(!empty());\n        return Self(meld(root->ch[0],\
     \ root->ch[1]));\n    };\n};\n\n\n"
   code: "#ifndef PERSISTENT_LEFTIST_HEAP_HPP\n#define PERSISTENT_LEFTIST_HEAP_HPP\n\
     \n#include <cassert>\n#include <utility>\n\ntemplate <class T>\nstruct PersistentLeftistHeap\
     \ {\n    struct Node {\n        T val;\n        int sz;\n        Node *ch[2];\n\
     \        Node(const T &val) : val(val), sz(1), ch{nullptr, nullptr} {};\n    \
     \    Node(Node *ptr)\n            : val(ptr->val), sz(ptr->sz), ch{ptr->ch[0],\
-    \ ptr->ch[1]} {};\n        static int size(const Node *u) {\n            return\
-    \ u == nullptr ? 0 : u->sz;\n        };\n        static Node *update(Node *u)\
+    \ ptr->ch[1]} {};\n\n        static int size(const Node *u) {\n            return\
+    \ u == nullptr ? 0 : u->sz;\n        };\n\n        static Node *update(Node *u)\
     \ {\n            u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;\n            if\
     \ (size(u->ch[0]) < size(u->ch[1])) std::swap(u->ch[0], u->ch[1]);\n         \
     \   return u;\n        }\n    };\n\n    Node *root;\n    using Self = PersistentLeftistHeap;\n\
-    \    PersistentLeftistHeap() = default;\n    PersistentLeftistHeap(Node *root)\
+    \n    PersistentLeftistHeap() = default;\n    PersistentLeftistHeap(Node *root)\
     \ : root(root){};\n\n    int size() const {\n        return Node::size(root);\n\
-    \    };\n    bool empty() const {\n        return size() == 0;\n    };\n\n   \
-    \ Node *meld(Node *h1, Node *h2) const {\n        if (h1 == nullptr) {\n     \
-    \       return h2;\n        } else if (h2 == nullptr) {\n            return h1;\n\
-    \        } else {\n            if (h1->val > h2->val) std::swap(h1, h2);\n   \
-    \         auto v = new Node(h1);\n            v->ch[1] = meld(v->ch[1], h2);\n\
-    \            return Node::update(v);\n        }\n    };\n    Self merge_with(const\
-    \ Self h) const {\n        return Self(root, h.root);\n    };\n    Self push(const\
-    \ T &v) const {\n        return Self(meld(root, new Node(v)));\n    };\n    T\
-    \ peek() const {\n        assert(!empty());\n        return root->val;\n    };\n\
-    \    Self pop() const {\n        assert(!empty());\n        return Self(meld(root->ch[0],\
+    \    };\n\n    bool empty() const {\n        return size() == 0;\n    };\n\n \
+    \   Node *meld(Node *h1, Node *h2) const {\n        if (h1 == nullptr) {\n   \
+    \         return h2;\n        } else if (h2 == nullptr) {\n            return\
+    \ h1;\n        } else {\n            if (h1->val > h2->val) std::swap(h1, h2);\n\
+    \            auto v = new Node(h1);\n            v->ch[1] = meld(v->ch[1], h2);\n\
+    \            return Node::update(v);\n        }\n    };\n\n    Self merge_with(const\
+    \ Self h) const {\n        return Self(root, h.root);\n    };\n\n    Self push(const\
+    \ T &v) const {\n        return Self(meld(root, new Node(v)));\n    };\n\n   \
+    \ T peek() const {\n        assert(!empty());\n        return root->val;\n   \
+    \ };\n\n    Self pop() const {\n        assert(!empty());\n        return Self(meld(root->ch[0],\
     \ root->ch[1]));\n    };\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: heap/persistent_leftist_heap.hpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
+  timestamp: '2023-07-03 22:05:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_9_C_persistent_leftist_heap.test.cpp

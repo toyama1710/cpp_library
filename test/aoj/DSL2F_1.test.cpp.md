@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
   _extendedRequiredBy: []
@@ -60,34 +60,34 @@ data:
     \ = default;\n    explicit LazySegmentTree(uint32_t n)\n        : tree(n * 2 +\
     \ 2, Node(V::identity(), O::identity())){};\n\n    int size() {\n        return\
     \ tree.size() >> 1;\n    };\n\n    void propagation(uint32_t k) {\n        const\
-    \ uint32_t l = (k << 1) | 0;\n        const uint32_t r = (k << 1) | 1;\n     \
-    \   tree[l].lazy = O::operation(tree[l].lazy, tree[k].lazy);\n        tree[r].lazy\
-    \ = O::operation(tree[r].lazy, tree[k].lazy);\n        tree[l].dat = M::operation(tree[l].dat,\
+    \ uint32_t l = (k << 1) | 0;\n        const uint32_t r = (k << 1) | 1;\n\n   \
+    \     tree[l].lazy = O::operation(tree[l].lazy, tree[k].lazy);\n        tree[r].lazy\
+    \ = O::operation(tree[r].lazy, tree[k].lazy);\n\n        tree[l].dat = M::operation(tree[l].dat,\
     \ tree[k].lazy);\n        tree[r].dat = M::operation(tree[r].dat, tree[k].lazy);\n\
-    \        tree[k].lazy = O::identity();\n    };\n    void push_down(uint32_t k)\
-    \ {\n        if (k == 0) return;\n        uint32_t w = ctz32(msb32(k));\n    \
-    \    for (int i = w; i > 0; i--) propagation(k >> i);\n    };\n    void recalc(uint32_t\
+    \n        tree[k].lazy = O::identity();\n    };\n\n    void push_down(uint32_t\
+    \ k) {\n        if (k == 0) return;\n        uint32_t w = ctz32(msb32(k));\n \
+    \       for (int i = w; i > 0; i--) propagation(k >> i);\n    };\n\n    void recalc(uint32_t\
     \ k) {\n        while (k > 1) {\n            k >>= 1;\n            tree[k].dat\
     \ =\n                V::operation(tree[(k << 1) | 0].dat, tree[(k << 1) | 1].dat);\n\
     \        }\n    };\n\n    // [l, r) += op\n    void update(uint32_t l, uint32_t\
     \ r, E op) {\n        l += size();\n        r += size();\n        uint32_t tmpl\
-    \ = l;\n        uint32_t tmpr = r;\n        push_down(l);\n        push_down(r\
+    \ = l;\n        uint32_t tmpr = r;\n\n        push_down(l);\n        push_down(r\
     \ - 1);\n\n        while (l < r) {\n            if (l & 1) {\n               \
     \ tree[l].lazy = O::operation(tree[l].lazy, op);\n                tree[l].dat\
-    \ = M::operation(tree[l].dat, op);\n                l++;\n            }\n    \
-    \        if (r & 1) {\n                --r;\n                tree[r].lazy = O::operation(tree[r].lazy,\
-    \ op);\n                tree[r].dat = M::operation(tree[r].dat, op);\n       \
-    \     }\n            l >>= 1;\n            r >>= 1;\n        }\n\n        push_down(tmpl);\n\
-    \        push_down(tmpr - 1);\n        recalc(tmpl);\n        recalc(tmpr - 1);\n\
-    \    };\n    void update(uint32_t idx, T x) {\n        idx += size();\n      \
-    \  push_down(idx);\n        tree[idx].dat = x;\n        recalc(idx);\n    };\n\
-    \    void set(uint32_t idx, T x) {\n        update(idx, x);\n    };\n\n    //\
-    \ foldl[l, r)\n    T fold(uint32_t l, uint32_t r) {\n        l += size();\n  \
-    \      r += size();\n        push_down(l);\n        push_down(r - 1);\n\n    \
-    \    T lv = V::identity();\n        T rv = V::identity();\n\n        while (l\
-    \ < r) {\n            if (l & 1) lv = V::operation(lv, tree[l].dat), l++;\n  \
-    \          if (r & 1) --r, rv = V::operation(tree[r].dat, rv);\n\n           \
-    \ l >>= 1;\n            r >>= 1;\n        }\n\n        return V::operation(lv,\
+    \ = M::operation(tree[l].dat, op);\n                l++;\n            }\n\n  \
+    \          if (r & 1) {\n                --r;\n                tree[r].lazy =\
+    \ O::operation(tree[r].lazy, op);\n                tree[r].dat = M::operation(tree[r].dat,\
+    \ op);\n            }\n\n            l >>= 1;\n            r >>= 1;\n        }\n\
+    \n        push_down(tmpl);\n        push_down(tmpr - 1);\n\n        recalc(tmpl);\n\
+    \        recalc(tmpr - 1);\n    };\n\n    void update(uint32_t idx, T x) {\n \
+    \       idx += size();\n        push_down(idx);\n        tree[idx].dat = x;\n\
+    \        recalc(idx);\n    };\n\n    void set(uint32_t idx, T x) {\n        update(idx,\
+    \ x);\n    };\n\n    // foldl[l, r)\n    T fold(uint32_t l, uint32_t r) {\n  \
+    \      l += size();\n        r += size();\n        push_down(l);\n        push_down(r\
+    \ - 1);\n\n        T lv = V::identity();\n        T rv = V::identity();\n\n  \
+    \      while (l < r) {\n            if (l & 1) lv = V::operation(lv, tree[l].dat),\
+    \ l++;\n            if (r & 1) --r, rv = V::operation(tree[r].dat, rv);\n\n  \
+    \          l >>= 1;\n            r >>= 1;\n        }\n\n        return V::operation(lv,\
     \ rv);\n    };\n\n    T operator[](const uint32_t &k) {\n        push_down(k +\
     \ size());\n        return tree[k + size()].dat;\n    };\n};\n//===\n\n\n#line\
     \ 7 \"test/aoj/DSL2F_1.test.cpp\"\nusing namespace std;\nusing llong = long long;\n\
@@ -139,7 +139,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL2F_1.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 18:36:54+09:00'
+  timestamp: '2023-07-03 22:10:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL2F_1.test.cpp

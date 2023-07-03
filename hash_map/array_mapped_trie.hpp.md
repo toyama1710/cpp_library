@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/associative_array_amt.test.cpp
     title: test/yosupo/associative_array_amt.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"hash_map/array_mapped_trie.hpp\"\n\n\n\n#include <cstdint>\n\
@@ -42,13 +42,13 @@ data:
     \  u = u->link[idx & mask];\n            idx >>= chunk_width;\n        }\n   \
     \     return u != nullptr;\n    };\n\n    T &operator[](u64 idx) {\n        if\
     \ (find(idx)) {\n            return get_node(idx)->dat;\n        } else {\n  \
-    \          return get_node(idx)->dat = id;\n        }\n    };\n};\n\n#endif"
+    \          return get_node(idx)->dat = id;\n        }\n    };\n};\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: hash_map/array_mapped_trie.hpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-03 22:03:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/associative_array_amt.test.cpp
 documentation_of: hash_map/array_mapped_trie.hpp

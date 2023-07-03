@@ -35,16 +35,16 @@ data:
     \ i == 0) {\n                    table[j].back().second++;\n                 \
     \   tmp /= i;\n                }\n            }\n        }\n    };\n\n    std::vector<P>\
     \ factorize(int n) {\n        assert(n > 1);\n        return table[n];\n    };\n\
-    };\n\n#endif"
+    };\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: math/prime_factorize_table.hpp
   requiredBy: []
-  timestamp: '2022-04-17 00:42:08+09:00'
+  timestamp: '2023-07-03 22:14:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1418_2.test.cpp
   - test/aoj/1418.test.cpp
+  - test/aoj/1418_2.test.cpp
 documentation_of: math/prime_factorize_table.hpp
 layout: document
 redirect_from:

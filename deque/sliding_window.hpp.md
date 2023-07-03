@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/swag.test.cpp
     title: test/yosupo/swag.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"deque/sliding_window.hpp\"\n#include <cassert>\n#include\
@@ -23,21 +23,21 @@ data:
     \            return front_st.top().second;\n        else\n            return merge(front_st.top().second,\
     \ back_st.top().second);\n    };\n\n    inline void push_front(SemiGroup d) {\n\
     \        if (front_st.empty())\n            front_st.emplace(d, d);\n        else\n\
-    \            front_st.emplace(d, merge(d, front_st.top().second));\n    };\n \
-    \   inline void push_back(SemiGroup d) {\n        if (back_st.empty())\n     \
-    \       back_st.emplace(d, d);\n        else\n            back_st.emplace(d, merge(back_st.top().second,\
-    \ d));\n    };\n\n    void pop_front() {\n        assert(!empty());\n\n      \
-    \  if (front_st.empty()) {\n            Stack buff;\n            while (buff.size()\
-    \ + 1 < back_st.size()) {\n                buff.push(back_st.top());\n       \
-    \         back_st.pop();\n            }\n            while (!back_st.empty())\
+    \            front_st.emplace(d, merge(d, front_st.top().second));\n    };\n\n\
+    \    inline void push_back(SemiGroup d) {\n        if (back_st.empty())\n    \
+    \        back_st.emplace(d, d);\n        else\n            back_st.emplace(d,\
+    \ merge(back_st.top().second, d));\n    };\n\n    void pop_front() {\n       \
+    \ assert(!empty());\n\n        if (front_st.empty()) {\n            Stack buff;\n\
+    \            while (buff.size() + 1 < back_st.size()) {\n                buff.push(back_st.top());\n\
+    \                back_st.pop();\n            }\n\n            while (!back_st.empty())\
     \ {\n                push_front(back_st.top().first);\n                back_st.pop();\n\
-    \            }\n            while (!buff.empty()) {\n                push_back(buff.top().first);\n\
+    \            }\n\n            while (!buff.empty()) {\n                push_back(buff.top().first);\n\
     \                buff.pop();\n            }\n        }\n        front_st.pop();\n\
-    \    };\n    void pop_back() {\n        assert(!empty());\n\n        if (back_st.empty())\
+    \    };\n\n    void pop_back() {\n        assert(!empty());\n\n        if (back_st.empty())\
     \ {\n            Stack buff;\n            while (buff.size() + 1 < front_st.size())\
     \ {\n                buff.push(front_st.top());\n                front_st.pop();\n\
-    \            }\n            while (!front_st.empty()) {\n                push_back(front_st.top().first);\n\
-    \                front_st.pop();\n            }\n            while (!buff.empty())\
+    \            }\n\n            while (!front_st.empty()) {\n                push_back(front_st.top().first);\n\
+    \                front_st.pop();\n            }\n\n            while (!buff.empty())\
     \ {\n                push_front(buff.top().first);\n                buff.pop();\n\
     \            }\n        }\n        back_st.pop();\n    };\n\n    inline bool empty()\
     \ {\n        return size() == 0;\n    };\n\n    inline size_t size() {\n     \
@@ -53,21 +53,21 @@ data:
     \            return front_st.top().second;\n        else\n            return merge(front_st.top().second,\
     \ back_st.top().second);\n    };\n\n    inline void push_front(SemiGroup d) {\n\
     \        if (front_st.empty())\n            front_st.emplace(d, d);\n        else\n\
-    \            front_st.emplace(d, merge(d, front_st.top().second));\n    };\n \
-    \   inline void push_back(SemiGroup d) {\n        if (back_st.empty())\n     \
-    \       back_st.emplace(d, d);\n        else\n            back_st.emplace(d, merge(back_st.top().second,\
-    \ d));\n    };\n\n    void pop_front() {\n        assert(!empty());\n\n      \
-    \  if (front_st.empty()) {\n            Stack buff;\n            while (buff.size()\
-    \ + 1 < back_st.size()) {\n                buff.push(back_st.top());\n       \
-    \         back_st.pop();\n            }\n            while (!back_st.empty())\
+    \            front_st.emplace(d, merge(d, front_st.top().second));\n    };\n\n\
+    \    inline void push_back(SemiGroup d) {\n        if (back_st.empty())\n    \
+    \        back_st.emplace(d, d);\n        else\n            back_st.emplace(d,\
+    \ merge(back_st.top().second, d));\n    };\n\n    void pop_front() {\n       \
+    \ assert(!empty());\n\n        if (front_st.empty()) {\n            Stack buff;\n\
+    \            while (buff.size() + 1 < back_st.size()) {\n                buff.push(back_st.top());\n\
+    \                back_st.pop();\n            }\n\n            while (!back_st.empty())\
     \ {\n                push_front(back_st.top().first);\n                back_st.pop();\n\
-    \            }\n            while (!buff.empty()) {\n                push_back(buff.top().first);\n\
+    \            }\n\n            while (!buff.empty()) {\n                push_back(buff.top().first);\n\
     \                buff.pop();\n            }\n        }\n        front_st.pop();\n\
-    \    };\n    void pop_back() {\n        assert(!empty());\n\n        if (back_st.empty())\
+    \    };\n\n    void pop_back() {\n        assert(!empty());\n\n        if (back_st.empty())\
     \ {\n            Stack buff;\n            while (buff.size() + 1 < front_st.size())\
     \ {\n                buff.push(front_st.top());\n                front_st.pop();\n\
-    \            }\n            while (!front_st.empty()) {\n                push_back(front_st.top().first);\n\
-    \                front_st.pop();\n            }\n            while (!buff.empty())\
+    \            }\n\n            while (!front_st.empty()) {\n                push_back(front_st.top().first);\n\
+    \                front_st.pop();\n            }\n\n            while (!buff.empty())\
     \ {\n                push_front(buff.top().first);\n                buff.pop();\n\
     \            }\n        }\n        back_st.pop();\n    };\n\n    inline bool empty()\
     \ {\n        return size() == 0;\n    };\n\n    inline size_t size() {\n     \
@@ -76,8 +76,8 @@ data:
   isVerificationFile: false
   path: deque/sliding_window.hpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-03 22:03:10+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/swag.test.cpp
 documentation_of: deque/sliding_window.hpp

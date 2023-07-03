@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: hash_map/array_mapped_trie.hpp
     title: hash_map/array_mapped_trie.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: util/xorshift.hpp
     title: util/xorshift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/associative_array
@@ -80,8 +80,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/associative_array_amt.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-03 22:03:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/associative_array_amt.test.cpp
 layout: document

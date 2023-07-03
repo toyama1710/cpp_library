@@ -23,15 +23,15 @@ data:
     \    using T = typename M::value_type;\n    using E = typename O::value_type;\n\
     \n    struct Node {\n        T v;\n        E op;\n        Node *left, *right;\n\
     \        Node()\n            : v(M::identity()),\n              op(O::identity()),\n\
-    \              left(nullptr),\n              right(nullptr){};\n        Node(T\
+    \              left(nullptr),\n              right(nullptr){};\n\n        Node(T\
     \ v, E op, Node *left = nullptr, Node *right = nullptr)\n            : v(v), op(op),\
-    \ left(left), right(right){};\n        Node(const Node &) = default;\n    };\n\
+    \ left(left), right(right){};\n\n        Node(const Node &) = default;\n    };\n\
     \n    Node *root;\n    int sz;\n\n    PersistentLazySegmentTree() = default;\n\
-    \    PersistentLazySegmentTree(const PersistentLazySegmentTree &) = default;\n\
-    \    explicit PersistentLazySegmentTree(int n)\n        : root(alloc(0, n, M::identity())),\
-    \ sz(n){};\n    PersistentLazySegmentTree(int n, T init_v)\n        : root(alloc(0,\
-    \ n, init_v)), sz(n){};\n    PersistentLazySegmentTree(Node *u, int sz) : root(u),\
-    \ sz(sz){};\n    PersistentLazySegmentTree &operator=(const PersistentLazySegmentTree\
+    \n    PersistentLazySegmentTree(const PersistentLazySegmentTree &) = default;\n\
+    \n    explicit PersistentLazySegmentTree(int n)\n        : root(alloc(0, n, M::identity())),\
+    \ sz(n){};\n\n    PersistentLazySegmentTree(int n, T init_v)\n        : root(alloc(0,\
+    \ n, init_v)), sz(n){};\n\n    PersistentLazySegmentTree(Node *u, int sz) : root(u),\
+    \ sz(sz){};\n\n    PersistentLazySegmentTree &operator=(const PersistentLazySegmentTree\
     \ &) =\n        default;\n\n    Node *alloc(int nl, int nr, T init_v) {\n    \
     \    if (nr - nl <= 1) return new Node(init_v, O::identity());\n        Node *ret\
     \ = new Node();\n        ret->left = alloc(nl, (nl + nr) / 2, init_v);\n     \
@@ -39,12 +39,12 @@ data:
     \ ret->right->v);\n        return ret;\n    };\n\n    void push_down(Node *u)\
     \ {\n        if (u->op == O::identity()) return;\n        u->v = A::operation(u->v,\
     \ u->op);\n\n        if (u->left != nullptr) {\n            u->left = new Node(*u->left);\n\
-    \            u->left->op = O::operation(u->left->op, u->op);\n        }\n    \
-    \    if (u->right != nullptr) {\n            u->right = new Node(*u->right);\n\
+    \            u->left->op = O::operation(u->left->op, u->op);\n        }\n\n  \
+    \      if (u->right != nullptr) {\n            u->right = new Node(*u->right);\n\
     \            u->right->op = O::operation(u->right->op, u->op);\n        }\n\n\
     \        u->op = O::identity();\n    };\n\n    T fold(int l, int r) {\n      \
     \  if (r <= l) return M::identity();\n        return fold(root, O::identity(),\
-    \ 0, sz, l, r);\n    };\n    T fold(Node *u, E op, int nl, int nr, int ql, int\
+    \ 0, sz, l, r);\n    };\n\n    T fold(Node *u, E op, int nl, int nr, int ql, int\
     \ qr) {\n        op = O::operation(u->op, op);\n        if (ql <= nl && nr <=\
     \ qr) return A::operation(u->v, op);\n\n        int mid = (nl + nr) / 2;\n   \
     \     if (qr <= mid) {\n            return fold(u->left, op, nl, mid, ql, qr);\n\
@@ -54,21 +54,21 @@ data:
     \ ql, qr));\n        }\n    };\n\n    PersistentLazySegmentTree update(int l,\
     \ int r, E op) {\n        if (r <= l) return PersistentLazySegmentTree(*this);\n\
     \        return PersistentLazySegmentTree(update(root, op, 0, sz, l, r), sz);\n\
-    \    };\n    Node *update(Node *u, E op, int nl, int nr, int ql, int qr) {\n \
-    \       Node *ret = new Node(*u);\n        if (ql <= nl && nr <= qr) {\n     \
-    \       ret->op = O::operation(ret->op, op);\n            return ret;\n      \
-    \  }\n\n        push_down(ret);\n        int mid = (nl + nr) / 2;\n        if\
+    \    };\n\n    Node *update(Node *u, E op, int nl, int nr, int ql, int qr) {\n\
+    \        Node *ret = new Node(*u);\n        if (ql <= nl && nr <= qr) {\n    \
+    \        ret->op = O::operation(ret->op, op);\n            return ret;\n     \
+    \   }\n\n        push_down(ret);\n        int mid = (nl + nr) / 2;\n        if\
     \ (qr <= mid) {\n            ret->left = update(ret->left, op, nl, mid, ql, qr);\n\
     \        } else if (mid <= ql) {\n            ret->right = update(ret->right,\
     \ op, mid, nr, ql, qr);\n        } else {\n            ret->left = update(ret->left,\
     \ op, nl, mid, ql, qr);\n            ret->right = update(ret->right, op, mid,\
-    \ nr, ql, qr);\n        }\n        ret->v = M::operation(A::operation(ret->left->v,\
+    \ nr, ql, qr);\n        }\n\n        ret->v = M::operation(A::operation(ret->left->v,\
     \ ret->left->op),\n                              A::operation(ret->right->v, ret->right->op));\n\
     \        return ret;\n    };\n\n    void dump() {\n        dump(root, 0);\n  \
-    \  };\n    void dump(Node *u, int d) {\n        if (u == nullptr) return;\n  \
-    \      dump(u->right, d + 1);\n        for (int i = 0; i < d; i++) std::cout <<\
-    \ \"\\t\\t\";\n        std::cout << \"(\" << u->v << \", \" << u->op << \")\"\
-    \ << std::endl;\n        dump(u->left, d + 1);\n    };\n};\n\n\n#line 7 \"test/aoj/DSL2F_2.test.cpp\"\
+    \  };\n\n    void dump(Node *u, int d) {\n        if (u == nullptr) return;\n\
+    \        dump(u->right, d + 1);\n        for (int i = 0; i < d; i++) std::cout\
+    \ << \"\\t\\t\";\n        std::cout << \"(\" << u->v << \", \" << u->op << \"\
+    )\" << std::endl;\n        dump(u->left, d + 1);\n    };\n};\n\n\n#line 7 \"test/aoj/DSL2F_2.test.cpp\"\
     \n\n#define _overload(_1, _2, _3, _4, name, ...) name\n#define _rep1(Itr, N) _rep3(Itr,\
     \ 0, N, 1)\n#define _rep2(Itr, a, b) _rep3(Itr, a, b, 1)\n#define _rep3(Itr, a,\
     \ b, step) for (i64 Itr = a; Itr < b; Itr += step)\n#define repeat(...) _overload(__VA_ARGS__,\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL2F_2.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 14:18:35+09:00'
+  timestamp: '2023-07-03 22:10:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL2F_2.test.cpp
