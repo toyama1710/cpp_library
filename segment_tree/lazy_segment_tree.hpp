@@ -39,17 +39,22 @@ struct LazySegmentTree {
     void propagation(uint32_t k) {
         const uint32_t l = (k << 1) | 0;
         const uint32_t r = (k << 1) | 1;
+
         tree[l].lazy = O::operation(tree[l].lazy, tree[k].lazy);
         tree[r].lazy = O::operation(tree[r].lazy, tree[k].lazy);
+
         tree[l].dat = M::operation(tree[l].dat, tree[k].lazy);
         tree[r].dat = M::operation(tree[r].dat, tree[k].lazy);
+
         tree[k].lazy = O::identity();
     };
+
     void push_down(uint32_t k) {
         if (k == 0) return;
         uint32_t w = ctz32(msb32(k));
         for (int i = w; i > 0; i--) propagation(k >> i);
     };
+
     void recalc(uint32_t k) {
         while (k > 1) {
             k >>= 1;
@@ -64,6 +69,7 @@ struct LazySegmentTree {
         r += size();
         uint32_t tmpl = l;
         uint32_t tmpr = r;
+
         push_down(l);
         push_down(r - 1);
 
@@ -73,26 +79,31 @@ struct LazySegmentTree {
                 tree[l].dat = M::operation(tree[l].dat, op);
                 l++;
             }
+
             if (r & 1) {
                 --r;
                 tree[r].lazy = O::operation(tree[r].lazy, op);
                 tree[r].dat = M::operation(tree[r].dat, op);
             }
+
             l >>= 1;
             r >>= 1;
         }
 
         push_down(tmpl);
         push_down(tmpr - 1);
+
         recalc(tmpl);
         recalc(tmpr - 1);
     };
+
     void update(uint32_t idx, T x) {
         idx += size();
         push_down(idx);
         tree[idx].dat = x;
         recalc(idx);
     };
+
     void set(uint32_t idx, T x) {
         update(idx, x);
     };

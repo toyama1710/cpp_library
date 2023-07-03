@@ -37,6 +37,7 @@ struct SlidingWindow {
         else
             front_st.emplace(d, merge(d, front_st.top().second));
     };
+
     inline void push_back(SemiGroup d) {
         if (back_st.empty())
             back_st.emplace(d, d);
@@ -53,10 +54,12 @@ struct SlidingWindow {
                 buff.push(back_st.top());
                 back_st.pop();
             }
+
             while (!back_st.empty()) {
                 push_front(back_st.top().first);
                 back_st.pop();
             }
+
             while (!buff.empty()) {
                 push_back(buff.top().first);
                 buff.pop();
@@ -64,6 +67,7 @@ struct SlidingWindow {
         }
         front_st.pop();
     };
+
     void pop_back() {
         assert(!empty());
 
@@ -73,10 +77,12 @@ struct SlidingWindow {
                 buff.push(front_st.top());
                 front_st.pop();
             }
+
             while (!front_st.empty()) {
                 push_back(front_st.top().first);
                 front_st.pop();
             }
+
             while (!buff.empty()) {
                 push_front(buff.top().first);
                 buff.pop();

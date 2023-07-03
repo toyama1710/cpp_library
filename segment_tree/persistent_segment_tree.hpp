@@ -33,10 +33,14 @@ struct PersistentSegmentTree {
     };
 
     PersistentSegmentTree(const PersistentSegmentTree &) = default;
+
     PersistentSegmentTree &operator=(const PersistentSegmentTree &) = default;
+
     PersistentSegmentTree(uint n, Node *r) : root(r), n(n){};
+
     PersistentSegmentTree(uint n)
         : root(alloc(0, n, std::vector<T>(n, Monoid::identity()))), n(n){};
+
     template <class InputItr>
     PersistentSegmentTree(const InputItr first, const InputItr last)
         : n(std::distance(first, last)),
@@ -53,11 +57,14 @@ struct PersistentSegmentTree {
     const T fold(uint l, uint r) const {
         return fold(l, r, 0, n, root);
     };
+
     const T fold(uint ql, uint qr, uint nl, uint nr, const Node *np) const {
         if (np == nullptr || qr <= nl || nr <= ql)
             return Monoid::identity();
+
         else if (ql <= nl && nr <= qr)
             return np->dat;
+
         else
             return Monoid::operation(fold(ql, qr, nl, (nl + nr) / 2, np->l),
                                      fold(ql, qr, (nl + nr) / 2, nr, np->r));
@@ -66,9 +73,11 @@ struct PersistentSegmentTree {
     PersistentSegmentTree update(uint idx, T d) {
         return set(idx, d);
     };
+
     PersistentSegmentTree set(uint idx, T d) {
         return PersistentSegmentTree(n, update(0, n, idx, d, root));
     };
+
     Node *update(uint nl, uint nr, uint idx, T d, Node *np) {
         if (idx < nl || nr <= idx)
             return np;

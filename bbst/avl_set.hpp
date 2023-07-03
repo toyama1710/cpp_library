@@ -25,6 +25,7 @@ struct AVLSet {
 
     AVLSet(Node *r = nullptr) : root(r){};
     AVLSet(const AVLSet &x) : root(x.root){};
+
     AVLSet &operator=(const AVLSet &x) {
         root = x.root;
         return *this;
@@ -33,6 +34,7 @@ struct AVLSet {
     int size() const {
         return size(root);
     };
+
     static int size(Node *u) {
         if (u != nullptr)
             return u->sz;
@@ -57,10 +59,12 @@ struct AVLSet {
         recalc(v);
         return v;
     };
+
     static int balance_factor(Node *u) {
         if (u == nullptr) return 0;
         return height(u->ch[0]) - height(u->ch[1]);
     };
+
     static Node *balance(Node *u) {
         if (u == nullptr) return nullptr;
         assert(-2 <= balance_factor(u) && balance_factor(u) <= 2);
@@ -73,6 +77,7 @@ struct AVLSet {
         }
         return u;
     };
+
     static Node *recalc(Node *u) {
         if (u == nullptr) return nullptr;
         u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;
@@ -85,6 +90,7 @@ struct AVLSet {
         root = insert(root, u);
         return *this;
     };
+
     Node *insert(Node *u, Node *nv) {
         if (u == nullptr) return nv;
         if (u->dat < nv->dat)
@@ -99,6 +105,7 @@ struct AVLSet {
         root = erase(root, dat);
         return *this;
     };
+
     Node *erase(Node *u, const T &dat) {
         if (u == nullptr) return nullptr;
         if (u->dat < dat) {
@@ -112,6 +119,7 @@ struct AVLSet {
         }
         return balance(recalc(u));
     };
+
     Node *isolate_node(Node *u) {
         if (u->ch[0] == nullptr || u->ch[1] == nullptr) {
             Node *ret = u->ch[0] != nullptr ? u->ch[0] : u->ch[1];
@@ -123,6 +131,7 @@ struct AVLSet {
             return balance(recalc(nv));
         }
     };
+
     std::pair<Node *, Node *> split_rightest_node(Node *v) {
         if (v->ch[1] != nullptr) {
             auto [l, ret] = split_rightest_node(v->ch[1]);
@@ -150,6 +159,7 @@ struct AVLSet {
     std::optional<T> lower_bound(const T &x) const {
         return lower_bound(root, x);
     };
+
     std::optional<T> lower_bound(Node *u, const T &x) const {
         if (u == nullptr) return std::nullopt;
         if (u->dat < x) {
@@ -162,9 +172,11 @@ struct AVLSet {
                 return u->dat;
         }
     };
+
     std::optional<T> upper_bound(const T &x) const {
         return upper_bound(root, x);
     };
+
     std::optional<T> upper_bound(Node *u, const T &x) const {
         if (u == nullptr) return std::nullopt;
         if (x < u->dat) {
@@ -185,6 +197,7 @@ struct AVLSet {
         else
             return find_Kth(root, k)->dat;
     };
+
     Node *find_Kth(Node *u, int k) const {
         if (size(u->ch[0]) == k)
             return u;
@@ -197,9 +210,11 @@ struct AVLSet {
     int count(const T &x) const {
         return size() - count_upper(x) - count_lower(x);
     };
+
     int count_lower(const T &x) const {
         return count_lower(x, root);
     };
+
     int count_lower(const T &x, Node *u) const {
         if (u == nullptr) return 0;
         if (u->dat < x)
@@ -207,9 +222,11 @@ struct AVLSet {
         else
             return count_lower(x, u->ch[0]);
     };
+
     int count_upper(const T &x) const {
         return count_upper(x, root);
     };
+
     int count_upper(const T &x, Node *u) const {
         if (u == nullptr) return 0;
         if (x < u->dat)
@@ -230,6 +247,7 @@ struct AVLSet {
         }
         return *this;
     };
+
     Node *merge(Node *root, Node *l, Node *r) {
         if (abs(height(l) - height(r)) <= 2) {
             root->ch[0] = l;
@@ -250,6 +268,7 @@ struct AVLSet {
         root = nullptr;
         return {AVLSet(l), AVLSet(r)};
     };
+
     std::pair<Node *, Node *> split(Node *u, int k) {
         if (u == nullptr) return {nullptr, nullptr};
         int lsize = size(u->ch[0]);
@@ -279,6 +298,7 @@ struct AVLSet {
         dfs(root, dfs);
         return ret;
     };
+
     void dump() const {
         auto f = [](auto &&f, int d, Node *u) -> void {
             if (u == nullptr) return;

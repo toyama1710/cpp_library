@@ -16,10 +16,12 @@ struct PersistentAVLSet : public AVLSet<T> {
         if (u == nullptr) return nullptr;
         if (Set::balance_factor(u) == 2) {
             u->ch[0] = new Node(u->ch[0]);
+
             if (Set::balance_factor(u->ch[0]) == -1)
                 u->ch[0]->ch[1] = new Node(u->ch[0]->ch[1]);
         } else if (Set::balance_factor(u) == -2) {
             u->ch[1] = new Node(u->ch[1]);
+
             if (Set::balance_factor(u->ch[1]) == 1)
                 u->ch[1]->ch[0] = new Node(u->ch[1]->ch[0]);
         }
@@ -30,6 +32,7 @@ struct PersistentAVLSet : public AVLSet<T> {
         Node *nv = new Node(dat);
         return PersistentAVLSet(insert(this->root, nv));
     };
+
     Node *insert(Node *u, Node *nv) const {
         if (u == nullptr) return nv;
         u = new Node(u);
@@ -44,9 +47,11 @@ struct PersistentAVLSet : public AVLSet<T> {
     PersistentAVLSet erase(const T &dat) const {
         return PersistentAVLSet(erase(this->root, dat));
     };
+
     Node *erase(Node *u, const T &dat) const {
         if (u == nullptr) return nullptr;
         u = new Node(u);
+
         if (u->dat < dat) {
             u->ch[1] = erase(u->ch[1], dat);
         } else if (dat < u->dat) {
@@ -56,6 +61,7 @@ struct PersistentAVLSet : public AVLSet<T> {
         }
         return Set::balance(copy(Set::recalc(u)));
     };
+
     Node *isolate_node(Node *u) const {
         if (u->ch[0] == nullptr || u->ch[1] == nullptr) {
             return u->ch[0] != nullptr ? u->ch[0] : u->ch[1];
@@ -67,6 +73,7 @@ struct PersistentAVLSet : public AVLSet<T> {
             return Set::balance(copy(Set::recalc(nv)));
         }
     };
+
     std::pair<Node *, Node *> split_rightest_node(Node *v) const {
         if (v->ch[1] != nullptr) {
             v = new Node(v);

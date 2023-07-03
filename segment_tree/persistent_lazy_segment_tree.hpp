@@ -19,8 +19,10 @@ struct PersistentLazySegmentTree {
               op(O::identity()),
               left(nullptr),
               right(nullptr){};
+
         Node(T v, E op, Node *left = nullptr, Node *right = nullptr)
             : v(v), op(op), left(left), right(right){};
+
         Node(const Node &) = default;
     };
 
@@ -28,12 +30,17 @@ struct PersistentLazySegmentTree {
     int sz;
 
     PersistentLazySegmentTree() = default;
+
     PersistentLazySegmentTree(const PersistentLazySegmentTree &) = default;
+
     explicit PersistentLazySegmentTree(int n)
         : root(alloc(0, n, M::identity())), sz(n){};
+
     PersistentLazySegmentTree(int n, T init_v)
         : root(alloc(0, n, init_v)), sz(n){};
+
     PersistentLazySegmentTree(Node *u, int sz) : root(u), sz(sz){};
+
     PersistentLazySegmentTree &operator=(const PersistentLazySegmentTree &) =
         default;
 
@@ -54,6 +61,7 @@ struct PersistentLazySegmentTree {
             u->left = new Node(*u->left);
             u->left->op = O::operation(u->left->op, u->op);
         }
+
         if (u->right != nullptr) {
             u->right = new Node(*u->right);
             u->right->op = O::operation(u->right->op, u->op);
@@ -66,6 +74,7 @@ struct PersistentLazySegmentTree {
         if (r <= l) return M::identity();
         return fold(root, O::identity(), 0, sz, l, r);
     };
+
     T fold(Node *u, E op, int nl, int nr, int ql, int qr) {
         op = O::operation(u->op, op);
         if (ql <= nl && nr <= qr) return A::operation(u->v, op);
@@ -85,6 +94,7 @@ struct PersistentLazySegmentTree {
         if (r <= l) return PersistentLazySegmentTree(*this);
         return PersistentLazySegmentTree(update(root, op, 0, sz, l, r), sz);
     };
+
     Node *update(Node *u, E op, int nl, int nr, int ql, int qr) {
         Node *ret = new Node(*u);
         if (ql <= nl && nr <= qr) {
@@ -102,6 +112,7 @@ struct PersistentLazySegmentTree {
             ret->left = update(ret->left, op, nl, mid, ql, qr);
             ret->right = update(ret->right, op, mid, nr, ql, qr);
         }
+
         ret->v = M::operation(A::operation(ret->left->v, ret->left->op),
                               A::operation(ret->right->v, ret->right->op));
         return ret;
@@ -110,6 +121,7 @@ struct PersistentLazySegmentTree {
     void dump() {
         dump(root, 0);
     };
+
     void dump(Node *u, int d) {
         if (u == nullptr) return;
         dump(u->right, d + 1);

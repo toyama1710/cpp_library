@@ -23,6 +23,7 @@ struct DualSegmentTree {
         lazy[(k << 1) | 1] = Monoid::operation(lazy[(k << 1) | 1], lazy[k]);
         lazy[k] = Monoid::identity();
     };
+
     inline void push_down(uint32_t k) {
         for (uint32_t i = 31; i > 0; i--) propagate(k >> i);
     };

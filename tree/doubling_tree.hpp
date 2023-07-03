@@ -22,6 +22,7 @@ struct DoublingTree {
         }
         build(p);
     };
+
     void build(const std::vector<std::optional<int>> &p) {
         int n = p.size();
         logn = 1;
@@ -46,6 +47,7 @@ struct DoublingTree {
             }
             return;
         };
+
         for (int u : root) {
             calc_depth(u, 0, calc_depth);
         }
@@ -83,6 +85,7 @@ struct DoublingTree {
         }
         return parent[0][u].value();
     };
+
     inline int distance(int u, int v) {
         return depth[u] + depth[v] - depth[lca(u, v)] * 2;
     };
@@ -95,6 +98,7 @@ struct DoublingTreeBuilder {
         g[a].push_back(b);
         g[b].push_back(a);
     };
+
     DoublingTree build(const std::vector<int> &root = {0}) {
         std::vector<std::optional<int>> parent(g.size(), std::nullopt);
         auto dfs = [&](int u, int p, auto &&f) -> void {

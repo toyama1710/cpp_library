@@ -20,6 +20,7 @@ struct SegmentTree2D {
         sx += W;
         int ty, tx;
         tree[sy][sx] = dat;
+
         tx = sx;
         while (tx > 1) {
             tx >>= 1;
@@ -33,6 +34,7 @@ struct SegmentTree2D {
             tx = sx;
             tree[ty][tx] =
                 M::operation(tree[(ty << 1)][tx], tree[(ty << 1) | 1][tx]);
+
             while (tx > 1) {
                 tx >>= 1;
                 tree[ty][tx] =
@@ -54,10 +56,12 @@ struct SegmentTree2D {
         }
         return ret;
     };
+
     T fold_x(int y, int l, int r) {
         l += W;
         r += W;
         T ret = M::identity();
+
         while (l < r) {
             if (l & 1) ret = M::operation(ret, tree[y][l++]);
             if (r & 1) ret = M::operation(tree[y][--r], ret);
