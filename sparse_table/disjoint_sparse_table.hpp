@@ -58,6 +58,7 @@ struct DisjointSparseTable {
             return G::operation(table[ctz32(msb32(x))][l],
                                 table[ctz32(msb32(x))][r]);
     };
+
     T fold(int l, int r, SemiGroup e) {
         if (l >= r) return e;
         return fold(l, r);
@@ -66,6 +67,7 @@ struct DisjointSparseTable {
     int size() {
         return table[0].size();
     };
+
     const T operator[](int k) {
         return fold(k, k + 1);
     };
