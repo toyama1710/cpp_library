@@ -39,6 +39,7 @@ struct AVLArray {
 
     explicit AVLArray(Node *root = nullptr) : root(root){};
     AVLArray(const AVLArray &x) : root(x.root){};
+
     AVLArray &operator=(const AVLArray &x) {
         root = x.root;
         return *this;
@@ -50,6 +51,7 @@ struct AVLArray {
         else
             return u->hi;
     };
+
     static int balance_factor(const Node *u) {
         return height(u->ch[0]) - height(u->ch[1]);
     };
@@ -57,6 +59,7 @@ struct AVLArray {
     int size() {
         return size(root);
     };
+
     static int size(const Node *u) {
         if (u == nullptr)
             return 0;
@@ -73,6 +76,7 @@ struct AVLArray {
             return A::operation(u->sum, u->op);
         }
     };
+
     static T rev_sum(const Node *u) {
         if (u == nullptr) {
             return M::identity();
@@ -88,6 +92,7 @@ struct AVLArray {
         eval_rev(u);
         return u;
     };
+
     static void eval_rev(Node *u) {
         if (u->rev_flag) {
             std::swap(u->ch[0], u->ch[1]);
@@ -97,6 +102,7 @@ struct AVLArray {
             if (u->ch[1]) u->ch[1]->rev_flag ^= 1;
         }
     };
+
     static void eval_lazy(Node *u) {
         u->val = A::operation(u->val, u->op);
         u->sum = A::operation(u->sum, u->op);
@@ -105,6 +111,7 @@ struct AVLArray {
         if (u->ch[1]) u->ch[1]->op = O::operation(u->ch[1]->op, u->op);
         u->op = O::identity();
     };
+
     static Node *calc_sum(Node *u) {
         u->sum =
             M::operation(M::operation(sum(u->ch[0]), u->val), sum(u->ch[1]));
@@ -112,6 +119,7 @@ struct AVLArray {
                                   rev_sum(u->ch[0]));
         return u;
     };
+
     static Node *recalc(Node *u) {
         // assert(u->op == O::identity());
         u->sz = size(u->ch[0]) + size(u->ch[1]) + 1;
@@ -129,6 +137,7 @@ struct AVLArray {
         recalc(v);
         return v;
     };
+
     static Node *balance(Node *u) {
         if (u == nullptr) return nullptr;
         push_down(u);
@@ -143,6 +152,7 @@ struct AVLArray {
         }
         return u;
     };
+
     static std::pair<Node *, Node *> split_rightest_node(Node *u) {
         push_down(u);
         if (u->ch[1] != nullptr) {
@@ -160,6 +170,7 @@ struct AVLArray {
         r.root = nullptr;
         return *this;
     };
+
     static Node *merge(Node *l, Node *r) {
         if (l == nullptr) {
             return r;
@@ -167,7 +178,8 @@ struct AVLArray {
             auto [left, mid] = split_rightest_node(l);
             return merge(mid, left, r);
         }
-    }
+    };
+
     static Node *merge(Node *mid, Node *l, Node *r) {
         if (abs(height(l) - height(r)) <= 1) {
             mid->ch[0] = l;
@@ -191,12 +203,14 @@ struct AVLArray {
         root = nullptr;
         return {AVLArray(l), AVLArray(r)};
     };
+
     static std::pair<Node *, Node *> split(Node *u, int k) {
         if (u == nullptr) return {nullptr, nullptr};
         push_down(u);
         Node *l = u->ch[0];
         Node *r = u->ch[1];
         u->ch[0] = u->ch[1] = nullptr;
+
         int lsize = size(l);
         if (lsize == k) {
             return {l, merge(u, nullptr, r)};
@@ -218,6 +232,7 @@ struct AVLArray {
         root = merge(merge(left, mid), right);
         return ret;
     };
+
     T fold_rev(int l, int r) {
         if (r <= l) return M::identity();
         reverse(l, r);
@@ -225,6 +240,7 @@ struct AVLArray {
         reverse(l, r);
         return ret;
     };
+
     AVLArray &reverse(int l, int r) {
         if (r <= l) return *this;
         auto [tmp, right] = split(root, r);
@@ -241,9 +257,11 @@ struct AVLArray {
         root = merge(nv, l, r);
         return *this;
     };
+
     AVLArray &set(int k, const T &dat) {
         return update(k, dat);
     };
+
     AVLArray &update(int k, const T &dat) {
         assert(0 <= k && k < size());
         auto [tmp, r] = split(root, k + 1);
@@ -252,6 +270,7 @@ struct AVLArray {
         root = merge(mid, l, r);
         return *this;
     };
+
     AVLArray &update(int l, int r, const E &op) {
         if (r <= l) return *this;
         auto [tmp, right] = split(root, r);
@@ -260,6 +279,7 @@ struct AVLArray {
         root = merge(merge(left, mid), right);
         return *this;
     };
+
     AVLArray &erase_at(int k) {
         assert(0 <= k && k < size());
         auto [tmp, r] = split(root, k + 1);
@@ -292,6 +312,7 @@ struct AVLArray {
     const T operator[](int k) {
         return at(root, k);
     };
+
     const T at(Node *u, int k) {
         assert(0 <= k && k < size(u));
         push_down(u);
