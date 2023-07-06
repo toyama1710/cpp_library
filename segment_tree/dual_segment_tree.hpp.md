@@ -57,8 +57,8 @@ data:
   timestamp: '2023-07-03 22:10:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL2D.test.cpp
   - test/aoj/DSL2E.test.cpp
+  - test/aoj/DSL2D.test.cpp
 documentation_of: segment_tree/dual_segment_tree.hpp
 layout: document
 redirect_from:

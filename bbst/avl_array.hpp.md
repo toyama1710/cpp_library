@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/avl_array.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -250,11 +250,11 @@ data:
   path: bbst/avl_array.hpp
   requiredBy: []
   timestamp: '2023-07-03 22:01:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/aoj/1508.test.cpp
+  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
 documentation_of: bbst/avl_array.hpp
 layout: document
 redirect_from:

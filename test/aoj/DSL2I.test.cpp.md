@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/msb.hpp
     title: bit/msb.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segment_tree/lazy_segment_tree.hpp
     title: segment_tree/lazy_segment_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
@@ -136,7 +136,7 @@ data:
   path: test/aoj/DSL2I.test.cpp
   requiredBy: []
   timestamp: '2023-07-03 22:10:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL2I.test.cpp
 layout: document

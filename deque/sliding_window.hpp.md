@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/swag.test.cpp
     title: test/yosupo/swag.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"deque/sliding_window.hpp\"\n#include <cassert>\n#include\
@@ -77,7 +77,7 @@ data:
   path: deque/sliding_window.hpp
   requiredBy: []
   timestamp: '2023-07-03 22:03:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/swag.test.cpp
 documentation_of: deque/sliding_window.hpp

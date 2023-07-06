@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ctz.hpp
     title: bit/ctz.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/msb.hpp
     title: bit/msb.hpp
   _extendedRequiredBy: []
@@ -12,21 +12,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2F_1.test.cpp
     title: test/aoj/DSL2F_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2G.test.cpp
     title: test/aoj/DSL2G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2H.test.cpp
     title: test/aoj/DSL2H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL2I.test.cpp
     title: test/aoj/DSL2I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segment_tree/lazy_segment_tree.hpp\"\n\n\n\n#include <cstdint>\n\
@@ -146,13 +146,13 @@ data:
   path: segment_tree/lazy_segment_tree.hpp
   requiredBy: []
   timestamp: '2023-07-03 22:10:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL2I.test.cpp
+  - test/aoj/DSL2F_1.test.cpp
   - test/aoj/DSL2H.test.cpp
   - test/aoj/DSL2G.test.cpp
-  - test/aoj/DSL2F_1.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: segment_tree/lazy_segment_tree.hpp
 layout: document
 redirect_from:

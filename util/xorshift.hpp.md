@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/bits.test.cpp
     title: test/aoj/bits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/associative_array_amt.test.cpp
     title: test/yosupo/associative_array_amt.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"util/xorshift.hpp\"\n\n\n\n#include <cstdint>\n\nstruct\
@@ -41,10 +41,10 @@ data:
   path: util/xorshift.hpp
   requiredBy: []
   timestamp: '2022-09-01 14:18:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/associative_array_amt.test.cpp
   - test/aoj/bits.test.cpp
+  - test/yosupo/associative_array_amt.test.cpp
 documentation_of: util/xorshift.hpp
 layout: document
 redirect_from:

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: array/persistent_array.hpp
     title: array/persistent_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_union_find.test.cpp
     title: test/yosupo/persistent_union_find.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"union_find/persistent_union_find.hpp\"\n\n\n\n#line 1 \"\
@@ -78,7 +78,7 @@ data:
   path: union_find/persistent_union_find.hpp
   requiredBy: []
   timestamp: '2023-07-03 22:01:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/persistent_union_find.test.cpp
 documentation_of: union_find/persistent_union_find.hpp

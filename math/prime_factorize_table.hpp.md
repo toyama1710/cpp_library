@@ -43,8 +43,8 @@ data:
   timestamp: '2023-07-03 22:14:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1418.test.cpp
   - test/aoj/1418_2.test.cpp
+  - test/aoj/1418.test.cpp
 documentation_of: math/prime_factorize_table.hpp
 layout: document
 redirect_from:

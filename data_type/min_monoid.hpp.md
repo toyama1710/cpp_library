@@ -31,8 +31,8 @@ data:
   timestamp: '2022-09-01 14:18:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/static_rmq.test.cpp
   - test/aoj/DSL2A_1.test.cpp
+  - test/yosupo/static_rmq.test.cpp
 documentation_of: data_type/min_monoid.hpp
 layout: document
 redirect_from:

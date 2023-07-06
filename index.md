@@ -6,18 +6,18 @@ data:
     - icon: ':warning:'
       path: array/partially_persistent_array.cpp
       title: array/partially_persistent_array.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: array/persistent_array.hpp
       title: array/persistent_array.hpp
   - name: bbst
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_array.hpp
       title: bbst/avl_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/avl_set.hpp
       title: bbst/avl_set.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/persistent_avl_set.hpp
       title: bbst/persistent_avl_set.hpp
   - name: bit
@@ -25,13 +25,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/clz.hpp
       title: bit/clz.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ctz.hpp
       title: bit/ctz.hpp
     - icon: ':heavy_check_mark:'
       path: bit/lsb.hpp
       title: bit/lsb.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/msb.hpp
       title: bit/msb.hpp
     - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
       title: bit/pop_count.hpp
   - name: cht
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: cht/li_chao_tree.hpp
       title: cht/li_chao_tree.hpp
   - name: compact_data_structure
@@ -60,7 +60,7 @@ data:
       title: data_type/sum_monoid.hpp
   - name: deque
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: deque/sliding_window.hpp
       title: deque/sliding_window.hpp
   - name: graph
@@ -76,7 +76,7 @@ data:
       title: graph/dijkstra.cpp
   - name: hash_map
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: hash_map/array_mapped_trie.hpp
       title: hash_map/array_mapped_trie.hpp
   - name: heap
@@ -92,10 +92,10 @@ data:
       title: heap/persistent_leftist_heap.hpp
   - name: math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_binomial.hpp
       title: math/mod_binomial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: math/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -117,13 +117,13 @@ data:
     - icon: ':warning:'
       path: segment_tree/fenwick_tree.cpp
       title: segment_tree/fenwick_tree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/lazy_segment_tree.hpp
       title: segment_tree/lazy_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_lazy_segment_tree.hpp
       title: segment_tree/persistent_lazy_segment_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment_tree/persistent_segment_tree.hpp
       title: segment_tree/persistent_segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
       title: segment_tree/segment_tree2d.hpp
   - name: sparse_table
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: sparse_table/disjoint_sparse_table.hpp
       title: sparse_table/disjoint_sparse_table.hpp
     - icon: ':heavy_check_mark:'
@@ -152,7 +152,7 @@ data:
       title: string/rolling_hash.hpp
   - name: tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/doubling_tree.hpp
       title: tree/doubling_tree.hpp
     - icon: ':warning:'
@@ -163,10 +163,10 @@ data:
     - icon: ':warning:'
       path: union_find/partially_persistent_union_find.cpp
       title: union_find/partially_persistent_union_find.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: union_find/persistent_union_find.hpp
       title: union_find/persistent_union_find.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: union_find/union_find.hpp
       title: union_find/union_find.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
       title: union_find/weighted_union_find.hpp
   - name: util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: util/coordinate_compression.hpp
       title: util/coordinate_compression.hpp
     - icon: ':heavy_check_mark:'
@@ -186,7 +186,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: util/reverse_cmp.hpp
       title: util/reverse_cmp.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: util/xorshift.hpp
       title: util/xorshift.hpp
   verificationCategories:
@@ -210,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1418_2.test.cpp
       title: test/aoj/1418_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1501.test.cpp
       title: test/aoj/1501.test.cpp
     - icon: ':heavy_check_mark:'
@@ -267,25 +267,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2F_2.test.cpp
       title: test/aoj/DSL2F_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2G.test.cpp
       title: test/aoj/DSL2G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2H.test.cpp
       title: test/aoj/DSL2H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL2I.test.cpp
       title: test/aoj/DSL2I.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL5C_doubling.test.cpp
       title: test/aoj/GRL5C_doubling.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/IPT1_6_C.test.cpp
       title: test/aoj/IPT1_6_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D.test.cpp
       title: test/aoj/ITP2_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_7_D_persistent.test.cpp
       title: test/aoj/ITP2_7_D_persistent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -293,49 +293,49 @@ data:
       title: test/aoj/bits.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/associative_array.test.cpp
       title: test/yosupo/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/associative_array_amt.test.cpp
       title: test/yosupo/associative_array_amt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/lca_doubling.test.cpp
       title: test/yosupo/lca_doubling.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/persistent_union_find.test.cpp
       title: test/yosupo/persistent_union_find.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/queue_aggregation.test.cpp
       title: test/yosupo/queue_aggregation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/rectangle_sum1.test.cpp
       title: test/yosupo/rectangle_sum1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/segment_add_get_min.test.cpp
       title: test/yosupo/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum.test.cpp
       title: test/yosupo/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_rmq.test.cpp
       title: test/yosupo/static_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/swag.test.cpp
       title: test/yosupo/swag.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/union_find.test.cpp
       title: test/yosupo/union_find.test.cpp
 layout: toppage

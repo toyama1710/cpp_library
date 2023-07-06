@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/line_add_get_min.test.cpp
     title: test/yosupo/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/segment_add_get_min.test.cpp
     title: test/yosupo/segment_add_get_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"cht/li_chao_tree.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -103,10 +103,10 @@ data:
   path: cht/li_chao_tree.hpp
   requiredBy: []
   timestamp: '2023-07-03 22:02:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/segment_add_get_min.test.cpp
   - test/yosupo/line_add_get_min.test.cpp
+  - test/yosupo/segment_add_get_min.test.cpp
 documentation_of: cht/li_chao_tree.hpp
 layout: document
 redirect_from:

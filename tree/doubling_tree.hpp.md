@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2270.test.cpp
     title: test/aoj/2270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL5C_doubling.test.cpp
     title: test/aoj/GRL5C_doubling.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/lca_doubling.test.cpp
     title: test/yosupo/lca_doubling.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/doubling_tree.hpp\"\n\n\n#include <iterator>\n#include\
@@ -108,11 +108,11 @@ data:
   path: tree/doubling_tree.hpp
   requiredBy: []
   timestamp: '2023-07-03 22:12:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/lca_doubling.test.cpp
   - test/aoj/GRL5C_doubling.test.cpp
   - test/aoj/2270.test.cpp
+  - test/yosupo/lca_doubling.test.cpp
 documentation_of: tree/doubling_tree.hpp
 layout: document
 redirect_from:

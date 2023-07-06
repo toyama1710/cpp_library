@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bbst/avl_set.hpp
     title: bbst/avl_set.hpp
   _extendedRequiredBy: []
