@@ -42,5 +42,9 @@
 "test/yosupo/queue_aggregation.test.cpp": "2022-09-01 14:18:35 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2023-07-03 22:10:06 +0900",
 "test/yosupo/rectangle_sum1.test.cpp": "2023-07-03 22:10:06 +0900",
-"test/yosupo/static_rmq.test.cpp": "2022-09-01 14:18:35 +0900"
+"test/yosupo/segment_add_get_min.test.cpp": "2023-07-03 22:02:12 +0900",
+"test/yosupo/static_range_sum.test.cpp": "2023-07-03 22:11:03 +0900",
+"test/yosupo/static_rmq.test.cpp": "2022-09-01 14:18:35 +0900",
+"test/yosupo/swag.test.cpp": "2023-07-03 22:03:10 +0900",
+"test/yosupo/union_find.test.cpp": "2023-07-03 22:11:55 +0900"
 }
